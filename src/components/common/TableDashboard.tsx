@@ -25,7 +25,6 @@ import {
 import { useEffect, useState } from "react"
 import { CardDashboard } from "../admin/Card";
 import { ModalConfirm } from "./ModalDelete";
-import { showError } from "@/utils/Toast";
 import { DropdownCustom } from "./DropdownCustom";
 import { IoFilterOutline } from "react-icons/io5";
 
@@ -64,7 +63,7 @@ export const DataTable = <TData extends { id: string }, TValue>({
     page,
     totalPages,
     onPageChange,
-    filterPlaceholder,
+    // filterPlaceholder,
     isLoading
 }: DataTableProps<TData, TValue>) => {
     const [sorting , setSorting] = useState<SortingState>([]);

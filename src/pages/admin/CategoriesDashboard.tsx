@@ -1,6 +1,5 @@
 import { CardDashboard } from "@/components/admin/Card"
 import { Button } from "@/components/ui/button"
-import { useState } from "react"
 
 export const CategoryDashboard = () => {
 

@@ -1,9 +1,7 @@
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
-import { useUser } from "@clerk/clerk-react";
 import { useCurrentUser } from "@/hooks/user/useCurrentUser";
-import { useToken } from "@/hooks/universal/useToken";
 import { CapitalizeText } from "@/helper/CapitalizeText";
 import { DropdownCustom, MenuItem } from "../common/DropdownCustom";
 import { FiLogOut } from "react-icons/fi";
@@ -22,15 +20,14 @@ interface NavbarProps {
 }
 
 export const Navbar = ({ 
-    isMobile,
     onMenuClick,
 }: NavbarProps) => {
-    const { token } = useToken();
+    // const { token } = useToken();
     const { 
         currentUser, 
-        isLoadingCurrentUser, 
-        isError, 
-        isFetchedCurrentUser 
+        // isLoadingCurrentUser, 
+        // isError, 
+        // isFetchedCurrentUser 
     } = useCurrentUser();
     const { logout } = useLogout();
 

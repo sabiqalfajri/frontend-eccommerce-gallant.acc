@@ -3,7 +3,6 @@ import { Input } from "@/components/ui/input"
 import { useAddToCart } from "@/hooks/cart/useAddToCart"
 import { useProductQuantity } from "@/hooks/universal/useProductQuantity"
 import { useToken } from "@/hooks/universal/useToken"
-import { useWindowSize } from "@/hooks/universal/useWindowSize"
 import { DetailProduct } from "@/types/Product"
 import { showError } from "@/utils/Toast"
 import { FiMinus, FiPlus } from "react-icons/fi"
@@ -15,10 +14,9 @@ interface DetailProductInfoProps {
 }
 
 export const DetailProductInfo = ({ product, id }: DetailProductInfoProps) => {
-    const { isDesktop } = useWindowSize();
     const { token } = useToken();
     const { addToCart, isAddingToCart } = useAddToCart(token!)
-    const { quantity, increase: handlePlus, decrease: handleMinus, setQuantity, reset } = useProductQuantity(1);
+    const { quantity, increase: handlePlus, decrease: handleMinus, setQuantity } = useProductQuantity(1);
     if(!product || !id) return;
 
     return (

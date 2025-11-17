@@ -6,8 +6,6 @@ export const useOverview = (token: string) => {
         data,
         isLoading,
         isFetched, 
-        isFetching, 
-        error 
     } = useQuery({
         queryKey: ["overview", token],
         queryFn: () => fetchOverviewDashboard(token),

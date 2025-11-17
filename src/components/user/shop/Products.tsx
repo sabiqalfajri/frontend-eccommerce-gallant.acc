@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Skeleton } from "@/components/ui/skeleton";
 import { useWindowSize } from "@/hooks/universal/useWindowSize";
 import { ProductBaseUser } from "@/types/Product";
 import { ImageWithPlaceholder } from "@/components/common/ImageWithPlaceholder";

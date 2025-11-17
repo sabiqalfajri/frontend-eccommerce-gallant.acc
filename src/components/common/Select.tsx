@@ -13,7 +13,6 @@ export const SelectCustom = ({
     value,
     onChange,
     className,
-    selectLabel,
     options
 }: SelectProps) => {
     return (

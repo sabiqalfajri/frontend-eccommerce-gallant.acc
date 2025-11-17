@@ -7,14 +7,16 @@ import { useToken } from "@/hooks/universal/useToken";
 import { useMemo, useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { HiOutlineTrash } from "react-icons/hi";
+import { filterProduct, Product } from "@/types/Product";
+import { useProductsAdmin } from "@/hooks/product/useProductsAdmin";
 
 export const OrdersTable = () => {
     const [filter, setFilter] = useState<filterProduct | string>('ALL');
     const [page, setPage] = useState(1)
     const { token } = useToken();
-    const { products, isLoading, rowsPerPage, totalPages, total } = useProductsAdmin(token!, filter, page, 10);
-    const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
-    const [showModal, setShowModal] = useState(false);
+    const { products, isLoading, totalPages, total } = useProductsAdmin(token!, filter, page, 10);
+    // const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
+    // const [showModal, setShowModal] = useState(false);
 
     const columns: ColumnDef<Product>[] = useMemo(() => [
         {
@@ -110,15 +112,16 @@ export const OrdersTable = () => {
                         icon: <HiOutlineTrash size={19} />, 
                         label: 'Delete', 
                         onClick: () => {
-                            setSelectedOrderId(row.original.id)
-                            setShowModal(true)
+                            // setSelectedOrderId(row.original.id)
+                            // setShowModal(true)
+                            console.log('modal delete order diklk')
                         }
                     },
                 ];
 
                 return (
                     <DropdownCustom
-                        trigger={triggerButton}
+                        // trigger={triggerButton}
                         align="end"
                         menu={menu}
                         className="w-32"

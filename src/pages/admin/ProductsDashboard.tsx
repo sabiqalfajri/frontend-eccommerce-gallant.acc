@@ -18,7 +18,7 @@ export const ProductsDashboard = () => {
     const [filter, setFilter] = useState<filterProduct | string>('ALL');
     const [page, setPage] = useState(1)
     const { token } = useToken();
-    const { products, isLoading, rowsPerPage, totalPages, total } = useProductsAdmin(token!, filter, page, 10);
+    const { products, isLoading, totalPages, total } = useProductsAdmin(token!, filter, page, 10);
     const [showModal, setShowModal] = useState(false);
     const [selectedProductId, setSelectedProductId] = useState<string | null>(null)
     const navigate = useNavigate();

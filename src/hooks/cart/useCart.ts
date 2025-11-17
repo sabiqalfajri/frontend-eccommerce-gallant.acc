@@ -7,8 +7,6 @@ export const useCart = (token: string) => {
         data, 
         isLoading,
         isFetched, 
-        isFetching, 
-        error 
     } = useQuery<CartResponse>({
         queryKey: ["cart"],
         queryFn: () => fetchCart(token),

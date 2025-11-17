@@ -1,6 +1,6 @@
 import { deleteCartItem } from "@/api/CartApi"
-import { CartItem, CartResponse } from "@/types/Cart";
-import { showError, showInfo } from "@/utils/Toast";
+import { CartResponse } from "@/types/Cart";
+import { showError } from "@/utils/Toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useState } from "react";
 

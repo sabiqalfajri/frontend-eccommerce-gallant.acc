@@ -1,11 +1,9 @@
 import { CardDashboard } from "@/components/admin/Card"
-import { IoMdMore } from "react-icons/io";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { LuUsers } from "react-icons/lu";
 import { OverviewCard } from "@/components/admin/home/OverviewCard";
 import { useOverview } from "@/hooks/overview/useOverview";
 import { useToken } from "@/hooks/universal/useToken";
-import { LuAlarmClock } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 import { TopCategoryPie } from "@/components/admin/home/TopCategoryPie";
 import { SalesChart } from "@/components/admin/home/SalesChart";

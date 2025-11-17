@@ -1,6 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from "swiper/modules"
-import { Section } from './Section';
 import { useRef } from 'react';
 import { useWindowSize } from '@/hooks/universal/useWindowSize';
 import { useSmoothLoading } from '@/hooks/universal/useSmoothLoading';
@@ -8,7 +7,7 @@ import { Button } from '../ui/button';
 import { GrNext, GrPrevious } from 'react-icons/gr';
 import { CardProductSkeleton } from '../user/CardProductSkeleton';
 import { CardProduct } from '../user/CardProduct';
-import { Carousal, NewArrivals, RelatedProduct } from '@/types/Product';
+import { Carousal } from '@/types/Product';
 
 interface CarousalProductsProps {
     title: string

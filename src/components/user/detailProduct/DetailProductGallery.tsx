@@ -1,7 +1,6 @@
 import { useWindowSize } from "@/hooks/universal/useWindowSize";
 import { DetailProduct } from "@/types/Product"
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Thumbs } from "swiper/modules"
 import type { Swiper as SwiperType } from 'swiper';
@@ -22,7 +21,6 @@ export const DetailProductGallery = ({
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const { isDesktop } = useWindowSize();
-    const direction = isDesktop ? "vertical" : 'horizontal'
     const nextRef = useRef(null);
     const prevRef = useRef(null);
 

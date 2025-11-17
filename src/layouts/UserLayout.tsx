@@ -15,7 +15,7 @@ export const UserLayout = () => {
             >
                 <Outlet />
             </main>
-            {/* <Footer /> */}
+            <Footer />
         </>
     )
 }

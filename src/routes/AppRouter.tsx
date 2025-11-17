@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom"
-import { Home } from "../pages/user/Home"
 import { AuthRoutes } from "./AuthRoutes"
 import { AdminRoutes } from "./AdminRoutes"
 import { ForbiddenPage } from "@/pages/error/ForbiddenPage"

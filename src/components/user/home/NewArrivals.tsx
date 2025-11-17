@@ -1,32 +1,17 @@
 import { useNewArrivals } from "@/hooks/product/useNewArrivals"
-import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading";
-import { CardProduct } from "../CardProduct";
-import { useRef } from "react";
-import { GrNext, GrPrevious } from "react-icons/gr";
-import { Button } from "@/components/ui/button";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from "swiper/modules"
 import { Section } from "@/components/common/Section";
-import { CardProductSkeleton } from "../CardProductSkeleton";
-import { useWindowSize } from "@/hooks/universal/useWindowSize";
 import { CarousalProducts } from "@/components/common/CarousalProducts";
 
 export const NewArrivals = () => {
-    const nextRef = useRef(null);
-    const prevRef = useRef(null);
     const { 
         newArrivals, 
         isLoadingNewArrivals, 
         isFetchedNewArrivals, 
         isErrorNewArrivals 
     } = useNewArrivals();
-    const loadingNewArrivals = isLoadingNewArrivals || !isFetchedNewArrivals;
-    const smoothLoading = useSmoothLoading(loadingNewArrivals, 300);
-    const { isMobile } = useWindowSize();
 
     if(isErrorNewArrivals) return <div>Something went wrong</div>;
     if(newArrivals && newArrivals.length === 0) return <div>No products found</div>;
-    const skeletonLength = isMobile ? 2 : 5
 
     return (
         <Section>

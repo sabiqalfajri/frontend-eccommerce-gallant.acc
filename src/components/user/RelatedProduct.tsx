@@ -1,6 +1,5 @@
 import { useRelatedProducts } from "@/hooks/product/useRelatedProducts"
 import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading";
-import { Link } from "react-router-dom";
 import { CardProduct } from "./CardProduct";
 import { CardProductSkeleton } from "./CardProductSkeleton";
 

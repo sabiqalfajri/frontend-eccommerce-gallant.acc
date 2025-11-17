@@ -7,7 +7,6 @@ export const useCategories = () => {
         data, 
         isLoading,
         isFetched, 
-        isFetching, 
         isError 
     } = useQuery<CategoryUser[]>({
         queryKey: ["category"],

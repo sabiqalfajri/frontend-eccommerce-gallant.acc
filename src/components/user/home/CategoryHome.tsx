@@ -1,11 +1,15 @@
 import { Section } from "@/components/common/Section";
 import { useCategories } from "@/hooks/category/useCategories";
-import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading";
 
 export const CategoryHome = () => {
-    const { categories, isLoadingCategory, isFetchedCategory, isErrorCategory } = useCategories();
-    const loadingCategory = isLoadingCategory || !isFetchedCategory;
-    const smoothLoading = useSmoothLoading(loadingCategory, 300);
+    const { 
+        categories, 
+        // isLoadingCategory, 
+        // isFetchedCategory, 
+        isErrorCategory 
+    } = useCategories();
+    // const loadingCategory = isLoadingCategory || !isFetchedCategory;
+    // const smoothLoading = useSmoothLoading(loadingCategory, 300);
 
     if(isErrorCategory) return <div>Something went wrong</div>;
     if(categories && categories.length === 0) return <div>No Category found</div>;

@@ -1,6 +1,5 @@
 import { CustomSheet } from "@/components/common/CustomSheet";
 import { Section } from "@/components/common/Section";
-import { Button } from "@/components/ui/button";
 import { Products } from "@/components/user/shop/Products"
 import { SidebarUser } from "@/components/user/shop/Sidebar"
 import { useProductsForUser } from "@/hooks/product/useProducts";

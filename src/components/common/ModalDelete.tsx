@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "../ui/dialog";
+import { Dialog, DialogContent, DialogFooter, DialogHeader } from "../ui/dialog";
 import { Button } from "../ui/button";
 import { HiOutlineTrash } from "react-icons/hi2";
 import { ClipLoader } from "react-spinners";

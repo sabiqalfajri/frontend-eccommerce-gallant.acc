@@ -13,7 +13,7 @@ import { useSignUp } from "@clerk/clerk-react";
 import { ClipLoader } from "react-spinners";
 
 export const Register = () => {
-    const { register, handleSubmit, formState: { errors, isSubmitting, isValid }, watch } = useForm<RegisterFormSchema>({
+    const { register, handleSubmit, formState: { errors, isSubmitting }, watch } = useForm<RegisterFormSchema>({
             resolver: zodResolver(registerFormSchema),
     });
     const navigate = useNavigate();
