@@ -11,7 +11,7 @@ export const AddressCard = ({
     const addressIsPrimary = address.find(addr => addr.isDefault === true);
 
     return (
-        <div className="grid grid-cols-[5%_95%] items-center mt-3 border-b border-gray-200 pb-3 text-sm md:text-[15px] gap-3 md:gap-0">
+        <div className="grid grid-cols-[5%_1fr] items-center mt-3 border-b border-gray-200 pb-3 text-sm md:text-[15px] gap-3 md:gap-0">
             <SiGooglemaps size={23} className="text-primary" />
             <div className="flex flex-wrap justify-between items-center">
                 <div className="flex flex-col">
