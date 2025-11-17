@@ -1,6 +1,4 @@
-import { Checkbox } from "@/components/ui/checkbox"
 import { CartItem } from "@/types/Cart"
-import { Link } from "react-router-dom"
 
 interface CheckoutItemProps {
     item: CartItem[]
@@ -11,6 +9,7 @@ export const CheckoutItem = ({ item }: CheckoutItemProps) => {
         <>
             {item.map((i) => (
                 <div
+                key={i.id}
                 className="grid grid-cols-[auto_minmax(0,1fr)] md:grid-cols-[15%_85%] gap-x-2 md:gap-x-1 px-0 md:px-3">
                     <img 
                         src={i.product.images[0].url}

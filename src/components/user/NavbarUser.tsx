@@ -88,7 +88,7 @@ export const NavbarUser = () => {
                 className="px-1.5 py-1 cursor-pointer hover:bg-[#F0F0F0] rounded-md transform transition-all duration-200 relative"
                 onClick={() => navigate('/cart')}
                 >   
-                    {cartItem && cartItem.items?.length && (
+                    {cartItem && cartItem.items?.length > 0 && (
                         <Badge variant="destructive" 
                         className="absolute -top-0.5 right-0 h-[18px] min-w-[18px] rounded-full px-0.5 font-mono tabular-nums">
                             {cartItem.items.length}

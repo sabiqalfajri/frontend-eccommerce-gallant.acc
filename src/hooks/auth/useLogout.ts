@@ -7,6 +7,8 @@ export function useLogout() {
     const logout = async () => {
         try {
             Storage.removeUser();
+            Storage.removeCartSelection();
+            Storage.removeFilterProduct();
             await signOut({ redirectUrl: '/auth/sign-in' });
         } catch (error: any) {
             console.error(

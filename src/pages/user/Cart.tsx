@@ -10,7 +10,7 @@ import { useCart } from "@/hooks/cart/useCart"
 import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading"
 import { useToken } from "@/hooks/universal/useToken"
 import { showError } from "@/utils/Toast"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 
@@ -18,7 +18,7 @@ export const Cart = () => {
     const { token } = useToken();
     const { cartItem, isLoadingCartItem, isFetchedCartItem } = useCart(token!);
     const { address } = useAddress(token!);
-    const { selectedIds, toggleSelect, selectAll, clearSelection, isSelected } = useCartSelection();
+    const { selectedIds, selectAll, clearSelection } = useCartSelection();
     const { setCheckoutItems } = useCheckout();
     const [isLoadingBuyNow, setIsLoadingBuyNow] = useState(false);
     const navigate = useNavigate();

@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import { useImagesUpload } from "@/hooks/universal/useImagesUpload";
 import { createProductSchema, ProductFormValues } from "@/schema/admin/Product.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useMemo, useRef, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { IoIosArrowBack, IoMdCheckmark } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { CardDashboard } from "../Card";
@@ -16,7 +16,7 @@ import { FiUpload } from "react-icons/fi";
 import { ComboboxCustom } from "@/components/common/ComboboxCustom";
 import { useCategories } from "@/hooks/category/useCategories";
 import { showError } from "@/utils/Toast";
-import { FormatNumber } from "@/helper/FormatNumber";
+import { NumericFormat } from "react-number-format"
 
 interface ProductData extends ProductFormValues {
     id: string;
@@ -41,20 +41,28 @@ export const ProductForm = ({
     isSubmitting
 }: ProductFormProps) => {
     const { categories, isLoadingCategory } = useCategories();
-    const format = FormatNumber
-    const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm<ProductFormValues>({
-        resolver: zodResolver(createProductSchema) as any,
-        defaultValues: productData ?? {
+    const defaultValues = useMemo(() => {
+        if(mode === 'edit' && productData) {
+            return {
+                ...productData,
+                price: productData.price ?? 0
+            }
+        }
+        return {
             name: "",
             description: "",
-            price: undefined,
-            stock: undefined,
-            categoryId: '',
-            visibility: 'PUBLISH'
+            price: 0,
+            stock: 0,
+            categoryId: "",
+            visibility: 'PUBLISH' as const
         }
+    }, [mode, productData]);
+
+    const { register, handleSubmit, watch, setValue, formState: { errors }, control } = useForm<ProductFormValues>({
+        resolver: zodResolver(createProductSchema) as any,
+        defaultValues
     });
     const [visibility, setVisibility] = useState(productData?.visibility ?? 'PUBLISH');
-    const [priceDisplay, setPriceDisplay] = useState("");
     const maxLengthDescription = 500;
     const description = watch('description') || "";
     const navigate = useNavigate();
@@ -74,7 +82,6 @@ export const ProductForm = ({
 
         await onSubmit({
             ...data,
-            price: Number(String(data.price).replace(/\D/g, "")),
             files,
             deletedImages,
             visibility
@@ -109,12 +116,6 @@ export const ProductForm = ({
             value: "HIDDEN"
         },
     ]
-
-    useEffect(() => {
-        if(productData?.price) {
-            setPriceDisplay(Number(productData.price).toLocaleString("id-ID"));
-        }
-    }, [productData?.price])
 
     return (
         <form 
@@ -195,7 +196,29 @@ export const ProductForm = ({
                             <div className="space-y-3">
                                 <Label>Base Price</Label>
                                 <div>
-                                    <Input 
+                                    <Controller 
+                                        name="price"
+                                        control={control}
+                                        render={({ field: { onChange, onBlur, value, ref } }) => (
+                                            <NumericFormat 
+                                                customInput={Input}
+                                                thousandSeparator="."
+                                                decimalSeparator=","
+                                                decimalScale={2}
+                                                fixedDecimalScale={false}
+                                                allowNegative={false}
+                                                value={value ?? null}
+                                                onValueChange={(values) => {
+                                                    const { floatValue } = values
+                                                    onChange(floatValue == null ? null : floatValue)
+                                                }}
+                                                onBlur={onBlur}
+                                                getInputRef={ref}
+                                                placeholder="0"
+                                            />
+                                        )}
+                                    />
+                                    {/* <Input 
                                     {...register("price")}
                                     type="text"
                                     inputMode="numeric"
@@ -212,7 +235,7 @@ export const ProductForm = ({
                                         setPriceDisplay(current ? 
                                             Number(current).toLocaleString("id-ID") : "")
                                     }}
-                                    />
+                                    /> */}
                                     {errors.price && <p className="text-red-500 text-[13px] mt-1">{errors.price.message}</p>}
                                 </div>
                             </div>

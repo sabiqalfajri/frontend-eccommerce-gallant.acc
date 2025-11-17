@@ -20,7 +20,7 @@ export const AddressForm = ({
     onSubmit,
     isSubmitting
 }: AddressFormProps) => {
-    const { register, handleSubmit, watch, setValue, reset, formState: { errors } } = useForm<AddressInput>({
+    const { register, handleSubmit, formState: { errors } } = useForm<AddressInput>({
         resolver: zodResolver(createAddressSchema) as any,
         defaultValues: defaultValues ? {
             label: defaultValues.label,

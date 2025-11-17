@@ -1,4 +1,3 @@
-import { setPrimaryAddress } from "@/api/AddressApi";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { AddressAccountSkeleton } from "@/components/user/address/AddressAccountSkeleton";
@@ -17,7 +16,7 @@ export const AddressAccount = () => {
     const { address, isLoadingAddress, isFetchedAddress } = useAddress(token!);
     const isPrimaryAddress = address?.find(addr => addr.isDefault === true);
     const { setDefaultAddress } = useSetPrimaryAddress(token!);
-    const { deleteAddress, isDeletingAddress } = useDeleteAddress(token!);
+    const { deleteAddress } = useDeleteAddress(token!);
     const loadingAddress = isLoadingAddress || !isFetchedAddress;
     const smoothLoading = useSmoothLoading(loadingAddress);
     const navigate = useNavigate();

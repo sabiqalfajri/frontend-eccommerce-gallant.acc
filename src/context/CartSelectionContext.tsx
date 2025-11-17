@@ -1,4 +1,4 @@
-import { useState, createContext, useContext, useEffect } from "react";
+import { useState, createContext, useContext } from "react";
 
 interface CartSelectionContextProps {
     selectedIds: string[];
@@ -10,11 +10,10 @@ interface CartSelectionContextProps {
 
 const CartSelectionContext = createContext<CartSelectionContextProps | undefined>(undefined)
 
-export const CartSelectionProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [selectedIds, setSelectedIds] = useState<string[]>(() => {
-        const saved = localStorage.getItem('cartSelection');
-        return saved ? JSON.parse(saved) : [];
-    });
+export const CartSelectionProvider = ({ 
+    children
+ }: { children: React.ReactNode }) => {
+    const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
     const toggleSelect = (id: string) => {
         setSelectedIds((prev) => prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id])
@@ -29,10 +28,6 @@ export const CartSelectionProvider: React.FC<{ children: React.ReactNode }> = ({
     }
 
     const isSelected = (id: string) => selectedIds.includes(id)
-
-    useEffect(() => {
-        localStorage.setItem('cartSelection', JSON.stringify(selectedIds))
-    }, [selectedIds])
 
     return (
         <CartSelectionContext.Provider

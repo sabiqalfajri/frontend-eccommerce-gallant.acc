@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { IoCalendarOutline } from "react-icons/io5";
 import { CiEdit } from "react-icons/ci";
 import { useImageUpload } from "@/hooks/universal/useImageUpload";
 import { useCurrentUser } from "@/hooks/user/useCurrentUser";

@@ -1,15 +1,12 @@
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input";
-import { useProductQuantity } from "@/hooks/universal/useProductQuantity";
 import { CartItem } from "@/types/Cart"
 import { showError } from "@/utils/Toast";
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { BsTrash3 } from "react-icons/bs";
 import { useCartSelection } from "@/context/CartSelectionContext";
 import { useEffect } from "react";
-import { useUpdateProduct } from "@/hooks/product/useUpdatedProduct";
 import { useToken } from "@/hooks/universal/useToken";
-import { useAddToCart } from "@/hooks/cart/useAddToCart";
 import { useUpdateCart } from "@/hooks/cart/useUpdateCart";
 import { ClipLoader } from "react-spinners";
 import { useDeletedCartItem } from "@/hooks/cart/useDeletedCartItem";
@@ -17,20 +14,19 @@ import { Link, useNavigate } from "react-router-dom";
 
 interface CartItemProps {
     item: CartItem[] | undefined;
-    onDeleted?: () => void;
-    isDeleting?: boolean
+    // onDeleted?: () => void;
+    // isDeleting?: boolean
 }
 
 export const CartItems = ({
     item,
-    onDeleted,
-    isDeleting
+    // onDeleted,
+    // isDeleting
 }: CartItemProps) => {
-    // const { quantity, increase: handlePlus, decrease: handleMinus, setQuantity, reset } = useProductQuantity(1);
     const { token } = useToken();
     const { updateCart, loadingItemIds } = useUpdateCart(token!);
-    const { deleteCartItem, isDeletingIds } = useDeletedCartItem(token!)
-    const { selectedIds, toggleSelect, selectAll, clearSelection, isSelected } = useCartSelection();
+    const { deleteCartItem } = useDeletedCartItem(token!)
+    const { selectedIds, toggleSelect, isSelected } = useCartSelection();
     const navigate = useNavigate();
 
     if(!item) return null

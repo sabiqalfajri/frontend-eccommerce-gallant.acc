@@ -6,8 +6,6 @@ export const useProductById = (id: string) => {
         data,
         isLoading,
         isFetched, 
-        isFetching, 
-        error 
     } = useQuery({
         queryKey: ["productById", id],
         queryFn: () => fetchProductById(id),

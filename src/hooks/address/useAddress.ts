@@ -3,7 +3,7 @@ import { Address } from "@/types/Address"
 import { useQuery } from "@tanstack/react-query"
 
 export const useAddress = (token: string) => {
-    const { data: address = [], isLoading, isFetched } = useQuery<Address[]>({
+    const { data: address = [], isLoading, isFetched, isError } = useQuery<Address[]>({
         queryKey: ["address"],
         queryFn: () => fetchAddressByUserId(token),
         select: (data) => data.sort((a, b) => (a.isDefault === b.isDefault ? 0 : a.isDefault ? -1 : 1)),
@@ -15,5 +15,6 @@ export const useAddress = (token: string) => {
         address,
         isLoadingAddress: isLoading,
         isFetchedAddress: isFetched,
+        isErrorAddress: isError
     }
 }
