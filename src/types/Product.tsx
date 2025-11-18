@@ -79,6 +79,10 @@ export interface RelatedProduct {
     images: { url: string }[]
 }
 
+export interface BestSellerProduct extends RelatedProduct {
+    sold: string;
+}
+
 export interface NewArrivals extends RelatedProduct {}
 export interface Carousal extends RelatedProduct {}
 

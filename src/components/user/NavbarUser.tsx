@@ -38,7 +38,7 @@ export const NavbarUser = () => {
         { 
             icon: <HiOutlineInboxArrowDown size={20} />, 
             label: 'Orders',
-            href: '/customer/orders' 
+            href: '/customer/order/all' 
         },
         { 
             icon: <BsBoxArrowLeft size={19} />, 

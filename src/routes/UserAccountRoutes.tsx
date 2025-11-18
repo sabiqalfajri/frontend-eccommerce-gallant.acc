@@ -6,6 +6,7 @@ import { ProfileAccount } from "@/pages/user/account/ProfileAccount"
 import { ProtectedRoute } from "./ProtectedRoute"
 import { AddAddressAccount } from "@/pages/user/account/AddAddressAccount"
 import { EditAddressAccount } from "@/pages/user/account/EditAddressAccount"
+import { OrderDetail } from "@/pages/user/account/OrderDetail"
 
 export const UserAccountRoutes = () => {
 
@@ -14,7 +15,8 @@ export const UserAccountRoutes = () => {
             <Route element={<ProtectedRoute />}>
                 <Route element={<UserAccountLayout />}>
                     <Route index element={<ProfileAccount />} />
-                    <Route path="orders" element={<OrdersAccount />} />
+                    <Route path="order/all" element={<OrdersAccount />} />
+                    <Route path="order/:id" element={<OrderDetail />} />
                     <Route path="address" element={<AddressAccount />} />
                     <Route path="address/add" element={<AddAddressAccount />} />
                     <Route path="address/edit/:id" element={<EditAddressAccount />} />

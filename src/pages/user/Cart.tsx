@@ -118,6 +118,7 @@ export const Cart = () => {
                             </div>
                             <Button className="mt-3"
                             onClick={handleBuyNow}
+                            size="lg"
                             >
                                 {isLoadingBuyNow ? <ClipLoader size={20} color="white" /> : `Buy Now (${selectedCount})`}
                             </Button>

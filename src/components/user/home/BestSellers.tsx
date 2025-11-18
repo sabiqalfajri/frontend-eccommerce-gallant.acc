@@ -1,19 +1,28 @@
+import { CarousalProducts } from "@/components/common/CarousalProducts";
 import { Section } from "@/components/common/Section"
+import { useBestSeller } from "@/hooks/product/useBestSellerProduct"
 
 export const BestSellers = () => {
+    const {
+        bestSeller,
+        isLoadingBestSeller,
+        isFetchedBestSeller,
+        isErrorBestSeller
+    } = useBestSeller();
+
+    if(isErrorBestSeller) return <div>Something went wrong</div>;
+    if(bestSeller && bestSeller.length === 0) return <div>No products found</div>;
+
     return (
         <Section>
-            <div className="flex flex-col gap-y-3">
-                <h1 className="text-2xl font-bold text-center">Best Sellers</h1>
-            </div>
-            {/* <CarousalProducts 
+            <CarousalProducts 
                 title="Best Sellers"
                 errorTitle="No products found"
-                data={newArrivals}
-                isLoading={isLoadingNewArrivals}
-                isFetched={isFetchedNewArrivals}
-                isError={isErrorNewArrivals}
-            /> */}
+                data={bestSeller}
+                isLoading={isLoadingBestSeller}
+                isFetched={isFetchedBestSeller}
+                isError={isErrorBestSeller}
+            />
         </Section>
     )
 }

@@ -1,4 +1,4 @@
-import { DetailProduct, filterProduct, NewArrivals, Product, ProductById, ProductPaginated, ProductPayload, ProductUserResponse, RelatedProduct, UpdateProductPayload } from "@/types/Product";
+import { BestSellerProduct, DetailProduct, filterProduct, NewArrivals, Product, ProductById, ProductPaginated, ProductPayload, ProductUserResponse, RelatedProduct, UpdateProductPayload } from "@/types/Product";
 import { axiosClient } from "./AxiosClient";
 import { ApiResponse } from "@/types/ApiResponse";
 
@@ -117,6 +117,12 @@ export const fetchAllProductsForUser = async (params: Record<string, string>) =>
 
     return response.data.data;
 };
+
+export const fetchBestSellerForUser = async () => {
+    const response = await axiosClient.get<{ data: BestSellerProduct[] }>('/products/user/best-seller');
+
+    return response.data.data
+}
 
 export const fetchProductDetail = async (id: string) => {
     const response = await axiosClient.get<{ data: DetailProduct }>(`/products/user/detail/${id}`);

@@ -10,8 +10,9 @@ export const useCreatePayment = (token: string | null) => {
             if(!token) throw new Error("Unauthorized");
             return createTransactionPayment(token, id)
         },
-        onSuccess: () => {
+        onSuccess: (_data, id) => {
             queryClient.invalidateQueries({ queryKey: ["orders"] });
+            queryClient.invalidateQueries({ queryKey: ["orders", id] });
 
             showInfo("Pembayaran berhasil diproses!");
         },

@@ -65,7 +65,7 @@ export const CheckoutSkeleton = () => {
                     <Skeleton className="w-20 h-4 rounded-md bg-gray-300" />
                     <Skeleton className="w-20 h-4 rounded-md bg-gray-300" />
                 </div>
-                <Button className="mt-3" variant="primary">
+                <Button className="mt-3" variant="primary" size="lg">
                     <ClipLoader size={20} color="white" />
                 </Button>
             </div>

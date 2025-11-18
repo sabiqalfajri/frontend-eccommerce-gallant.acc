@@ -1,9 +1,19 @@
-import { TransactionOrder, TransactionResponse } from "@/types/Transaction";
+import { TransactionOrder, TransactionOrderByUserId, TransactionResponse } from "@/types/Transaction";
 import { axiosClient } from "./AxiosClient";
 import { ApiResponse } from "@/types/ApiResponse";
 
 export const fetchTransaction = async (token: string, orderId: string) => {
     const response = await axiosClient.get<{ data: TransactionResponse }>(`/payment/${orderId}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+
+    return response.data.data
+}
+
+export const fetchTransactionOrderByUserId = async (token: string) => {
+    const response = await axiosClient.get<{ data: TransactionOrderByUserId[] }>('/orders', {
         headers: {
             Authorization: `Bearer ${token}`
         }

@@ -13,7 +13,7 @@ export const SidebarAccount = () => {
         },
         { 
             name: 'My Orders',
-            path: '/customer/orders', 
+            path: '/customer/order/all', 
             icon: <HiOutlineInboxArrowDown size={21} /> 
         },
         { 

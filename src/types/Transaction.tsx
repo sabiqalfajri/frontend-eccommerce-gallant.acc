@@ -1,3 +1,5 @@
+type statusOrder = 'PENDING' | 'PROCESSING' | 'SHIPPED'  | 'CANCELED' | 'EXPIRED' | 'COMPLETED'
+
 export interface OrderItem {
     id: string;
     orderId: string;
@@ -8,11 +10,27 @@ export interface OrderItem {
 
 export interface TransactionOrder {
     id: string;
-    userId: string;
     publicId: string;
     totalAmount: number;
     status: string;
     items: OrderItem[];
+}
+
+export interface TransactionOrderByUserId {
+    id: string;
+    publicId: string;
+    totalAmount: number;
+    status: statusOrder;
+    createdAt: string;
+    items: {
+        quantity: number;
+        price: number;
+        product: {
+            id: string;
+            name: string;
+            image: string;
+        }
+    }[]
 }
 
 export interface TransactionResponse {

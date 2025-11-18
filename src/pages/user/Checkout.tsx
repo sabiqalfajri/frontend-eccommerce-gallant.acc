@@ -121,9 +121,10 @@ export const Checkout = () => {
                         className="mt-2" 
                         disabled={isLoading}
                         onClick={handlePayNow}
+                        size="lg"
                         >
                             {isLoading ? (
-                                <ClipLoader size={20} />
+                                <ClipLoader size={20} color="white" />
                             ) : 'Checkout Now'}
                         </Button>
                     </div>
