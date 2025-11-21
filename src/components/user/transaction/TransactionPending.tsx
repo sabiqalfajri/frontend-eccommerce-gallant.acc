@@ -5,8 +5,9 @@ import QRCode from "react-qr-code";
 import { LuRefreshCcw } from "react-icons/lu";
 import { IoCopyOutline } from "react-icons/io5";
 import { FormatDate } from "@/utils/FormatDate";
-import { useCoutdown } from "@/hooks/universal/useCoutdown";
+import { useCountdown } from "@/hooks/universal/useCoutdown";
 import { ClipLoader } from "react-spinners";
+import { ToISODate } from "@/helper/ToIsoDate";
 
 interface TransactionPendingProps {
     transaction: TransactionResponse
@@ -19,7 +20,10 @@ export const TransactionPending = ({
     refetch,
     isRefetching
 }: TransactionPendingProps) => {
-    const time = useCoutdown(transaction.qrisExpiryAt);
+    const time = useCountdown(transaction.qrisExpiryAt);
+    console.log("expiry raw:", transaction.qrisExpiryAt);
+    console.log("expiry iso:", ToISODate(transaction.qrisExpiryAt));
+    console.log("parsed:", new Date(ToISODate(transaction.qrisExpiryAt)));
 
     return (
         <div className="flex justify-center items-center">
@@ -28,7 +32,7 @@ export const TransactionPending = ({
                     <div className="flex flex-wrap justify-between items-center text-sm md:text-[15px]">
                         <div className="flex flex-col">
                             <p className="text-gray-600">Finish Before</p>
-                            <p className="font-semibold text-[13px] md:text-[15px]">
+                            <p className="font-semibold text-sm md:text-[15px]">
                                 {FormatDate(transaction.qrisExpiryAt)}
                             </p>
                         </div>
@@ -43,7 +47,7 @@ export const TransactionPending = ({
                         </div>
                     </div>
                     <div className="flex flex-nowrap items-center gap-x-2 bg-gray-100 text-xs md:text-sm rounded-md px-2.5 py-1.5">
-                        <BsInfoCircle size={20} />
+                        <BsInfoCircle size={18} />
                         <p>You can use any supported e-wallet or mobile banking apps</p>
                     </div>
                 </div>
