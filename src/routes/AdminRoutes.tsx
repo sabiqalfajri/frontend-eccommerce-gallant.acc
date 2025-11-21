@@ -9,6 +9,7 @@ import { HomeDashboard } from "@/pages/admin/HomeDashboard"
 import { PrivateRoute } from "./PrivateRoute"
 import { AddProduct } from "@/pages/admin/AddProduct"
 import { EditProduct } from "@/pages/admin/EditProduct"
+import { OrderDetailDashboard } from "@/pages/admin/OrderDetailDashboard"
 
 export const AdminRoutes = () => {
     return (
@@ -17,6 +18,7 @@ export const AdminRoutes = () => {
                 <Route element={<AdminLayout />}>
                     <Route index element={<HomeDashboard />} />
                     <Route path="orders" element={<OrdersDashboard />} />
+                    <Route path="orders/:id" element={<OrderDetailDashboard />} />
                     <Route path="products" element={<ProductsDashboard />} />
                     <Route path="add-product" element={<AddProduct />} />
                     <Route path="update-product/:id" element={<EditProduct />} />

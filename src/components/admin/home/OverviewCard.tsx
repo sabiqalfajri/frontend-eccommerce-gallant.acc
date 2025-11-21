@@ -31,8 +31,15 @@ export const OverviewCard = ({
                             <p className="text-[12.5px] text-gray-400">{description}</p>
                         </div>
                     </div>
-                    {isLoading}
-                    <p className="text-[17px] font-semibold mt-2 mb-1">{value}</p>
+                    {isLoading ? (
+                        <div className="flex justify-center items-center py-4 text-sm">
+                            <span className="animate-spin w-5 h-5 border-2 border-t-transparent border-gray-400 rounded-full mr-2"></span>
+                            Loading data...
+                        </div>
+                    ) : (
+                        <p className="text-[17px] font-semibold mt-2 mb-1">{value}</p>
+                    )}
+                    
                     {!isLoading && growth !== undefined && (
                         <div className="flex flex-wrap items-center gap-x-4">
                             {FormatGrowth(growth)}
@@ -41,44 +48,6 @@ export const OverviewCard = ({
                     )}
                 </div>
             </CardDashboard>
-            {/* <CardDashboard>
-                <div className="flex flex-col gap-y-3 items-start justify-center mt-1">
-                    <div className="flex flex-wrap items-start justify-between w-full">
-                        <div className="flex flex-wrap gap-x-2">
-                            <div className="bg-gray-100 flex justify-center items-center py-1 px-2.5 rounded-md">
-                                <LuUsers size={23} />
-                            </div>
-                            <div className="flex flex-col">
-                                <p className="font-semibold">Total Customers</p>
-                                <p className="text-[13px] text-gray-400">126 Orders</p>
-                            </div>
-                        </div>
-                        <button type="button" className="cursor-pointer">
-                            <IoMdMore size={23} />
-                        </button>
-                    </div>
-                    <p className="text-[17px] font-semibold mt-2">Rp200.000</p>
-                </div>
-            </CardDashboard>
-            <CardDashboard>
-                <div className="flex flex-col gap-y-3 items-start justify-center mt-1">
-                    <div className="flex flex-wrap items-start justify-between w-full">
-                        <div className="flex flex-wrap gap-x-2">
-                            <div className="bg-gray-100 flex justify-center items-center py-1 px-2.5 rounded-md">
-                                <HiOutlineShoppingBag size={23} />
-                            </div>
-                            <div className="flex flex-col">
-                                <p className="font-semibold">Pending Orders</p>
-                                <p className="text-[13px] text-gray-400">Awaiting Payment</p>
-                            </div>
-                        </div>
-                        <button type="button" className="cursor-pointer">
-                            <IoMdMore size={23} />
-                        </button>
-                    </div>
-                    <p className="text-[17px] font-semibold mt-2">Rp200.000</p>
-                </div>
-            </CardDashboard> */}
         </>
     )
 }

@@ -15,11 +15,11 @@ export const OrdersAccount = () => {
         },
         processing: {
             label: 'Processing',
-            className: 'bg-blue-100 text-blue-600'
+            className: 'bg-sky-100 text-sky-600'
         },
         shipped: {
             label: 'Shipped',
-            className: 'bg-indigo-100 text-indigo-600'
+            className: 'bg-purple-100 text-purple-600'
         },
         completed: {
             label: 'Completed',
@@ -55,7 +55,7 @@ export const OrdersAccount = () => {
             {/* Mapping OrderId */}
             {transactionList.map((order) => {
                 const status = getSyleStatus(order.status);
-                const invalidFieldDelivery = ["SHIPPED", "COMPLETED"]
+                const invalidDeliveryDate = ["SHIPPED", "COMPLETED"]
                 console.log('status orderlist', status)
 
                 return (
@@ -89,7 +89,7 @@ export const OrdersAccount = () => {
                             <p className="w-30">Date of delivery</p>
                             <p>
                                 {
-                                    invalidFieldDelivery.includes(order.status) 
+                                    invalidDeliveryDate.includes(order.status) 
                                     ? 'Fri, 14 Nov, 2025' 
                                     : '-'
                                 }

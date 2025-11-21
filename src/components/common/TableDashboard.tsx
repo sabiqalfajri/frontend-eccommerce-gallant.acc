@@ -118,7 +118,7 @@ export const DataTable = <TData extends { id: string }, TValue>({
 
     return (
         <>
-            <div className={`w-full flex flex-col ${onClick && 'gap-y-6'}`}>
+            <div className={`w-full flex flex-col ${filterButtons && 'gap-y-6'}`}>
                 {/* Filter dan Column Visibility */}
                 <div className="flex flex-wrap justify-between items-center">
                     {filterButtons && filterButtons.length > 0 && (
@@ -146,7 +146,7 @@ export const DataTable = <TData extends { id: string }, TValue>({
                             }))}
                             >
                                 <Button
-                                variant="primary"
+                                variant="outline"
                                 size="lg"
                                 className="flex flex-wrap gap-x-1.5 md:hidden text-sm"
                                 >
@@ -226,28 +226,6 @@ export const DataTable = <TData extends { id: string }, TValue>({
                                         </TableCell>
                                     </TableRow>
                                 )}
-
-                                {/* {table.getRowModel().rows?.length ? (
-                                    table.getRowModel().rows.map((row) => {
-                                        const selected = row.getIsSelected();
-                                        return (
-                                        <TableRow key={row.id} 
-                                        className={selected ? 'bg-[#E7EEFA]! hover:brightness-100!' : ""}>
-                                            {row.getVisibleCells().map((cell) => (
-                                                <TableCell key={cell.id}>
-                                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                                </TableCell>
-                                            ))}
-                                        </TableRow>
-                                        )
-                                    })
-                                ) : (
-                                    <TableRow>
-                                        <TableCell colSpan={columns.length} className="h-30 text-center">
-                                            Tidak ada data.
-                                        </TableCell>
-                                    </TableRow>
-                                )} */}
                             </TableBody>
                         </Table>
                     </div>

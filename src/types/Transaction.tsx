@@ -1,4 +1,4 @@
-type statusOrder = 'PENDING' | 'PROCESSING' | 'SHIPPED'  | 'CANCELED' | 'EXPIRED' | 'COMPLETED'
+export type statusOrder = 'PENDING' | 'PROCESSING' | 'SHIPPED'  | 'CANCELED' | 'EXPIRED' | 'COMPLETED'
 
 export interface OrderItem {
     id: string;
@@ -33,7 +33,16 @@ export interface TransactionOrderByUserId {
     }[]
 }
 
-export interface TransactionResponse {
+type BaseItem = {
+    id: string;
+    orderId: string;
+    price: number;
+    quantity: number;
+    name: string;
+    image: string
+}
+
+type BaseTransactionResponse = {
     id: string;
     publicId: string;
     totalAmount: number;
@@ -44,14 +53,35 @@ export interface TransactionResponse {
     transactionId: string;
     createdAt: string;
     updatedAt: string;
-    items: {
-        id: string;
-        orderId: string;
-        price: number;
-        quantity: number;
+}
+
+export interface TransactionResponse extends BaseTransactionResponse {
+    items: BaseItem;
+}
+
+export interface BaseTransactionOrderPaginated extends BaseTransactionResponse {
+    customer: {
         name: string;
+        email: string;
         image: string
-    };
+    }
+    items: BaseItem[]
+}
+
+export interface TransactionOrderPaginated {
+    orders: BaseTransactionOrderPaginated[];
+    total: number;
+    page: number;
+    rowsPerPage: number;
+    totalPages: number;
+}
+
+export interface RecentOrder {
+    publicId: string;
+    totalAmount: number;
+    status: statusOrder;
+    createdAt: string;
+    customer: { name: string }
 }
 
 export interface TransactionOrderPayload {

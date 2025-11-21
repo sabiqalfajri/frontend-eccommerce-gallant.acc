@@ -16,3 +16,8 @@ export const FormatDate = (dateStr?: string, mode?: "space" | "stripe") => {
             return dayjs.utc(dateStr).tz("Asia/Jakarta").format("DD MMM YYYY - HH:mm") + " WIB";
     }
 };
+
+export const FormatDateWithoutWib = (dateStr?: string) => {
+    if(!dateStr) return "-"
+    return dayjs.utc(dateStr).tz("Asia/Jakarta").format("DD MMM YYYY")
+}

@@ -63,11 +63,13 @@ export const CustomersDashboard = () => {
 
                 return (
                     <div className="flex items-center gap-x-3 w-full">
-                        <img 
-                            src={user.image}
-                            alt={user.name}
-                            className="w-11 h-11 object-cover rounded-full border-[1.5px] border-gray-200"
-                        />
+                        <div className="w-11 h-11">
+                            <img 
+                                src={user.image}
+                                alt={user.name}
+                                className="w-full h-full object-cover rounded-full border-[1.5px] border-gray-200"
+                            />
+                        </div>
                         <span className="truncate max-w-36">{user.name}</span>
                     </div>
                 )
@@ -157,7 +159,6 @@ export const CustomersDashboard = () => {
             onPageChange={(newPage) => setPage(newPage)}
             isLoading={isLoadingUsersAll}
         />
-
             <ModalConfirm
                 isOpen={showModal}
                 onCancel={() => setShowModal(false)}
