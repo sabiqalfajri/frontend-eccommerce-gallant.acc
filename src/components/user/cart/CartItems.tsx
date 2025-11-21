@@ -10,6 +10,7 @@ import { useUpdateCart } from "@/hooks/cart/useUpdateCart";
 import { ClipLoader } from "react-spinners";
 import { useDeletedCartItem } from "@/hooks/cart/useDeletedCartItem";
 import { Link, useNavigate } from "react-router-dom";
+import { ImageWithPlaceholder } from "@/components/common/ImageWithPlaceholder";
 
 interface CartItemProps {
     item: CartItem[] | undefined;
@@ -57,12 +58,20 @@ export const CartItems = ({
                         <Link
                           to={`/detail/${i.productId}`}
                         >
-                            <img 
+                            <ImageWithPlaceholder 
+                                src={i.product.images[0].url} 
+                                alt={i.product.images[0].url}
+                                onClick={() => handleNavigate(i.productId)}
+                                wrapperClassName="w-20 h-20 md:w-24 md:h-24 rounded-md border border-gray-200"
+                                imageClassName="rounded-md"
+                                imagePlaceholderClassName="w-[70%] h-[70%] object-contain"
+                            />
+                            {/* <img 
                                 src={i.product.images[0].url} 
                                 onClick={() => handleNavigate(i.productId)}
                                 alt="cartItem" 
                                 className="w-20 h-20 md:w-24 md:h-24 object-cover rounded-md border border-gray-200"
-                            />
+                            /> */}
                         </Link>
                     </div>
                     <div className="flex flex-col w-full">

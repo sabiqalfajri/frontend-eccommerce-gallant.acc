@@ -70,7 +70,7 @@ export const OrdersAccount = () => {
                             <DropdownCustom
                                 align="end"
                                 menu={menu}
-                                className="w-fit"
+                                className="min-w-44"
                             >
                                 <Button 
                                 variant="outline"
