@@ -61,13 +61,13 @@ export const DropdownCustom = ({
                                 {item.href ? (
                                     <Link
                                         to={item.href}
-                                        className="flex items-center w-full p-0.5"
+                                        className="flex items-center w-full px-0.5 py-1"
                                     >
                                         {content}
                                     </Link>
                                 ) : (
                                     <button
-                                        className="flex items-center w-full cursor-pointer p-0.5"
+                                        className="flex items-center w-full cursor-pointer px-0.5 py-1"
                                         onClick={item.onClick}
                                     >
                                         {content}
