@@ -28,10 +28,16 @@ export const Checkout = () => {
     const checkoutTotal = checkoutItems.reduce((sum, i) => sum + (i.product.price * i.quantity), 0);
     const checkoutCount = checkoutItems.reduce((sum, i) => sum + i.quantity, 0 );
     const navigate = useNavigate();
-    const isLoading = isCreatingTransactionOrder || isCreatingTransactionPayment
+    const isLoading = isCreatingTransactionOrder || isCreatingTransactionPayment;
     
     const handlePayNow = async () => {
         if(checkoutItems.length === 0) return;
+
+        const selectedAddressId = address.find(a => a.isDefault)?.id ?? address[0]?.id;
+        if (!selectedAddressId) {
+            showError("Please add a shipping address.");
+            return;
+        }
         
         const items = checkoutItems.map(item => ({
             cartItemId: item.id,
@@ -39,7 +45,10 @@ export const Checkout = () => {
             quantity: item.quantity,
         }))
 
-        const order = await createTransactionOrder(items);
+        const order = await createTransactionOrder({
+            addressId: selectedAddressId,
+            items
+        });
         await createTransactionPayment(order.id);
 
         clearCheckout();

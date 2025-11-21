@@ -9,11 +9,6 @@ import { LuUserRound } from "react-icons/lu";
 import { IoSettingsOutline } from "react-icons/io5";
 import { useLogout } from "@/hooks/auth/useLogout";
 
-// interface NavbarProps {
-//     isSidebarOpen: boolean;
-//     setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>
-// }
-
 interface NavbarProps {
     isMobile: boolean
     onMenuClick: () => void
@@ -22,12 +17,8 @@ interface NavbarProps {
 export const Navbar = ({ 
     onMenuClick,
 }: NavbarProps) => {
-    // const { token } = useToken();
     const { 
         currentUser, 
-        // isLoadingCurrentUser, 
-        // isError, 
-        // isFetchedCurrentUser 
     } = useCurrentUser();
     const { logout } = useLogout();
 

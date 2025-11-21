@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { IoCartOutline } from "react-icons/io5";
 import { DropdownCustom, MenuItem } from "../common/DropdownCustom";
 import { useToken } from "@/hooks/universal/useToken";
@@ -71,14 +71,16 @@ export const NavbarUser = () => {
             <div>
                 <ul className="hidden md:flex flex-wrap justify-center items-center gap-12">
                     {navMenu.map((item, index) => (
-                    <button 
-                    key={index}
-                    type="button"
-                    onClick={() => navigate(item.path)} 
-                    className="cursor-pointer"
-                    >
-                        {item.tittle}
-                    </button>
+                        <NavLink
+                        to={item.path} 
+                        key={index}
+                        type="button"
+                        className={({ isActive }: any) => 
+                            `cursor-pointer font-semibold ${isActive ? 'text-primary' : ""}`
+                        }
+                        >
+                            {item.tittle}
+                        </NavLink>
                     ))} 
                 </ul>
             </div>

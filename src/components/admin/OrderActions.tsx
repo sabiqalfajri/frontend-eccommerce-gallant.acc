@@ -5,7 +5,7 @@ import { FiRefreshCcw } from "react-icons/fi";
 import { FiCheckCircle } from "react-icons/fi";
 import { FiXCircle } from "react-icons/fi";
 
-export const getOrderActions = (order: BaseTransactionOrderPaginated) => {
+export const getOrderDashboardActions = (order: BaseTransactionOrderPaginated) => {
     const actions = [
         {
             label: 'See Detail',

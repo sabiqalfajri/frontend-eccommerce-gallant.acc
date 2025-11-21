@@ -1,4 +1,4 @@
-import { getOrderActions } from "@/components/admin/OrderActions";
+import { getOrderDashboardActions } from "@/components/admin/OrderActions";
 import { DropdownCustom } from "@/components/common/DropdownCustom";
 import { DataTable } from "@/components/common/TableDashboard";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -167,7 +167,7 @@ export const OrdersDashboard = () => {
             header: "Action",
             cell: ({ row }) => {
                 const order = row.original;
-                const menu = getOrderActions(order);
+                const menu = getOrderDashboardActions(order);
 
                 return (
                     <DropdownCustom

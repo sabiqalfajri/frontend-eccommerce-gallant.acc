@@ -1,9 +1,11 @@
+import { IoIosArrowDown } from "react-icons/io";
+
 export const Footer = () => {
     return (
-        <footer className="bg-linear-to-r pb-5 from-pink-500 to-indigo-500 min-h-[25vh] mt-12 text-[#FFFFFF] px-4 md:px-16 py-12 flex flex-col justify-center">
+        <footer className="bg-primary pb-5 min-h-[25vh] mt-12 text-[#FFFFFF] px-4 md:px-16 py-12 flex flex-col justify-center">
             <div className="grid grid-cols-1 md:grid-cols-[30%_70%] gap-12 mb-12">
                 <div className="flex flex-col gap-5">
-                    <h1 className="font-garamond text-lg font-extrabold">Givorra</h1>
+                    <h1 className="font-garamond text-lg font-extrabold">Gallant.acc</h1>
                     <p className="text-justify text-sm">Discover unique, thoughtful gifts for every occasion. From personalized presents to one-of-a-kind treasures, we're to help you find the perfect way to show you care.</p>
                     <div className="flex flex-wrap justify-start items-center gap-3 mt-1">
                         <svg xmlns="http://www.w3.org/2000/svg" className="size-6" fill="#FFFFFF" viewBox="0 0 30 30">
@@ -72,14 +74,12 @@ export const Footer = () => {
                 </div>
             </div>
             <div className="border border-[#FFFFFF]"></div>
-            <div className="mt-[0.8rem] md:mt-12 flex flex-wrap justify-between items-center pb-16 md:pb-0">
-                <p className="text-sm">Copyright &copy; 2025 Zyora. All Rights Reserved.</p>
+            <div className="mt-[0.8rem] md:mt-12 flex flex-wrap justify-between items-center pb-5 md:pb-0">
+                <p className="text-sm">Copyright &copy; 2025. All Rights Reserved.</p>
                 <div className="flex flex-wrap gap-2 justify-center items-center">
-                    <div className="flex flex-wrap gap-1">
+                    <div className="flex flex-wrap items-center gap-1">
                         <p className="text-sm">English</p>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                        </svg>                      
+                        <IoIosArrowDown />                    
                     </div>
                     <p className="text-sm">|</p>
                     <div className="flex flex-wrap gap-1">

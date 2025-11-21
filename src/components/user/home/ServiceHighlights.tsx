@@ -27,9 +27,8 @@ export const ServiceHighlights = () => {
             <div className="flex flex-wrap justify-center items-center gap-5 md:gap-10">
                 {services.map((serv) => (
                     <div className="w-70 flex flex-col justify-start items-center gap-y-2">
-                        <div className="relative">
-                        <div className="absolute -bottom-1.5 -left-1.5 -z-1 bg-primary w-6 h-6 rounded-full"></div> 
-                        {serv.icon}
+                        <div className="text-primary">
+                            {serv.icon}
                         </div>
                         <h1 className="font-semibold">{serv.title}</h1>
                         <p className="text-sm text-center">{serv.description}</p>

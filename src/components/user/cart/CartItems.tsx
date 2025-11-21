@@ -5,7 +5,6 @@ import { showError } from "@/utils/Toast";
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { BsTrash3 } from "react-icons/bs";
 import { useCartSelection } from "@/context/CartSelectionContext";
-import { useEffect } from "react";
 import { useToken } from "@/hooks/universal/useToken";
 import { useUpdateCart } from "@/hooks/cart/useUpdateCart";
 import { ClipLoader } from "react-spinners";
@@ -14,19 +13,15 @@ import { Link, useNavigate } from "react-router-dom";
 
 interface CartItemProps {
     item: CartItem[] | undefined;
-    // onDeleted?: () => void;
-    // isDeleting?: boolean
 }
 
 export const CartItems = ({
     item,
-    // onDeleted,
-    // isDeleting
 }: CartItemProps) => {
     const { token } = useToken();
     const { updateCart, loadingItemIds } = useUpdateCart(token!);
     const { deleteCartItem } = useDeletedCartItem(token!)
-    const { selectedIds, toggleSelect, isSelected } = useCartSelection();
+    const { toggleSelect, isSelected } = useCartSelection();
     const navigate = useNavigate();
 
     if(!item) return null
@@ -47,16 +42,6 @@ export const CartItems = ({
     const handleRemove = async (id: string) => {
         await deleteCartItem(id)
     }
-
-    // console.log('token anda: ', token)
-
-    useEffect(() => {
-        console.log('selected ids: ', selectedIds)
-    }, [selectedIds])
-
-    useEffect(() => {
-        console.log('cartItem: ', item)
-    }, [item])
 
     return (
         <>
@@ -93,7 +78,7 @@ export const CartItems = ({
                                     Rp{i.product.price.toLocaleString('id-ID')}
                                 </p>
                             </div>
-                            <div className="flex flex-wrap gap-3 justify-end items-center mt-0.5">
+                            <div className="flex flex-wrap gap-3 justify-end items-center mt-1">
                                 <button className="flex justify-center items-center p-1 cursor-pointer text-gray-600"
                                 onClick={() => handleRemove(i.id)}
                                 >

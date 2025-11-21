@@ -55,6 +55,18 @@ type BaseTransactionResponse = {
     updatedAt: string;
 }
 
+export interface TransactionOrderDetailAccount extends BaseTransactionResponse {
+    shippingName: string
+    shippingPhone: string
+    shippingProvince: string
+    shippingCity: string
+    shippingDistrict: string
+    shippingSubdistrict: string
+    shippingStreet: string
+    shippingPostalCode: string
+    shippedAt?: string
+}
+
 export interface TransactionResponse extends BaseTransactionResponse {
     items: BaseItem;
 }

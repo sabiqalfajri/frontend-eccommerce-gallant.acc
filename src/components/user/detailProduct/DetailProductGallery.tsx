@@ -61,11 +61,6 @@ export const DetailProductGallery = ({
                                 imageClassName="rounded-md"
                                 imagePlaceholderClassName="w-[70%] h-[70%] object-contain"
                             />
-                            {/* <img 
-                            src={image.url} 
-                            alt={image.id}
-                            className="w-full h-full object-cover rounded-md" 
-                                /> */}
                         </SwiperSlide>
                     ))}
                 </Swiper>

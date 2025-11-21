@@ -6,9 +6,15 @@ export const useCreateOrder = (token: string | null) => {
     const queryClient = useQueryClient();
 
     const createOrderMutation = useMutation({
-        mutationFn: async (items: { cartItemId: string; productId: string; quantity: number }[]) => {
+        mutationFn: async ({
+            addressId,
+            items
+        }: { 
+            addressId: string;
+            items: { cartItemId: string; productId: string; quantity: number }[];
+        }) => {
             if(!token) throw new Error("Unauthorized");
-            return createTransactionOrder(token, items)
+            return createTransactionOrder(token, addressId, items)
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["orders"] });

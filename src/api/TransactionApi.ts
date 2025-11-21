@@ -1,4 +1,4 @@
-import { RecentOrder, statusOrder, TransactionOrder, TransactionOrderByUserId, TransactionOrderPaginated, TransactionResponse } from "@/types/Transaction";
+import { RecentOrder, statusOrder, TransactionOrder, TransactionOrderByUserId, TransactionOrderDetailAccount, TransactionOrderPaginated, TransactionResponse } from "@/types/Transaction";
 import { axiosClient } from "./AxiosClient";
 import { ApiResponse } from "@/types/ApiResponse";
 
@@ -60,9 +60,11 @@ export const fetchTransactionOrderByUserId = async (token: string) => {
 
 export const createTransactionOrder = async (
     token: string, 
+    addressId: string,
     items: { cartItemId: string; productId: string; quantity: number }[]
 ) => {
-    const response = await axiosClient.post<ApiResponse<TransactionOrder>>('orders/create', {
+    const response = await axiosClient.post<ApiResponse<TransactionOrder>>('/orders/create', {
+        addressId,
         items
     }, {
         headers: {
@@ -75,6 +77,18 @@ export const createTransactionOrder = async (
 
 export const createTransactionPayment = async (token: string, id: string) => {
     const response = await axiosClient.post<ApiResponse<{ transactionId: string }>>(`/payment/create/${id}`, {}, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+
+    return response.data.data
+}
+
+export const updateStatusOrderForUser = async (token: string, orderId: string, newStatus: string) => {
+    const response = await axiosClient.put<ApiResponse<TransactionOrderDetailAccount>>(`/orders/change-status/${orderId}`, {
+        newStatus
+    }, {
         headers: {
             Authorization: `Bearer ${token}`
         }
