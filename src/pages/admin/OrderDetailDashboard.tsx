@@ -2,7 +2,7 @@ import { IoIosArrowBack } from "react-icons/io"
 import { useNavigate } from "react-router-dom"
 import { PiNotepad } from "react-icons/pi";
 import { BsTelephone } from "react-icons/bs";
-import { IoCalendarOutline } from "react-icons/io5";
+import { CalendarDays } from 'lucide-react';
 import { IoMailOutline } from "react-icons/io5";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { useState } from "react";
@@ -42,7 +42,7 @@ export const OrderDetailDashboard = () => {
             value: 'Rp32.000'
         },
         {
-            label: 'Delivery',
+            label: 'Shipping (Free)',
             value: 'Rp0'
         },
         {
@@ -57,15 +57,20 @@ export const OrderDetailDashboard = () => {
 
     return (
         <div className="flex flex-col gap-y-6">
-            <div className="flex flex-wrap items-center gap-x-3">
-                <button 
-                type="button"
-                className="flex justify-center items-center rounded-md w-8 h-8 border border-gray-300 cursor-pointer hover:bg-gray-200 transform transition-all duration-200"
-                onClick={() => navigate(-1)}
-                >
-                    <IoIosArrowBack size={22} />
+            <div className="flex flex-wrap justify-between items-center">
+                <div className="flex flex-wrap items-center gap-x-3">
+                    <button 
+                    type="button"
+                    className="flex justify-center items-center rounded-md w-8 h-8 border border-gray-300 cursor-pointer hover:bg-gray-200 transform transition-all duration-200"
+                    onClick={() => navigate(-1)}
+                    >
+                        <IoIosArrowBack size={22} />
+                    </button>
+                    <h1>Order ID <span className="font-bold">#2541</span></h1>
+                </div>
+                <button className="text-sm bg-white px-2.5 py-1 rounded-md">
+                    More actions
                 </button>
-                <h1>Order ID <span className="font-bold">#2541</span></h1>
             </div>
             <div className="flex flex-col gap-3.5">
                 <div className="flex flex-wrap items-center gap-4">
@@ -74,14 +79,14 @@ export const OrderDetailDashboard = () => {
                     </div>
                     <div className="bg-gray-400 w-[1.2px] h-5"></div>
                     <div className="flex flex-wrap gap-x-1.5 items-center text-gray-500">
-                        <IoCalendarOutline size={19} />
+                        <CalendarDays size={19} />
                         <p className="font-semibold">12 Jan, 2025 - 10:34 WIB</p>
                     </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-[65%_1fr] gap-6">
                     <div className="flex flex-col gap-6">
                         <div className="flex flex-col bg-white rounded-md px-4 pt-4 pb-5">
-                            <div className="grid grid-cols-[45%_1fr_12%_1fr] gap-x-2.5 text-[15px] text-gray-400 font-semibold mb-1">
+                            <div className="grid grid-cols-[45%_1fr_12%_1fr] gap-x-2.5 text-[15px] text-gray-400 font-semibold mb-1.5">
                                 <p>Items</p>
                                 <p>Price</p>
                                 <p>Qty</p>
@@ -119,8 +124,8 @@ export const OrderDetailDashboard = () => {
                             <h1 className="font-semibold text-base">Payment Summary</h1>
                             <div className="flex flex-col gap-1 mt-4">
                                 {paymenSummary.map(item => (
-                                    <div className="flex flex-wrap justify-between items-center text-[15px]">
-                                        <h1>{item.label}</h1>
+                                    <div className={`flex flex-wrap justify-between items-center text-[15px] ${item.label === 'Tax' && 'border-b border-gray-200 pb-1.5'} ${item.label === 'Total' && 'pt-1.5 font-semibold'}`}>
+                                        <h1 className="text-gray-700">{item.label}</h1>
                                         <p>{item.value}</p>
                                     </div>
                                 ))}
@@ -158,13 +163,14 @@ export const OrderDetailDashboard = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex flex-col gap-3.5 py-4">
+                            <div className="flex flex-col gap-3.5 pt-4 pb-2">
                                 <h1 className="font-semibold">Shipping Address</h1>
                                 <div className="flex flex-col gap-0.5 text-[15px]">
+                                    <p>Muhammad Rahul</p>
                                     <p>Malaysia Road</p>
-                                    <p>+62</p>
                                     <p>Sawayan ovai, 605</p>
-                                    <p>1201</p>
+                                    <p>Indonesia</p>
+                                    <p>+62</p>
                                 </div>
                             </div>
                         </div>

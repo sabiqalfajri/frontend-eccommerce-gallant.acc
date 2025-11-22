@@ -46,7 +46,7 @@ type BaseTransactionResponse = {
     id: string;
     publicId: string;
     totalAmount: number;
-    status: string;
+    status: statusOrder;
     paymentType: string;
     qrisUrl: string;
     qrisExpiryAt: string;
@@ -64,7 +64,11 @@ export interface TransactionOrderDetailAccount extends BaseTransactionResponse {
     shippingSubdistrict: string
     shippingStreet: string
     shippingPostalCode: string
+    paidAt?: string
     shippedAt?: string
+    completedAt?: string
+    expiredAt?: string
+    items: BaseItem[]
 }
 
 export interface TransactionResponse extends BaseTransactionResponse {

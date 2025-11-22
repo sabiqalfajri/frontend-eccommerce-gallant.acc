@@ -56,7 +56,8 @@ export const DropdownCustom = ({
                             {item.separator && item.separator === 'up' && <div className="border-b border-gray-200 my-1"></div>}
 
                             <DropdownMenuItem 
-                            key={idx} onClick={item.onClick} 
+                            key={idx} 
+                            onClick={item.onClick} 
                             className={`text-[15px] ${item.className}`}>
                                 {item.href ? (
                                     <Link

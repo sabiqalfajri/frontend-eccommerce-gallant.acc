@@ -54,7 +54,7 @@ export const Transaction = () => {
                 refetch={refetch}
                 />
             }
-            {!smoothLoading && transaction && transaction.status === 'PAID' && <TransactionPaid />}
+            {!smoothLoading && transaction && transaction.status === 'PROCESSING' && <TransactionPaid />}
         </Section>
     )
 }

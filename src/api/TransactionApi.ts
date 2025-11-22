@@ -48,6 +48,16 @@ export const fetchTransaction = async (token: string, orderId: string) => {
     return response.data.data
 }
 
+export const fetchDetailOrderByPublicId = async (token: string, publicId: string) => {
+    const response = await axiosClient.get<{ data: TransactionOrderDetailAccount }>(`/orders/detail/${publicId}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+
+    return response.data.data
+}
+
 export const fetchTransactionOrderByUserId = async (token: string) => {
     const response = await axiosClient.get<{ data: TransactionOrderByUserId[] }>('/orders', {
         headers: {

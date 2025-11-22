@@ -8,8 +8,8 @@ import { ProductDetail } from "@/pages/user/ProductDetail"
 import { Cart } from "@/pages/user/Cart"
 import { Checkout } from "@/pages/user/Checkout"
 import { ProtectedRoute } from "./ProtectedRoute"
-import { AddressAccountSkeleton } from "@/components/user/address/AddressAccountSkeleton"
 import { Transaction } from "@/pages/user/Transaction"
+import { OrderSkeleton } from "@/components/user/account/OrderSkeleton"
 
 export const UserRoutes = () => {
     return (
@@ -25,7 +25,7 @@ export const UserRoutes = () => {
                     <Route path="checkout" element={<Checkout />} />
                 </Route>
                 <Route path="transaction/:orderId" element={<Transaction />} />
-                <Route path="skeleton" element={<AddressAccountSkeleton />} />
+                <Route path="skeleton" element={<OrderSkeleton />} />
             </Route>
         </Routes>
     )

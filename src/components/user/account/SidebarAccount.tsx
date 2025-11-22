@@ -27,8 +27,9 @@ export const SidebarAccount = () => {
         <div className="w-full sticky top-[5.8rem] p-3">
             <div className="flex flex-col gap-y-2">
                 <div className="flex flex-col gap-y-2 border-b border-gray-200 pb-2">
-                    {sidebarMenu.map((menu) => (
+                    {sidebarMenu.map((menu, idx) => (
                         <NavLink
+                        key={idx}
                         to={menu.path}
                         end={menu.path === "/customer"}
                         className={({ isActive }: any) => 
