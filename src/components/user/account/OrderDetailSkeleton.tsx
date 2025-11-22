@@ -33,7 +33,7 @@ export const OrderDetailSkeleton = () => {
                             </div>
                         </div>
                         <div className="flex justify-end">
-                            <Button variant="primary" className="text-white w-[12%]">
+                            <Button variant="primary" className="text-white w-24">
                                 <ClipLoader size={22} color="white" />
                             </Button>
                         </div>
