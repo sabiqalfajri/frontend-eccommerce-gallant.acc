@@ -29,7 +29,7 @@ export const ProductDetail = () => {
                             <div className="flex-1 min-w-0">
                                 <DetailProductGallery id={id} product={product} />
                             </div>
-                            <div className="flex-1 min-w-0">
+                            <div className="flex-1 min-w-0 w-full">
                                 <DetailProductInfo id={id} product={product} />
                             </div>
                         </div>
