@@ -44,7 +44,6 @@ export const updateCartItemQuantity = async ({
 }
 
 export const deleteCartItem = async (token: string, id: string) => {
-    console.log('token delete', token)
     const response = await axiosClient.delete(`/cart/delete/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`

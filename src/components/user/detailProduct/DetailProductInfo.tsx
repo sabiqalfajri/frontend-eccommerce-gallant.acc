@@ -8,6 +8,9 @@ import { showError } from "@/utils/Toast"
 import { FiMinus, FiPlus } from "react-icons/fi"
 import { ClipLoader } from "react-spinners"
 import { LuDot } from "react-icons/lu";
+import { Headphones } from 'lucide-react';
+import { BadgeCheck } from 'lucide-react';
+import { GoPackage } from "react-icons/go";
 
 interface DetailProductInfoProps {
     id: string
@@ -30,10 +33,13 @@ export const DetailProductInfo = ({ product, id }: DetailProductInfoProps) => {
                     <h1 className="font-semibold line-clamp-2">{product.name}</h1>
                 </div>
                 <div className="overflow-x-auto scrollbar-hide gap-1 inline-flex items-center whitespace-nowrap">
+                    <BadgeCheck size={19} className="shrink-0 text-primary mr-1" />
                     <p className="shrink-0">Pasti Ori</p>
-                    <LuDot size={22} className="translate-y-0.5 shrink-0" />
-                    <p className="shrink-0">Jaminan Tepat Waktu</p>
-                    <LuDot size={22} className="translate-y-0.5 shrink-0" />
+                    <LuDot size={22} className="translate-y-0 md:translate-y-0.5 shrink-0" />
+                    <GoPackage size={19} className="shrink-0 text-primary mr-1" />
+                    <p className="shrink-0">Packing Aman</p>
+                    <LuDot size={22} className="translate-y-0 md:translate-y-0.5 shrink-0 mr-1" />
+                    <Headphones size={19} className="shrink-0 text-primary" />
                     <p className="shrink-0">Dukungan Pelanggan 24/7</p>
                 </div>
                 {/* <p className="hidden md:block line-clamp-3 mt-3">{product.description}</p> */}

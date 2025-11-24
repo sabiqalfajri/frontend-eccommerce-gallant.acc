@@ -89,18 +89,13 @@ export const DetailProductGallery = ({
                                     src={image.url}
                                     alt={image.id}
                                     wrapperClassName="w-full h-20 lg:h-20"
-                                    imageClassName={`rounded-md border-2 ${activeIndex === index ? 'border-primary' : 'hover:bg-none md:hover:opacity-70'}`}
+                                    imageClassName={`rounded-md border-2 ${activeIndex === index ? 'border-primary' : 'hover:bg-none md:hover:opacity-70 cursor-pointer'}`}
                                     imagePlaceholderClassName="w-[70%] h-[70%] object-contain"
                                     onClick={() => {
                                         setActiveIndex(index)
                                         thumbsSwiper?.slideTo(index);
                                     }}
                                 />
-                                {/* <img onClick={() => {
-                                    setActiveIndex(index);
-                                    thumbsSwiper?.slideTo(index);
-                                    }} src={image.url} className={`w-full h-20 lg:h-20 object-cover border-2 transform transition-all duration-300 rounded-md cursor-pointer ${activeIndex === index ? 'border-primary' : 'hover:bg-none md:hover:opacity-70' }`} alt="" 
-                                /> */}
                             </div>
                         </SwiperSlide> 
                     ))}

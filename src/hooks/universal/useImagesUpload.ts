@@ -1,23 +1,11 @@
 import { ImageUploadSingleSchema } from "@/schema/Image.schema";
 import { showError } from "@/utils/Toast";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const useImagesUpload = (MAX_FILES = 6, defaultImages: string[] = []) => {
     const [previewUrls, setPreviewUrls] = useState<string[]>(defaultImages);
     const [files, setFiles] = useState<File[]>([]);
     const [deletedImages, setDeletedImages] = useState<string[]>([])
-
-    useEffect(() => {
-        console.log('data yg dihapus: ', deletedImages)
-    }, [deletedImages])
-
-    useEffect(() => {
-        console.log('data files: ', files)
-    }, [files])
-
-    useEffect(() => {
-        console.log('data previewUrls: ', previewUrls)
-    }, [previewUrls])
 
     const handleUploads = (fileList: FileList | null, input?: HTMLInputElement | null) => {
         if(!fileList) return;

@@ -32,7 +32,6 @@ export const CartItems = ({
     }
 
     const handlePlus = async (itemId: string, currentQty: number) => {
-        console.log('handlePlus called with: ', { itemId, currentQty })
         await updateCart({ id: itemId, quantity: currentQty + 1 })
     }
 
@@ -54,6 +53,7 @@ export const CartItems = ({
                             id={i.id}
                             checked={isSelected(i.id)}
                             onCheckedChange={() => toggleSelect(i.id)}
+                            className="cursor-pointer"
                         /> 
                         <Link
                           to={`/detail/${i.productId}`}

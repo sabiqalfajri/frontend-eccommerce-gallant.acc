@@ -12,6 +12,7 @@ import { BsBoxArrowLeft } from "react-icons/bs";
 import { CapitalizeText } from "@/helper/CapitalizeText";
 import { useCurrentUser } from "@/hooks/user/useCurrentUser";
 import { useAuth } from "@clerk/clerk-react";
+import { MapPin } from 'lucide-react';
 
 export const NavbarUser = () => {
     const navigate = useNavigate();
@@ -39,6 +40,11 @@ export const NavbarUser = () => {
             icon: <HiOutlineInboxArrowDown size={20} />, 
             label: 'Orders',
             href: '/customer/order/all' 
+        },
+        { 
+            icon: <MapPin size={20} />, 
+            label: 'Adress',
+            href: '/customer/address' 
         },
         { 
             icon: <BsBoxArrowLeft size={19} />, 

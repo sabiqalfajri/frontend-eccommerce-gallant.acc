@@ -9,8 +9,6 @@ export const AddProduct = () => {
     const { createProduct, isCreating } = useCreateProduct(token!);
     const navigate = useNavigate();
 
-    console.log('token anda: ', token);
-
     const onSubmit = async (
         data: ProductFormValues & { files: File[]; deletedImages?: string[]; visibility: string }
     ) => {

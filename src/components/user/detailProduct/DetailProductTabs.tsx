@@ -29,7 +29,7 @@ export const DetailProductTabs = ({
                 tabs={tabs}
                 className="w-full"
                 listClassName="flex bg-transparent! justify-center items-center w-full border-b border-gray-200"
-                contentClassName="py-3 px-4 bg-gray-100 text-sm md:text-base"
+                contentClassName="py-3 px-4 bg-gray-100 text-sm md:text-base rounded-md"
                 triggerClassName="data-[state=active]:shadow-none data-[state=active]:text-primary text-[15px]"
             />
         </div>

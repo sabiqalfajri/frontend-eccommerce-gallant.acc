@@ -1,5 +1,6 @@
 import { DropdownCustom } from "@/components/common/DropdownCustom";
 import { Button } from "@/components/ui/button"
+import { OrderEmpty } from "@/components/user/account/OrderEmpty";
 import { OrderSkeleton } from "@/components/user/account/OrderSkeleton";
 import { getOrderAccountActions } from "@/components/user/OrderAccountActions";
 import { useTransactionOrderByUserId } from "@/hooks/transaction/useTransactionByUserId";
@@ -49,6 +50,10 @@ export const OrdersAccount = () => {
 
     const handleUpdateStatus = async (orderId: string, status: string) => {
         await updateOrderStatusUser({ orderId, newStatus: status })
+    }
+
+    if(!smoothLoading && transactionList.length === 0) {
+        return <OrderEmpty />
     }
 
     return (

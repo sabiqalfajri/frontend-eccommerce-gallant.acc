@@ -1,6 +1,7 @@
 import { Section } from "@/components/common/Section"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
+import { CartEmpty } from "@/components/user/cart/CartItemEmpty"
 import { CartItems } from "@/components/user/cart/CartItems"
 import { CartSkeleton } from "@/components/user/cart/CartSkeleton"
 import { useCartSelection } from "@/context/CartSelectionContext"
@@ -53,42 +54,44 @@ export const Cart = () => {
         }
     }
 
-    if (!cartItem && isFetchedCartItem) {
-        return (
-            <div className="flex flex-col">
-                <h1>Your cart is empty.</h1>
-                <p>Ayo penuhi dengan barang-barang favorit Anda</p>
-            </div>
-        )
-    }
+    // if (!cartItem && isFetchedCartItem) {
+    //     return (
+    //         <div className="flex flex-col">
+    //             <h1>Your cart is empty.</h1>
+    //             <p>Ayo penuhi dengan barang-barang favorit Anda</p>
+    //         </div>
+    //     )
+    // }
 
     return (
         <Section>
                 {smoothLoadingCart ? (
                     <CartSkeleton />
-                ) : (
+                ) : cartItem && (
                     <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-5">
                         <div className="flex flex-col p-3">
                             <h1 className="font-semibold text-2xl">Shopping Cart</h1>
                             <div className="flex flex-col gap-3 mt-4">
-                                <div className="flex flex-wrap px-0 md:px-2 justify-between items-center pb-2.5 border-b border-gray-200">
-                                    <div className="flex flex-wrap items-center gap-x-2.5">
-                                        <Checkbox
-                                        checked={selectedIds.length === cartItem?.items.length && cartItem.items.length > 0}
-                                        onCheckedChange={handleSelectAll}
-                                        />
-                                        <p>Select All ({cartItem?.items.length ?? 0})</p>
-                                    </div>
-                                    {selectedIds.length > 0 && (
-                                        <button type="button" className="font-semibold cursor-pointer text-[15px]">
-                                            Remove
-                                        </button>
-                                    )}
-                                </div>
-                                {/* Cart Items */}
-                                <div className="px-0 md:px-2 flex flex-col gap-4">
-                                    {cartItem && <CartItems item={cartItem.items} />}
-                                </div>
+                                {cartItem.items.length > 0 ? (
+                                    <>
+                                        <div className="flex px-0 md:px-2 pb-2.5 border-b border-gray-200">
+                                            <div className="flex flex-wrap items-center gap-x-2.5">
+                                                <Checkbox
+                                                checked={selectedIds.length === cartItem?.items.length && cartItem.items.length > 0}
+                                                onCheckedChange={handleSelectAll}
+                                                className="cursor-pointer"
+                                                />
+                                                <p>Select All ({cartItem.items.length})</p>
+                                            </div>
+                                        </div>
+                                        {/* Cart Items */}
+                                        <div className="px-0 md:px-2 flex flex-col gap-4">
+                                            {cartItem && <CartItems item={cartItem.items} />}
+                                        </div>
+                                    </>
+                                ) : (
+                                    <CartEmpty />
+                                )}
                             </div>
                         </div>
                         {/* Summary Cart */}
@@ -118,9 +121,11 @@ export const Cart = () => {
                             </div>
                             <Button className="mt-3"
                             onClick={handleBuyNow}
+                            disabled={selectedIds.length === 0}
+                            variant="primary"
                             size="lg"
                             >
-                                {isLoadingBuyNow ? <ClipLoader size={20} color="white" /> : `Buy Now (${selectedCount})`}
+                                {isLoadingBuyNow ? <ClipLoader size={20} color="white" /> : `Buy Now ${selectedCount ? `(${selectedCount})` : ''}`}
                             </Button>
                         </div>
                     </div>

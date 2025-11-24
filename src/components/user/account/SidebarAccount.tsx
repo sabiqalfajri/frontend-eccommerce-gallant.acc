@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom"
 import { HiOutlineInboxArrowDown } from "react-icons/hi2";
 import { FiUser } from "react-icons/fi";
-import { PiAddressBook } from "react-icons/pi";
+import { MapPin } from 'lucide-react';
 import { BsBoxArrowLeft } from "react-icons/bs";
 
 export const SidebarAccount = () => {
@@ -19,7 +19,7 @@ export const SidebarAccount = () => {
         { 
             name: 'Address',
             path: '/customer/address', 
-            icon: <PiAddressBook size={23} /> 
+            icon: <MapPin size={22} /> 
         },
     ]
 
@@ -45,9 +45,9 @@ export const SidebarAccount = () => {
                 </div>
                 <button className="group flex items-center justify-start gap-2 h-10 w-full px-3 rounded-lg text-sm font-medium transition-all duration-200 ease-in-out hover:bg-gray-100 cursor-pointer">
                     <div className="w-7 h-7 rounded-md flex justify-center items-center">
-                        <BsBoxArrowLeft size={21} /> 
+                        <BsBoxArrowLeft size={20} /> 
                     </div>
-                    Logout
+                    Sign Out
                 </button>
             </div>
         </div>

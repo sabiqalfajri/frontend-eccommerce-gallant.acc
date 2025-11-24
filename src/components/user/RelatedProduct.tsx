@@ -4,7 +4,6 @@ import { CardProduct } from "./CardProduct";
 import { CardProductSkeleton } from "./CardProductSkeleton";
 
 export const RelatedProduct = ({ id }: { id: string }) => {
-    console.log(id);
     const { relatedProducts, isLoadingRelatedProducts, isErrorRelatedProducts, isFetchedRelatedProducts } = useRelatedProducts(id);
     const loadingRelatedProduct = isLoadingRelatedProducts || !isFetchedRelatedProducts;
     const smoothLoading = useSmoothLoading(loadingRelatedProduct, 300);
