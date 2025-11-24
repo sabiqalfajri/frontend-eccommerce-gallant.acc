@@ -19,7 +19,8 @@ export const CartEmpty = () => {
                 </div>
             </div>
             <Button 
-            className="w-fit px-5"
+            className="w-full md:w-fit px-5"
+            size="lg"
             onClick={() => navigate('/shop')}
             >
                 Start Shopping
