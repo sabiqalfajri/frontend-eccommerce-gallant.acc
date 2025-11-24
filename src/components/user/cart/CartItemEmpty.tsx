@@ -5,7 +5,7 @@ export const CartEmpty = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="flex flex-col items-center justify-center gap-3 border-transparent md:border md:border-gray-200 rounded-md py-5 h-[calc(100vh-200px)] md:h-fit">
+        <div className="flex flex-col items-center justify-center gap-3 border-transparent md:border md:border-gray-200 rounded-md py-5 h-[calc(100vh-34vh)] md:h-fit">
             <img 
             src="/images/cart-empty.png" 
             alt="cartEmpty" 
