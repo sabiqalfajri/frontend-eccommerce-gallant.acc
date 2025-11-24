@@ -13,7 +13,7 @@ export const EditAddressAccount = () => {
     const { addressById, isLoadingAddressById, isFetchedAddressById } = useAddressById(token!, id!)
     const { updateAddress, isUpdatingAddress } = useUpdateAddress(token!, id!);
     const loadingAddressForm = isLoadingAddressById || !isFetchedAddressById;
-    const smoothLoading = useSmoothLoading(loadingAddressForm, 400);
+    const smoothLoading = useSmoothLoading(loadingAddressForm, 200);
     const navigate = useNavigate();
 
     const onSubmit = async (data: AddressInput) => {
@@ -31,16 +31,17 @@ export const EditAddressAccount = () => {
                 </button>
                 <h1 className="font-semibold">Edit Address</h1>
             </div>
-            {smoothLoading ? (
+            {/* {smoothLoading ? (
                 <div>loading...</div>
-            ) : (
+            ) : ( */}
                 <AddressForm 
                     mode="edit"
                     onSubmit={onSubmit}
                     isSubmitting={isUpdatingAddress}
                     defaultValues={addressById}
+                    isLoading={smoothLoading}
                 />
-            )} 
+           
         </div>
     )
 }

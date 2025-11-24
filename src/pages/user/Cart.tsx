@@ -10,6 +10,7 @@ import { useAddress } from "@/hooks/address/useAddress"
 import { useCart } from "@/hooks/cart/useCart"
 import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading"
 import { useToken } from "@/hooks/universal/useToken"
+import { useWindowSize } from "@/hooks/universal/useWindowSize"
 import { showError } from "@/utils/Toast"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
@@ -23,6 +24,7 @@ export const Cart = () => {
     const { setCheckoutItems } = useCheckout();
     const [isLoadingBuyNow, setIsLoadingBuyNow] = useState(false);
     const navigate = useNavigate();
+    const { isMobile } = useWindowSize();
     const cartLoading = isLoadingCartItem || !isFetchedCartItem
     const smoothLoadingCart = useSmoothLoading(cartLoading, 400)
     const selectedItems = cartItem?.items.filter(i => selectedIds.includes(i.id));
@@ -95,39 +97,42 @@ export const Cart = () => {
                             </div>
                         </div>
                         {/* Summary Cart */}
-                        <div className="flex flex-col h-fit border border-gray-200 rounded-md p-3 pb-4">
-                            <h1 className="font-semibold text-2xl">Summary</h1>
-                            <div className="flex flex-col gap-1 text-sm pb-3 border-b border-gray-200 mt-4">
-                                <div className="flex flex-wrap items-center justify-between">
-                                    <p>Subtotal ({selectedCount} Item)</p>
-                                    <p>
+                        {(!isMobile || (isMobile && cartItem.items.length > 0)) && (
+                            <div className="flex flex-col h-fit border border-gray-200 rounded-md p-3 pb-4">
+                                <h1 className="font-semibold text-2xl">Summary</h1>
+                                <div className="flex flex-col gap-1 text-sm pb-3 border-b border-gray-200 mt-4">
+                                    <div className="flex flex-wrap items-center justify-between">
+                                        <p>Subtotal ({selectedCount} Item)</p>
+                                        <p>
+                                            {
+                                            selectedTotal === 0 ? '-' : `Rp${selectedTotal?.toLocaleString('id-ID')}`
+                                            }
+                                        </p>
+                                    </div>
+                                    <div className="flex flex-wrap items-center justify-between">
+                                        <p>Shipping Cost</p>
+                                        <p>Free</p>
+                                    </div>
+                                </div>
+                                <div className="flex flex-wrap items-center justify-between mt-2">
+                                    <p>Total</p>
+                                    <p className="font-semibold">
                                         {
                                         selectedTotal === 0 ? '-' : `Rp${selectedTotal?.toLocaleString('id-ID')}`
                                         }
                                     </p>
                                 </div>
-                                <div className="flex flex-wrap items-center justify-between">
-                                    <p>Shipping Cost</p>
-                                    <p>Free</p>
-                                </div>
+                                <Button 
+                                className="mt-3 disabled:bg-gray-300 disabled:text-gray-500"
+                                onClick={handleBuyNow}
+                                disabled={selectedIds.length === 0}
+                                variant="primary"
+                                size="lg"
+                                >
+                                    {isLoadingBuyNow ? <ClipLoader size={20} color="white" /> : `Buy Now ${selectedCount ? `(${selectedCount})` : ''}`}
+                                </Button>
                             </div>
-                            <div className="flex flex-wrap items-center justify-between mt-2">
-                                <p>Total</p>
-                                <p className="font-semibold">
-                                    {
-                                    selectedTotal === 0 ? '-' : `Rp${selectedTotal?.toLocaleString('id-ID')}`
-                                    }
-                                </p>
-                            </div>
-                            <Button className="mt-3"
-                            onClick={handleBuyNow}
-                            disabled={selectedIds.length === 0}
-                            variant="primary"
-                            size="lg"
-                            >
-                                {isLoadingBuyNow ? <ClipLoader size={20} color="white" /> : `Buy Now ${selectedCount ? `(${selectedCount})` : ''}`}
-                            </Button>
-                        </div>
+                        )}
                     </div>
                 )}
         </Section>

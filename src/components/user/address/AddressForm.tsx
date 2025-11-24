@@ -12,13 +12,15 @@ interface AddressFormProps {
     defaultValues?: Address;
     onSubmit: (data: AddressInput) => Promise<void>;
     isSubmitting?: boolean
+    isLoading?: boolean
 }
 
 export const AddressForm = ({
     mode,
     defaultValues,
     onSubmit,
-    isSubmitting
+    isSubmitting,
+    isLoading
 }: AddressFormProps) => {
     const { register, handleSubmit, formState: { errors } } = useForm<AddressInput>({
         resolver: zodResolver(createAddressSchema) as any,
@@ -35,6 +37,7 @@ export const AddressForm = ({
             intructions: defaultValues.intructions || "",
         } : {}
     });
+    const disabled = isSubmitting || isLoading
     const navigate = useNavigate();
    
     const accountAddressFields: { id: AccountAddressKeys; label: string; placeholder?: string, type?: string | number }[] = [
@@ -125,7 +128,8 @@ export const AddressForm = ({
                         </Label>
                         <div className="flex flex-col gap-0.5">
                             <Input 
-                                placeholder={field.placeholder} 
+                                disabled={disabled}
+                                placeholder={isLoading ? "Loading..." : field.placeholder} 
                                 {...register(field.id)}
                             />
                             {errors[field.id] && <p className="text-red-500 text-[13px] mt-1">{errors[field.id]?.message}</p>}

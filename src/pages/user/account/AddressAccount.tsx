@@ -19,7 +19,7 @@ export const AddressAccount = () => {
     const { setDefaultAddress } = useSetPrimaryAddress(token!);
     const { deleteAddress } = useDeleteAddress(token!);
     const loadingAddress = isLoadingAddress || !isFetchedAddress;
-    const smoothLoading = useSmoothLoading(loadingAddress);
+    const smoothLoading = useSmoothLoading(loadingAddress, 200);
     const navigate = useNavigate();
 
     const handleSetPrimary = async (addressId: string) => {
@@ -33,9 +33,11 @@ export const AddressAccount = () => {
     return (
         <>
             {smoothLoading ? (
-                Array.from({ length: 2 }).map((_, idx) => (
-                    <AddressAccountSkeleton key={idx} />
-                ))
+                <div className="flex flex-col gap-4">
+                    {Array.from({ length: 2 }).map((_, idx) => (
+                        <AddressAccountSkeleton key={idx} />
+                    ))}
+                </div>
             ) : (
                 <div className="flex flex-col gap-4">
                     <div className="flex md:flex-wrap justify-between items-center">
