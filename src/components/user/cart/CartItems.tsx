@@ -97,11 +97,11 @@ export const CartItems = ({
                                     <button 
                                     onClick={() => handleMinus(i.id, i.quantity)}
                                     disabled={i.quantity === 1}
-                                    className={`px-0.5 h-fit py-0.5 text-[22px] font-semibold text-gray-700 flex justify-center items-center rounded-sm ${i.quantity === 1 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:bg-gray-200'}`}>
+                                    className={`px-0.5 h-fit py-0.5 text-[22px] font-semibold text-gray-700 flex justify-center items-center rounded-sm ${i.quantity === 1 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:bg-transparent md:hover:bg-gray-200 active:bg-gray-100 md:active:bg-transparent'}`}>
                                         <FiMinus size={18} />
                                     </button>
                                     {loadingItemIds.includes(i.id) ? (
-                                        <div className="w-8 h-5 md:w-10 flex justify-center items-center">
+                                        <div className="w-10 h-5 flex justify-center items-center">
                                             <ClipLoader size={18} />
                                         </div>
                                     ) : (
@@ -119,7 +119,7 @@ export const CartItems = ({
                                     )}
                                     <button 
                                     onClick={() => handlePlus(i.id, i.quantity)}
-                                    className={`px-0.5 h-fit py-0.5 text-[22px] font-semibold text-gray-700 flex justify-center items-center rounded-sm cursor-pointer hover:bg-gray-200`}>
+                                    className={`px-0.5 h-fit py-0.5 text-[22px] font-semibold text-gray-700 flex justify-center items-center rounded-sm cursor-pointer hover:bg-transparent md:hover:bg-gray-200 active:bg-gray-100 md:active:bg-transparent`}>
                                         <FiPlus size={18} />
                                     </button>
                                 </div>
