@@ -11,7 +11,7 @@ export const Shop = () => {
     const { isMobile } = useWindowSize();
     const { productsUser, isErrorProductUser, isLoadingProductsUser, isFetchedProductUser } = useProductsForUser();
     const loadingProducts = isLoadingProductsUser || !isFetchedProductUser
-    const smoothLoading = useSmoothLoading(loadingProducts, 300);
+    const smoothLoading = useSmoothLoading(loadingProducts, 200);
 
     return (
         <Section>

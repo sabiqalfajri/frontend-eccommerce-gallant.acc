@@ -83,7 +83,7 @@ export const Cart = () => {
                                                 onCheckedChange={handleSelectAll}
                                                 className="cursor-pointer w-[1.20rem] h-[1.20rem]"
                                                 />
-                                                <p>Select All ({cartItem.items.length})</p>
+                                                <p className="text-[15px] md:text-base">Select All ({cartItem.items.length})</p>
                                             </div>
                                         </div>
                                         {/* Cart Items */}
@@ -114,8 +114,8 @@ export const Cart = () => {
                                         <p>Free</p>
                                     </div>
                                 </div>
-                                <div className="flex flex-wrap items-center justify-between mt-2">
-                                    <p>Total</p>
+                                <div className="flex flex-wrap items-center justify-between mt-2 text-[15px] md:text-base">
+                                    <p className="font-semibold">Total</p>
                                     <p className="font-semibold">
                                         {
                                         selectedTotal === 0 ? '-' : `Rp${selectedTotal?.toLocaleString('id-ID')}`

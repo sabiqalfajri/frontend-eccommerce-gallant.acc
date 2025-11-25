@@ -8,6 +8,8 @@ import { GrNext, GrPrevious } from 'react-icons/gr';
 import { CardProductSkeleton } from '../user/CardProductSkeleton';
 import { CardProduct } from '../user/CardProduct';
 import { Carousal } from '@/types/Product';
+import { FaArrowRight } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
 
 interface CarousalProductsProps {
     title: string
@@ -30,21 +32,35 @@ export const CarousalProducts = ({
     const prevRef = useRef(null);
     const { isMobile } = useWindowSize();
     const loading = isLoading || !isFetched;
-    const smoothLoading = useSmoothLoading(loading, 300);
+    const smoothLoading = useSmoothLoading(loading, 200);
+    const navigate = useNavigate();
 
     if(isError) return <div>Something went wrong</div>;
     if(data && data.length === 0) return <div>{errorTitle}</div>;
     const skeletonLength = isMobile ? 2 : 5
 
     return (
-        <div className="flex flex-col gap-y-3 w-full">
-            <h1 className="text-[19px] md:text-2xl text-center font-bold">{title}</h1>
+        <div className="flex flex-col gap-y-2 md:gap-y-3 w-full">
+            <div className="flex justify-between items-center md:block w-full">
+                <h1 className="text-[19px] md:text-2xl font-bold text-center md:mb-2">
+                    {title}
+                </h1>
+
+                {/* Mobile Only */}
+                <button 
+                className="text-primary font-semibold md:hidden cursor-pointer"
+                type='button'
+                onClick={() => navigate('/shop')}
+                >
+                    See all
+                </button>
+            </div>
             {smoothLoading ? (
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-5">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-3 md:mt-5">
                     <CardProductSkeleton length={skeletonLength} />
                 </div>
             ) : data && (
-                <div className="relative w-full mt-3">
+                <div className="relative w-full mt-1 md:mt-3">
                     <Swiper
                         modules={[Navigation]}
                         spaceBetween={16}
