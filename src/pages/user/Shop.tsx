@@ -25,8 +25,9 @@ export const Shop = () => {
                             <CustomSheet
                                 side="left"
                                 trigger={
-                                    <button className="block md:hidden cursor-pointer pl-0 pr-2 py-0.5">
+                                    <button className="flex flex-wrap gap-2 items-center md:hidden cursor-pointer pl-0 pr-2 py-0.5 text-sm">
                                         <HiAdjustmentsHorizontal size={24} />
+                                        <span className="text-gray-600">Filter</span>
                                     </button>
                                 }
                                 title="Filter"
