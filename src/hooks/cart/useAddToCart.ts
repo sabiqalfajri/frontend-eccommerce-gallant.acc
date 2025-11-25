@@ -1,6 +1,6 @@
 import { addToCart } from "@/api/CartApi"
 import { CartItem, CartItemPayload, CartResponse } from "@/types/Cart"
-import { showError } from "@/utils/Toast";
+import { showError, showInfo } from "@/utils/Toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 
@@ -75,6 +75,7 @@ export const useAddToCart = (token: string) => {
             showError(error.message || 'Something went wrong')
         },
         onSuccess: (data, variables) => {
+            showInfo("Product added to your cart.");
             queryClient.setQueryData<CartResponse>(["cart"], (old) => {
                 if (!old) return old;
 

@@ -199,12 +199,11 @@
   @media (max-width: 768px) {
     ol[data-sonner-toaster="true"][data-y-position="bottom"][data-x-position="center"] {
       bottom: 8rem !important;
-      /* position: fixed !important;  */
     }
 
     .toaster [data-sonner-toast] {
-      padding-top: 0.5rem !important;
-      padding-bottom: 0.5rem !important;
+      padding-top: 0.6rem !important;
+      padding-bottom: 0.6rem !important;
     }
   }
 
