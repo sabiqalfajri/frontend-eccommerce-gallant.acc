@@ -31,17 +31,13 @@ export const EditAddressAccount = () => {
                 </button>
                 <h1 className="font-semibold">Edit Address</h1>
             </div>
-            {/* {smoothLoading ? (
-                <div>loading...</div>
-            ) : ( */}
-                <AddressForm 
-                    mode="edit"
-                    onSubmit={onSubmit}
-                    isSubmitting={isUpdatingAddress}
-                    defaultValues={addressById}
-                    isLoading={smoothLoading}
-                />
-           
+            <AddressForm 
+                mode="edit"
+                onSubmit={onSubmit}
+                isSubmitting={isUpdatingAddress}
+                defaultValues={addressById}
+                isLoading={smoothLoading}
+            />
         </div>
     )
 }

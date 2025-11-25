@@ -6,7 +6,7 @@ import { ClipLoader } from "react-spinners"
 export const CheckoutSkeleton = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-5">
-            <div className="flex flex-col p-3">
+            <div className="flex flex-col p-0 md:p-3">
                 <h1 className="font-semibold text-[18px] md:text-2xl">Checkout</h1>
                 <div className="grid grid-cols-[5%_95%] items-center mt-3 border-b border-gray-200 pb-3 text-sm md:text-[15px] gap-1 md:gap-0">
                     <SiGooglemaps size={23} className="text-primary" />

@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label"
 import { AddressInput, createAddressSchema } from "@/schema/Address.schema"
 import { AccountAddressKeys, Address } from "@/types/Address"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
@@ -22,20 +23,9 @@ export const AddressForm = ({
     isSubmitting,
     isLoading
 }: AddressFormProps) => {
-    const { register, handleSubmit, formState: { errors } } = useForm<AddressInput>({
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<AddressInput>({
         resolver: zodResolver(createAddressSchema) as any,
-        defaultValues: defaultValues ? {
-            label: defaultValues.label,
-            recipientName: defaultValues.recipientName,
-            nomor: defaultValues.nomor,
-            province: defaultValues.province,
-            city: defaultValues.city,
-            district: defaultValues.district,
-            subdistrict: defaultValues.subdistrict,
-            postalCode: defaultValues.postalCode,
-            street: defaultValues.street,
-            intructions: defaultValues.intructions || "",
-        } : {}
+        defaultValues: {}
     });
     const disabled = isSubmitting || isLoading
     const navigate = useNavigate();
@@ -98,22 +88,22 @@ export const AddressForm = ({
         navigate('/customer/address')
     }
 
-    // useEffect(() => {
-    //     if(defaultValues) {
-    //         reset({
-    //             label: defaultValues.label,
-    //             recipientName: defaultValues.recipientName,
-    //             nomor: defaultValues.nomor,
-    //             province: defaultValues.province,
-    //             city: defaultValues.city,
-    //             district: defaultValues.district,
-    //             subdistrict: defaultValues.subdistrict,
-    //             postalCode: defaultValues.postalCode,
-    //             street: defaultValues.street,
-    //             intructions: defaultValues.intructions || "",
-    //         })
-    //     }
-    // }, [defaultValues])
+    useEffect(() => {
+        if(defaultValues) {
+            reset({
+                label: defaultValues.label,
+                recipientName: defaultValues.recipientName,
+                nomor: defaultValues.nomor,
+                province: defaultValues.province,
+                city: defaultValues.city,
+                district: defaultValues.district,
+                subdistrict: defaultValues.subdistrict,
+                postalCode: defaultValues.postalCode,
+                street: defaultValues.street,
+                intructions: defaultValues.intructions || "",
+            })
+        }
+    }, [defaultValues])
 
     return (
         <form 
