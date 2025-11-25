@@ -11,7 +11,7 @@ export const CartSkeleton = () => {
                 <div className="flex flex-col gap-3 mt-4">
                     <div className="flex flex-wrap px-0 md:px-2 justify-start items-center pb-2.5 border-b border-gray-200 gap-3">
                         <div className="flex flex-wrap items-center gap-x-2.5">
-                            <Checkbox disabled />
+                            <Checkbox disabled className="w-[1.20rem] h-[1.20rem]" />
                         </div>
                         <Skeleton className="w-28 h-4 rounded-md bg-gray-300" />
                     </div>
@@ -19,7 +19,7 @@ export const CartSkeleton = () => {
                         {Array.from({ length: 3 }).map((_, index) => (
                             <div key={index} className="grid grid-cols-[auto_minmax(0,1fr)] md:grid-cols-[1fr_4fr] gap-x-2 md:gap-x-0">
                                 <div className="flex flex-wrap items-center gap-3">
-                                    <Checkbox disabled />
+                                    <Checkbox disabled className="w-[1.20rem] h-[1.20rem]" />
                                     <Skeleton className="w-24 h-20 rounded-md bg-gray-300" />
                                 </div>
                                 <div className="flex flex-col">

@@ -81,7 +81,7 @@ export const Cart = () => {
                                                 <Checkbox
                                                 checked={selectedIds.length === cartItem?.items.length && cartItem.items.length > 0}
                                                 onCheckedChange={handleSelectAll}
-                                                className="cursor-pointer"
+                                                className="cursor-pointer w-[1.20rem] h-[1.20rem]"
                                                 />
                                                 <p>Select All ({cartItem.items.length})</p>
                                             </div>

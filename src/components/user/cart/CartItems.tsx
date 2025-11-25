@@ -53,7 +53,7 @@ export const CartItems = ({
                             id={i.id}
                             checked={isSelected(i.id)}
                             onCheckedChange={() => toggleSelect(i.id)}
-                            className="cursor-pointer"
+                            className="cursor-pointer w-[1.20rem] h-[1.20rem]"
                         /> 
                         <Link
                           to={`/detail/${i.productId}`}
