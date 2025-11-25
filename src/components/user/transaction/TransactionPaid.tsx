@@ -15,7 +15,7 @@ export const TransactionPaid = ({ data }: TransactionPaidProps) => {
     const navigate = useNavigate();
 
     return (
-        <div className="flex justify-center items-center h-[calc(100vh-20vh)] md:h-fit">
+        <div className="flex justify-center items-center h-[calc(100vh-25vh)] md:h-fit">
             <div className="flex flex-col w-full max-w-[25rem]">
                 <div className="flex flex-col items-center">
                     <Lottie 
