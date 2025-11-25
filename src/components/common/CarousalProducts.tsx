@@ -9,6 +9,7 @@ import { CardProductSkeleton } from '../user/CardProductSkeleton';
 import { CardProduct } from '../user/CardProduct';
 import { Carousal } from '@/types/Product';
 import { useNavigate } from 'react-router-dom';
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 interface CarousalProductsProps {
     title: string
@@ -47,11 +48,12 @@ export const CarousalProducts = ({
 
                 {/* Mobile Only */}
                 <button 
-                className="text-primary font-semibold md:hidden cursor-pointer"
+                className="flex flex-wrap items-center gap-1 text-primary font-semibold md:hidden cursor-pointer"
                 type='button'
                 onClick={() => navigate('/shop')}
                 >
                     See all
+                    <MdOutlineKeyboardArrowRight size={20} />
                 </button>
             </div>
             {smoothLoading ? (
