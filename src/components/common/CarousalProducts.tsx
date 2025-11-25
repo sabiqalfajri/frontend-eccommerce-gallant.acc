@@ -38,7 +38,7 @@ export const CarousalProducts = ({
 
     return (
         <div className="flex flex-col gap-y-3 w-full">
-            <h1 className="text-2xl text-center font-bold">{title}</h1>
+            <h1 className="text-[19px] md:text-2xl text-center font-bold">{title}</h1>
             {smoothLoading ? (
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-5">
                     <CardProductSkeleton length={skeletonLength} />

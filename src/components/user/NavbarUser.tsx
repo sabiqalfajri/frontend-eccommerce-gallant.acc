@@ -112,7 +112,11 @@ export const NavbarUser = () => {
                     header={
                         isLoaded && isSignedIn && (
                             <div className="flex flex-wrap gap-x-2 items-center pt-0.5">
-                                <img className="w-10 h-10 rounded-full object-cover" src={currentUser?.image} alt="profile-menu" />
+                                <img className="w-10 h-10 rounded-full object-cover" 
+                                src={currentUser?.image} alt="profile-menu" 
+                                loading="eager"
+                                decoding="async"
+                                />
                                 <div className="flex flex-col">
                                     <h1 className="text-sm font-semibold truncate w-36">
                                         {CapitalizeText(currentUser?.name)}
