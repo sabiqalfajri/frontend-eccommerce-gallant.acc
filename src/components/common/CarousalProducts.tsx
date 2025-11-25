@@ -8,7 +8,6 @@ import { GrNext, GrPrevious } from 'react-icons/gr';
 import { CardProductSkeleton } from '../user/CardProductSkeleton';
 import { CardProduct } from '../user/CardProduct';
 import { Carousal } from '@/types/Product';
-import { FaArrowRight } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
 
 interface CarousalProductsProps {
