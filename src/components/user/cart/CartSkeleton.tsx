@@ -6,8 +6,8 @@ import { ClipLoader } from "react-spinners"
 export const CartSkeleton = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-5">
-            <div className="flex flex-col p-3">
-                <h1 className="font-semibold text-2xl">Shopping Cart</h1>
+            <div className="flex flex-col p-0 md:p-3">
+                <h1 className="font-semibold text-[19px] md:text-2xl">Shopping Cart</h1>
                 <div className="flex flex-col gap-3 mt-4">
                     <div className="flex flex-wrap px-0 md:px-2 justify-start items-center pb-2.5 border-b border-gray-200 gap-3">
                         <div className="flex flex-wrap items-center gap-x-2.5">

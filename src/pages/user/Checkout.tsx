@@ -83,14 +83,14 @@ export const Checkout = () => {
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-5">
                     <div className="flex flex-col p-0 md:p-3">
-                        <h1 className="font-semibold text-2xl">Checkout</h1>
+                        <h1 className="font-semibold text-[18px] md:text-2xl">Checkout</h1>
                         <AddressCard address={address} />
                         <div className="flex flex-col gap-4 mt-4">
                             <CheckoutItem item={checkoutItems} />
                         </div>
                     </div>
                     <div className="flex flex-col h-fit border border-gray-200 rounded-md p-3 pb-4">
-                        <h1 className="font-semibold text-2xl">Payment</h1>
+                        <h1 className="font-semibold text-[18px] md:text-2xl">Payment</h1>
                         <div className="flex flex-col gap-1 text-sm pb-3 border-b border-gray-200 mt-4">
                             <div className="flex flex-wrap justify-between items-center">
                                 <div className="flex flex-nowrap items-center gap-x-3.5">

@@ -12,7 +12,7 @@ export const AddressEmpty = () => {
             className="w-[4.4rem] h-[4.4rem] md:w-[5.3rem] md:h-[5.3rem] object-contain" 
             />
             <div className="flex flex-col text-center mt-1">
-                <h1 className="font-semibold text-[19px] md:text-2xl">No address found!</h1>
+                <h1 className="font-semibold text-[18px] md:text-2xl">No address found!</h1>
                 <div className="text-gray-500 text-[13px] md:text-base">
                     <p className="mt-2">You haven't added any address yet.</p>
                     <p>Add an address to proceed.</p>

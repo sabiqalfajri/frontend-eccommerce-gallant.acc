@@ -72,7 +72,7 @@ export const Cart = () => {
                 ) : cartItem && (
                     <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-5">
                         <div className="flex flex-col p-0 md:p-3">
-                            <h1 className="font-semibold text-[19px] md:text-2xl">Shopping Cart</h1>
+                            <h1 className="font-semibold text-[18px] md:text-2xl">Shopping Cart</h1>
                             <div className="flex flex-col gap-3 mt-4">
                                 {cartItem.items.length > 0 ? (
                                     <>
@@ -99,7 +99,7 @@ export const Cart = () => {
                         {/* Summary Cart */}
                         {(!isMobile || (isMobile && cartItem.items.length > 0)) && (
                             <div className="flex flex-col h-fit border border-gray-200 rounded-md p-3 pb-4">
-                                <h1 className="font-semibold text-2xl">Summary</h1>
+                                <h1 className="font-semibold text-[18px] md:text-2xl">Summary</h1>
                                 <div className="flex flex-col gap-1 text-sm pb-3 border-b border-gray-200 mt-4">
                                     <div className="flex flex-wrap items-center justify-between">
                                         <p>Subtotal ({selectedCount} Item)</p>
