@@ -92,7 +92,7 @@ export const DetailProductInfo = ({ product, id }: DetailProductInfoProps) => {
                     disabled={isAddingToCart}
                     className="w-40"
                     >
-                        {isAddingToCart ? <ClipLoader size={25} /> : 'Add To Cart'}
+                        {isAddingToCart ? <ClipLoader size={25} color="white" /> : 'Add To Cart'}
                     </Button>
                 </div>
             </div>
