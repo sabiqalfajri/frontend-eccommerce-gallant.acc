@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom"
 
 export const UserLayout = () => {
     const currentPath = useCurrentPath();
-    const showFooter = ["/", "/about", "contact"].includes(currentPath);
+    const showFooter = ["/"].includes(currentPath);
 
     return (
         <>

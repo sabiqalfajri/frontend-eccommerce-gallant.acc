@@ -3,14 +3,20 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader } from "../ui/dialog"
 import { Button } from "../ui/button";
 import { HiOutlineTrash } from "react-icons/hi2";
 import { ClipLoader } from "react-spinners";
+import { HiOutlineTruck } from "react-icons/hi2";
+import { FiRefreshCcw } from "react-icons/fi";
 
 type ModalSize = "md" | "lg" | "xl" | "base" | "sm";
+type Variant = "DELETE" | "SHIPPED" | "PROCESSING"
 
 interface ModalConfirmProps {
     isOpen: boolean;
     title: string;
     description?: React.ReactNode;
     size?: ModalSize | null;
+    variant: Variant;
+    confirmLabel: string;
+    cancelLabel?: string;
     isLoading?: boolean;
     disabled?: boolean;
     onConfirm: () => void;
@@ -23,6 +29,9 @@ export const ModalConfirm = ({
     title,
     description,
     size,
+    variant,
+    confirmLabel,
+    cancelLabel = "Cancel",
     isLoading,
     onConfirm,
     onCancel,
@@ -36,13 +45,38 @@ export const ModalConfirm = ({
         sm: "w-full !max-w-[25rem]"
     };
 
+    const variantWrapperClasses: Record<Variant, string> = {
+        DELETE: "bg-red-100 text-red-500",
+        SHIPPED: "bg-purple-100 text-purple-600",
+        PROCESSING: "bg-sky-100 text-sky-600"
+    }
+
+    const variantInnerClasses: Record<Variant, string> = {
+        DELETE: "bg-red-200",
+        SHIPPED: "bg-purple-200",
+        PROCESSING: "bg-sky-200"
+    }
+
+    const defaultIcons: Record<Variant, React.ReactNode> = {
+        DELETE: <HiOutlineTrash size={22} />,
+        SHIPPED: <HiOutlineTruck size={22} />,
+        PROCESSING: <FiRefreshCcw size={22} />,
+    }
+
     return (
         <Dialog open={isOpen} onOpenChange={onCancel}>
             <DialogContent className={cn(size && sizeClasses[size], "p-2", className)} onOpenAutoFocus={(e) => e.preventDefault()}>
                 <DialogHeader className="px-5 pt-4 flex justify-center items-center mt-2">
-                    <div className="bg-red-100 w-12 h-12 rounded-full p-1">
-                        <div className="flex justify-center items-center w-full h-full rounded-full bg-red-200 text-red-500">
-                            <HiOutlineTrash size={22} />
+                    <div className={cn(
+                        "w-12 h-12 rounded-full p-1",
+                        variantWrapperClasses[variant]
+                    )}>
+                        <div className={cn(
+                            "flex justify-center items-center w-full h-full rounded-full",
+                            variantInnerClasses[variant]
+                        )}>
+                            {defaultIcons[variant]}
+                            {/* <HiOutlineTrash size={22} /> */}
                         </div>
                     </div>
                     {title && <p className="text-center font-semibold text-[23px]">{title}</p>}
@@ -56,7 +90,7 @@ export const ModalConfirm = ({
                     variant="outlinePrimary"
                     className="bg-white hover:bg-accent"
                     >
-                        {isLoading ? <ClipLoader size={20} /> : 'Cancel'}
+                        {isLoading ? <ClipLoader size={20} /> : cancelLabel}
                     </Button>
                     <Button
                     disabled={isLoading}
@@ -64,7 +98,7 @@ export const ModalConfirm = ({
                     size="lg"
                     variant="primary"
                     >
-                        {isLoading ? <ClipLoader size={20} /> : 'Delete'}
+                        {isLoading ? <ClipLoader size={20} /> : confirmLabel}
                     </Button>
                 </DialogFooter>
             </DialogContent>

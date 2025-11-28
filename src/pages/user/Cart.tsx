@@ -129,7 +129,7 @@ export const Cart = () => {
                                 variant="primary"
                                 size="lg"
                                 >
-                                    {isLoadingBuyNow ? <ClipLoader size={20} color="white" /> : `Buy Now ${selectedCount ? `(${selectedCount})` : ''}`}
+                                    {isLoadingBuyNow ? <ClipLoader size={24} color="white" /> : `Buy Now ${selectedCount ? `(${selectedCount})` : ''}`}
                                 </Button>
                             </div>
                         )}

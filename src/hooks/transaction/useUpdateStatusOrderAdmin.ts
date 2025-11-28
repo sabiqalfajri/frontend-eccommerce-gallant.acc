@@ -1,8 +1,8 @@
-import { updateStatusOrderForUser } from "@/api/TransactionApi";
+import { updateStatusOrderForAdmin } from "@/api/TransactionApi";
 import { showError } from "@/utils/Toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export const useUpdateStatusOrderUser = (token: string | null) => {
+export const useUpdateStatusOrderAdmin = (token: string | null) => {
     const queryClient = useQueryClient();
 
     const updateOrderStatusMutation = useMutation({
@@ -14,9 +14,10 @@ export const useUpdateStatusOrderUser = (token: string | null) => {
             newStatus: string;
         }) => {
             if(!token) throw new Error("Unauthorized");
-            return updateStatusOrderForUser(token, orderId, newStatus)
+            return updateStatusOrderForAdmin(token, orderId, newStatus)
         },
         onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["ordersAdmin"] });
             queryClient.invalidateQueries({ queryKey: ["orders"] });
         },
         onError: (error) => {
@@ -25,8 +26,8 @@ export const useUpdateStatusOrderUser = (token: string | null) => {
     });
 
     return {
-        updateOrderStatusUser: updateOrderStatusMutation.mutateAsync,
-        isUpdatingOrderStatusUser: updateOrderStatusMutation.isPending,
-        isErrorUpdateOrderStatusUser: updateOrderStatusMutation.isError
+        updateOrderStatusAdmin: updateOrderStatusMutation.mutateAsync,
+        isUpdatingOrderStatusAdmin: updateOrderStatusMutation.isPending,
+        isErrorUpdateOrderStatusAdmin: updateOrderStatusMutation.isError
     }
 }

@@ -33,9 +33,18 @@ export const fetchRecentOrderForAdmin = async (token: string) => {
     return response.data.data
 }
 
-export const updateStatusOrderForAdmin = async () => {
+export const updateStatusOrderForAdmin = async (token: string, orderId: string, newStatus: string) => {
+    const response = await axiosClient.put<ApiResponse<TransactionOrderDetailAccount>>(`/orders/admin/change-status/${orderId}`, {
+        newStatus
+    }, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
 
+    return response.data.data
 }
+
 
 // user only
 export const fetchTransaction = async (token: string, orderId: string) => {

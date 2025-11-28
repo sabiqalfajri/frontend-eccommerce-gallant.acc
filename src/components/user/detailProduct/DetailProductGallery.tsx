@@ -64,10 +64,14 @@ export const DetailProductGallery = ({
                         </SwiperSlide>
                     ))}
                 </Swiper>
-                <Button ref={prevRef} className="custom-prev absolute top-1/2 left-2 z-10 transform -translate-y-1/2 bg-black/50 w-9 h-9 rounded-full">
+                <Button ref={prevRef} className="custom-prev absolute top-1/2 left-2 z-10 transform -translate-y-1/2 bg-black/50 w-9 h-9 rounded-full"
+                variant="primary"
+                >
                     <GrPrevious size={18} />
                 </Button>
-                <Button ref={nextRef} className="custom-next absolute top-1/2 right-2 z-10 transform -translate-y-1/2 bg-black/50 w-9 h-9 rounded-full">
+                <Button ref={nextRef} className="custom-next absolute top-1/2 right-2 z-10 transform -translate-y-1/2 bg-black/50 w-9 h-9 rounded-full"
+                variant="primary"
+                >
                     <GrNext size={18} />
                 </Button>
             </div>

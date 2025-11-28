@@ -1,12 +1,15 @@
 import { getOrderDashboardActions } from "@/components/admin/OrderActions";
 import { DropdownCustom } from "@/components/common/DropdownCustom";
+import { ModalConfirm } from "@/components/common/ModalDelete";
 import { DataTable } from "@/components/common/TableDashboard";
 import { Checkbox } from "@/components/ui/checkbox";
 import { CapitalizeText } from "@/helper/CapitalizeText";
 import { useTransactionOrderAdmin } from "@/hooks/transaction/useTransactionOrderAdmin";
+import { useUpdateStatusOrderAdmin } from "@/hooks/transaction/useUpdateStatusOrderAdmin";
 import { useToken } from "@/hooks/universal/useToken";
 import { BaseTransactionOrderPaginated, statusOrder } from "@/types/Transaction";
 import { FormatDateWithoutWib } from "@/utils/FormatDate";
+import { showInfo } from "@/utils/Toast";
 import { ColumnDef } from "@tanstack/react-table";
 import { useMemo, useState } from "react";
 import { IoIosMore } from "react-icons/io";
@@ -14,7 +17,11 @@ import { IoIosMore } from "react-icons/io";
 export const OrdersDashboard = () => {
     const [filter, setFilter] = useState<statusOrder | string>('ALL');
     const [page, setPage] = useState(1)
+    const [showModal, setShowModal] = useState(false);
+    const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
+    const [newStatus, setNewStatus] = useState<string | null>(null)
     const { token } = useToken();
+    const { updateOrderStatusAdmin, isUpdatingOrderStatusAdmin } = useUpdateStatusOrderAdmin(token)
     const { orders, isLoading, isFetched, totalPages, total } = useTransactionOrderAdmin(token!, filter, page, 10)
     const loadingOrders = isLoading || !isFetched;
 
@@ -53,6 +60,12 @@ export const OrdersDashboard = () => {
             label: status,
             className: 'bg-gray-100 text-gray-600'
         }
+    }
+
+    const handleUpdateStatus = async (orderId: string, status: string) => {
+        setSelectedOrderId(orderId);
+        setNewStatus(status)
+        setShowModal(true);
     }
 
     const columns: ColumnDef<BaseTransactionOrderPaginated>[] = useMemo(() => [
@@ -167,60 +180,64 @@ export const OrdersDashboard = () => {
             header: "Action",
             cell: ({ row }) => {
                 const order = row.original;
-                const menu = getOrderDashboardActions(order);
+                const menu = getOrderDashboardActions(order, {
+                    updateStatus: handleUpdateStatus
+                })
 
                 return (
                     <DropdownCustom
                         trigger={triggerButton}
                         align="end"
                         menu={menu}
-                        className="w-fit"
+                        className="min-w-48"
                     />
                 )
             }
         },
-    ], []);
+    ], [handleUpdateStatus]);
 
     const filteredOrders = filter === 'ALL' ? orders : orders.filter(order => order.status === filter);
 
     return (
-        <DataTable 
-            title="Order Summary"
-            columns={columns} 
-            data={filteredOrders}  
-            totalRows={total}
-            filterButtons={[
-                { label: 'All', value: 'ALL' },
-                { label: 'Processing', value: 'PROCESSING' },
-                { label: 'Shipped', value: 'SHIPPED' },
-                { label: 'Completed', value: 'COMPLETED' },
-            ]}
-            onFilterChange={(value) => setFilter(value)}
-            currentFilter={filter}
-            // onClick={() => console.log('hai')}
-            // onDeleted={handleDeleteBulk}
-            // isDeleting={isDeletingBulk}
-            page={page}
-            totalPages={totalPages}
-            onPageChange={(newPage) => setPage(newPage)}
-            isLoading={loadingOrders}
-        />
-
-        // <div className="flex flex-col gap-y-6">
-        //     <div className="flex flex-wrap justify-between items-center">
-        //         <div className="flex flex-wrap gap-x-3 bg-white rounded-md pt-2 px-2 h-10">
-        //             {orderFilter.map((item) => (
-        //                 <button type="button" 
-        //                 className="cursor-pointer px-4 pb-1 border-b-3 border-primary"
-        //                 >
-        //                     {item.title}
-        //                 </button>
-        //             ))}
-        //         </div>
-        //     </div>
-        //     <CardDashboard title="Order Summary">
-        //         <div></div>
-        //     </CardDashboard>
-        // </div>
+        <>
+            <DataTable 
+                title="Order Summary"
+                columns={columns} 
+                data={filteredOrders}  
+                totalRows={total}
+                filterButtons={[
+                    { label: 'All', value: 'ALL' },
+                    { label: 'Processing', value: 'PROCESSING' },
+                    { label: 'Shipped', value: 'SHIPPED' },
+                    { label: 'Completed', value: 'COMPLETED' },
+                ]}
+                onFilterChange={(value) => setFilter(value)}
+                currentFilter={filter}
+                // onClick={() => console.log('hai')}
+                // onDeleted={handleDeleteBulk}
+                // isDeleting={isDeletingBulk}
+                page={page}
+                totalPages={totalPages}
+                onPageChange={(newPage) => setPage(newPage)}
+                isLoading={loadingOrders}
+            />
+            {/* Modal Shipped Confirmation */}
+            <ModalConfirm
+                isOpen={showModal}
+                onCancel={() => setShowModal(false)}
+                onConfirm={async() => {
+                    if(!selectedOrderId || !newStatus) return;
+                    await updateOrderStatusAdmin({ orderId: selectedOrderId, newStatus });
+                    setShowModal(false)
+                    showInfo('The order has been successfully marked as shipped.')
+                }}
+                variant="SHIPPED"
+                confirmLabel="Ship Order"
+                isLoading={isUpdatingOrderStatusAdmin}
+                title="Mark as Shipped"
+                description={`Are you sure you want to mark this order as shipped?. This action cannot be undone`}
+                size="sm"
+            />
+        </>
     )
 }

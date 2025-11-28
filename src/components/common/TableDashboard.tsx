@@ -272,6 +272,8 @@ export const DataTable = <TData extends { id: string }, TValue>({
                 onCancel={() => setShowModal(false)}
                 onConfirm={handleDeleteSelected}
                 isLoading={isDeleting}
+                variant="DELETE"
+                confirmLabel="Delete"
                 title="Delete"
                 description={`Are you sure you want to delete (${table.getSelectedRowModel().rows.length}) products?. This action cannot be undone`}
                 size="sm"

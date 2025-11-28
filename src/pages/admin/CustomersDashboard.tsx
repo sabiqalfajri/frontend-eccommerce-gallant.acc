@@ -164,6 +164,8 @@ export const CustomersDashboard = () => {
                 onCancel={() => setShowModal(false)}
                 onConfirm={handleDeleteSingle}
                 isLoading={isDeletingSingle}
+                variant="DELETE"
+                confirmLabel="Delete"
                 title="Delete"
                 description={`Are you sure you want to delete this user?. This action cannot be undone`}
                 size="sm"

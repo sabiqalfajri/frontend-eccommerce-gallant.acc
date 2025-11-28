@@ -1,9 +1,9 @@
 import { statusOrder, TransactionOrderByUserId } from "@/types/Transaction";
 import { JSX } from "react";
 import { FiCheckCircle, FiXCircle } from "react-icons/fi";
-import { BsCreditCard2Back } from "react-icons/bs";
 import { TbListSearch } from "react-icons/tb";
 import { BsQrCodeScan } from "react-icons/bs";
+import { Headphones } from 'lucide-react';
 
 interface OrderAction {
     label: string;
@@ -46,7 +46,7 @@ export const getOrderAccountActions = (
             actions.push(
                 { 
                     label: 'Contact seller', 
-                    icon: <BsCreditCard2Back size={19} />,
+                    icon: <Headphones size={19} />,
                     href: `/dashboard/orders/${order.id}?to=SHIPPED` 
                 },
             );

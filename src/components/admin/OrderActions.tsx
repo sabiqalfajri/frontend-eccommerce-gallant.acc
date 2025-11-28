@@ -1,15 +1,28 @@
-import { BaseTransactionOrderPaginated } from "@/types/Transaction";
-import { FiEye } from "react-icons/fi";
+import { BaseTransactionOrderPaginated, statusOrder } from "@/types/Transaction";
+import { TbListSearch } from "react-icons/tb";
 import { HiOutlineTruck } from "react-icons/hi2";
 import { FiRefreshCcw } from "react-icons/fi";
 import { FiCheckCircle } from "react-icons/fi";
 import { FiXCircle } from "react-icons/fi";
+import { JSX } from "react";
 
-export const getOrderDashboardActions = (order: BaseTransactionOrderPaginated) => {
-    const actions = [
+interface OrderAction {
+    label: string;
+    icon: JSX.Element;
+    href?: string;
+    onClick?: () => void;
+}
+
+export const getOrderDashboardActions = (
+    order: BaseTransactionOrderPaginated,
+    handlers: {
+        updateStatus: (orderId: string, newStatus: statusOrder) => void;
+    }
+) => {
+    const actions: OrderAction[] = [
         {
             label: 'See Detail',
-            icon: <FiEye size={17} />,
+            icon: <TbListSearch size={21} />,
             href: `/dashboard/orders/${order.id}`
         }
     ];
@@ -35,7 +48,7 @@ export const getOrderDashboardActions = (order: BaseTransactionOrderPaginated) =
                 { 
                     label: 'Mark as Shipped', 
                     icon: <HiOutlineTruck size={19} />,
-                    href: `/dashboard/orders/${order.id}?to=SHIPPED` 
+                    onClick: () => handlers.updateStatus(order.id, "SHIPPED")
                 },
                 { 
                     label: 'Cancel Order', 

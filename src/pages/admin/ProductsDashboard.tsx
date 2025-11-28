@@ -190,6 +190,8 @@ export const ProductsDashboard = () => {
                 onCancel={() => setShowModal(false)}
                 onConfirm={handleDeleteSingle}
                 isLoading={isDeletingSingle}
+                variant="DELETE"
+                confirmLabel="Delete"
                 title="Delete"
                 description={`Are you sure you want to delete this product?. This action cannot be undone`}
                 size="sm"

@@ -32,7 +32,7 @@ export const DetailProductInfo = ({ product, id }: DetailProductInfoProps) => {
                 <div className="border-b border-gray-200 pb-3">
                     <h1 className="font-semibold line-clamp-2">{product.name}</h1>
                 </div>
-                <div className="overflow-x-auto scrollbar-hide gap-1 inline-flex items-center whitespace-nowrap">
+                <div className="overflow-x-auto scrollbar-hide gap-1 inline-flex items-center whitespace-nowrap text-sm md:text-base">
                     <BadgeCheck size={19} className="shrink-0 text-primary mr-1" />
                     <p className="shrink-0">Pasti Ori</p>
                     <LuDot size={22} className="translate-y-0 md:translate-y-0.5 shrink-0" />
@@ -48,7 +48,7 @@ export const DetailProductInfo = ({ product, id }: DetailProductInfoProps) => {
                         <button 
                         onClick={handleMinus}
                         disabled={quantity === 1}
-                        className={`px-0.5 h-fit py-0.5 text-[22px] font-semibold text-gray-700 flex justify-center items-center rounded-sm ${quantity === 1 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:bg-gray-200'}`}>
+                        className={`px-0.5 h-fit py-0.5 text-[22px] font-semibold text-gray-700 flex justify-center items-center rounded-sm ${quantity === 1 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:bg-transparent md:hover:bg-gray-200 active:bg-gray-100 md:active:bg-transparent'}`}>
                             <FiMinus size={18} />
                         </button>
                         <Input
@@ -69,7 +69,7 @@ export const DetailProductInfo = ({ product, id }: DetailProductInfoProps) => {
                         />
                         <button 
                         onClick={handlePlus}
-                        className={`px-0.5 h-fit py-0.5 text-[22px] font-semibold text-gray-700 flex justify-center items-center rounded-sm cursor-pointer hover:bg-gray-200`}>
+                        className={`px-0.5 h-fit py-0.5 text-[22px] font-semibold text-gray-700 flex justify-center items-center rounded-sm cursor-pointer hover:bg-transparent md:hover:bg-gray-200 active:bg-gray-100 md:active:bg-transparent`}>
                             <FiPlus size={18} />
                         </button>
                     </div>

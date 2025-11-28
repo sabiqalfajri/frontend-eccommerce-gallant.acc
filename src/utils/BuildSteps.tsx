@@ -13,31 +13,32 @@ const statusStepIndex: Record<statusOrder, number> = {
 
 export const BuildSteps = (status: statusOrder, detail: TransactionOrderDetailAccount) => {
     const activeIndex = statusStepIndex[status];
+    console.log("active index:", activeIndex)
 
     const steps = [
         {
             label: "Created",
             icon: <Package size={16} />,
             date: (FormatDate(detail.createdAt)),
-            active: activeIndex >= 0,
+            active: activeIndex === 0,
         },
         {
             label: "Processing",
             icon: <Clock size={16} />,
             date: (FormatDate(detail.paidAt)),
-            active: activeIndex >= 1,
+            active: activeIndex === 1,
         },
         {
             label: "Shipped",
             icon: <Truck size={16} />,
             date: (FormatDate(detail.shippedAt)),
-            active: activeIndex >= 2,
+            active: activeIndex === 2,
         },
         {
             label: "Completed",
             icon: <CheckCircle size={16} />,
             date: (FormatDate(detail.completedAt)),
-            active: activeIndex >= 3,
+            active: activeIndex === 3,
         },
     ];
 

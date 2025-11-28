@@ -157,7 +157,7 @@ export const Login = () => {
                         disabled={isSubmitting} 
                         className="w-full"
                         >
-                            {isSubmitting ? <ClipLoader size={20} /> : "Login"}
+                            {isSubmitting ? <ClipLoader size={24} color="white" /> : "Login"}
                         </Button>
                         <p className="mt-4 flex gap-2 text-xs text-black font-normal">
                             Not registered yet?
