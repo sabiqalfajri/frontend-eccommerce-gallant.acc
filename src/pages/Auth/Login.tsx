@@ -87,7 +87,7 @@ export const Login = () => {
                             Sign In
                         </CardTitle>
                         <CardDescription className="text-center">
-                            Deploy your new project in one-click.
+                            Sign in to your account
                         </CardDescription>
                         <div className="flex items-center ">
                             <hr className="flex-1 border-t border-gray-300 my-3.5"/>

@@ -53,10 +53,10 @@ export const Register = () => {
                     // className={`${registerGoogleLoading || isSubmitting ? 'pointer-events-none opacity-50' : ''}`}
                     >
                         <CardTitle className="text-3xl font-bold mb-0.5 text-center">
-                            Create an account
+                            Sign Up
                         </CardTitle>
                         <CardDescription className="text-center">
-                            Deploy your new project in one-click.
+                            Sign up to create your account
                         </CardDescription>
                         <div className="flex items-center ">
                         <hr className="flex-1 border-t border-gray-300 my-3.5"/>
