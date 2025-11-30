@@ -120,10 +120,15 @@ export const Register = () => {
                         </div>
                     </CardContent>
                     <CardFooter className="flex items-start flex-col w-full">
-                        <Button variant="primary" type="submit"
+                        <Button 
+                        variant="primary" 
+                        type="submit"
                         disabled={isSubmitting} 
                         className="w-full">
-                            {isSubmitting ? <ClipLoader size={24} color="white" /> : "Create account"}
+                            {isSubmitting 
+                                ? <ClipLoader size={24} color="white" /> 
+                                : "Create account"
+                            }
                         </Button>
                         <p className="mt-3 flex gap-2 text-xs text-black font-normal">
                             Already have an account?
