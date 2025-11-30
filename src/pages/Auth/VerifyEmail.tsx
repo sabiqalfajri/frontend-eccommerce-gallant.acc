@@ -101,15 +101,15 @@ export const VerifyEmail = () => {
                         disabled={isSubmitting}
                         >
                             <InputOTPGroup>
-                                <InputOTPSlot index={0} />
-                                <InputOTPSlot index={1} />
-                                <InputOTPSlot index={2} />
+                                <InputOTPSlot index={0} className="w-10 h-10 md:w-11 md:h-11" />
+                                <InputOTPSlot index={1} className="w-10 h-10 md:w-11 md:h-11" />
+                                <InputOTPSlot index={2} className="w-10 h-10 md:w-11 md:h-11" />
                             </InputOTPGroup>
                             <InputOTPSeparator />
                             <InputOTPGroup>
-                                <InputOTPSlot index={3} />
-                                <InputOTPSlot index={4} />
-                                <InputOTPSlot index={5} />
+                                <InputOTPSlot index={3} className="w-10 h-10 md:w-11 md:h-11" />
+                                <InputOTPSlot index={4} className="w-10 h-10 md:w-11 md:h-11" />
+                                <InputOTPSlot index={5} className="w-10 h-10 md:w-11 md:h-11" />
                             </InputOTPGroup>
                         </InputOTP> 
                         )} 
