@@ -35,18 +35,18 @@ export const VerifyEmail = () => {
     const otpValue = watch('otp') || "";
     const isOtpComplete = otpValue.length === 6;
 
-    // useEffect(() => {
-    //     const getEmail = sessionStorage.getItem("email");
-    //     if(!getEmail) {
-    //         showError('Email cannot find');
-    //         navigate('/auth/sign-up')
-    //     }
+    useEffect(() => {
+        const getEmail = sessionStorage.getItem("email");
+        if(!getEmail) {
+            showError('Email cannot find');
+            navigate('/auth/sign-up')
+        }
         
-    //     return () => {
-    //         sessionStorage.removeItem("email")
-    //         localStorage.removeItem('resend_email')
-    //     }
-    // }, [])
+        return () => {
+            sessionStorage.removeItem("email")
+            localStorage.removeItem('resend_email')
+        }
+    }, [])
 
     const onSubmit = handleSubmit(async (data) => {
         if(!isLoaded) return;
