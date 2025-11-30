@@ -124,6 +124,7 @@ export const Register = () => {
                         variant="primary" 
                         type="submit"
                         disabled={isSubmitting} 
+                        size="lg"
                         className="w-full">
                             {isSubmitting 
                                 ? <ClipLoader size={24} color="white" /> 

@@ -153,6 +153,7 @@ export const Login = () => {
                         <Button 
                         variant="primary" 
                         type="submit" 
+                        size="lg"
                         disabled={isSubmitting} 
                         className="w-full"
                         >
