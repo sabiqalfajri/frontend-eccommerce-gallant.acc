@@ -19,7 +19,7 @@ export const getOrderAccountActions = (
     }
 ): OrderAction[] => {
     const buildMessageWA = 
-    `Halo Kak, saya butuh bantuan terkait pesanan saya 🙏\n\n🧾 Order ID: #${order.publicId}\n📦 Status: ${order.status}\n🛍 Total Item: ${order.items.length}\n\nPertanyaan saya:\n`;
+    `Halo Kak, saya butuh bantuan terkait pesanan saya 🙏\n\n Order ID: #${order.publicId}\n Status: ${order.status}\n Total Item: ${order.items.length}\n\nPertanyaan saya:\n`;
 
     const phoneNumber = "6287841651802";
     const encodedMessage = encodeURIComponent(buildMessageWA);
