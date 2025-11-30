@@ -120,7 +120,7 @@ export const VerifyEmail = () => {
                         className="w-full md:w-[350px]" variant="primary" 
                         size="lg"
                         type="submit" disabled={!isOtpComplete || isSubmitting}>
-                            {isSubmitting ? <ClipLoader size={20} /> : 'Verify'}
+                            {isSubmitting ? <ClipLoader size={24} color="white" /> : 'Verify'}
                         </Button>
                         <p className="mt-2 flex gap-1 text-xs text-gray-400 font-normal">
                             Did'nt receive the email? 
