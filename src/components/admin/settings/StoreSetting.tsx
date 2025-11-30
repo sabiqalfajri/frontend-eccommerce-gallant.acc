@@ -75,7 +75,7 @@ export const StoreSettings = ({
                     </div> 
                 </div>
                 <div className="flex justify-end items-end mt-5">
-                    <div className="grid grid-cols-2 gap-x-3">
+                    <div className="grid grid-cols-2 gap-x-3 w-full md:w-auto">
                         <Button variant="outlinePrimary">
                             Cancel
                         </Button>

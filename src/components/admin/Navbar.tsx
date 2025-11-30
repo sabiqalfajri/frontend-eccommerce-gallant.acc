@@ -86,12 +86,11 @@ export const Navbar = ({
                         <div className="w-9 h-9 bg-gray-200 rounded-full">
                             <img src={currentUser?.image} className="w-full h-full rounded-full" alt="profile" />
                         </div>
-                        <div className="flex flex-wrap items-start gap-x-1">
+                        <div className="flex flex-wrap items-start gap-x-1.5">
                             <div className="md:flex flex-col hidden">
                                 <div>
-                                    <p className="text-[15px] font-semibold truncate w-20">
+                                    <p className="text-[15px] font-semibold truncate max-w-20">
                                         {CapitalizeText(currentUser?.name)}
-                                        {currentUser?.name}
                                     </p>
                                 </div>
                                 <p className="text-[13px] text-gray-500">

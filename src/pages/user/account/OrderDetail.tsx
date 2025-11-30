@@ -49,7 +49,7 @@ export const OrderDetail = () => {
                         >
                             <ArrowLeftIcon size={20} />
                         </button>
-                        <h1 className="font-semibold">#{id}</h1>
+                        <h1>Order ID <span className="font-bold">#{id}</span></h1>
                     </div>
                     <div className="flex flex-wrap justify-start md:justify-center items-center border border-gray-200 rounded-md py-4 px-3.5">
                         {/* Timeline for mobile */}

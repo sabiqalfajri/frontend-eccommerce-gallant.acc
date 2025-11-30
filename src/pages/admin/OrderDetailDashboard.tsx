@@ -8,7 +8,6 @@ import { useEffect, useMemo } from "react";
 import { useToken } from "@/hooks/universal/useToken";
 import { useDetailOrderAdmin } from "@/hooks/transaction/useDetailOrderAdmin";
 import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading";
-import { OrderDetailSkeleton } from "@/components/user/account/OrderDetailSkeleton";
 import { FormatDate } from "@/utils/FormatDate";
 import { CapitalizeText } from "@/helper/CapitalizeText";
 import { ColumnDef } from "@tanstack/react-table";
@@ -19,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { useUpdateStatusOrderAdmin } from "@/hooks/transaction/useUpdateStatusOrderAdmin";
 import { ClipLoader } from "react-spinners";
 import { showInfo } from "@/utils/Toast";
+import { OrderDetailDashboardSkeleton } from "@/components/admin/orders/OrderDetailDashboardSkeleton";
 
 export const OrderDetailDashboard = () => {
     const { id } = useParams();
@@ -134,7 +134,7 @@ export const OrderDetailDashboard = () => {
     return (
         <>
             {smoothLoading ? (
-                <OrderDetailSkeleton />
+                <OrderDetailDashboardSkeleton />
             ) : detailOrderAdmin && (
                 <div className="flex flex-col gap-y-6">
                     <div className="flex flex-wrap justify-between gap-3 items-center">
@@ -171,7 +171,7 @@ export const OrderDetailDashboard = () => {
                         )}
                     </div>
                     <div className="flex flex-col gap-3.5">
-                        <div className="flex flex-wrap items-center gap-4">
+                        <div className="flex flex-wrap items-center gap-3 md:gap-4">
                             <OrderStatusBadge 
                                 status={detailOrderAdmin.status} 
                                 className="rounded-md py-1 px-1.5" 
@@ -179,7 +179,7 @@ export const OrderDetailDashboard = () => {
                             <div className="bg-gray-400 w-[1.2px] h-5"></div>
                             <div className="flex flex-wrap gap-x-1.5 items-center text-gray-500">
                                 <CalendarDays size={19} />
-                                <p className="font-semibold">
+                                <p className="font-semibold text-[15px] md:text-base">
                                     {FormatDate(detailOrderAdmin.createdAt)}
                                 </p>
                             </div>

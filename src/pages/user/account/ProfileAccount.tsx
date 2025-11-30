@@ -192,7 +192,7 @@ export const ProfileAccount = () => {
                     disabled={isBusy}
                     >
                         {isBusy ? (
-                            <ClipLoader size={20} />
+                            <ClipLoader size={24} color="white" />
                         ) : 'Save Changes'}
                     </Button>
                 </div>

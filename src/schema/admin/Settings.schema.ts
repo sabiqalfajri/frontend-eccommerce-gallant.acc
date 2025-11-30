@@ -4,10 +4,16 @@ import { emailSchema } from "../Email.schema";
 export const AccountSchema = z.object({
     firstName: z.string().min(1),
     lastName: z.string().min(1),
-    phoneNumber: z.string().min(8),
+    phoneNumber: z.string().optional().refine(
+        (v) => !v || /^\d{8,}$/.test(v),
+        { message: "Phone number must be at least 8 digits" }
+    ),
     email: emailSchema,
-    birthOfDate: z.string(),
-    password: z.string().min(6),
+    birthOfDate: z.string().optional().refine(
+        (v) => !v || /^\d{4}-\d{2}-\d{2}$/.test(v),
+        { message: "Date must be in YYYY-MM-DD format" }
+    ),
+    gender: z.string().optional()
 });
 export const StoreSchema = z.object({
     storeName: z.string().min(1),

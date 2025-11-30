@@ -11,6 +11,7 @@ import { GoSidebarExpand } from "react-icons/go";
 import { GoSidebarCollapse } from "react-icons/go";
 import { IoCloseOutline } from "react-icons/io5";
 import { IoIosMore } from "react-icons/io";
+import { useLogout } from "@/hooks/auth/useLogout";
 
 
 interface SidebarProps {
@@ -28,6 +29,7 @@ export const Sidebar = ({
     isDesktopCollapsed,
     setIsDesktopCollapsed
 }: SidebarProps) => {
+    const { logout } = useLogout();
     const sidebarMenu = {
         overview: {
             title: 'Overview',
@@ -47,14 +49,6 @@ export const Sidebar = ({
             ]
         }
     }
-
-    const handleLogout = () => {
-
-    }
-
-    // const motionProps = isMobile
-    // ? { initial: { x: -250 }, animate: { x: isOpen ? 0 : -250 }, style: { width: 250 } }
-    // : { initial: { width: isOpen ? 224 : 72 }, animate: { width: isOpen ? 224 : 72 } };
 
     const motionProps = isMobile 
     ? {
@@ -122,12 +116,12 @@ export const Sidebar = ({
                                     return (
                                         <button
                                         key={item.name}
-                                        onClick={handleLogout}
+                                        onClick={logout}
                                         className={`
                                         flex items-center
                                         ${showText ? "justify-start px-3" : "justify-center"}
                                         h-10 w-full rounded-lg text-sm font-medium text-gray-600
-                                        hover:bg-gray-100 transition-all duration-200 ease-in-out
+                                        hover:bg-gray-100 transition-all duration-200 ease-in-out cursor-pointer
                                         `}
                                         >
                                             <span

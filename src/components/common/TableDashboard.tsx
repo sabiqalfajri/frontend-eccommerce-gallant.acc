@@ -118,7 +118,7 @@ export const DataTable = <TData extends { id: string }, TValue>({
 
     return (
         <>
-            <div className={`w-full flex flex-col ${filterButtons && 'gap-y-6'}`}>
+            <div className={`w-full flex flex-col ${(filterButtons?.length || onClick) && 'gap-y-6'}`}>
                 {/* Filter dan Column Visibility */}
                 <div className="flex flex-wrap justify-between gap-3 items-center">
                     {filterButtons && filterButtons.length > 0 && (
@@ -157,13 +157,15 @@ export const DataTable = <TData extends { id: string }, TValue>({
                         </>
                     )}
                     {onClick !== undefined && (
-                        <Button
-                        variant="primary"
-                        size="lg"
-                        onClick={onClick}
-                        >
-                            + Add New Item
-                        </Button>
+                        <div className={`${!filterButtons && 'flex justify-end w-full'}`}>
+                            <Button
+                                variant="primary"
+                                size="lg"
+                                onClick={onClick}
+                            >
+                                + Add New Item
+                            </Button>
+                        </div>
                     )}
                 </div>
                 <CardDashboard 

@@ -90,7 +90,7 @@ export const NavbarUser = () => {
                     ))} 
                 </ul>
             </div>
-            <div className="flex flex-wrap gap-x-2 md:gap-x-4 justify-end items-center">
+            <div className="flex flex-wrap gap-x-3 md:gap-x-4 justify-end items-center">
                 <button 
                 type="button"
                 className="px-1.5 py-1 cursor-pointer hover:bg-transparent md:hover:bg-gray-100 rounded-md transform transition-all duration-200 relative active:bg-gray-100 md:active:bg-transparent"
