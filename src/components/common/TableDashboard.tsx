@@ -120,7 +120,7 @@ export const DataTable = <TData extends { id: string }, TValue>({
         <>
             <div className={`w-full flex flex-col ${filterButtons && 'gap-y-6'}`}>
                 {/* Filter dan Column Visibility */}
-                <div className="flex flex-wrap justify-between items-center">
+                <div className="flex flex-wrap justify-between gap-3 items-center">
                     {filterButtons && filterButtons.length > 0 && (
                         <>
                         <div className="hidden md:flex flex-wrap gap-x-2 bg-white rounded-md">
@@ -212,7 +212,9 @@ export const DataTable = <TData extends { id: string }, TValue>({
                                             <TableRow key={row.id} 
                                             className={selected ? 'bg-[#E7EEFA]! hover:brightness-100!' : ""}>
                                                 {row.getVisibleCells().map((cell) => (
-                                                    <TableCell key={cell.id}>
+                                                    <TableCell key={cell.id} 
+                                                    className={cell.column.columnDef.meta?.className}
+                                                    >
                                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                                     </TableCell>
                                                 ))}

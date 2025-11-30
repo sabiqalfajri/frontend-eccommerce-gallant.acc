@@ -1,9 +1,10 @@
 import { getOrderDashboardActions } from "@/components/admin/OrderActions";
+import { ModalConfig } from "@/components/admin/orders/ModalConfig";
+import { OrderStatusBadge } from "@/components/admin/orders/OrderStatusBadge";
 import { DropdownCustom } from "@/components/common/DropdownCustom";
-import { ModalConfirm } from "@/components/common/ModalDelete";
+import { ModalConfirm, Variant } from "@/components/common/ModalDelete";
 import { DataTable } from "@/components/common/TableDashboard";
 import { Checkbox } from "@/components/ui/checkbox";
-import { CapitalizeText } from "@/helper/CapitalizeText";
 import { useTransactionOrderAdmin } from "@/hooks/transaction/useTransactionOrderAdmin";
 import { useUpdateStatusOrderAdmin } from "@/hooks/transaction/useUpdateStatusOrderAdmin";
 import { useToken } from "@/hooks/universal/useToken";
@@ -18,6 +19,12 @@ export const OrdersDashboard = () => {
     const [filter, setFilter] = useState<statusOrder | string>('ALL');
     const [page, setPage] = useState(1)
     const [showModal, setShowModal] = useState(false);
+    const [modalState, setModalState] = useState<{
+        variant: Variant;
+        title: string;
+        confirmLabel: string;
+        description: string;
+    } | null>(null);
     const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
     const [newStatus, setNewStatus] = useState<string | null>(null)
     const { token } = useToken();
@@ -31,40 +38,10 @@ export const OrdersDashboard = () => {
         </button>
     )
 
-    const statusStyle: Record<string, { label: string; className: string }> = {
-        pending: {
-            label: 'Pending',
-            className: 'bg-orange-100 text-orange-600'
-        },
-        processing: {
-            label: 'Processing',
-            className: 'bg-sky-100 text-sky-600'
-        },
-        shipped: {
-            label: 'Shipped',
-            className: 'bg-purple-100 text-purple-600'
-        },
-        completed: {
-            label: 'Completed',
-            className: 'bg-green-100 text-green-600'
-        },
-        expired: {
-            label: 'Expired',
-            className: 'bg-red-100 text-red-600'
-        },
-    }
-
-    const getSyleStatus = (status: string) => {
-        const rawStatus = status.toLocaleLowerCase();
-        return statusStyle[rawStatus] || {
-            label: status,
-            className: 'bg-gray-100 text-gray-600'
-        }
-    }
-
     const handleUpdateStatus = async (orderId: string, status: string) => {
         setSelectedOrderId(orderId);
-        setNewStatus(status)
+        setNewStatus(status);
+        setModalState(ModalConfig[status])
         setShowModal(true);
     }
 
@@ -156,14 +133,13 @@ export const OrdersDashboard = () => {
             accessorKey: "status",
             header: "Status",
             cell: ({ row }) => {
-                const status = getSyleStatus(row.original.status);
+                const status = row.original.status
 
                 return (
-                    <div className={`w-28 rounded-full font-semibold py-1 px-1.5 text-center ${status.className}`}>
-                        <span className="text-sm">
-                            {CapitalizeText(row.original.status)}
-                        </span>
-                    </div>
+                    <OrderStatusBadge
+                        status={status} 
+                        className="rounded-full py-1 px-1.5" 
+                    />
                 )
             }
         },
@@ -222,22 +198,24 @@ export const OrdersDashboard = () => {
                 isLoading={loadingOrders}
             />
             {/* Modal Shipped Confirmation */}
-            <ModalConfirm
-                isOpen={showModal}
-                onCancel={() => setShowModal(false)}
-                onConfirm={async() => {
-                    if(!selectedOrderId || !newStatus) return;
-                    await updateOrderStatusAdmin({ orderId: selectedOrderId, newStatus });
-                    setShowModal(false)
-                    showInfo('The order has been successfully marked as shipped.')
-                }}
-                variant="SHIPPED"
-                confirmLabel="Ship Order"
-                isLoading={isUpdatingOrderStatusAdmin}
-                title="Mark as Shipped"
-                description={`Are you sure you want to mark this order as shipped?. This action cannot be undone`}
-                size="sm"
-            />
+            {showModal && modalState && (
+                <ModalConfirm
+                    isOpen={showModal}
+                    onCancel={() => setShowModal(false)}
+                    onConfirm={async() => {
+                        if(!selectedOrderId || !newStatus) return;
+                        await updateOrderStatusAdmin({ orderId: selectedOrderId, newStatus });
+                        setShowModal(false)
+                        showInfo(`Order marked as ${newStatus.toLowerCase()}`)
+                    }}
+                    variant={modalState.variant}
+                    confirmLabel={modalState.confirmLabel}
+                    isLoading={isUpdatingOrderStatusAdmin}
+                    title={modalState.title}
+                    description={modalState.description}
+                    size="sm"
+                />
+            )}
         </>
     )
 }

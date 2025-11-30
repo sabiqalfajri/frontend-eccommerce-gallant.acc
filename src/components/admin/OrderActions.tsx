@@ -23,7 +23,7 @@ export const getOrderDashboardActions = (
         {
             label: 'See Detail',
             icon: <TbListSearch size={21} />,
-            href: `/dashboard/orders/${order.id}`
+            href: `/dashboard/orders/${order.publicId}`
         }
     ];
 
@@ -38,7 +38,7 @@ export const getOrderDashboardActions = (
                 { 
                     label: 'Cancel Order', 
                     icon: <FiXCircle size={17} />,
-                    href: `/dashboard/orders/${order.id}?to=CANCELED` 
+                    onClick: () => handlers.updateStatus(order.id, "CANCELED")
                 }
             );
             break;
@@ -50,11 +50,6 @@ export const getOrderDashboardActions = (
                     icon: <HiOutlineTruck size={19} />,
                     onClick: () => handlers.updateStatus(order.id, "SHIPPED")
                 },
-                { 
-                    label: 'Cancel Order', 
-                    icon: <FiXCircle size={17} />,
-                    href: `/dashboard/orders/${order.id}?to=CANCELED` 
-                }
             );
             break;
 
@@ -63,7 +58,7 @@ export const getOrderDashboardActions = (
                 { 
                     label: 'Mark as Completed', 
                     icon: <FiCheckCircle size={17} />,
-                    href: `/dashboard/orders/${order.id}?to=COMPLETED` 
+                    onClick: () => handlers.updateStatus(order.id, "COMPLETED")
                 }
             );
             break;

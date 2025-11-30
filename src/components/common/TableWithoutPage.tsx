@@ -44,7 +44,8 @@ export const TableWithoutPage = <TData, TValue>({
                 <TableBody>
                     {isLoading ? (
                         <TableRow>
-                            <TableCell colSpan={columns.length} className="h-24 text-center">
+                            <TableCell colSpan={columns.length} 
+                            className="h-24 text-center">
                                 <div className="flex justify-center items-center py-4">
                                     <span className="animate-spin w-5 h-5 border-2 border-t-transparent border-gray-400 rounded-full mr-2"></span>
                                     Loading data...
@@ -55,7 +56,8 @@ export const TableWithoutPage = <TData, TValue>({
                         table.getRowModel().rows.map((row) => (
                             <TableRow key={row.id}>
                                 {row.getVisibleCells().map((cell) => (
-                                    <TableCell key={cell.id}>
+                                    <TableCell key={cell.id} 
+                                    className={cell.column.columnDef.meta?.className}>
                                         {flexRender(
                                             cell.column.columnDef.cell,
                                             cell.getContext()

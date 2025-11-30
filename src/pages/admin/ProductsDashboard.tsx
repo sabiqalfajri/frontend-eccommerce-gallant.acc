@@ -77,23 +77,26 @@ export const ProductsDashboard = () => {
                 const product = row.original;
 
                 return (
-                    <div className="flex items-center gap-x-3 w-full">
+                    <div className="flex items-center gap-x-3">
                         <img 
                             src={product.imageUrl}
                             alt={product.name}
                             className="w-14 h-14 object-cover rounded-md border-[1.5px] border-gray-200"
                         />
-                        <span className="truncate max-w-76">{product.name}</span>
+                        <span className="line-clamp-2 w-76">{product.name}</span>
                     </div>
                 )
             },
+            meta: {
+                className: "whitespace-normal"
+            }
         },
         {
             accessorKey: "price",
             header: "Price",
             cell: ({ row }) => 
             <div>
-                {row.getValue("price")}
+                <p>Rp{(row.original.price).toLocaleString("id-ID")}</p>
             </div>,
         },
         {

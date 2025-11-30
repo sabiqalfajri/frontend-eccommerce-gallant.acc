@@ -3,8 +3,10 @@ import { HiOutlineInboxArrowDown } from "react-icons/hi2";
 import { FiUser } from "react-icons/fi";
 import { MapPin } from 'lucide-react';
 import { BsBoxArrowLeft } from "react-icons/bs";
+import { useLogout } from "@/hooks/auth/useLogout";
 
 export const SidebarAccount = () => {
+    const { logout } = useLogout();
     const sidebarMenu = [
         { 
             name: 'Profile',
@@ -43,7 +45,9 @@ export const SidebarAccount = () => {
                         </NavLink>
                     ))}
                 </div>
-                <button className="group flex items-center justify-start gap-2 h-10 w-full px-3 rounded-lg text-sm font-medium transition-all duration-200 ease-in-out hover:bg-gray-100 cursor-pointer">
+                <button className="group flex items-center justify-start gap-2 h-10 w-full px-3 rounded-lg text-sm font-medium transition-all duration-200 ease-in-out hover:bg-gray-100 cursor-pointer"
+                onClick={logout}
+                >
                     <div className="w-7 h-7 rounded-md flex justify-center items-center">
                         <BsBoxArrowLeft size={20} /> 
                     </div>

@@ -5,9 +5,10 @@ import { HiOutlineTrash } from "react-icons/hi2";
 import { ClipLoader } from "react-spinners";
 import { HiOutlineTruck } from "react-icons/hi2";
 import { FiRefreshCcw } from "react-icons/fi";
+import { FiCheckCircle } from "react-icons/fi";
 
 type ModalSize = "md" | "lg" | "xl" | "base" | "sm";
-type Variant = "DELETE" | "SHIPPED" | "PROCESSING"
+export type Variant = "DELETE" | "SHIPPED" | "PROCESSING" | "COMPLETED"
 
 interface ModalConfirmProps {
     isOpen: boolean;
@@ -48,19 +49,22 @@ export const ModalConfirm = ({
     const variantWrapperClasses: Record<Variant, string> = {
         DELETE: "bg-red-100 text-red-500",
         SHIPPED: "bg-purple-100 text-purple-600",
-        PROCESSING: "bg-sky-100 text-sky-600"
+        PROCESSING: "bg-sky-100 text-sky-600",
+        COMPLETED: "bg-green-100 text-green-600"
     }
 
     const variantInnerClasses: Record<Variant, string> = {
         DELETE: "bg-red-200",
         SHIPPED: "bg-purple-200",
-        PROCESSING: "bg-sky-200"
+        PROCESSING: "bg-sky-200",
+        COMPLETED: "bg-green-200"
     }
 
     const defaultIcons: Record<Variant, React.ReactNode> = {
         DELETE: <HiOutlineTrash size={22} />,
         SHIPPED: <HiOutlineTruck size={22} />,
         PROCESSING: <FiRefreshCcw size={22} />,
+        COMPLETED: <FiCheckCircle size={22} />
     }
 
     return (
@@ -88,9 +92,9 @@ export const ModalConfirm = ({
                     onClick={onCancel}
                     size="lg"
                     variant="outlinePrimary"
-                    className="bg-white hover:bg-accent"
+                    className="bg-white hover:bg-gray-100"
                     >
-                        {isLoading ? <ClipLoader size={20} /> : cancelLabel}
+                        {isLoading ? <ClipLoader size={24} /> : cancelLabel}
                     </Button>
                     <Button
                     disabled={isLoading}
@@ -98,7 +102,7 @@ export const ModalConfirm = ({
                     size="lg"
                     variant="primary"
                     >
-                        {isLoading ? <ClipLoader size={20} /> : confirmLabel}
+                        {isLoading ? <ClipLoader size={24} color="white" /> : confirmLabel}
                     </Button>
                 </DialogFooter>
             </DialogContent>

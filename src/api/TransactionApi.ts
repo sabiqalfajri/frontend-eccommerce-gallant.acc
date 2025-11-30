@@ -2,6 +2,17 @@ import { RecentOrder, statusOrder, TransactionOrder, TransactionOrderByUserId, T
 import { axiosClient } from "./AxiosClient";
 import { ApiResponse } from "@/types/ApiResponse";
 
+// universal
+export const fetchDetailOrderByPublicId = async (token: string, publicId: string) => {
+    const response = await axiosClient.get<{ data: TransactionOrderDetailAccount }>(`/orders/detail/${publicId}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+
+    return response.data.data
+}
+
 // admin only
 export const fetchTransactionOrderForAdmin = async (
     token: string,
@@ -45,20 +56,9 @@ export const updateStatusOrderForAdmin = async (token: string, orderId: string, 
     return response.data.data
 }
 
-
 // user only
 export const fetchTransaction = async (token: string, orderId: string) => {
     const response = await axiosClient.get<{ data: TransactionResponse }>(`/payment/${orderId}`, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    });
-
-    return response.data.data
-}
-
-export const fetchDetailOrderByPublicId = async (token: string, publicId: string) => {
-    const response = await axiosClient.get<{ data: TransactionOrderDetailAccount }>(`/orders/detail/${publicId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }

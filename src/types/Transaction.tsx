@@ -33,8 +33,9 @@ export interface TransactionOrderByUserId {
     }[]
 }
 
-type BaseItem = {
+export type BaseItem = {
     id: string;
+    productId: string;
     orderId: string;
     price: number;
     quantity: number;
@@ -69,6 +70,10 @@ export interface TransactionOrderDetailAccount extends BaseTransactionResponse {
     completedAt?: string
     expiredAt?: string
     items: BaseItem[]
+    customer: {
+        email: string
+        image: string
+    }
 }
 
 export interface TransactionResponse extends BaseTransactionResponse {

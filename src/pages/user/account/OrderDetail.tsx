@@ -11,11 +11,14 @@ import { BuildSteps } from "@/utils/BuildSteps";
 import { CapitalizeText } from "@/helper/CapitalizeText";
 import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading";
 import { OrderDetailSkeleton } from "@/components/user/account/OrderDetailSkeleton";
+import { useAddToCart } from "@/hooks/cart/useAddToCart";
+import { ClipLoader } from "react-spinners";
 
 export const OrderDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { token } = useToken();
+    const { addToCart, loadingId } = useAddToCart(token!)
     const { 
         detailOrderUser, 
         isLoadingDetailOrderUser, 
@@ -75,12 +78,22 @@ export const OrderDetail = () => {
                                         </div>
                                     </div>
                                     <div className="flex justify-end items-center">
-                                        <Button>Buy again</Button>
+                                        <Button 
+                                        variant="primary" 
+                                        className="w-24"
+                                        onClick={() => addToCart({ 
+                                            productId: item.productId, quantity: 1 
+                                        })}
+                                        >
+                                            {loadingId === item.productId ? (
+                                                <ClipLoader size={24} color="white" />
+                                            ) : 'Buy again'}
+                                        </Button>
                                     </div>
                                 </div>
                             ))}
                         </div>
-                        <div className="flex flex-col gap-3 border border-gray-200 rounded-md py-3 px-3.5">
+                        <div className="flex flex-col gap-3 border border-gray-200 rounded-md py-3 px-3.5 h-fit">
                             <div>
                                 <h1 className="font-semibold text-[15px]">Shipping Address</h1>
                                 <div className="flex flex-col gap-1 mt-2.5 text-sm">

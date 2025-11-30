@@ -4,7 +4,7 @@ import { LuUsers } from "react-icons/lu";
 import { OverviewCard } from "@/components/admin/home/OverviewCard";
 import { useOverview } from "@/hooks/overview/useOverview";
 import { useToken } from "@/hooks/universal/useToken";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { TopCategoryPie } from "@/components/admin/home/TopCategoryPie";
 import { SalesChart } from "@/components/admin/home/SalesChart";
 import { IoWalletOutline } from "react-icons/io5";
@@ -79,13 +79,12 @@ export const HomeDashboard = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-6 min-h-72">
                 <CardDashboard title="Recent Order" className="md:col-span-2" 
                 headerContent={
-                    <button 
-                    type="button" 
+                    <NavLink
+                    to={'/dashboard/orders'}
                     className="cursor-pointer text-sm text-gray-500 font-semibold hover:text-primary transform transition-all duration-200"
-                    onClick={() => navigate('/dashboard/orders')}
                     >
                         See more
-                    </button>
+                    </NavLink>
                 }>
                     <RecentOrders recentOrders={recentOrders} isLoading={isLoadingRecent} />
                 </CardDashboard>

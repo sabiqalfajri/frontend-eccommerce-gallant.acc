@@ -133,7 +133,7 @@ export const Checkout = () => {
                         size="lg"
                         >
                             {isLoading ? (
-                                <ClipLoader size={20} color="white" />
+                                <ClipLoader size={24} color="white" />
                             ) : 'Checkout Now'}
                         </Button>
                     </div>

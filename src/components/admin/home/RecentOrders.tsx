@@ -1,9 +1,9 @@
 import { TableWithoutPage } from "@/components/common/TableWithoutPage"
-import { CapitalizeText } from "@/helper/CapitalizeText"
 import { RecentOrder } from "@/types/Transaction"
 import { FormatDateWithoutWib } from "@/utils/FormatDate"
 import { ColumnDef } from "@tanstack/react-table"
 import { useMemo } from "react"
+import { OrderStatusBadge } from "../orders/OrderStatusBadge"
 
 interface RecentOrdersProps {
     recentOrders: RecentOrder[]
@@ -14,37 +14,6 @@ export const RecentOrders = ({
     recentOrders,
     isLoading
 }: RecentOrdersProps) => {
-    const statusStyle: Record<string, { label: string; className: string }> = {
-        pending: {
-            label: 'Pending',
-            className: 'text-orange-500'
-        },
-        processing: {
-            label: 'Processing',
-            className: 'text-sky-600'
-        },
-        shipped: {
-            label: 'Shipped',
-            className: 'text-purple-600'
-        },
-        completed: {
-            label: 'Completed',
-            className: 'text-green-600'
-        },
-        expired: {
-            label: 'Expired',
-            className: 'text-red-600'
-        },
-    }
-
-    const getSyleStatus = (status: string) => {
-        const rawStatus = status.toLocaleLowerCase();
-        return statusStyle[rawStatus] || {
-            label: status,
-            className: 'text-gray-600'
-        }
-    }
-
     const columns: ColumnDef<RecentOrder>[] = useMemo(() => [
         {
             accessorKey: "name",
@@ -75,12 +44,13 @@ export const RecentOrders = ({
             accessorKey: "status",
             header: "Status",
             cell: ({ row }) => {
-                const status = getSyleStatus(row.original.status)
+                const status = row.original.status
 
                 return (
-                    <div className={`flex justify-center py-0.5 rounded-full items-center text-sm gap-2 font-semibold ${status.className}`}>
-                        <p>{CapitalizeText(row.original.status)}</p>
-                    </div>
+                    <OrderStatusBadge
+                        status={status} 
+                        className="rounded-full py-1 px-1.5" 
+                    />
                 )
             }
         },

@@ -18,7 +18,7 @@ export const useUpdateStatusOrderAdmin = (token: string | null) => {
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["ordersAdmin"] });
-            queryClient.invalidateQueries({ queryKey: ["orders"] });
+            queryClient.invalidateQueries({ queryKey: ["detailOrderAdmin"] });
         },
         onError: (error) => {
             showError(error.message || 'Something went wrong')

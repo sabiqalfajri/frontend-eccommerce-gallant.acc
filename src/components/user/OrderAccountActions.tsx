@@ -1,6 +1,6 @@
 import { statusOrder, TransactionOrderByUserId } from "@/types/Transaction";
 import { JSX } from "react";
-import { FiCheckCircle, FiXCircle } from "react-icons/fi";
+import { FiXCircle } from "react-icons/fi";
 import { TbListSearch } from "react-icons/tb";
 import { BsQrCodeScan } from "react-icons/bs";
 import { Headphones } from 'lucide-react';
@@ -18,6 +18,12 @@ export const getOrderAccountActions = (
         updateStatus: (orderId: string, newStatus: statusOrder) => void;
     }
 ): OrderAction[] => {
+    const buildMessageWA = 
+    `Halo Kak, saya butuh bantuan terkait pesanan saya 🙏\n\n🧾 Order ID: #${order.publicId}\n📦 Status: ${order.status}\n🛍 Total Item: ${order.items.length}\n\nPertanyaan saya:\n`;
+
+    const phoneNumber = "6287841651802";
+    const encodedMessage = encodeURIComponent(buildMessageWA);
+
     const actions: OrderAction[] = [
         {
             label: 'See Detail',
@@ -47,7 +53,7 @@ export const getOrderAccountActions = (
                 { 
                     label: 'Contact seller', 
                     icon: <Headphones size={19} />,
-                    href: `/dashboard/orders/${order.id}?to=SHIPPED` 
+                    onClick: () => window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank")
                 },
             );
             break;
@@ -55,10 +61,10 @@ export const getOrderAccountActions = (
         case 'SHIPPED':
             actions.push(
                 { 
-                    label: 'Mark as Delivered', 
-                    icon: <FiCheckCircle size={17} />,
-                    onClick: () => handlers.updateStatus(order.id, "COMPLETED")
-                }
+                    label: 'Contact seller', 
+                    icon: <Headphones size={19} />,
+                    onClick: () => window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank")
+                },
             );
             break;
 
