@@ -24,7 +24,7 @@ export const NewArrivals = () => {
         <Section>
             {smoothLoading ? (
                 <CarousalProductSkeleton length={skeletonLength} title="New Arrivals" />
-            ) : (
+            ) : newArrivals && (
                 <CarousalProducts 
                     title="New Arrivals"
                     errorTitle="No products found"

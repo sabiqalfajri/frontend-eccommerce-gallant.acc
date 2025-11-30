@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from "swiper/modules"
+import type { Swiper as SwiperType } from 'swiper';
 import { useRef } from 'react';
-import { Button } from '../ui/button';
 import { GrNext, GrPrevious } from 'react-icons/gr';
 import { CardProduct } from '../user/CardProduct';
 import { Carousal } from '@/types/Product';
@@ -10,7 +10,7 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 interface CarousalProductsProps {
     title: string
-    data: Carousal[] | undefined
+    data: Carousal[]
     errorTitle: string
     isError: boolean
 }
@@ -21,6 +21,7 @@ export const CarousalProducts = ({
     errorTitle,
     isError
 }: CarousalProductsProps) => {
+    const mainSwiperRef = useRef<SwiperType | null>(null);
     const nextRef = useRef(null);
     const prevRef = useRef(null);
     const navigate = useNavigate();
@@ -61,13 +62,7 @@ export const CarousalProducts = ({
                         nextEl: nextRef.current,
                         prevEl: prevRef.current
                     }}
-                    onSwiper={(swiper) => {
-                        if(swiper.params.navigation && typeof swiper.params.navigation !== 'boolean') {
-                            swiper.params.navigation.prevEl = prevRef.current;
-                            swiper.params.navigation.nextEl = nextRef.current;
-                        }
-                        swiper.navigation.update()
-                    }}
+                    onSwiper={(swiper) => (mainSwiperRef.current = swiper)}
                     onBeforeInit={(swiper) => {
                         if(typeof swiper.params.navigation !== 'boolean' && swiper.params.navigation) {
                             swiper.params.navigation.prevEl = prevRef.current;
@@ -87,18 +82,18 @@ export const CarousalProducts = ({
                     ))}
                 </Swiper>
 
-                <Button
+                <button
                 ref={prevRef}
-                className={`hidden md:block md:absolute top-1/2 -left-4 z-10 transform -translate-y-1/2 bg-white shadow-lg w-10 h-10 rounded-full transition-all duration-200`}
+                className={`hidden md:flex justify-center items-center md:absolute top-1/2 -left-4 z-10 transform -translate-y-1/2 bg-white text-black shadow-lg w-10 h-10 rounded-full transition-colors hover:bg-primary hover:text-primary-foreground cursor-pointer`}
                 >
-                    <GrPrevious size={18} color="#000" />
-                </Button>
-                <Button 
+                    <GrPrevious size={18} />
+                </button>
+                <button 
                 ref={nextRef}
-                className={`hidden md:block md:absolute top-1/2 -right-4 z-10 transform -translate-y-1/2 bg-white shadow-lg w-10 h-10 rounded-full transition-all duration-200`}
+                className={`hidden md:flex justify-center items-center md:absolute top-1/2 -right-4 z-10 transform -translate-y-1/2 bg-white text-black shadow-lg w-10 h-10 rounded-full transition-colors hover:bg-primary hover:text-primary-foreground cursor-pointer`}
                 >
-                    <GrNext size={18} color="#000" />
-                </Button>
+                    <GrNext size={18} />
+                </button>
             </div>
         </div>
     )
