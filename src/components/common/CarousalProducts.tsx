@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from "swiper/modules"
 import type { Swiper as SwiperType } from 'swiper';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { GrNext, GrPrevious } from 'react-icons/gr';
 import { CardProduct } from '../user/CardProduct';
 import { Carousal } from '@/types/Product';
@@ -47,6 +47,19 @@ export const CarousalProducts = ({
                 </button>
             </div>
             <div className="relative w-full mt-1 md:mt-3">
+                <button
+                ref={prevRef}
+                className={`hidden md:flex justify-center items-center md:absolute top-1/2 -left-4 z-10 transform -translate-y-1/2 bg-white text-black shadow-lg w-10 h-10 rounded-full transition-colors hover:bg-primary hover:text-primary-foreground cursor-pointer`}
+                >
+                    <GrPrevious size={18} />
+                </button>
+                <button 
+                ref={nextRef}
+                className={`hidden md:flex justify-center items-center md:absolute top-1/2 -right-4 z-10 transform -translate-y-1/2 bg-white text-black shadow-lg w-10 h-10 rounded-full transition-colors hover:bg-primary hover:text-primary-foreground cursor-pointer`}
+                >
+                    <GrNext size={18} />
+                </button>
+
                 <Swiper
                     modules={[Navigation]}
                     spaceBetween={16}
@@ -81,19 +94,6 @@ export const CarousalProducts = ({
                         </SwiperSlide>
                     ))}
                 </Swiper>
-
-                <button
-                ref={prevRef}
-                className={`hidden md:flex justify-center items-center md:absolute top-1/2 -left-4 z-10 transform -translate-y-1/2 bg-white text-black shadow-lg w-10 h-10 rounded-full transition-colors hover:bg-primary hover:text-primary-foreground cursor-pointer`}
-                >
-                    <GrPrevious size={18} />
-                </button>
-                <button 
-                ref={nextRef}
-                className={`hidden md:flex justify-center items-center md:absolute top-1/2 -right-4 z-10 transform -translate-y-1/2 bg-white text-black shadow-lg w-10 h-10 rounded-full transition-colors hover:bg-primary hover:text-primary-foreground cursor-pointer`}
-                >
-                    <GrNext size={18} />
-                </button>
             </div>
         </div>
     )
