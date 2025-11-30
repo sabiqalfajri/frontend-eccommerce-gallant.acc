@@ -22,7 +22,7 @@ export const HomeDashboard = () => {
     } = useRecentOrdersAdmin(token!);
     const isLoadingRecent = isLoadingRecentOrders || !isFetchedRecentOrders
     const isLoading = isLoadingOverview || !isFetchedOverview
-    const navigate = useNavigate();
+    
     const overviewMenu = [
         { 
             icon: <IoWalletOutline size={23} /> , 
