@@ -13,8 +13,7 @@ export const HomeBanner = () => {
             onMouseLeave={() => setIsHovered(false)}
             >
                 <div className="bg-gray-200 h-80">
-                    {/* <img src="" alt="" /> */}
-                    <p>Banner Content</p>
+                    <img src="/images/banner.jpg" className="w-full h-full object-cover rounded-md" alt="" />
                 </div>
                 <div className="hidden md:block w-full">
                     <Button 
