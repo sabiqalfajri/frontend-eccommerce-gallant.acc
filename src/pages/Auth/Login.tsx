@@ -56,13 +56,12 @@ export const Login = () => {
                 const user = data.data
                 queryClient.setQueryData(["currentUser"], user);
                 Storage.setUser(user);
-                // console.log('data user login: ', data.data)
 
                 if (user.role === "ADMIN") {
                     navigate("/dashboard", { replace: true });
                     return;
                 };
-                // console.log("✅ akan redirect ke:", redirect);
+
                 navigate(redirect, { replace: true });
             } 
         } catch (error: any) {

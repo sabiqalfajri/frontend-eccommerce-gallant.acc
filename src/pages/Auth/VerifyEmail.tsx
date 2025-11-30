@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { showError, showInfo } from "@/utils/Toast";
 import { ClipLoader } from "react-spinners";
 import { useCooldownResend } from "@/hooks/universal/useCooldownResend";
+import { useLogout } from "@/hooks/auth/useLogout";
 
 const inputOtpSchema = z.object({
     otp: z.string().length(6, { message: "OTP must be 6 digits" }).regex(/^\d+$/, { message: "OTP must be number" }),
@@ -24,6 +25,7 @@ type InputOtpSchema = z.infer<typeof inputOtpSchema>;
 export const VerifyEmail = () => {
     const navigate = useNavigate();
     const { signUp, isLoaded } = useSignUp();
+    const { logout } = useLogout();
     const { control, handleSubmit, watch, formState: { errors, isSubmitting } } = useForm<InputOtpSchema>({
         resolver: zodResolver(inputOtpSchema),
     });
@@ -54,6 +56,8 @@ export const VerifyEmail = () => {
             })
             if(verify.status === "complete") {
                 localStorage.removeItem('signUpId')
+
+                await logout();
                 navigate("/auth/sign-in", { replace: true });
             } else {
                 console.error(JSON.stringify(verify, null, 2))
