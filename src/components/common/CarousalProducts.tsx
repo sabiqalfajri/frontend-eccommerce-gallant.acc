@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from "swiper/modules"
 import type { Swiper as SwiperType } from 'swiper';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { GrNext, GrPrevious } from 'react-icons/gr';
 import { CardProduct } from '../user/CardProduct';
 import { Carousal } from '@/types/Product';
