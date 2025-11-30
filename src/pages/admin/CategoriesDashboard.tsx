@@ -1,14 +1,11 @@
-import { CardDashboard } from "@/components/admin/Card"
 import { DropdownCustom } from "@/components/common/DropdownCustom"
 import { DataTable } from "@/components/common/TableDashboard"
-import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { useCategoriesAdmin } from "@/hooks/category/useCategoriesAdmin"
 import { useToken } from "@/hooks/universal/useToken"
 import { CategoryAdmin } from "@/types/Category"
 import { FormatDateWithoutWib } from "@/utils/FormatDate"
 import { ColumnDef } from "@tanstack/react-table"
-import { ca } from "date-fns/locale"
 import { useMemo, useState } from "react"
 import { FiEdit } from "react-icons/fi"
 import { HiOutlineTrash } from "react-icons/hi"
@@ -23,7 +20,6 @@ export const CategoryDashboard = () => {
         total,
         totalPages,
         isLoading,
-        isFetched,
     } = useCategoriesAdmin(token!, page, 10);
     const navigate = useNavigate();
 
