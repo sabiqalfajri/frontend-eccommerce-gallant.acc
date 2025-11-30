@@ -4,7 +4,7 @@ import { LuUsers } from "react-icons/lu";
 import { OverviewCard } from "@/components/admin/home/OverviewCard";
 import { useOverview } from "@/hooks/overview/useOverview";
 import { useToken } from "@/hooks/universal/useToken";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { TopCategoryPie } from "@/components/admin/home/TopCategoryPie";
 import { SalesChart } from "@/components/admin/home/SalesChart";
 import { IoWalletOutline } from "react-icons/io5";
@@ -22,7 +22,7 @@ export const HomeDashboard = () => {
     } = useRecentOrdersAdmin(token!);
     const isLoadingRecent = isLoadingRecentOrders || !isFetchedRecentOrders
     const isLoading = isLoadingOverview || !isFetchedOverview
-    
+
     const overviewMenu = [
         { 
             icon: <IoWalletOutline size={23} /> , 
