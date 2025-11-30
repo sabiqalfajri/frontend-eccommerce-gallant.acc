@@ -48,10 +48,8 @@ export const Register = () => {
     return (
         <main className="flex flex-col justify-center items-center h-screen">
             <form onSubmit={onSubmit}>
-                <Card className={`w-[350px] md:w-[450px] gap-4 shadow-lg`}>
-                    <CardHeader
-                    // className={`${registerGoogleLoading || isSubmitting ? 'pointer-events-none opacity-50' : ''}`}
-                    >
+                <Card className={`w-[350px] md:w-[450px] gap-4 shadow-lg ${isSubmitting ? 'pointer-events-none opacity-50' : ''}`}>
+                    <CardHeader>
                         <CardTitle className="text-3xl font-bold mb-0.5 text-center">
                             Sign Up
                         </CardTitle>
@@ -66,9 +64,7 @@ export const Register = () => {
                         <hr className="flex-1 border-t border-gray-300"/>
                     </div>
                     </CardHeader>
-                    <CardContent
-                    className={`${isSubmitting ? 'pointer-events-none opacity-50' : ''}`}
-                    >
+                    <CardContent>
                         <div className="grid w-full items-center gap-4">
                             <div className="flex flex-nowrap justify-between gap-1.5 w-full">
                                 <div className="flex flex-col space-y-1.5">
@@ -124,24 +120,21 @@ export const Register = () => {
                         </div>
                     </CardContent>
                     <CardFooter className="flex items-start flex-col w-full">
-                        <div 
-                        className={`w-full ${isSubmitting ? 'pointer-events-none opacity-50' : ''}`}
-                        >
-                            <Button variant="primary" type="submit"
-                            disabled={isSubmitting} 
-                            className="w-full">
-                                {isSubmitting ? <ClipLoader size={20} /> : "Create account"}
-                            </Button>
-                            <p className="mt-3 flex gap-2 text-xs text-black font-normal">
-                                Already have an account?
-                                <a className="text-indigo-600 hover:underline" href="/auth/sign-in">
-                                    Sign in
-                                </a>
-                            </p>
-                        </div>
+                        <Button variant="primary" type="submit"
+                        disabled={isSubmitting} 
+                        className="w-full">
+                            {isSubmitting ? <ClipLoader size={24} color="white" /> : "Create account"}
+                        </Button>
+                        <p className="mt-3 flex gap-2 text-xs text-black font-normal">
+                            Already have an account?
+                            <a className="text-indigo-600 hover:underline" href="/auth/sign-in">
+                                Sign in
+                            </a>
+                        </p>
 
                         <div className="w-full mt-2">
-                            <div id="clerk-captcha" data-cl-theme="dark" data-cl-size="flexible"></div>
+                            <div id="clerk-captcha" data-cl-theme="dark" data-cl-size="flexible">
+                            </div>
                         </div>
                     </CardFooter>
                 </Card>
