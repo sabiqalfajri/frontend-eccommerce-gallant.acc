@@ -59,7 +59,7 @@ export const DropdownCustom = ({
                             key={idx} 
                             onSelect={() => item.onClick?.()}
                             // onClick={item.onClick} 
-                            className={`text-[15px] ${item.className} ${item.href && 'cursor-pointer'} px-3.5 py-2`}
+                            className={`text-[15px] ${item.className} ${item.href && 'cursor-pointer'} px-3.5 py-2.5`}
                             asChild={!!item.href}
                             >
                                 {item.href ? (
