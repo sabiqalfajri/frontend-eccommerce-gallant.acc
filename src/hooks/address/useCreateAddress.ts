@@ -12,6 +12,7 @@ export const useCreateAddress = (token: string) => {
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["address"] })
+            queryClient.refetchQueries({ queryKey: ["address"] })
         },
         onError: (error) => {
             showError(error.message || 'Something went wrong')
@@ -20,6 +21,7 @@ export const useCreateAddress = (token: string) => {
 
     return {
         createAddress: createMutation.mutateAsync,
-        isCreatingAddress: createMutation.isPending
+        isCreatingAddress: createMutation.isPending,
+        isSuccess: createMutation.isSuccess
     }
 }
