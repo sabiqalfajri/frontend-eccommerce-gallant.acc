@@ -7,7 +7,6 @@ import { CardProduct } from '../user/CardProduct';
 import { Carousal } from '@/types/Product';
 import { useNavigate } from 'react-router-dom';
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import { Button } from '../ui/button';
 
 interface CarousalProductsProps {
     title: string
