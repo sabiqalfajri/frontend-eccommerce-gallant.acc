@@ -47,15 +47,15 @@ export const ProfileAccount = () => {
         },
         { 
             id: 'name',
-            label: 'Name'
+            label: 'Nama'
         },
         { 
             id: 'phone',
-            label: 'Phone Number'
+            label: 'Nomor Telepon'
         },
         { 
             id: 'birthDate',
-            label: 'Date of Birth'
+            label: 'Tanggal Lahir'
         },
         { 
             id: 'gender',
@@ -63,7 +63,7 @@ export const ProfileAccount = () => {
         },
         { 
             id: 'country',
-            label: 'Country'
+            label: 'Negara'
         },
     ]
 
@@ -153,6 +153,7 @@ export const ProfileAccount = () => {
                                                 value={field.value}
                                                 contentClassName="!w-full !max-w-none"
                                                 onChange={(value) => field.onChange(value)}
+                                                placeholder="Pilih opsi"
                                             />
                                         )}
                                     />
@@ -184,7 +185,7 @@ export const ProfileAccount = () => {
                     className="w-full md:w-20"
                     disabled={isBusy}
                     >
-                        Cancel
+                        Batal
                     </Button>
                     <Button
                     type="submit"
@@ -193,7 +194,7 @@ export const ProfileAccount = () => {
                     >
                         {isBusy ? (
                             <ClipLoader size={24} color="white" />
-                        ) : 'Save Changes'}
+                        ) : 'Simpan'}
                     </Button>
                 </div>
             </form>

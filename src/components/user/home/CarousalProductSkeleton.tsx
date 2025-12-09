@@ -5,7 +5,7 @@ export const CarousalProductSkeleton = ({ length, title }: { length: number; tit
     return (
         <div className="flex flex-col gap-y-2 md:gap-y-3 w-full">
             <div className="flex justify-between items-center md:block w-full">
-                <h1 className="text-[19px] md:text-2xl font-bold text-center md:mb-2">
+                <h1 className="text-[17px] md:text-2xl font-bold text-center md:mb-2">
                     {title}
                 </h1>
 

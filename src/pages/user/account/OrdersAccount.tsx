@@ -87,7 +87,7 @@ export const OrdersAccount = () => {
                                     <div className="flex flex-col">
                                         <h1 className="font-semibold text-[15px]">{order.publicId}</h1>
                                         <div className="flex flex-wrap items-center gap-x-2 text-sm mt-px">
-                                            <p>{order.items.length} Product</p>
+                                            <p>{order.items.length} Produk</p>
                                             <div className="w-px h-4 bg-gray-500"></div>
                                             <p>{FormatDate(order.createdAt)}</p>
                                         </div>
@@ -109,13 +109,13 @@ export const OrdersAccount = () => {
                                 </div>
                                 <div className="flex flex-col gap-2 text-[15px] pb-3 border-b border-gray-200">
                                     <div className="flex flex-wrap items-center gap-2.5">
-                                        <p className="w-30">Status</p>
+                                        <p className="w-36">Status</p>
                                         <div className={`flex justify-center items-center font-semibold py-0.5 text-sm w-24 rounded-full ${status.className}`}>
                                             {status.label}
                                         </div>
                                     </div>
                                     <div className="flex flex-wrap gap-2.5">
-                                        <p className="w-30">Date of delivery</p>
+                                        <p className="w-36">Tanggal Pengiriman</p>
                                         <p>
                                             {
                                                 invalidDeliveryDate.includes(order.status) 
@@ -125,11 +125,11 @@ export const OrdersAccount = () => {
                                         </p>
                                     </div>
                                     <div className="flex flex-wrap gap-2.5">
-                                        <p className="w-30">Delivered to</p>
+                                        <p className="w-36">Dikirim ke</p>
                                         <p>JL Kaliputih 1 No 9</p>
                                     </div>
                                     <div className="flex flex-wrap gap-2.5">
-                                        <p className="w-30 font-semibold">Total</p>
+                                        <p className="w-36 font-semibold">Total</p>
                                         <p className="font-semibold">
                                             Rp{order.totalAmount.toLocaleString("id-ID")}
                                         </p>

@@ -90,7 +90,7 @@ export const DetailProductInfo = ({ product, id }: DetailProductInfoProps) => {
                     size="lg"
                     onClick={() => addToCart({ productId: id, quantity })}
                     disabled={isAddingToCart}
-                    className="w-fit md:w-36"
+                    className="w-36"
                     >
                         {isAddingToCart ? <ClipLoader size={24} color="white" /> : '+ Keranjang'}
                     </Button>

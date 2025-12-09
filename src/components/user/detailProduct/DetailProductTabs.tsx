@@ -12,7 +12,7 @@ export const DetailProductTabs = ({
     const tabs = [
         {
             value: "description",
-            label: "Description",
+            label: "Deskripsi",
             content: <div><p>{product?.description}</p></div>,
         },
         // {

@@ -17,7 +17,7 @@ export const CategoryHome = () => {
     return (
         <Section>
             <div className="flex flex-col items-center gap-y-4 md:gap-y-5 w-full overflow-hidden">
-                <h1 className="text-[19px] md:text-2xl font-bold">Category</h1>
+                <h1 className="text-[17px] md:text-2xl font-bold">Kategori</h1>
                 <div className="w-full overflow-x-auto scrollbar-hide mt-3 md:mt-5">
                     <div className="flex gap-x-6 md:gap-x-12 md:grid-flow-col justify-start md:justify-center max-w-full">
                         {categories?.map((cat) => (

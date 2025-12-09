@@ -30,7 +30,7 @@ export const CarousalProducts = ({
     if(data && data.length === 0) return <div>{errorTitle}</div>;
 
     return (
-        <div className="flex flex-col gap-y-2 md:gap-y-3 w-full">
+        <div className="flex flex-col gap-y-0.5 md:gap-y-3 w-full">
             <div className="flex justify-between items-center md:block w-full">
                 <h1 className="text-[17px] md:text-2xl font-bold text-center md:mb-2">
                     {title}
@@ -46,7 +46,7 @@ export const CarousalProducts = ({
                     <MdOutlineKeyboardArrowRight size={20} />
                 </button>
             </div>
-            <div className="relative w-full mt-1 md:mt-3">
+            <div className="relative w-full md:mt-3">
                 <button
                 ref={prevRef}
                 className={`hidden md:flex justify-center items-center md:absolute top-1/2 -left-4 z-10 transform -translate-y-1/2 bg-white text-black shadow-lg w-10 h-10 rounded-full transition-colors hover:bg-primary hover:text-primary-foreground cursor-pointer`}

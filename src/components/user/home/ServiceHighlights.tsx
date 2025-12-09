@@ -7,18 +7,18 @@ export const ServiceHighlights = () => {
     const services = [
         { 
             icon: <BsGem size={23} />, 
-            title: 'Best Material', 
-            description: 'We use only premium and durable materials to ensure long-lasting quality in product.' 
+            title: 'Bahan Berkualitas Tinggi', 
+            description: 'Kami menggunakan material premium dan tahan lama untuk memastikan kualitas produk yang awet dan terpercaya.' 
         },
         { 
             icon: <LiaShippingFastSolid size={24} />, 
-            title: 'Free Shipping', 
-            description: 'Enjoy free nationwide shipping for all orders over $50—fast, reliable, and safe delivery.' 
+            title: 'Gratis Ongkir', 
+            description: 'Nikmati pengiriman gratis ke seluruh Indonesia untuk setiap pembelian di atas Rp50.000 — cepat, aman, dan terpercaya.' 
         },
         { 
             icon: <GrSecure size={24} />, 
-            title: 'Secure Payment', 
-            description: 'Your payments are encrypted and protected with industry-leading security standards.'
+            title: 'Pembayaran Aman', 
+            description: 'Transaksi Anda terenkripsi dan dilindungi dengan standar keamanan terbaik di industri.'
         },
     ]
 
@@ -31,7 +31,7 @@ export const ServiceHighlights = () => {
                             {serv.icon}
                         </div>
                         <h1 className="font-semibold">{serv.title}</h1>
-                        <p className="text-sm text-center">{serv.description}</p>
+                        <p className="text-sm text-center h-16">{serv.description}</p>
                     </div>
                 ))}
             </div>

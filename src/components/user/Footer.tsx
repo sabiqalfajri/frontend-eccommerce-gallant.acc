@@ -75,21 +75,8 @@ export const Footer = () => {
                 </div>
             </div>
             <div className="border border-[#FFFFFF]"></div>
-            <div className="mt-[0.8rem] md:mt-12 flex flex-wrap justify-between items-center pb-5 md:pb-0">
+            <div className="mt-[1rem] md:mt-8 flex flex-wrap justify-center items-center pb-5 md:pb-0">
                 <p className="text-sm">Copyright &copy; 2025. All Rights Reserved.</p>
-                <div className="flex flex-wrap gap-2 justify-center items-center">
-                    <div className="flex flex-wrap items-center gap-1">
-                        <p className="text-sm">English</p>
-                        <IoIosArrowDown />                    
-                    </div>
-                    <p className="text-sm">|</p>
-                    <div className="flex flex-wrap gap-1">
-                        <p className="text-sm">ID</p>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                        </svg>  
-                    </div>
-                </div>
             </div>
         </footer>
     )

@@ -37,7 +37,7 @@ export const DateInput = ({
                     aria-expanded={open}
                     className={cn("w-full justify-between font-normal", className)}
                 >
-                    {date ? date.toLocaleDateString() : "Select date"}
+                    {date ? date.toLocaleDateString() : "Pilih tanggal"}
                     <IoCalendarOutline size={19} />
                 </Button>
             </PopoverTrigger>
