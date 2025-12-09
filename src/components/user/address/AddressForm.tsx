@@ -129,13 +129,16 @@ export const AddressForm = ({
                 <Button variant="outlinePrimary"
                 disabled={isSubmitting}
                 type="button"
+                size="lg"
+                className="w-full md:w-24"
                 >
                     Batal
                 </Button>
                 <Button variant="primary"
                 disabled={isSubmitting}
                 type="submit"
-                className="w-32"
+                size="lg"
+                className="w-full md:w-32"
                 >
                     {isSubmitting ? 
                         <ClipLoader size={24} color="white" />
