@@ -26,7 +26,7 @@ export const getOrderAccountActions = (
 
     const actions: OrderAction[] = [
         {
-            label: 'See Detail',
+            label: 'Lihat Detail',
             icon: <TbListSearch size={21} />,
             href: `/customer/order/${order.publicId}`,
         }

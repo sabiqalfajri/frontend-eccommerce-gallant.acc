@@ -26,7 +26,7 @@ export const SidebarUser = () => {
                 <h2 className="text-base font-garamond">Filter Options</h2>
             </div>
             <div className="flex flex-col px-4 mt-2">
-                <h1 className="font-semibold mb-2.5">Category</h1>
+                <h1 className="font-semibold mb-2.5">Kategori</h1>
                 <div className="flex flex-col gap-2">
                     {smoothLoading ? (
                         Array.from({ length: 5 }).map((_, index) => (
@@ -48,7 +48,7 @@ export const SidebarUser = () => {
                         ))
                     )}
                 </div>
-                <h1 className="font-semibold mt-3 mb-2.5">Price</h1>
+                <h1 className="font-semibold mt-3 mb-2.5">Harga</h1>
                 {smoothLoading ? (
                     <div className="flex flex-col gap-2">
                         <Skeleton className="h-4 w-[40%] bg-gray-300 rounded-sm" />

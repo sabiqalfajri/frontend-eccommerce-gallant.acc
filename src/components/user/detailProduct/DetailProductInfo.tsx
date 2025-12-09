@@ -11,6 +11,9 @@ import { LuDot } from "react-icons/lu";
 import { Headphones } from 'lucide-react';
 import { BadgeCheck } from 'lucide-react';
 import { GoPackage } from "react-icons/go";
+import { useBuyNow } from "@/hooks/universal/useBuyNow"
+import { CartItem } from "@/types/Cart"
+import { v4 as uuidv4 } from 'uuid';
 
 interface DetailProductInfoProps {
     id: string
@@ -21,7 +24,22 @@ export const DetailProductInfo = ({ product, id }: DetailProductInfoProps) => {
     const { token } = useToken();
     const { addToCart, isAddingToCart } = useAddToCart(token!)
     const { quantity, increase: handlePlus, decrease: handleMinus, setQuantity } = useProductQuantity(1);
+    const { handleBuyNow, isLoading } = useBuyNow();
+
     if(!product || !id) return;
+
+    const itemForCheckout: CartItem = {
+        id: uuidv4(),
+        productId: product.id,
+        quantity,
+        totalPrice: product.price * quantity,
+        product: {
+            name: product.name,
+            price: product.price,
+            stock: product.stock,
+            images: product.images
+        }
+    }
 
     return (
         <div>
@@ -82,8 +100,12 @@ export const DetailProductInfo = ({ product, id }: DetailProductInfoProps) => {
                     variant="outlinePrimary"
                     size="lg"
                     className="w-32"
+                    onClick={() => handleBuyNow([itemForCheckout])}
                     >
-                        Beli Sekarang
+                        {isLoading 
+                            ? <ClipLoader size={24} color="primary" />
+                            : 'Beli Sekarang'
+                        }
                     </Button>
                     <Button 
                     variant="primary"

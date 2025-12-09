@@ -9,17 +9,17 @@ export const SidebarAccount = () => {
     const { logout } = useLogout();
     const sidebarMenu = [
         { 
-            name: 'Profile',
+            name: 'Profil Saya',
             path: '/customer', 
             icon: <FiUser size={23} /> 
         },
         { 
-            name: 'My Orders',
+            name: 'Pesanan',
             path: '/customer/order/all', 
             icon: <HiOutlineInboxArrowDown size={21} /> 
         },
         { 
-            name: 'Address',
+            name: 'Alamat',
             path: '/customer/address', 
             icon: <MapPin size={22} /> 
         },
@@ -51,7 +51,7 @@ export const SidebarAccount = () => {
                     <div className="w-7 h-7 rounded-md flex justify-center items-center">
                         <BsBoxArrowLeft size={20} /> 
                     </div>
-                    Sign Out
+                    Keluar
                 </button>
             </div>
         </div>

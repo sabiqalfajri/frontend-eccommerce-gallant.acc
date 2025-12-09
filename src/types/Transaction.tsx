@@ -22,6 +22,7 @@ export interface TransactionOrderByUserId {
     totalAmount: number;
     status: statusOrder;
     createdAt: string;
+    shippedAt: string;
     items: {
         quantity: number;
         price: number;

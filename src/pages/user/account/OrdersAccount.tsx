@@ -7,7 +7,7 @@ import { useTransactionOrderByUserId } from "@/hooks/transaction/useTransactionB
 import { useUpdateStatusOrderUser } from "@/hooks/transaction/useUpdateStatusOrderUser";
 import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading";
 import { useToken } from "@/hooks/universal/useToken";
-import { FormatDate } from "@/utils/FormatDate";
+import { FormatDate, FormatDateWithDay } from "@/utils/FormatDate";
 import { IoMdMore } from "react-icons/io";
 import { Navigate } from "react-router-dom";
 
@@ -77,7 +77,36 @@ export const OrdersAccount = () => {
                         const invalidDeliveryDate = ["SHIPPED", "COMPLETED"]
                         const menu = getOrderAccountActions(order, {
                             updateStatus: handleUpdateStatus
-                        })
+                        });
+
+                        const orderSummaryInfo = [
+                            { 
+                                label: 'Status', 
+                                content: (
+                                    <div className={`flex justify-center items-center font-semibold py-0.5 text-sm w-24 rounded-full ${status.className}`}>
+                                        {status.label}
+                                    </div>
+                                )
+                            },
+                            { 
+                                label: 'Tgl Pengiriman', 
+                                content: (
+                                    <p>
+                                        {invalidDeliveryDate.includes(order.status) 
+                                        ? FormatDateWithDay(order.shippedAt)
+                                        // Fri, 14 Nov, 2025
+                                        : '-'}
+                                    </p>
+                                )
+                            },
+                            { 
+                                label: 'Total', 
+                                content: 
+                                    <p className="font-semibold">
+                                        Rp{order.totalAmount.toLocaleString("id-ID")}
+                                    </p>
+                            },
+                        ]
                         
                         return (
                             <div 
@@ -108,7 +137,17 @@ export const OrdersAccount = () => {
                                     </DropdownCustom>
                                 </div>
                                 <div className="flex flex-col gap-2 text-[15px] pb-3 border-b border-gray-200">
-                                    <div className="flex flex-wrap items-center gap-2.5">
+                                    {orderSummaryInfo.map((info, idx) => (
+                                        <div 
+                                        key={idx}
+                                        className="grid grid-cols-2 md:grid-cols-[0.3fr_1fr] gap-1.5">
+                                            <p className={`${info.label === 'Total' && 'font-semibold'}`}>
+                                                {info.label}
+                                            </p>
+                                            {info.content}
+                                        </div>
+                                    ))}
+                                    {/* <div className="flex flex-wrap items-center gap-2.5">
                                         <p className="w-36">Status</p>
                                         <div className={`flex justify-center items-center font-semibold py-0.5 text-sm w-24 rounded-full ${status.className}`}>
                                             {status.label}
@@ -133,7 +172,7 @@ export const OrdersAccount = () => {
                                         <p className="font-semibold">
                                             Rp{order.totalAmount.toLocaleString("id-ID")}
                                         </p>
-                                    </div>
+                                    </div> */}
                                 </div>   
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 text-sm">
                                     {order.items.map((item, idx) => (

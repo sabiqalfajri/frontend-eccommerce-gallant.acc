@@ -75,7 +75,7 @@ export const useAddToCart = (token: string) => {
             showError(error.message || 'Something went wrong')
         },
         onSuccess: (data, variables) => {
-            showInfo("Product added to your cart.");
+            showInfo("Produk berhasil ditambahkan ke keranjang");
             queryClient.setQueryData<CartResponse>(["cart"], (old) => {
                 if (!old) return old;
 

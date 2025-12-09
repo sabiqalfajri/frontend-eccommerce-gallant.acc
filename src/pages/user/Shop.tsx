@@ -37,7 +37,7 @@ export const Shop = () => {
                         )}
                         {!smoothLoading && (productsUser && productsUser.products.length > 0) && 
                         <p className="text-sm md:text-base text-gray-600">
-                            Showing {productsUser.products.length} products
+                            {productsUser.products.length} produk ditampilkan
                         </p>}
                     </div>
                     <Products 

@@ -135,6 +135,7 @@ export const AddressForm = ({
                 <Button variant="primary"
                 disabled={isSubmitting}
                 type="submit"
+                className="w-32"
                 >
                     {isSubmitting ? 
                         <ClipLoader size={24} color="white" />

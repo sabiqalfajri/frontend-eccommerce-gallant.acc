@@ -87,7 +87,7 @@ export const OrderDetail = () => {
                                         >
                                             {loadingId === item.productId ? (
                                                 <ClipLoader size={24} color="white" />
-                                            ) : 'Buy again'}
+                                            ) : 'Beli lagi'}
                                         </Button>
                                     </div>
                                 </div>
@@ -95,7 +95,9 @@ export const OrderDetail = () => {
                         </div>
                         <div className="flex flex-col gap-3 border border-gray-200 rounded-md py-3 px-3.5 h-fit">
                             <div>
-                                <h1 className="font-semibold text-[15px]">Shipping Address</h1>
+                                <h1 className="font-semibold text-[15px]">
+                                    Alamat Pengiriman
+                                </h1>
                                 <div className="flex flex-col gap-1 mt-2.5 text-sm">
                                     <p>{detailOrderUser?.shippingName}</p>
                                     <p>
@@ -109,7 +111,9 @@ export const OrderDetail = () => {
                                 </div>
                             </div>
                             <div>
-                                <h1 className="font-semibold text-[15px]">Payment Details</h1>
+                                <h1 className="font-semibold text-[15px]">
+                                    Rincian Pembayaran
+                                </h1>
                                 <div className="flex flex-col gap-1 mt-2.5 text-sm">
                                     <div className="flex flex-wrap justify-between items-center">
                                         <p>Subtotal (2 items)</p>
@@ -118,12 +122,12 @@ export const OrderDetail = () => {
                                         </p>
                                     </div>
                                     <div className="flex flex-wrap justify-between items-center">
-                                        <p>Shipping (Free)</p>
-                                        <p>Rp0</p>
+                                        <p>Biaya Pengiriman</p>
+                                        <p>Free</p>
                                     </div>
                                     <div className="flex flex-wrap justify-between items-center">
-                                        <p>Tax (Free)</p>
-                                        <p>Rp0</p>
+                                        <p>Tax</p>
+                                        <p>Free</p>
                                     </div>
                                     <div className="bg-gray-300 w-full h-px my-1"></div>
                                     <div className="flex flex-wrap justify-between items-center font-semibold">

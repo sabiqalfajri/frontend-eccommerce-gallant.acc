@@ -1,9 +1,11 @@
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc"
 import timezone from "dayjs/plugin/timezone"
+import "dayjs/locale/id"; 
 
 dayjs.extend(utc)
 dayjs.extend(timezone);
+dayjs.locale("id");
 
 export const FormatDate = (dateStr?: string, mode?: "space" | "stripe") => {
     if(!dateStr) return "-"
@@ -20,4 +22,9 @@ export const FormatDate = (dateStr?: string, mode?: "space" | "stripe") => {
 export const FormatDateWithoutWib = (dateStr?: string) => {
     if(!dateStr) return "-"
     return dayjs.utc(dateStr).tz("Asia/Jakarta").format("DD MMM YYYY")
+}
+
+export const FormatDateWithDay = (dateStr?: string) => {
+    if(!dateStr) return "-"
+    return dayjs.utc(dateStr).tz("Asia/Jakarta").format("ddd, DD MMM YYYY");
 }

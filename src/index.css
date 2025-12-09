@@ -202,8 +202,8 @@
     }
 
     .toaster [data-sonner-toast] {
-      padding-top: 0.6rem !important;
-      padding-bottom: 0.6rem !important;
+      padding-top: 0.9rem !important;
+      padding-bottom: 0.9rem !important;
     }
   }
 

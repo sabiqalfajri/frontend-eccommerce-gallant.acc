@@ -47,11 +47,11 @@ export const AddressAccount = () => {
                             </div>
                             <Input 
                                 className="border-none shadow-none focus-visible:ring-0" 
-                                placeholder="Search your Address..." 
+                                placeholder="Cari alamat kamu..." 
                             />
                         </div>
                         <Button onClick={() => navigate('/customer/address/add')} className="w-full md:w-auto">
-                            + Add New Address
+                            + Tambah Alamat
                         </Button>
                     </div>
                     {address.map((addr) => (
@@ -91,7 +91,7 @@ export const AddressAccount = () => {
                                 <button className="cursor-pointer font-semibold text-primary"
                                 onClick={() => navigate(`/customer/address/edit/${addr.id}`)}
                                 >
-                                    Edit
+                                    Ubah
                                 </button>
                                 {isPrimaryAddress && isPrimaryAddress.id !== addr.id && (
                                     <>
@@ -99,13 +99,13 @@ export const AddressAccount = () => {
                                         <button className="cursor-pointer font-semibold text-red-500"
                                         onClick={() => deleteAddress(addr.id)}
                                         >
-                                            Delete
+                                            Hapus
                                         </button>
                                         <div className="block md:hidden w-px h-5 bg-gray-300"></div>
-                                        <button className="block md:hidden text-primary font-semibold"
+                                        <button className="block md:hidden cursor-pointer text-primary font-semibold"
                                         onClick={() => handleSetPrimary(addr.id)}
                                         >
-                                            Set Primary
+                                            Jadikan Utama
                                         </button>
                                     </>
                                 )}
