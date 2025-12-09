@@ -59,22 +59,28 @@ export const Checkout = () => {
     }
 
     useEffect(() => {
+        if(isErrorAddress) {
+            showError("Sesi Anda telah berakhir. Silakan masuk kembali.");
+            navigate("/auth/sign-in", { replace: true });
+        }
+    }, [isErrorAddress, navigate])
+
+    useEffect(() => {
+        if(!isFetchedAddress) return
         if(smoothLoadingCheckout || hasCompletedPayment) return;
 
-        if(isErrorAddress) {
-            showError('Session expired. Please sign in again')
-        }
         if(!address || address.length === 0) {
-            showError('Please add a shipping address first.')
-            navigate(`/customer/address`, { replace: true });
+            showError('Silakan tambahkan alamat pengiriman terlebih dahulu.')
+            navigate(`/customer/address/add?redirect=/checkout`, { replace: true });
             return;
         }
+
         if(checkoutItems.length === 0) {
-            showError('Your cart is empty')
+            showError('Keranjang Anda kosong.')
             navigate(`/cart`, { replace: true });
             return;
         }
-    }, [smoothLoadingCheckout, address, checkoutItems, navigate])
+    }, [smoothLoadingCheckout, isFetchedAddress, address, checkoutItems, navigate])
 
     return (
         <Section>
@@ -105,13 +111,13 @@ export const Checkout = () => {
                             </div>
                         </div>
                         <div className="flex flex-col mt-3 gap-1.5 border-b border-gray-200 pb-3.5">
-                            <h1 className="font-semibold mb-1">Shopping Summary</h1>
+                            <h1 className="font-semibold mb-1">Pastikan pesanan kamu sudah sesuai, ya</h1>
                             <div className="flex flex-wrap items-center justify-between text-sm">
                                 <p>Subtotal ({checkoutCount} item)</p>
                                 <p>Rp{checkoutTotal.toLocaleString('id-ID')}</p>
                             </div>
                             <div className="flex flex-wrap items-center justify-between text-sm">
-                                <p>Shipping Cost</p>
+                                <p>Biaya Pengiriman</p>
                                 <p>Free</p>
                             </div>
                             <div className="flex flex-wrap items-center justify-between text-sm">
@@ -134,7 +140,7 @@ export const Checkout = () => {
                         >
                             {isLoading ? (
                                 <ClipLoader size={24} color="white" />
-                            ) : 'Checkout Now'}
+                            ) : 'Bayar Sekarang'}
                         </Button>
                     </div>
                 </div>

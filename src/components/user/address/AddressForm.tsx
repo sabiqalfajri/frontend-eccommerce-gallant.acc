@@ -6,7 +6,6 @@ import { AccountAddressKeys, Address } from "@/types/Address"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useEffect } from "react"
 import { useForm } from "react-hook-form"
-import { useNavigate } from "react-router-dom"
 
 interface AddressFormProps {
     mode: 'create' | 'edit';
@@ -28,7 +27,6 @@ export const AddressForm = ({
         defaultValues: {}
     });
     const disabled = isSubmitting || isLoading
-    const navigate = useNavigate();
    
     const accountAddressFields: { id: AccountAddressKeys; label: string; placeholder?: string, type?: string | number }[] = [
         { 
@@ -85,7 +83,6 @@ export const AddressForm = ({
 
     const handleFormSubmit = async (data: AddressInput) => {
         await onSubmit(data)
-        navigate('/customer/address')
     }
 
     useEffect(() => {
@@ -139,7 +136,7 @@ export const AddressForm = ({
                 type="submit"
                 >
                     {isSubmitting ? 
-                        mode === 'create' ? 'Creating Address' : 'Updating Address'
+                        mode === 'create' ? 'Creating Address..' : 'Updating Address..'
                         : mode === 'create' ? 'Create Address' : 'Update Address'
                     }
                 </Button>

@@ -3,15 +3,18 @@ import { useCreateAddress } from "@/hooks/address/useCreateAddress";
 import { useToken } from "@/hooks/universal/useToken";
 import { AddressInput } from "@/schema/Address.schema";
 import { IoIosArrowBack } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export const AddAddressAccount = () => {
     const { token } = useToken();
     const { createAddress, isCreatingAddress } = useCreateAddress(token!);
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const redirect = searchParams.get("redirect") || "/customer/address"
 
     const onSubmit = async (data: AddressInput) => {
         await createAddress(data);
+        navigate(redirect);
     }
 
     return (

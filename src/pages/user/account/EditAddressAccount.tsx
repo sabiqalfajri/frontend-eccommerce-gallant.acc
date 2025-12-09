@@ -19,6 +19,7 @@ export const EditAddressAccount = () => {
     const onSubmit = async (data: AddressInput) => {
         if(!id) return;
         await updateAddress(data)
+        navigate('/customer/address')
     }
 
     return (

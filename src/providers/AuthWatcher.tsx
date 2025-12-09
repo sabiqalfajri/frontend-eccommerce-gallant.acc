@@ -3,15 +3,16 @@ import { useAuth } from "@clerk/clerk-react"
 import { useEffect } from "react";
 
 export const AuthWathcer = () => {
-    const { isSignedIn } = useAuth();
+    const { isSignedIn, isLoaded } = useAuth();
 
     useEffect(() => {
+        if (!isLoaded) return;
         if(!isSignedIn) {
             Storage.removeUser();
             Storage.removeCartSelection();
             Storage.removeFilterProduct();
         }
-    }, [isSignedIn]);
+    }, [isSignedIn, isLoaded]);
 
     return null
 }

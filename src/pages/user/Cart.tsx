@@ -41,7 +41,10 @@ export const Cart = () => {
 
     const handleBuyNow = async () => {
         if (!selectedItems || !selectedItems.length) return;
-        if(!address.length) return showError('Please set your address first')
+        if(!address.length) {
+            showError('Silakan tambahkan alamat pengiriman terlebih dahulu.')
+            return navigate('/customer/address/add?redirect=/checkout')
+        }
 
         try {
             setIsLoadingBuyNow(true)
@@ -83,7 +86,7 @@ export const Cart = () => {
                                                 onCheckedChange={handleSelectAll}
                                                 className="cursor-pointer w-[1.20rem] h-[1.20rem]"
                                                 />
-                                                <p className="text-[15px] md:text-base">Select All ({cartItem.items.length})</p>
+                                                <p className="text-sm md:text-[15px]">Pilih semua ({cartItem.items.length})</p>
                                             </div>
                                         </div>
                                         {/* Cart Items */}
@@ -110,7 +113,7 @@ export const Cart = () => {
                                         </p>
                                     </div>
                                     <div className="flex flex-wrap items-center justify-between">
-                                        <p>Shipping Cost</p>
+                                        <p>Biaya Pengiriman</p>
                                         <p>Free</p>
                                     </div>
                                 </div>
@@ -129,7 +132,7 @@ export const Cart = () => {
                                 variant="primary"
                                 size="lg"
                                 >
-                                    {isLoadingBuyNow ? <ClipLoader size={24} color="white" /> : `Buy Now ${selectedCount ? `(${selectedCount})` : ''}`}
+                                    {isLoadingBuyNow ? <ClipLoader size={24} color="white" /> : `Beli ${selectedCount ? `(${selectedCount})` : ''}`}
                                 </Button>
                             </div>
                         )}
