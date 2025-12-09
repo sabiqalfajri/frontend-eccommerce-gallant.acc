@@ -32,17 +32,17 @@ export const CarousalProducts = ({
     return (
         <div className="flex flex-col gap-y-2 md:gap-y-3 w-full">
             <div className="flex justify-between items-center md:block w-full">
-                <h1 className="text-[19px] md:text-2xl font-bold text-center md:mb-2">
+                <h1 className="text-[17px] md:text-2xl font-bold text-center md:mb-2">
                     {title}
                 </h1>
 
                 {/* Mobile Only */}
                 <button 
-                className="flex flex-wrap items-center gap-1 text-primary font-semibold md:hidden cursor-pointer"
+                className="flex flex-wrap items-center gap-1 text-primary font-semibold md:hidden cursor-pointer text-sm"
                 type='button'
                 onClick={() => navigate('/shop')}
                 >
-                    See all
+                    Lihat semua
                     <MdOutlineKeyboardArrowRight size={20} />
                 </button>
             </div>

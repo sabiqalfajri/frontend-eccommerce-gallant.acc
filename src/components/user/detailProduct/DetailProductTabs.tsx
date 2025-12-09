@@ -15,11 +15,11 @@ export const DetailProductTabs = ({
             label: "Description",
             content: <div><p>{product?.description}</p></div>,
         },
-        {
-            value: "orders",
-            label: "Additional Info",
-            content: <div>📦 Daftar pesanan pelanggan</div>,
-        },
+        // {
+        //     value: "orders",
+        //     label: "Additional Info",
+        //     content: <div>📦 Daftar pesanan pelanggan</div>,
+        // },
     ]
 
     return (

@@ -83,16 +83,16 @@ export const DetailProductInfo = ({ product, id }: DetailProductInfoProps) => {
                     size="lg"
                     className="w-32"
                     >
-                        Buy Now
+                        Beli Sekarang
                     </Button>
                     <Button 
                     variant="primary"
                     size="lg"
                     onClick={() => addToCart({ productId: id, quantity })}
                     disabled={isAddingToCart}
-                    className="w-40"
+                    className="w-fit md:w-36"
                     >
-                        {isAddingToCart ? <ClipLoader size={24} color="white" /> : 'Add To Cart'}
+                        {isAddingToCart ? <ClipLoader size={24} color="white" /> : '+ Keranjang'}
                     </Button>
                 </div>
             </div>

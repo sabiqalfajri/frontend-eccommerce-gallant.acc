@@ -25,7 +25,7 @@ export const AddAddressAccount = () => {
                 >
                     <IoIosArrowBack size={20} />
                 </button>
-                <h1 className="font-semibold">Add Address</h1>
+                <h1 className="font-semibold">Tambah Alamat</h1>
             </div>
             <AddressForm 
                 mode="create"

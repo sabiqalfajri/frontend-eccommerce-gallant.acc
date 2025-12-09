@@ -13,7 +13,7 @@ export const CarousalProductSkeleton = ({ length, title }: { length: number; tit
                 className="flex flex-wrap items-center gap-1 text-primary font-semibold md:hidden cursor-pointer"
                 type='button'
                 >
-                    See all
+                    Lihat semua
                     <MdOutlineKeyboardArrowRight size={20} />
                 </button>
             </div>

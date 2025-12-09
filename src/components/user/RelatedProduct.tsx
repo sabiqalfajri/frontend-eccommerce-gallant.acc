@@ -13,7 +13,9 @@ export const RelatedProduct = ({ id }: { id: string }) => {
 
     return (
         <div>
-            <h1 className="font-semibold text-[25px] md:text-[29px] text-center">Related Product</h1>
+            <h1 className="font-semibold text-[18px] md:text-2xl text-center">
+                Rekomendasi untuk Kamu
+            </h1>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 lg:gap-5 mt-6">
                 {smoothLoading ? (
                     <CardProductSkeleton />

@@ -6,6 +6,7 @@ import { AccountAddressKeys, Address } from "@/types/Address"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useEffect } from "react"
 import { useForm } from "react-hook-form"
+import { ClipLoader } from "react-spinners"
 
 interface AddressFormProps {
     mode: 'create' | 'edit';
@@ -129,15 +130,15 @@ export const AddressForm = ({
                 disabled={isSubmitting}
                 type="button"
                 >
-                    Cancel
+                    Batal
                 </Button>
                 <Button variant="primary"
                 disabled={isSubmitting}
                 type="submit"
                 >
                     {isSubmitting ? 
-                        mode === 'create' ? 'Creating Address..' : 'Updating Address..'
-                        : mode === 'create' ? 'Create Address' : 'Update Address'
+                        <ClipLoader size={24} color="white" />
+                        : mode === 'create' ? 'Tambah Alamat' : 'Simpan Alamat'
                     }
                 </Button>
             </div>

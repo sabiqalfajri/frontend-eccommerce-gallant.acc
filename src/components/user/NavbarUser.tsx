@@ -32,30 +32,30 @@ export const NavbarUser = () => {
     const authMenu: MenuItem[] = [
         { 
             icon: <BiUser size={22} />, 
-            label: 'Profile', 
+            label: 'Profil Saya', 
             href: '/customer',
             separator: 'up'
         },
         { 
             icon: <HiOutlineInboxArrowDown size={20} />, 
-            label: 'Orders',
+            label: 'Pesanan',
             href: '/customer/order/all' 
         },
         { 
             icon: <MapPin size={20} />, 
-            label: 'Adress',
+            label: 'Alamat',
             href: '/customer/address' 
         },
         { 
             icon: <BsBoxArrowLeft size={19} />, 
-            label: 'Sign Out', 
+            label: 'Keluar', 
             onClick: logout, 
             separator: "up",
         },
     ]
 
     const guestMenu = [
-        { icon: <IoLogInOutline size={25} color="#000" />, label: 'Sign In', href: '/auth/sign-in' },
+        { icon: <IoLogInOutline size={25} color="#000" />, label: 'Masuk', href: '/auth/sign-in' },
     ]
     
     const userMenu = isSignedIn ? authMenu : guestMenu;

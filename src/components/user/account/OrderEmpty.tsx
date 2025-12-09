@@ -12,10 +12,10 @@ export const OrderEmpty = () => {
             className="w-24 h-24 md:w-28 md:h-28 object-contain" 
             />
             <div className="flex flex-col text-center mt-1">
-                <h1 className="font-semibold text-[18px] md:text-2xl">Your order list is empty!</h1>
+                <h1 className="font-semibold text-[18px] md:text-2xl">Belum ada pesanan!</h1>
                 <div className="text-gray-500 text-[13px] md:text-base">
-                    <p className="mt-2">You haven't made any purchases yet.</p>
-                    <p>Start your first order now.</p>
+                    <p className="mt-2">Kamu belum melakukan pembelian apa pun.</p>
+                    <p>Yuk mulai pesanan pertamamu!</p>
                 </div>
             </div>
             <Button 
@@ -24,7 +24,7 @@ export const OrderEmpty = () => {
             variant="primary"
             size="lg"
             >
-                Start Shopping
+                Belanja Sekarang
             </Button>
         </div>
     )

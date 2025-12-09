@@ -23,10 +23,10 @@ export const BestSellers = () => {
     return (
         <Section>
             {smoothLoading ? (
-                <CarousalProductSkeleton length={skeletonLength} title="New Arrivals" />
+                <CarousalProductSkeleton length={skeletonLength} title="Produk Terlaris" />
             ) : bestSeller && (
                 <CarousalProducts 
-                    title="Best Sellers"
+                    title="Produk Terlaris"
                     errorTitle="No products found"
                     data={bestSeller}
                     isError={isErrorBestSeller}

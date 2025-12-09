@@ -30,7 +30,7 @@ export const EditAddressAccount = () => {
                 >
                     <IoIosArrowBack size={20} />
                 </button>
-                <h1 className="font-semibold">Edit Address</h1>
+                <h1 className="font-semibold">Ubah Alamat</h1>
             </div>
             <AddressForm 
                 mode="edit"
