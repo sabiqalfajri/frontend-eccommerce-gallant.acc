@@ -47,8 +47,8 @@ export const Register = () => {
 
     return (
         <main className="flex flex-col justify-center items-center h-screen">
-            <form onSubmit={onSubmit}>
-                <Card className={`w-[350px] md:w-[450px] gap-4 shadow-lg ${isSubmitting ? 'pointer-events-none opacity-50' : ''}`}>
+            <form onSubmit={onSubmit} className="flex justify-center items-center w-full px-2.5">
+                <Card className={`w-full md:w-[450px] gap-4 shadow-lg ${isSubmitting ? 'pointer-events-none opacity-50' : ''}`}>
                     <CardHeader>
                         <CardTitle className="text-3xl font-bold mb-0.5 text-center">
                             Sign Up
@@ -66,7 +66,7 @@ export const Register = () => {
                     </CardHeader>
                     <CardContent>
                         <div className="grid w-full items-center gap-4">
-                            <div className="flex flex-nowrap justify-between gap-1.5 w-full">
+                            <div className="flex flex-col md:flex-nowrap justify-between gap-4 md:gap-1.5 w-full">
                                 <div className="flex flex-col space-y-1.5">
                                     <Label htmlFor="firstName">First Name</Label>
                                     <Input 
