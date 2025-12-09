@@ -23,8 +23,8 @@ export const UserRoutes = () => {
                 <Route element={<ProtectedRoute />}>
                     <Route path="cart" element={<Cart />} />
                     <Route path="checkout" element={<Checkout />} />
+                    <Route path="transaction/:orderId" element={<Transaction />} />
                 </Route>
-                <Route path="transaction/:orderId" element={<Transaction />} />
                 <Route path="skeleton" element={<OrderSkeleton />} />
             </Route>
         </Routes>
