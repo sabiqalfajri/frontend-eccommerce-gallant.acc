@@ -66,10 +66,9 @@ export const Checkout = () => {
     }, [isErrorAddress, navigate])
 
     useEffect(() => {
-        if(!isFetchedAddress) return
-        if(smoothLoadingCheckout || hasCompletedPayment) return;
+        if(!isFetchedAddress || smoothLoadingCheckout || hasCompletedPayment) return;
 
-        if(!address || address.length === 0) {
+        if(address.length === 0) {
             showError('Silakan tambahkan alamat pengiriman terlebih dahulu.')
             navigate(`/customer/address/add?redirect=/checkout`, { replace: true });
             return;
@@ -80,7 +79,7 @@ export const Checkout = () => {
             navigate(`/cart`, { replace: true });
             return;
         }
-    }, [smoothLoadingCheckout, isFetchedAddress, address, checkoutItems, navigate])
+    }, [smoothLoadingCheckout, hasCompletedPayment, isFetchedAddress, address, checkoutItems, navigate])
 
     return (
         <Section>
