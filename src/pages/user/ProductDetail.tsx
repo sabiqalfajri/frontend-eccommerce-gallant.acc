@@ -6,17 +6,14 @@ import { DetailProductTabs } from "@/components/user/detailProduct/DetailProduct
 import { RelatedProduct } from "@/components/user/RelatedProduct";
 import { useProductDetail } from "@/hooks/product/useProductDetail";
 import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading";
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 export const ProductDetail = () => {
     const { id } = useParams()
     const { product, isFetched, isLoading } = useProductDetail(id!);
 
-    useEffect(() => {}, [])
-
     const loadingProductDetail = isLoading || !isFetched
-    const smoothLoadingDetail = useSmoothLoading(loadingProductDetail, 400);
+    const smoothLoadingDetail = useSmoothLoading(loadingProductDetail, 200);
 
     return (
         <Section>

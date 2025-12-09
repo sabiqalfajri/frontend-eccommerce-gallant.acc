@@ -9,10 +9,16 @@ import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading";
 import { useToken } from "@/hooks/universal/useToken";
 import { FormatDate } from "@/utils/FormatDate";
 import { IoMdMore } from "react-icons/io";
+import { Navigate } from "react-router-dom";
 
 export const OrdersAccount = () => {
     const { token } = useToken();
-    const { transactionList, isLoadingTransactionList, isFetchedTransactionList } = useTransactionOrderByUserId(token!);
+    const { 
+        transactionList, 
+        isLoadingTransactionList, 
+        isFetchedTransactionList,
+        isErrorTransactionList
+    } = useTransactionOrderByUserId(token!);
     const { updateOrderStatusUser } = useUpdateStatusOrderUser(token);
     const isLoading = isLoadingTransactionList || !isFetchedTransactionList;
     const smoothLoading = useSmoothLoading(isLoading, 200);
@@ -50,6 +56,10 @@ export const OrdersAccount = () => {
 
     const handleUpdateStatus = async (orderId: string, status: string) => {
         await updateOrderStatusUser({ orderId, newStatus: status })
+    }
+
+    if (isErrorTransactionList) {
+        return <Navigate to="/auth/sign-in" replace />;
     }
 
     if(!smoothLoading && transactionList.length === 0) {
