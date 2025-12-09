@@ -9,6 +9,7 @@ import 'swiper/swiper-bundle.css'
 import { CartSelectionProvider } from './context/CartSelectionContext.tsx'
 import { CheckoutProvider } from './context/CheckoutContext.tsx'
 import { FilterProvider } from './context/FilterContext.tsx'
+import { AuthWathcer } from './providers/AuthWatcher.tsx'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -20,6 +21,7 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl='/'>
+    <AuthWathcer />
     <QueryClientProvider client={queryClient}>
       <CartSelectionProvider>
         <CheckoutProvider>
