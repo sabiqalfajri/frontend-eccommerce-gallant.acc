@@ -1,31 +1,24 @@
 import { AddressForm } from "@/components/user/address/AddressForm"
+import { useCheckoutTransition } from "@/context/CheckoutTransitionContext";
 import { useCreateAddress } from "@/hooks/address/useCreateAddress";
 import { useToken } from "@/hooks/universal/useToken";
 import { AddressInput } from "@/schema/Address.schema";
-import { useEffect } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 export const AddAddressAccount = () => {
     const { token } = useToken();
-    const { createAddress, isCreatingAddress, isSuccess } = useCreateAddress(token!);
+    const { createAddress, isCreatingAddress } = useCreateAddress(token!);
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const redirect = searchParams.get("redirect") || "/customer/address"
+    const { setSkipNextAddressValidation } = useCheckoutTransition();
 
     const onSubmit = async (data: AddressInput) => {
         await createAddress(data);
+        setSkipNextAddressValidation(true);
+        navigate(redirect, { replace: true });
     }
-
-    useEffect(() => {
-        if(isSuccess) {
-            const timer = setTimeout(() => {
-                navigate(redirect, { replace: true });
-            }, 300);
-
-            return () => clearTimeout(timer);
-        }
-    }, [isSuccess, navigate, redirect])
 
     return (
         <div className="flex flex-col gap-3">

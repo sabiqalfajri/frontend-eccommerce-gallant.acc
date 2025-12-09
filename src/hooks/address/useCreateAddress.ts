@@ -12,7 +12,6 @@ export const useCreateAddress = (token: string) => {
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["address"] })
-            queryClient.refetchQueries({ queryKey: ["address"] })
         },
         onError: (error) => {
             showError(error.message || 'Something went wrong')

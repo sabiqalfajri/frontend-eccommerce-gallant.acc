@@ -5,13 +5,14 @@ import { CheckoutItem } from "@/components/user/checkout/CheckoutItem"
 import { CheckoutSkeleton } from "@/components/user/checkout/CheckoutSkeleton"
 import { useCartSelection } from "@/context/CartSelectionContext"
 import { useCheckout } from "@/context/CheckoutContext"
+import { useCheckoutTransition } from "@/context/CheckoutTransitionContext"
 import { useAddress } from "@/hooks/address/useAddress"
 import { useCreateOrder } from "@/hooks/transaction/useCreateOrder"
 import { useCreatePayment } from "@/hooks/transaction/useCreatePayment"
 import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading"
 import { useToken } from "@/hooks/universal/useToken"
 import { showError } from "@/utils/Toast"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 
@@ -19,7 +20,7 @@ export const Checkout = () => {
     const { token } = useToken()
     const { checkoutItems, clearCheckout } = useCheckout();
     const { clearSelection } = useCartSelection();
-    const [hasCompletedPayment, setHasCompletedPayment] = useState(false);
+    // const [hasCompletedPayment, setHasCompletedPayment] = useState(false);
     const { address, isLoadingAddress, isFetchedAddress, isErrorAddress } = useAddress(token!);
     const { createTransactionOrder, isCreatingTransactionOrder } = useCreateOrder(token)
     const { createTransactionPayment, isCreatingTransactionPayment } = useCreatePayment(token)
@@ -29,6 +30,7 @@ export const Checkout = () => {
     const checkoutCount = checkoutItems.reduce((sum, i) => sum + i.quantity, 0 );
     const navigate = useNavigate();
     const isLoading = isCreatingTransactionOrder || isCreatingTransactionPayment;
+    const { skipNextAddressValidation, setSkipNextAddressValidation } = useCheckoutTransition();
     
     const handlePayNow = async () => {
         if(checkoutItems.length === 0) return;
@@ -53,7 +55,7 @@ export const Checkout = () => {
 
         clearCheckout();
         clearSelection();
-        setHasCompletedPayment(true);
+        // setHasCompletedPayment(true);
         
         navigate(`/transaction/${order.id}`, { replace: true })
     }
@@ -66,9 +68,14 @@ export const Checkout = () => {
     }, [isErrorAddress, navigate])
 
     useEffect(() => {
-        if(!isFetchedAddress || smoothLoadingCheckout || hasCompletedPayment) return;
+        if(!isFetchedAddress || smoothLoadingCheckout) return;
+        if(skipNextAddressValidation) {
+            setSkipNextAddressValidation(false);
+            return
+        }
 
-        if(address.length === 0) {
+        if(!address || address.length === 0) {
+            console.log('address checkout', address)
             showError('Silakan tambahkan alamat pengiriman terlebih dahulu.')
             navigate(`/customer/address/add?redirect=/checkout`, { replace: true });
             return;
@@ -79,7 +86,7 @@ export const Checkout = () => {
             navigate(`/cart`, { replace: true });
             return;
         }
-    }, [smoothLoadingCheckout, hasCompletedPayment, isFetchedAddress, address, checkoutItems, navigate])
+    }, [smoothLoadingCheckout, isFetchedAddress, address, checkoutItems, navigate])
 
     return (
         <Section>
