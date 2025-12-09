@@ -47,19 +47,19 @@ export const Register = () => {
 
     return (
         <main className="flex flex-col justify-center items-center h-screen">
-            <form onSubmit={onSubmit} className="flex justify-center items-center w-full px-2.5">
+            <form onSubmit={onSubmit} className="flex justify-center items-center w-full px-3">
                 <Card className={`w-full md:w-[450px] gap-4 shadow-lg ${isSubmitting ? 'pointer-events-none opacity-50' : ''}`}>
                     <CardHeader>
                         <CardTitle className="text-3xl font-bold mb-0.5 text-center">
                             Sign Up
                         </CardTitle>
                         <CardDescription className="text-center">
-                            Sign up to create your account
+                            Daftar untuk membuat akun Anda
                         </CardDescription>
                         <div className="flex items-center ">
                         <hr className="flex-1 border-t border-gray-300 my-3.5"/>
                         <span className="mx-3 text-gray-400 text-xs select-none">
-                            Register with Email
+                            Daftar dengan Email
                         </span>
                         <hr className="flex-1 border-t border-gray-300"/>
                     </div>
@@ -68,21 +68,21 @@ export const Register = () => {
                         <div className="grid w-full items-center gap-4">
                             <div className="flex flex-col md:flex-nowrap justify-between gap-4 md:gap-1.5 w-full">
                                 <div className="flex flex-col space-y-1.5">
-                                    <Label htmlFor="firstName">First Name</Label>
+                                    <Label htmlFor="firstName">Nama Depan</Label>
                                     <Input 
                                     className="h-10" 
                                     id="firstName" 
-                                    placeholder="First name" 
+                                    placeholder="Masukkan nama depan" 
                                     {...register("firstName")}
                                     />
                                     {errors.firstName && <span className="text-red-500 text-xs">{errors.firstName.message}</span>}
                                 </div>
                                 <div className="flex flex-col space-y-1.5">
-                                    <Label htmlFor="lastName">Last Name</Label>
+                                    <Label htmlFor="lastName">Nama Belakang</Label>
                                     <Input 
                                     className="h-10" 
                                     id="lastName" 
-                                    placeholder="Last name" 
+                                    placeholder="Masukkan nama belakang" 
                                     {...register("lastName")}
                                     />
                                     {errors.lastName && <span className="text-red-500 text-xs">{errors.lastName.message}</span>}
@@ -93,7 +93,7 @@ export const Register = () => {
                                 <Input
                                 className="h-10" 
                                 id="email" 
-                                placeholder="Enter your email"
+                                placeholder="Masukkan email"
                                 type="email"
                                 {...register("email")}
                                 />
@@ -104,7 +104,8 @@ export const Register = () => {
                             value={watch("password")}
                             error={errors.password?.message}
                             register={register}
-                            label="Password"
+                            placeholder="Masukkan kata sandi"
+                            label="Kata Sandi"
                             />
                         </div>
                         <div className="flex items-center mt-3">
@@ -114,7 +115,7 @@ export const Register = () => {
                                     htmlFor="terms"
                                     className="text-xs font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                 >
-                                    I agree to the <a className="text-indigo-600 hover:underline" href="#">Terms and Conditions</a>
+                                    Saya menyetujui <a className="text-indigo-600 hover:underline" href="#">Syarat dan Ketentuan</a>
                                 </label>
                             </div>
                         </div>
@@ -128,13 +129,13 @@ export const Register = () => {
                         className="w-full">
                             {isSubmitting 
                                 ? <ClipLoader size={24} color="white" /> 
-                                : "Create account"
+                                : "Buat Akun"
                             }
                         </Button>
                         <p className="mt-3 flex gap-2 text-xs text-black font-normal">
-                            Already have an account?
+                            Sudah punya akun?
                             <a className="text-indigo-600 hover:underline" href="/auth/sign-in">
-                                Sign in
+                                Masuk
                             </a>
                         </p>
 

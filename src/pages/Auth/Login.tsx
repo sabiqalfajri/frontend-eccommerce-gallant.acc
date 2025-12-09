@@ -16,6 +16,7 @@ import { CurrentUser } from "@/types/User";
 import { axiosClient } from "@/api/AxiosClient";
 import { useQueryClient } from "@tanstack/react-query";
 import { Storage } from "@/services/Storage";
+import { Info } from 'lucide-react';
 
 export const Login = () => {
     const { getToken } = useAuth();
@@ -70,6 +71,17 @@ export const Login = () => {
         }
     }) 
 
+    const errorStyle = (message: string) => {
+        return (
+            <div className="flex flex-wrap items-center gap-1 text-red-500">
+                <Info size={16} />
+                <span className="text-red-500 text-xs">
+                    {message}
+                </span>
+            </div>
+        )
+    }
+
     // useEffect(() => {
     //     if(isSignedIn) {
     //         window.location.replace("/");
@@ -78,21 +90,21 @@ export const Login = () => {
 
     return (
         <main className="flex flex-col justify-center items-center h-screen">
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} className="flex justify-center items-center w-full px-3">
                 <Card 
-                className={`w-[350px] gap-4 shadow-lg ${isSubmitting ? 'pointer-events-none opacity-50' : ''}`}
+                className={`w-full md:w-[350px] gap-4 shadow-lg ${isSubmitting ? 'pointer-events-none opacity-50' : ''}`}
                 >
                     <CardHeader>
                         <CardTitle className="text-3xl font-bold mb-0.5 text-center">
                             Sign In
                         </CardTitle>
                         <CardDescription className="text-center">
-                            Sign in to your account
+                            Akses akun Anda untuk melanjutkan
                         </CardDescription>
                         <div className="flex items-center ">
                             <hr className="flex-1 border-t border-gray-300 my-3.5"/>
                             <span className="mx-3 text-gray-400 text-xs select-none">
-                            Sign in with Email
+                            Masuk dengan Email
                             </span>
                             <hr className="flex-1 border-t border-gray-300"/>
                         </div>
@@ -104,18 +116,18 @@ export const Login = () => {
                                 <Input
                                 className="h-10" 
                                 id="email" 
-                                placeholder="Enter your email"
+                                placeholder="Masukkan email"
                                 type="email"
                                 {...register("email")}
                                 />
-                                {errors.email && <span className="text-red-500 text-xs">{errors.email.message}</span>}
+                                {errors.email && errorStyle(errors.email.message!)}
                             </div>
                             <div className="flex flex-col space-y-1.5 relative">
-                                <Label htmlFor="password">Password</Label>
+                                <Label htmlFor="password">Kata Sandi</Label>
                                 <Input 
                                 className="h-10" 
                                 id="password" 
-                                placeholder="Enter your password" 
+                                placeholder="Masukkan kata sandi" 
                                 type={showPassword ? "text" : "password"}
                                 {...register("password")}
                                 />
@@ -132,7 +144,7 @@ export const Login = () => {
                             </div>
                         </div>
                         <div className="px-1">
-                            {errors.password && <span className="text-red-500 text-xs">{errors.password.message}</span>}
+                            {errors.password && errorStyle(errors.password.message!)}
                         </div>
                         <div className="flex justify-between items-center mt-4">
                             <div className="flex items-center space-x-2">
@@ -141,11 +153,11 @@ export const Login = () => {
                                     htmlFor="terms"
                                     className="text-xs font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                 >
-                                    Remember me
+                                    Ingat saya
                                 </label>
                             </div>
                             <a className="text-indigo-600 text-xs font-normal hover:underline" href="/auth/forgot-password">
-                                Forget password?
+                                Lupa kata sandi?
                             </a>
                         </div>
                     </CardContent>
@@ -160,9 +172,9 @@ export const Login = () => {
                             {isSubmitting ? <ClipLoader size={24} color="white" /> : "Login"}
                         </Button>
                         <p className="mt-4 flex gap-2 text-xs text-black font-normal">
-                            Not registered yet?
+                            Belum punya akun?
                             <a className="text-indigo-600 hover:underline" href="/auth/sign-up">
-                                Create an Account
+                                Daftar sekarang
                             </a>
                         </p>
                     </CardFooter>
