@@ -1,4 +1,3 @@
-import { IoIosArrowDown } from "react-icons/io";
 import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
