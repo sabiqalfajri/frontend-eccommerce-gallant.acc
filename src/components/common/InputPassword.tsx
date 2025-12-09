@@ -29,7 +29,7 @@ export const InputPassword = ({
             <div className="flex flex-col space-y-1.5 relative">
                 <Label htmlFor={id}>{label}</Label>
                 <Input
-                className="h-10" 
+                className="h-10 placeholder:text-sm" 
                 id={id} 
                 placeholder={placeholder}
                 type={show ? "text" : "password"}

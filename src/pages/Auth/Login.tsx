@@ -114,7 +114,7 @@ export const Login = () => {
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="email">Email</Label>
                                 <Input
-                                className="h-10" 
+                                className="h-10 placeholder:text-sm" 
                                 id="email" 
                                 placeholder="Masukkan email"
                                 type="email"
@@ -125,7 +125,7 @@ export const Login = () => {
                             <div className="flex flex-col space-y-1.5 relative">
                                 <Label htmlFor="password">Kata Sandi</Label>
                                 <Input 
-                                className="h-10" 
+                                className="h-10 placeholder:text-sm" 
                                 id="password" 
                                 placeholder="Masukkan kata sandi" 
                                 type={showPassword ? "text" : "password"}
@@ -171,7 +171,7 @@ export const Login = () => {
                         >
                             {isSubmitting ? <ClipLoader size={24} color="white" /> : "Login"}
                         </Button>
-                        <p className="mt-4 flex gap-2 text-xs text-black font-normal">
+                        <p className="mt-4 flex gap-1.5 text-xs text-black font-normal">
                             Belum punya akun?
                             <a className="text-indigo-600 hover:underline" href="/auth/sign-up">
                                 Daftar sekarang

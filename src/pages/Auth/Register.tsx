@@ -70,7 +70,7 @@ export const Register = () => {
                                 <div className="flex flex-col space-y-1.5">
                                     <Label htmlFor="firstName">Nama Depan</Label>
                                     <Input 
-                                    className="h-10" 
+                                    className="h-10 placeholder:text-sm" 
                                     id="firstName" 
                                     placeholder="Masukkan nama depan" 
                                     {...register("firstName")}
@@ -80,7 +80,7 @@ export const Register = () => {
                                 <div className="flex flex-col space-y-1.5">
                                     <Label htmlFor="lastName">Nama Belakang</Label>
                                     <Input 
-                                    className="h-10" 
+                                    className="h-10 placeholder:text-sm" 
                                     id="lastName" 
                                     placeholder="Masukkan nama belakang" 
                                     {...register("lastName")}
@@ -91,7 +91,7 @@ export const Register = () => {
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="email">Email</Label>
                                 <Input
-                                className="h-10" 
+                                className="h-10 placeholder:text-sm" 
                                 id="email" 
                                 placeholder="Masukkan email"
                                 type="email"
@@ -132,7 +132,7 @@ export const Register = () => {
                                 : "Buat Akun"
                             }
                         </Button>
-                        <p className="mt-3 flex gap-2 text-xs text-black font-normal">
+                        <p className="mt-3 flex gap-1.5 text-xs text-black font-normal">
                             Sudah punya akun?
                             <a className="text-indigo-600 hover:underline" href="/auth/sign-in">
                                 Masuk
