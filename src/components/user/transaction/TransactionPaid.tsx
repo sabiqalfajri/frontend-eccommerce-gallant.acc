@@ -29,7 +29,7 @@ export const TransactionPaid = ({ data }: TransactionPaidProps) => {
                     <div className="flex flex-col items-center justify-center -mt-2.5">
                         <h1 className="font-semibold text-lg md:text-[20px]">Pembayaran Berhasil!</h1>
                         <p className="text-sm text-center">
-                            Terima kasih! Pesanan Anda telah dikonfirmasi.
+                            Terima kasih! Pesanan kamu telah dikonfirmasi.
                         </p>
                         <p className="text-sm text-center mt-2.5">
                             {FormatDate(data.createdAt)}
@@ -68,7 +68,7 @@ export const TransactionPaid = ({ data }: TransactionPaidProps) => {
                     <Button variant="outlinePrimary" size="lg"
                     onClick={() => navigate('/')}
                     >
-                        Kembali ke Beranda
+                        Belanja Lagi
                     </Button>
                     <Button variant="primary" size="lg"
                     onClick={() => navigate(`/customer/order/${publicId}`)}
