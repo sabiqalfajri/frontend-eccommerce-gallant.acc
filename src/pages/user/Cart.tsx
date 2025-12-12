@@ -102,7 +102,7 @@ export const Cart = () => {
                         {/* Summary Cart */}
                         {(!isMobile || (isMobile && cartItem.items.length > 0)) && (
                             <div className="flex flex-col h-fit border border-gray-200 rounded-md p-3 pb-4">
-                                <h1 className="font-semibold text-[17px] md:text-[20px]">
+                                <h1 className="font-semibold text-[16.5px] md:text-[20px]">
                                     Ringkasan Belanja
                                 </h1>
                                 <div className="flex flex-col gap-1 text-sm pb-3 border-b border-gray-200 mt-4">
