@@ -115,7 +115,7 @@ export const VerifyEmail = () => {
                         )} 
                     />
                     {errors.otp && <p className="text-red-500 text-xs mt-3">{errors.otp.message}</p>}
-                    <div className="flex flex-col items-center justify-center gap-2 mt-[1.5rem] w-full"> 
+                    <div className="flex flex-col items-center justify-center gap-2 mt-6 w-full"> 
                         <Button 
                         className="w-full md:w-[350px]" variant="primary" 
                         size="lg"

@@ -1,5 +1,5 @@
 import { TransactionResponse } from "@/types/Transaction"
-import { FormatDateWithoutWib } from "@/utils/FormatDate"
+import { FormatDate } from "@/utils/FormatDate"
 import Lottie from "lottie-react"
 import completedAnimation from "@/assets/completed.json"
 import { Button } from "@/components/ui/button"
@@ -16,43 +16,50 @@ export const TransactionPaid = ({ data }: TransactionPaidProps) => {
 
     return (
         <div className="flex justify-center items-center h-[calc(100vh-25vh)] md:h-fit">
-            <div className="flex flex-col w-full max-w-[25rem]">
+            <div className="flex flex-col w-full md:w-[25rem]">
                 <div className="flex flex-col items-center">
-                    <Lottie 
-                        className="w-24 h-24 md:w-32 md:h-32"
-                        animationData={completedAnimation}
-                        loop
-                        autoPlay
-                    />
-                    <h1 className="font-semibold text-lg">Payment Success!</h1>
-                    <p className="text-sm text-center">Thanks for your order - it's now confirmed.</p>
+                    <div>
+                        <Lottie 
+                            className="w-24 h-24 md:w-32 md:h-32"
+                            animationData={completedAnimation}
+                            loop
+                            autoPlay
+                        />
+                    </div>
+                    <div className="flex flex-col items-center justify-center -mt-2.5">
+                        <h1 className="font-semibold text-lg md:text-[20px]">Pembayaran Berhasil!</h1>
+                        <p className="text-sm text-center">
+                            Terima kasih! Pesanan Anda telah dikonfirmasi.
+                        </p>
+                        <p className="text-sm text-center mt-2.5">
+                            {FormatDate(data.createdAt)}
+                        </p>
+                    </div>
                 </div>
-                <div className="flex flex-col mt-5 bg-white rounded-md p-4">
-                    <div className="mb-2 mt-1">
-                        <h1 className="text-md font-semibold">Payment Details</h1>
+                <div className="flex flex-col mt-8 bg-white rounded-md p-4">
+                    <div className="mb-1.5 mt-1">
+                        <h1 className="text-md font-semibold">
+                            Detail Pembayaran
+                        </h1>
                     </div>  
-                    <div className="flex flex-col mt-3 gap-2">
+                    <div className="flex flex-col mt-2 gap-1.5">
                         <div className="flex flex-wrap justify-between items-center w-full text-[15px] md:text-base">
-                            <p className="text-gray-600">Transaction ID</p>
+                            <p className="text-gray-600">ID Transaksi</p>
                             <p className="">{publicId}</p>
                         </div>
                         <div className="flex flex-wrap justify-between items-center w-full text-[15px] md:text-base">
-                            <p className="text-gray-600">Transaction Date</p>
-                            <p className="">{FormatDateWithoutWib(data.createdAt)}</p>
-                        </div>
-                        <div className="flex flex-wrap justify-between items-center w-full text-[15px] md:text-base">
-                            <p className="text-gray-600">Payment Method</p>
+                            <p className="text-gray-600">Metode Pembayaran</p>
                             <p className="">QRIS</p>
                         </div>
                         <div className="flex flex-wrap justify-between items-center w-full text-[15px] md:text-base">
-                            <p className="text-gray-600">Nominal</p>
+                            <p className="text-gray-600">Total Pembayaran</p>
                             <p className="font-semibold">Rp{totalAmount.toLocaleString("id-ID")}</p>
                         </div>
                         <div className="flex flex-wrap justify-between items-center w-full text-[15px] md:text-base">
                             <p className="text-gray-600">Status</p>
                             <div className="flex flex-wrap gap-1.5 items-center text-[#57D24E]">
                                 <CircleCheckBig size={18} />
-                                <p className="font-semibold">Success</p>
+                                <p className="font-semibold">Sukses</p>
                             </div>
                         </div>
                     </div>
@@ -61,12 +68,12 @@ export const TransactionPaid = ({ data }: TransactionPaidProps) => {
                     <Button variant="outlinePrimary" size="lg"
                     onClick={() => navigate('/')}
                     >
-                        Back to Home
+                        Kembali ke Beranda
                     </Button>
                     <Button variant="primary" size="lg"
                     onClick={() => navigate(`/customer/order/${publicId}`)}
                     >
-                        View Order
+                        Lihat Pesanan
                     </Button>
                 </div>
             </div>

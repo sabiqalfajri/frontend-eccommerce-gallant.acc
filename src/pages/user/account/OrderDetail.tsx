@@ -13,6 +13,8 @@ import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading";
 import { OrderDetailSkeleton } from "@/components/user/account/OrderDetailSkeleton";
 import { useAddToCart } from "@/hooks/cart/useAddToCart";
 import { ClipLoader } from "react-spinners";
+import { showError } from "@/utils/Toast";
+import { useEffect } from "react";
 
 export const OrderDetail = () => {
     const { id } = useParams();
@@ -22,20 +24,24 @@ export const OrderDetail = () => {
     const { 
         detailOrderUser, 
         isLoadingDetailOrderUser, 
-        isFetchedDetailOrderUser
+        isFetchedDetailOrderUser,
+        isErrorDetailOrderUser
     } = useDetailOrderUser(token!, id!);
     const isLoading = isLoadingDetailOrderUser || !isFetchedDetailOrderUser;
     const smoothLoading = useSmoothLoading(isLoading, 200);
-
-    // if(!detailOrderUser) {
-    //     showError('Order not found')
-    //     navigate('/customer/order/all');
-    //     return
-    // }
     
     const steps = detailOrderUser 
         ? BuildSteps(detailOrderUser.status, detailOrderUser)
         : []
+
+    useEffect(() => {
+        if(smoothLoading) return
+        if(isErrorDetailOrderUser || !detailOrderUser) {
+            showError("Detail pesanan tidak ditemukan.")
+            navigate('/customer/order/all', { replace: true });
+            return;
+        }
+    }, [isErrorDetailOrderUser, detailOrderUser, smoothLoading, navigate])
 
     return (
         <>

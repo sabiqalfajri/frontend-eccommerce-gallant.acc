@@ -51,6 +51,7 @@ type BaseTransactionResponse = {
     status: statusOrder;
     paymentType: string;
     qrisUrl: string;
+    qrisString: string;
     qrisExpiryAt: string;
     transactionId: string;
     createdAt: string;

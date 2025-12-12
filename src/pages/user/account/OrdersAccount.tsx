@@ -25,23 +25,23 @@ export const OrdersAccount = () => {
 
     const statusStyle: Record<string, { label: string; className: string }> = {
         pending: {
-            label: 'Pending',
+            label: 'Belum Bayar',
             className: 'bg-orange-100 text-orange-600'
         },
         processing: {
-            label: 'Processing',
+            label: 'Diproses',
             className: 'bg-sky-100 text-sky-600'
         },
         shipped: {
-            label: 'Shipped',
+            label: 'Dikirim',
             className: 'bg-purple-100 text-purple-600'
         },
         completed: {
-            label: 'Completed',
+            label: 'Selesai',
             className: 'bg-green-100 text-green-600'
         },
         expired: {
-            label: 'Expired',
+            label: 'Tidak Dibayar',
             className: 'bg-red-100 text-red-600'
         },
     }
@@ -74,7 +74,8 @@ export const OrdersAccount = () => {
                 <div className="flex flex-col gap-4">
                     {transactionList.map((order) => {
                         const status = getSyleStatus(order.status);
-                        const invalidDeliveryDate = ["SHIPPED", "COMPLETED"]
+                        const showDeliveryDateStatus = ["SHIPPED", "COMPLETED"];
+                        const shouldShowDeliveryDate = showDeliveryDateStatus.includes(order.status);
                         const menu = getOrderAccountActions(order, {
                             updateStatus: handleUpdateStatus
                         });
@@ -83,22 +84,23 @@ export const OrdersAccount = () => {
                             { 
                                 label: 'Status', 
                                 content: (
-                                    <div className={`flex justify-center items-center font-semibold py-0.5 text-sm w-24 rounded-full ${status.className}`}>
+                                    <div className={`flex justify-center items-center font-semibold py-0.5 text-sm w-28 rounded-full ${status.className}`}>
                                         {status.label}
                                     </div>
                                 )
                             },
-                            { 
-                                label: 'Tgl Pengiriman', 
-                                content: (
-                                    <p>
-                                        {invalidDeliveryDate.includes(order.status) 
-                                        ? FormatDateWithDay(order.shippedAt)
-                                        // Fri, 14 Nov, 2025
-                                        : '-'}
-                                    </p>
-                                )
-                            },
+                            ...(shouldShowDeliveryDate ? [
+                                {
+                                    label: 'Tgl Pengiriman', 
+                                    content: (
+                                        <p>
+                                            {order.shippedAt
+                                            ? FormatDateWithDay(order.shippedAt)
+                                            : '-'}
+                                        </p>
+                                    )
+                                }
+                            ] : []),
                             { 
                                 label: 'Total', 
                                 content: 
@@ -147,32 +149,6 @@ export const OrdersAccount = () => {
                                             {info.content}
                                         </div>
                                     ))}
-                                    {/* <div className="flex flex-wrap items-center gap-2.5">
-                                        <p className="w-36">Status</p>
-                                        <div className={`flex justify-center items-center font-semibold py-0.5 text-sm w-24 rounded-full ${status.className}`}>
-                                            {status.label}
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-wrap gap-2.5">
-                                        <p className="w-36">Tanggal Pengiriman</p>
-                                        <p>
-                                            {
-                                                invalidDeliveryDate.includes(order.status) 
-                                                ? 'Fri, 14 Nov, 2025' 
-                                                : '-'
-                                            }
-                                        </p>
-                                    </div>
-                                    <div className="flex flex-wrap gap-2.5">
-                                        <p className="w-36">Dikirim ke</p>
-                                        <p>JL Kaliputih 1 No 9</p>
-                                    </div>
-                                    <div className="flex flex-wrap gap-2.5">
-                                        <p className="w-36 font-semibold">Total</p>
-                                        <p className="font-semibold">
-                                            Rp{order.totalAmount.toLocaleString("id-ID")}
-                                        </p>
-                                    </div> */}
                                 </div>   
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 text-sm">
                                     {order.items.map((item, idx) => (

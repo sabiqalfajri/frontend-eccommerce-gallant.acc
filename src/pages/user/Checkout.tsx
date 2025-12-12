@@ -12,7 +12,7 @@ import { useCreatePayment } from "@/hooks/transaction/useCreatePayment"
 import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading"
 import { useToken } from "@/hooks/universal/useToken"
 import { showError } from "@/utils/Toast"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 
@@ -20,7 +20,7 @@ export const Checkout = () => {
     const { token } = useToken()
     const { checkoutItems, clearCheckout } = useCheckout();
     const { clearSelection } = useCartSelection();
-    // const [hasCompletedPayment, setHasCompletedPayment] = useState(false);
+    const [hasCompletedPayment, setHasCompletedPayment] = useState(false);
     const { address, isLoadingAddress, isFetchedAddress, isErrorAddress } = useAddress(token!);
     const { createTransactionOrder, isCreatingTransactionOrder } = useCreateOrder(token)
     const { createTransactionPayment, isCreatingTransactionPayment } = useCreatePayment(token)
@@ -55,20 +55,19 @@ export const Checkout = () => {
 
         clearCheckout();
         clearSelection();
-        // setHasCompletedPayment(true);
+        setHasCompletedPayment(true);
         
         navigate(`/transaction/${order.id}`, { replace: true })
     }
 
     useEffect(() => {
         if(isErrorAddress) {
-            showError("Sesi Anda telah berakhir. Silakan masuk kembali.");
             navigate("/auth/sign-in", { replace: true });
         }
     }, [isErrorAddress, navigate])
 
     useEffect(() => {
-        if(!isFetchedAddress || smoothLoadingCheckout) return;
+        if(!isFetchedAddress || smoothLoadingCheckout || hasCompletedPayment) return;
         if(skipNextAddressValidation) {
             setSkipNextAddressValidation(false);
             return
@@ -86,7 +85,14 @@ export const Checkout = () => {
             navigate(`/cart`, { replace: true });
             return;
         }
-    }, [smoothLoadingCheckout, isFetchedAddress, address, checkoutItems, navigate])
+    }, [
+        smoothLoadingCheckout, 
+        hasCompletedPayment,
+        isFetchedAddress, 
+        address, 
+        checkoutItems, 
+        navigate
+    ])
 
     return (
         <Section>
@@ -102,7 +108,7 @@ export const Checkout = () => {
                         </div>
                     </div>
                     <div className="flex flex-col h-fit border border-gray-200 rounded-md p-3 pb-4">
-                        <h1 className="font-semibold text-[18px] md:text-2xl">Detail Pembayaran</h1>
+                        <h1 className="font-semibold text-[17px] md:text-[20px]">Detail Pembayaran</h1>
                         <div className="flex flex-col gap-1 text-sm pb-3 border-b border-gray-200 mt-4">
                             <div className="flex flex-wrap justify-between items-center">
                                 <div className="flex flex-nowrap items-center gap-x-3.5">

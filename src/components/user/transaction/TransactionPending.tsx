@@ -7,7 +7,6 @@ import { IoCopyOutline } from "react-icons/io5";
 import { FormatDate } from "@/utils/FormatDate";
 import { useCountdown } from "@/hooks/universal/useCoutdown";
 import { ClipLoader } from "react-spinners";
-import { ToISODate } from "@/helper/ToIsoDate";
 
 interface TransactionPendingProps {
     transaction: TransactionResponse
@@ -21,9 +20,6 @@ export const TransactionPending = ({
     isRefetching
 }: TransactionPendingProps) => {
     const time = useCountdown(transaction.qrisExpiryAt);
-    console.log("expiry raw:", transaction.qrisExpiryAt);
-    console.log("expiry iso:", ToISODate(transaction.qrisExpiryAt));
-    console.log("parsed:", new Date(ToISODate(transaction.qrisExpiryAt)));
 
     return (
         <div className="flex justify-center items-center px-2">
@@ -68,7 +64,7 @@ export const TransactionPending = ({
                     </div>
                     <div className="bg-white w-[70%] rounded-md p-4 flex items-center justify-center">
                         <QRCode 
-                            value={transaction.qrisUrl}
+                            value={transaction.qrisString}
                             style={{ width: "90%", height: "90%" }}
                             viewBox={`0 0 256 256`}
                         />
@@ -99,7 +95,9 @@ export const TransactionPending = ({
                                     </>
                                 )}
                             </Button>
-                            <Button size="lg" variant="default">
+                            <Button size="lg" variant="default"
+                            onClick={() => navigator.clipboard.writeText(transaction.qrisString)}
+                            >
                                 <IoCopyOutline />
                                 Salin Kode
                             </Button>

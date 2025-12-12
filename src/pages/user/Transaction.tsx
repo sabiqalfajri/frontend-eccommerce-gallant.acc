@@ -27,8 +27,8 @@ export const Transaction = () => {
     useEffect(() => {
         if(smoothLoading) return;
         if(isErrorTransaction || !transaction) {
-            showError("Transaction not found or canceled")
-            navigate('/cart');
+            showError("Transaksi tidak ditemukan atau dibatalkan.")
+            navigate('/customer/order/all', { replace: true });
             return;
         };
 
@@ -39,15 +39,22 @@ export const Transaction = () => {
                 ? 'QRIS telah kadaluarsa. Silahkan buat pesanan ulang.'
                 : 'Transaksi dibatalkan.'
             );
-            navigate('/cart', { replace: true });
+            navigate('/customer/order/all', { replace: true });
             return;
         }
-    }, [smoothLoading, isFetchedTransaction, transaction, isErrorTransaction, navigate])
+
+        const finishedStatus = ["SHIPPED", "COMPLETED"];
+        if(finishedStatus.includes(transaction.status)) {
+            showError("Transaksi sudah selesai.");
+            navigate("/customer/order/all", { replace: true });
+            return;
+        }
+    }, [smoothLoading, transaction, isErrorTransaction, navigate])
 
     return (
         <Section wrapperClassName="bg-gray-100 min-h-[calc(100vh-72px)]">
             {smoothLoading && <LoadingPayment />}
-            {!smoothLoading && transaction && transaction.status === 'PENDING' && 
+            {!smoothLoading &&  transaction?.status === 'PENDING' && 
                 <TransactionPending 
                 transaction={transaction} 
                 isRefetching={isRefetchingTransaction}
@@ -55,8 +62,7 @@ export const Transaction = () => {
                 />
             }
             {!smoothLoading 
-            && transaction 
-            && transaction.status === 'PROCESSING' && <TransactionPaid data={transaction} />}
+            &&  transaction?.status === 'PROCESSING' && <TransactionPaid data={transaction} />}
         </Section>
     )
 }

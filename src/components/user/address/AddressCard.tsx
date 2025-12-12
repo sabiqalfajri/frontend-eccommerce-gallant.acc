@@ -17,7 +17,7 @@ export const AddressCard = ({
     const { isMobile } = useWindowSize()
 
     return (
-        <div className="grid grid-cols-[90%_1fr] items-center mt-3 border-b border-gray-200 pb-3 text-sm md:text-[15px] gap-3 md:gap-0"
+        <div className="grid grid-cols-[90%_1fr] items-center mt-3 border-b border-gray-200 pb-3 text-sm md:text-[15px] gap-3 md:gap-0 cursor-pointer md:cursor-auto"
         onClick={() => isMobile && navigate(redirect)}
         >
             <div className="flex flex-nowrap gap-2 items-center pr-2">

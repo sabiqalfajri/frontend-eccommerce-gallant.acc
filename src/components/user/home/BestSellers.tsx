@@ -18,7 +18,7 @@ export const BestSellers = () => {
     const smoothLoading = useSmoothLoading(loading, 200);
 
     if(isErrorBestSeller) return <div>Something went wrong</div>;
-    if(bestSeller && bestSeller.length === 0) return <div>No products found</div>;
+    if(bestSeller && bestSeller.length === 0) return null;
 
     return (
         <Section>

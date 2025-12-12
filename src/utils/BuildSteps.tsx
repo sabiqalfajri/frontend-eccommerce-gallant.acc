@@ -17,25 +17,25 @@ export const BuildSteps = (status: statusOrder, detail: TransactionOrderDetailAc
 
     const steps = [
         {
-            label: "Created",
+            label: "Dibuat",
             icon: <Package size={16} />,
             date: (FormatDate(detail.createdAt)),
             active: activeIndex === 0,
         },
         {
-            label: "Processing",
+            label: "Diproses",
             icon: <Clock size={16} />,
             date: (FormatDate(detail.paidAt)),
             active: activeIndex === 1,
         },
         {
-            label: "Shipped",
+            label: "Dikirim",
             icon: <Truck size={16} />,
             date: (FormatDate(detail.shippedAt)),
             active: activeIndex === 2,
         },
         {
-            label: "Completed",
+            label: "Selesai",
             icon: <CheckCircle size={16} />,
             date: (FormatDate(detail.completedAt)),
             active: activeIndex === 3,
@@ -45,7 +45,7 @@ export const BuildSteps = (status: statusOrder, detail: TransactionOrderDetailAc
     if (status === "CANCELED" || status === "EXPIRED") {
         return [
             {
-                label: status === "CANCELED" ? "Order Canceled" : "Payment Expired",
+                label: status === "CANCELED" ? "Pesanan dibatalkan" : "Pesanan dibatalkan - Tidak dibayar",
                 icon: <XCircle size={16} />,
                 date: (FormatDate(detail.qrisExpiryAt)),
                 active: true,
