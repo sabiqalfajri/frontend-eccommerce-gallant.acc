@@ -36,12 +36,12 @@ export const getOrderAccountActions = (
         case 'PENDING':
             actions.push(
                 { 
-                    label: 'Pay Now', 
+                    label: 'Bayar Sekarang', 
                     icon: <BsQrCodeScan size={17} />,
                     href: `/transaction/${order.id}` 
                 },
                 { 
-                    label: 'Cancel Order', 
+                    label: 'Batalkan Pesanan', 
                     icon: <FiXCircle size={18} />,
                     onClick: () => handlers.updateStatus(order.id, "CANCELED")
                 }
@@ -51,7 +51,7 @@ export const getOrderAccountActions = (
         case 'PROCESSING':
             actions.push(
                 { 
-                    label: 'Contact seller', 
+                    label: 'Hubungi Penjual', 
                     icon: <Headphones size={19} />,
                     onClick: () => window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank")
                 },
@@ -61,7 +61,7 @@ export const getOrderAccountActions = (
         case 'SHIPPED':
             actions.push(
                 { 
-                    label: 'Contact seller', 
+                    label: 'Hubungi Penjual', 
                     icon: <Headphones size={19} />,
                     onClick: () => window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank")
                 },

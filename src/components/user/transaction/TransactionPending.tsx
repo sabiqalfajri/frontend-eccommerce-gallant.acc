@@ -26,12 +26,12 @@ export const TransactionPending = ({
     console.log("parsed:", new Date(ToISODate(transaction.qrisExpiryAt)));
 
     return (
-        <div className="flex justify-center items-center">
-            <div className="flex flex-col gap-3 w-full max-w-[25rem]">
+        <div className="flex justify-center items-center px-3">
+            <div className="flex flex-col gap-3 w-full md:w-[25rem]">
                 <div className="flex flex-col gap-1.5 bg-white rounded-md p-4">
                     <div className="flex flex-wrap justify-between items-center text-sm md:text-[15px]">
                         <div className="flex flex-col">
-                            <p className="text-gray-600">Finish Before</p>
+                            <p className="text-gray-600">Bayar Sebelum</p>
                             <p className="font-semibold text-sm md:text-[15px]">
                                 {FormatDate(transaction.qrisExpiryAt)}
                             </p>
@@ -47,8 +47,8 @@ export const TransactionPending = ({
                         </div>
                     </div>
                     <div className="flex flex-nowrap items-center gap-x-2 bg-gray-100 text-xs md:text-sm rounded-md px-2.5 py-1.5">
-                        <BsInfoCircle size={18} />
-                        <p>You can use any supported e-wallet or mobile banking apps</p>
+                        <BsInfoCircle size={16} className="shrink-0" />
+                        <p>Pembayaran dapat dilakukan melalui e-wallet atau aplikasi mobile banking yang didukung.</p>
                     </div>
                 </div>
                 <div className="relative flex flex-col items-center gap-5 bg-primary h-fit pt-4 pb-12 px-5 rounded-md text-white">
@@ -82,25 +82,26 @@ export const TransactionPending = ({
                             </p>
                         </div>
                         <div className="grid grid-cols-2 gap-x-2 w-full">
-                            <Button size="lg" variant="outlinePrimary"
+                            <Button 
+                            size="lg"
+                            variant="outlinePrimary"
                             onClick={() => refetch()}
                             >
                                 {isRefetching ? (
                                     <>
-                                        <ClipLoader size={20} />
-                                        Checking
+                                        <ClipLoader size={22} color="primary" />
+                                        Memuat...
                                     </>
                                 ) : (
                                     <>
                                         <LuRefreshCcw />
-                                        Check Status
+                                        Cek Status
                                     </>
                                 )}
-                                
                             </Button>
                             <Button size="lg" variant="default">
                                 <IoCopyOutline />
-                                Copy Code
+                                Salin Kode
                             </Button>
                         </div>
                     </div>
