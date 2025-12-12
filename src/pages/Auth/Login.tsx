@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card"
 import { Input } from "../../components/ui/input"
 import { Label } from "../../components/ui/label"
@@ -25,6 +25,7 @@ export const Login = () => {
     const { signIn, isLoaded, setActive } = useSignIn();
     const [params] = useSearchParams();
     const redirect = params.get("redirect") || "/";
+    const user = Storage.getUser();
     const navigate = useNavigate();
 
     const handleShowPassword = () => {
@@ -82,17 +83,21 @@ export const Login = () => {
         )
     }
 
-    // useEffect(() => {
-    //     if(isSignedIn) {
-    //         window.location.replace("/");
-    //     }
-    // }, [isSignedIn])
+    useEffect(() => {
+        if(!user) return 
+        if(user.role === 'ADMIN') {
+            navigate("/dashboard", { replace: true });
+            return;
+        }
+
+        navigate('/', { replace: true })
+    }, [])
 
     return (
         <main className="flex flex-col justify-center items-center h-screen">
             <form onSubmit={onSubmit} className="flex justify-center items-center w-full px-3">
                 <Card 
-                className={`w-full md:w-[350px] gap-4 shadow-lg ${isSubmitting ? 'pointer-events-none opacity-50' : ''}`}
+                className={`w-full md:w-[380px] gap-4 shadow-lg ${isSubmitting ? 'pointer-events-none opacity-50' : ''}`}
                 >
                     <CardHeader>
                         <CardTitle className="text-3xl font-bold mb-0.5 text-center">

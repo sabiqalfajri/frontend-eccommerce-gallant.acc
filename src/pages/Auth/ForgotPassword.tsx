@@ -47,11 +47,11 @@ export const ForgetPassword = () => {
 
     return (
         <main className="flex flex-col justify-center items-center h-screen">
-            <form onSubmit={submitCreate}>
-                    <Card className="w-[350px] md:w-[450px] gap-4">
+            <form onSubmit={submitCreate} className="flex justify-center items-center w-full px-3">
+                    <Card className={`w-full md:w-[450px] gap-4 shadow-lg ${isSubmitting ? 'pointer-events-none opacity-50' : ''}`}>
                         <CardHeader className="text-center">
                             <CardTitle className="text-2xl md:text-3xl font-bold mb-0.5">
-                                Forgot password?
+                                Lupa kata sandi?
                             </CardTitle>
                             <CardDescription className="text-sm md:text-md">
                                 Masukkan alamat email terdaftar Anda dan kami akan mengirimkan tautan untuk mengatur ulang kata sandi Anda.
@@ -61,7 +61,7 @@ export const ForgetPassword = () => {
                             <Input
                             className="h-10" 
                             id="email" 
-                            placeholder="Enter your email"
+                            placeholder="Masukkan email"
                             type="email"
                             {...register("email")}
                             />
@@ -71,9 +71,10 @@ export const ForgetPassword = () => {
                             <Button 
                             variant="primary" 
                             type="submit"
+                            size="lg"
                             disabled={isSubmitting || !emailValue} 
                             className="w-full">
-                                {isSubmitting ? <ClipLoader size={20} /> : 'Send Email'}
+                                {isSubmitting ? <ClipLoader size={24} color="white" /> : 'Kirim Email'}
                             </Button>
                         </CardFooter>
                     </Card>

@@ -102,7 +102,7 @@ export const Checkout = () => {
                         </div>
                     </div>
                     <div className="flex flex-col h-fit border border-gray-200 rounded-md p-3 pb-4">
-                        <h1 className="font-semibold text-[18px] md:text-2xl">Payment</h1>
+                        <h1 className="font-semibold text-[18px] md:text-2xl">Detail Pembayaran</h1>
                         <div className="flex flex-col gap-1 text-sm pb-3 border-b border-gray-200 mt-4">
                             <div className="flex flex-wrap justify-between items-center">
                                 <div className="flex flex-nowrap items-center gap-x-3.5">
@@ -117,7 +117,7 @@ export const Checkout = () => {
                             </div>
                         </div>
                         <div className="flex flex-col mt-3 gap-1.5 border-b border-gray-200 pb-3.5">
-                            <h1 className="font-semibold mb-1">Pastikan pesanan kamu sudah sesuai, ya</h1>
+                            <h1 className="font-semibold mb-1 text-[15px] md:text-base">Pastikan pesanan kamu sudah sesuai, ya</h1>
                             <div className="flex flex-wrap items-center justify-between text-sm">
                                 <p>Subtotal ({checkoutCount} item)</p>
                                 <p>Rp{checkoutTotal.toLocaleString('id-ID')}</p>

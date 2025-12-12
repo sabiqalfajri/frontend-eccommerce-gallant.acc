@@ -30,7 +30,7 @@ export const ResetPassword = () => {
     useEffect(() => {
         const getEmail = sessionStorage.getItem("email");
         if(!getEmail) {
-            showError('Email cannot find');
+            showError('Email tidak ditemukan.');
             navigate('/auth/forgot-password')
         }
         
@@ -59,11 +59,11 @@ export const ResetPassword = () => {
 
     return (
          <main className="flex flex-col justify-center items-center h-screen">
-            <form onSubmit={submitReset}>
-                <Card className="w-[350px] md:w-[450px] gap-4">
+            <form onSubmit={submitReset} className="flex justify-center items-center w-full px-3">
+                <Card className={`w-full md:w-[450px] gap-4 shadow-lg ${isSubmitting ? 'pointer-events-none opacity-50' : ''}`}>
                     <CardHeader className="text-center">
                         <CardTitle className="text-lg md:text-2xl font-bold mb-0.5">
-                            Reset Password
+                            Reset Kata Sandi
                         </CardTitle>
                         <CardDescription className="text-sm md:text-md">
                             Masukkan kode verifikasi yang telah kami kirimkan ke email Anda, lalu buat kata sandi baru untuk akun Anda.
@@ -74,26 +74,25 @@ export const ResetPassword = () => {
                                 </button>
                             </div>
                         </CardDescription>
-                        
                     </CardHeader>
                     <CardContent>
                         <div className="grid w-full items-center gap-4">
                             <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="email">Code</Label>
+                                <Label htmlFor="email">Kode Otp</Label>
                                 <Input 
                                 className="h-10" 
                                 id="code" 
-                                placeholder="Enter your code" 
+                                placeholder="Masukkan kode otp" 
                                 {...register("code")}
                                 />
                                 {errors.code && <span className="text-red-500 text-xs">{errors.code.message}</span>}
                             </div>
                             <div className="flex flex-col space-y-1.5 relative">
-                                <Label htmlFor="email">Password</Label>
+                                <Label htmlFor="email">Kata Sandi</Label>
                                 <Input 
                                 className="h-10" 
                                 id="password" 
-                                placeholder="Enter your password" 
+                                placeholder="Masukkan kata sandi baru" 
                                 type={showPassword ? "text" : "password"}
                                 {...register("password")}
                                 />
@@ -119,11 +118,12 @@ export const ResetPassword = () => {
                         <Button 
                         variant="primary" 
                         type="submit"
+                        size="lg"
                         disabled={isSubmitting || !isValid} 
                         className="w-full">
-                            {isSubmitting ? <ClipLoader size={20} /> : 'Reset Password'}
+                            {isSubmitting ? <ClipLoader size={24} color="white" /> : 'Simpan'}
                         </Button>
-                        <div className="grid grid-cols-[10%_90%] place-content-center place-items-center bg-[#fbe4fe] pl-3 pr-1 py-2 rounded-md mt-4">
+                        <div className="grid grid-cols-[10%_90%] place-content-center place-items-center bg-primary-light pl-3 pr-1 py-2 rounded-md mt-4">
                             <CiCircleInfo size={21} />
                             <p className="text-xs md:text-sm text-left">Saat memperbarui kata sandi Anda, semua sesi akan keluar. Silahkan masuk kembali dengan kata sandi baru Anda untuk melanjutkan</p>
                         </div>
