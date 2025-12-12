@@ -72,7 +72,7 @@ export const NavbarUser = () => {
     return (
         <nav className="flex justify-between md:justify-center md:grid md:grid-cols-[1fr_3fr_1fr] items-center sticky top-0 z-50 border-b border-gray-200 bg-white px-2.5 md:px-7 h-18 w-full">
             <a href="/" className="flex justify-start items-center font-semibold">
-                <p className="m-0 text-base">Gallant.acc</p>
+                <p className="m-0 text-base select-none">Gallant.acc</p>
             </a>
             <div>
                 <ul className="hidden md:flex flex-wrap justify-center items-center gap-12">
