@@ -22,7 +22,7 @@ export const TransactionPending = ({
     const time = useCountdown(transaction.qrisExpiryAt);
 
     return (
-        <div className="flex justify-center items-center px-2">
+        <div className="flex justify-center items-center">
             <div className="flex flex-col gap-3 w-full md:w-[25rem]">
                 <div className="flex flex-col gap-1.5 bg-white rounded-md p-4">
                     <div className="flex flex-wrap justify-between items-center text-sm md:text-[15px]">
