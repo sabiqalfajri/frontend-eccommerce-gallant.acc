@@ -66,7 +66,7 @@ export const TransactionPaid = ({ data }: TransactionPaidProps) => {
                 </div>
                 <div className="grid grid-cols-2 gap-3 mt-5">
                     <Button variant="outlinePrimary" size="lg"
-                    onClick={() => navigate('/')}
+                    onClick={() => navigate('/shop')}
                     >
                         Belanja Lagi
                     </Button>
