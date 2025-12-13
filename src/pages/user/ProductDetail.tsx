@@ -7,7 +7,6 @@ import { RelatedProduct } from "@/components/user/RelatedProduct";
 import { useProductDetail } from "@/hooks/product/useProductDetail";
 import { useLockBodyScroll } from "@/hooks/universal/useLockBodyScroll";
 import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading";
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 export const ProductDetail = () => {
