@@ -5,7 +5,9 @@ import { DetailProductSkeleton } from "@/components/user/detailProduct/DetailPro
 import { DetailProductTabs } from "@/components/user/detailProduct/DetailProductTabs";
 import { RelatedProduct } from "@/components/user/RelatedProduct";
 import { useProductDetail } from "@/hooks/product/useProductDetail";
+import { useLockBodyScroll } from "@/hooks/universal/useLockBodyScroll";
 import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 export const ProductDetail = () => {
@@ -14,6 +16,7 @@ export const ProductDetail = () => {
 
     const loadingProductDetail = isLoading || !isFetched
     const smoothLoadingDetail = useSmoothLoading(loadingProductDetail, 200);
+    useLockBodyScroll(smoothLoadingDetail)
 
     return (
         <Section>
@@ -33,15 +36,6 @@ export const ProductDetail = () => {
                         <DetailProductTabs product={product} />
                     </>
                 )}
-                {/* <div className="flex flex-col md:flex-row items-start gap-4 lg:gap-10 w-full">
-                    <div className="flex-1 min-w-0">
-                        <DetailProductGallery id={id} product={product} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                        <DetailProductInfo id={id} product={product} />
-                    </div>
-                </div>
-                <DetailProductTabs product={product} /> */}
                 {id && <RelatedProduct id={id} />}
             </div>
         </Section>

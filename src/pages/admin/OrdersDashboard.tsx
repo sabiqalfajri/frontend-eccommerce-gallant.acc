@@ -72,7 +72,7 @@ export const OrdersDashboard = () => {
         },
         {
             accessorKey: "customer",
-            header: "Customer",
+            header: "Pelanggan",
             cell: ({ row }) => {
                 const order = row.original;
 
@@ -99,7 +99,7 @@ export const OrdersDashboard = () => {
         },
         {
             accessorKey: "orderId",
-            header: "OrderId",
+            header: "ID Pesanan",
             cell: ({ row }) => 
             <div>
                 <p>{row.original.publicId}</p>
@@ -115,7 +115,7 @@ export const OrdersDashboard = () => {
         },
         {
             accessorKey: "items",
-            header: "Items",
+            header: "Item",
             cell: ({ row }) => 
             <div>
                 <p>{row.original.items.length} Item</p>
@@ -123,7 +123,7 @@ export const OrdersDashboard = () => {
         },
         {
             accessorKey: "payment",
-            header: "Payment",
+            header: "Pembayaran",
             cell: ({ row }) => 
             <div>
                 <p>{row.original.paymentType}</p>
@@ -145,7 +145,7 @@ export const OrdersDashboard = () => {
         },
         {
             accessorKey: "date",
-            header: "Date",
+            header: "Tanggal",
             cell: ({ row }) => 
             <div>
                 <p>{FormatDateWithoutWib(row.original.createdAt)}</p>
@@ -153,7 +153,7 @@ export const OrdersDashboard = () => {
         },
         {
             accessorKey: "action",
-            header: "Action",
+            header: "Aksi",
             cell: ({ row }) => {
                 const order = row.original;
                 const menu = getOrderDashboardActions(order, {
@@ -165,7 +165,7 @@ export const OrdersDashboard = () => {
                         trigger={triggerButton}
                         align="end"
                         menu={menu}
-                        className="min-w-48"
+                        className="min-w-52"
                     />
                 )
             }
@@ -177,15 +177,15 @@ export const OrdersDashboard = () => {
     return (
         <>
             <DataTable 
-                title="Order Summary"
+                title="Daftar Pesanan"
                 columns={columns} 
                 data={filteredOrders}  
                 totalRows={total}
                 filterButtons={[
-                    { label: 'All', value: 'ALL' },
-                    { label: 'Processing', value: 'PROCESSING' },
-                    { label: 'Shipped', value: 'SHIPPED' },
-                    { label: 'Completed', value: 'COMPLETED' },
+                    { label: 'Semua', value: 'ALL' },
+                    { label: 'Diproses', value: 'PROCESSING' },
+                    { label: 'Dikirim', value: 'SHIPPED' },
+                    { label: 'Selesai', value: 'COMPLETED' },
                 ]}
                 onFilterChange={(value) => setFilter(value)}
                 currentFilter={filter}

@@ -50,11 +50,11 @@ export const OrderDetailDashboard = () => {
             value: `Rp${detailOrderAdmin?.totalAmount.toLocaleString("id-ID")}`
         },
         {
-            label: 'Shipping (Free)',
+            label: 'Biaya Pengiriman',
             value: 'Rp0'
         },
         {
-            label: 'Tax',
+            label: 'Biaya Layanan',
             value: 'Rp0'
         },
         {
@@ -66,7 +66,7 @@ export const OrderDetailDashboard = () => {
     const columns: ColumnDef<BaseItem>[] = useMemo(() => [
         {
             accessorKey: "items",
-            header: "Items",
+            header: "Produk",
             cell: ({ row }) => {
                 const user = row.original;
 
@@ -87,13 +87,13 @@ export const OrderDetailDashboard = () => {
         },
         {
             accessorKey: "price",
-            header: "Price",
+            header: "Harga",
             cell: ({ row }) => 
                 <span>Rp{row.original.price.toLocaleString("id-ID")}</span>
         },
         {
             accessorKey: "qty",
-            header: "Qty",
+            header: "Jml",
             cell: ({ row }) => 
                 <span>
                     {row.original.quantity}
@@ -194,10 +194,10 @@ export const OrderDetailDashboard = () => {
                                     />
                                 </div>
                                 <div className="bg-white rounded-md px-4 pt-4 pb-5">
-                                    <h1 className="font-semibold text-base">Payment Summary</h1>
+                                    <h1 className="font-semibold text-base">Rincian Pembayaran</h1>
                                     <div className="flex flex-col gap-1 mt-4">
                                         {paymenSummary.map(item => (
-                                            <div className={`flex flex-wrap justify-between items-center text-[15px] ${item.label === 'Tax' && 'border-b border-gray-200 pb-1.5'} ${item.label === 'Total' && 'pt-1.5 font-semibold'}`}>
+                                            <div className={`flex flex-wrap justify-between items-center text-[15px] ${item.label === 'Biaya Layanan' && 'border-b border-gray-200 pb-1.5'} ${item.label === 'Total' && 'pt-1.5 font-semibold'}`}>
                                                 <h1 className="text-gray-700">{item.label}</h1>
                                                 <p>{item.value}</p>
                                             </div>
@@ -207,7 +207,7 @@ export const OrderDetailDashboard = () => {
                             </div>
                             
                             <div className="bg-white rounded-md px-4 pt-4 pb-5 gap-3 h-fit">
-                                <h1 className="font-semibold text-base">Customer</h1>
+                                <h1 className="font-semibold text-base">Pelanggan</h1>
                                 <div className="flex flex-col">
                                     <div className="flex flex-wrap items-center gap-2 border-b border-gray-200 py-4">
                                         <div className="w-9 h-9">
@@ -221,10 +221,10 @@ export const OrderDetailDashboard = () => {
                                         <div className="w-9 flex justify-center">
                                             <PiNotepad size={22} />
                                         </div>
-                                        <h1>{detailOrderAdmin.items.length} Orders</h1>
+                                        <h1>{detailOrderAdmin.items.length} Pesanan</h1>
                                     </div>
                                     <div className="flex flex-col gap-3.5 border-b border-gray-200 py-4">
-                                        <h1 className="font-semibold">Contact Info</h1>
+                                        <h1 className="font-semibold">Informasi Kontak</h1>
                                         <div className="flex flex-col gap-2 text-[15px]">
                                             <div className="flex flex-wrap items-center gap-3">
                                                 <IoMailOutline size={21} />
@@ -237,7 +237,7 @@ export const OrderDetailDashboard = () => {
                                         </div>
                                     </div>
                                     <div className="flex flex-col gap-3.5 pt-4 pb-2">
-                                        <h1 className="font-semibold">Shipping Address</h1>
+                                        <h1 className="font-semibold">Alamat Pengiriman</h1>
                                         <div className="flex flex-col gap-0.5 text-[15px]">
                                             <p>
                                                 {detailOrderAdmin.shippingStreet}, {""}

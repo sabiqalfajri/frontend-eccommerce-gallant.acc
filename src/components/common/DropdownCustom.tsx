@@ -58,8 +58,7 @@ export const DropdownCustom = ({
                             <DropdownMenuItem 
                             key={idx} 
                             onSelect={() => item.onClick?.()}
-                            // onClick={item.onClick} 
-                            className={`text-[15px] ${item.className} ${item.href && 'cursor-pointer'} px-3.5 py-2.5`}
+                            className={`text-[15px] ${item.className} cursor-pointer px-3.5 py-2.5`}
                             asChild={!!item.href}
                             >
                                 {item.href ? (
@@ -70,12 +69,13 @@ export const DropdownCustom = ({
                                         {content}
                                     </Link>
                                 ) : (
-                                    <button
-                                        className="flex items-center w-full cursor-pointer"
-                                        onClick={item.onClick}
-                                    >
-                                        {content}
-                                    </button>
+                                    content
+                                    // <button
+                                    //     className="flex items-center w-full bg-orange-400"
+                                    //     onClick={item.onClick}
+                                    // >
+                                    //     {content}
+                                    // </button>
                                 )}
                             </DropdownMenuItem>
 

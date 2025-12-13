@@ -21,7 +21,7 @@ export const getOrderDashboardActions = (
 ) => {
     const actions: OrderAction[] = [
         {
-            label: 'See Detail',
+            label: 'Lihat Detail',
             icon: <TbListSearch size={21} />,
             href: `/dashboard/orders/${order.publicId}`
         }
@@ -31,12 +31,12 @@ export const getOrderDashboardActions = (
         case 'PENDING':
             actions.push(
                 { 
-                    label: 'Mark as Processing', 
+                    label: 'Tandai sebagai Diproses', 
                     icon: <FiRefreshCcw size={16} />,
                     href: `/dashboard/orders/${order.id}?to=PROCESSING` 
                 },
                 { 
-                    label: 'Cancel Order', 
+                    label: 'Tandai sebagai Dibatalkan', 
                     icon: <FiXCircle size={17} />,
                     onClick: () => handlers.updateStatus(order.id, "CANCELED")
                 }
@@ -46,7 +46,7 @@ export const getOrderDashboardActions = (
         case 'PROCESSING':
             actions.push(
                 { 
-                    label: 'Mark as Shipped', 
+                    label: 'Tandai sebagai Dikirim', 
                     icon: <HiOutlineTruck size={19} />,
                     onClick: () => handlers.updateStatus(order.id, "SHIPPED")
                 },
@@ -56,7 +56,7 @@ export const getOrderDashboardActions = (
         case 'SHIPPED':
             actions.push(
                 { 
-                    label: 'Mark as Completed', 
+                    label: 'Tandai sebagai Selesai', 
                     icon: <FiCheckCircle size={17} />,
                     onClick: () => handlers.updateStatus(order.id, "COMPLETED")
                 }
