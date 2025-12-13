@@ -12,9 +12,9 @@ export const LoadingGlobal = ({
     return (
         <div>
             <div className="fixed inset-0 bg-black/45 z-50 flex justify-center items-center">
-                <div className="w-36 h-28 md:w-40 md:h-30 bg-white rounded-md p-4 flex flex-col gap-2 justify-center items-center z-20">
+                <div className="min-w-36 min-h-28 md:w-40 md:h-30 bg-white rounded-md p-5 flex flex-col gap-2 justify-center items-center z-20">
                     <svg
-                        className="w-14 h-14"
+                        className="w-12 h-12 shrink-0"
                         viewBox="0 0 50 50"
                     >
                         {/* Spinner searah jarum jam */}
@@ -40,7 +40,9 @@ export const LoadingGlobal = ({
                             strokeLinecap="round"
                         />
                     </svg>
-                    <h1 className="font-semibold text-base md:text-lg text-black">{text}</h1>
+                    <h1 className="font-semibold shrink-0 text-[18.5px] md:text-[20px] text-black">
+                        {text}
+                    </h1>
                 </div>
             </div>
         </div>
