@@ -1,4 +1,5 @@
 import { Section } from "@/components/common/Section"
+import { LoadingGlobal } from "@/components/shared/LoadingGlobal"
 import { Button } from "@/components/ui/button"
 import { AddressCard } from "@/components/user/address/AddressCard"
 import { CheckoutItem } from "@/components/user/checkout/CheckoutItem"
@@ -11,6 +12,7 @@ import { useCreateOrder } from "@/hooks/transaction/useCreateOrder"
 import { useCreatePayment } from "@/hooks/transaction/useCreatePayment"
 import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading"
 import { useToken } from "@/hooks/universal/useToken"
+import { useWindowSize } from "@/hooks/universal/useWindowSize"
 import { showError } from "@/utils/Toast"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
@@ -19,6 +21,7 @@ import { ClipLoader } from "react-spinners"
 export const Checkout = () => {
     const { token } = useToken()
     const { checkoutItems, clearCheckout } = useCheckout();
+    const { isMobile } = useWindowSize();
     const { clearSelection } = useCartSelection();
     const [hasCompletedPayment, setHasCompletedPayment] = useState(false);
     const { address, isLoadingAddress, isFetchedAddress, isErrorAddress } = useAddress(token!);
@@ -31,6 +34,9 @@ export const Checkout = () => {
     const navigate = useNavigate();
     const isLoading = isCreatingTransactionOrder || isCreatingTransactionPayment;
     const { skipNextAddressValidation, setSkipNextAddressValidation } = useCheckoutTransition();
+
+    const showOverlay = isLoading && isMobile;
+    const showButtonSpinner = isLoading && !isMobile;
     
     const handlePayNow = async () => {
         if(checkoutItems.length === 0) return;
@@ -96,6 +102,11 @@ export const Checkout = () => {
 
     return (
         <Section>
+            <LoadingGlobal 
+                show={showOverlay}
+                text="Memproses..."
+            />
+
             {smoothLoadingCheckout ? (
                 <CheckoutSkeleton />
             ) : (
@@ -150,7 +161,7 @@ export const Checkout = () => {
                         onClick={handlePayNow}
                         size="lg"
                         >
-                            {isLoading ? (
+                            {showButtonSpinner ? (
                                 <ClipLoader size={24} color="white" />
                             ) : 'Bayar Sekarang'}
                         </Button>

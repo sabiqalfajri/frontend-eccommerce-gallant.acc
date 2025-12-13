@@ -1,4 +1,5 @@
 import { Section } from "@/components/common/Section"
+import { LoadingGlobal } from "@/components/shared/LoadingGlobal"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { CartEmpty } from "@/components/user/cart/CartItemEmpty"
@@ -25,11 +26,15 @@ export const Cart = () => {
     const [isLoadingBuyNow, setIsLoadingBuyNow] = useState(false);
     const navigate = useNavigate();
     const { isMobile } = useWindowSize();
+    
     const cartLoading = isLoadingCartItem || !isFetchedCartItem
     const smoothLoadingCart = useSmoothLoading(cartLoading, 400)
     const selectedItems = cartItem?.items.filter(i => selectedIds.includes(i.id));
     const selectedTotal = selectedItems?.reduce((sum, i) => sum + (i.product.price * i.quantity), 0);
     const selectedCount = selectedItems?.reduce((sum, i) => sum + i.quantity, 0 );
+
+    const showOverlay = isLoadingBuyNow && isMobile;
+    const showButtonSpinner = isLoadingBuyNow && !isMobile;
 
     const handleSelectAll = () => {
         if(selectedIds.length === cartItem?.items.length) {
@@ -70,6 +75,11 @@ export const Cart = () => {
 
     return (
         <Section>
+                <LoadingGlobal 
+                    show={showOverlay} 
+                    text="Memproses..."
+                />
+
                 {smoothLoadingCart ? (
                     <CartSkeleton />
                 ) : cartItem && (
@@ -136,7 +146,11 @@ export const Cart = () => {
                                 variant="primary"
                                 size="lg"
                                 >
-                                    {isLoadingBuyNow ? <ClipLoader size={24} color="white" /> : `Beli ${selectedCount ? `(${selectedCount})` : ''}`}
+                                    {showButtonSpinner ? (
+                                        <ClipLoader size={24} color="white" />
+                                    ) : (
+                                        `Beli ${selectedCount ? `(${selectedCount})` : ''}`
+                                    )}
                                 </Button>
                             </div>
                         )}
