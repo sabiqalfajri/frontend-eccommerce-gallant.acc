@@ -165,7 +165,7 @@ export const OrdersDashboard = () => {
                         trigger={triggerButton}
                         align="end"
                         menu={menu}
-                        className="min-w-52"
+                        className="min-w-48"
                     />
                 )
             }
@@ -197,7 +197,7 @@ export const OrdersDashboard = () => {
                 onPageChange={(newPage) => setPage(newPage)}
                 isLoading={loadingOrders}
             />
-            {/* Modal Shipped Confirmation */}
+            {/* Modal Mark Confirmation */}
             {showModal && modalState && (
                 <ModalConfirm
                     isOpen={showModal}
@@ -206,7 +206,7 @@ export const OrdersDashboard = () => {
                         if(!selectedOrderId || !newStatus) return;
                         await updateOrderStatusAdmin({ orderId: selectedOrderId, newStatus });
                         setShowModal(false)
-                        showInfo(`Order marked as ${newStatus.toLowerCase()}`)
+                        showInfo('Status pesanan diperbarui')
                     }}
                     variant={modalState.variant}
                     confirmLabel={modalState.confirmLabel}

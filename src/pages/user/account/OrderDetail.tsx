@@ -132,7 +132,7 @@ export const OrderDetail = () => {
                                         <p>Free</p>
                                     </div>
                                     <div className="flex flex-wrap justify-between items-center">
-                                        <p>Tax</p>
+                                        <p>Biaya Layanan</p>
                                         <p>Free</p>
                                     </div>
                                     <div className="bg-gray-300 w-full h-px my-1"></div>

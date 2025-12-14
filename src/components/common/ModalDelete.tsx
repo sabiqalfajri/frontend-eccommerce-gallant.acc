@@ -32,7 +32,7 @@ export const ModalConfirm = ({
     size,
     variant,
     confirmLabel,
-    cancelLabel = "Cancel",
+    cancelLabel = "Batal",
     isLoading,
     onConfirm,
     onCancel,

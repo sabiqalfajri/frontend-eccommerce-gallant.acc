@@ -1,3 +1,4 @@
+import { OrderStatusBadge } from "@/components/admin/orders/OrderStatusBadge";
 import { DropdownCustom } from "@/components/common/DropdownCustom";
 import { Button } from "@/components/ui/button"
 import { OrderEmpty } from "@/components/user/account/OrderEmpty";
@@ -23,37 +24,6 @@ export const OrdersAccount = () => {
     const isLoading = isLoadingTransactionList || !isFetchedTransactionList;
     const smoothLoading = useSmoothLoading(isLoading, 200);
 
-    const statusStyle: Record<string, { label: string; className: string }> = {
-        pending: {
-            label: 'Belum Bayar',
-            className: 'bg-orange-100 text-orange-600'
-        },
-        processing: {
-            label: 'Diproses',
-            className: 'bg-sky-100 text-sky-600'
-        },
-        shipped: {
-            label: 'Dikirim',
-            className: 'bg-purple-100 text-purple-600'
-        },
-        completed: {
-            label: 'Selesai',
-            className: 'bg-green-100 text-green-600'
-        },
-        expired: {
-            label: 'Tidak Dibayar',
-            className: 'bg-red-100 text-red-600'
-        },
-    }
-
-    const getSyleStatus = (status: string) => {
-        const rawStatus = status.toLocaleLowerCase();
-        return statusStyle[rawStatus] || {
-            label: status,
-            className: 'bg-gray-100 text-gray-600'
-        }
-    }
-
     const handleUpdateStatus = async (orderId: string, status: string) => {
         await updateOrderStatusUser({ orderId, newStatus: status })
     }
@@ -73,7 +43,6 @@ export const OrdersAccount = () => {
             ) : (
                 <div className="flex flex-col gap-4">
                     {transactionList.map((order) => {
-                        const status = getSyleStatus(order.status);
                         const showDeliveryDateStatus = ["SHIPPED", "COMPLETED"];
                         const shouldShowDeliveryDate = showDeliveryDateStatus.includes(order.status);
                         const menu = getOrderAccountActions(order, {
@@ -84,9 +53,10 @@ export const OrdersAccount = () => {
                             { 
                                 label: 'Status', 
                                 content: (
-                                    <div className={`flex justify-center items-center font-semibold py-0.5 text-sm w-28 rounded-full ${status.className}`}>
-                                        {status.label}
-                                    </div>
+                                    <OrderStatusBadge
+                                        status={order.status} 
+                                        className="rounded-full py-0.5 px-1.5" 
+                                    />
                                 )
                             },
                             ...(shouldShowDeliveryDate ? [
@@ -142,9 +112,9 @@ export const OrdersAccount = () => {
                                     {orderSummaryInfo.map((info, idx) => (
                                         <div 
                                         key={idx}
-                                        className="grid grid-cols-2 md:grid-cols-[0.3fr_1fr] gap-1.5">
-                                            <p className={`${info.label === 'Total' && 'font-semibold'}`}>
-                                                {info.label}
+                                        className="grid grid-cols-[auto_1fr] md:grid-cols-[0.3fr_1fr] gap-1.5">
+                                            <p className={`${info.label === 'Total' && 'font-semibold'} min-w-32 md:w-auto`}>
+                                                {info.label}:
                                             </p>
                                             {info.content}
                                         </div>

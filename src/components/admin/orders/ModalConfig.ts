@@ -8,26 +8,26 @@ export const ModalConfig: Record<string, {
 }> = {
     PROCESSING: {
         variant: "PROCESSING",
-        title: "Mark as Processing",
-        confirmLabel: "Process Order",
-        description: "Are you sure you want to mark this order as processing?"
+        title: "Tandai Diproses",
+        confirmLabel: "Tandai Diproses",
+        description: "Apakah Anda yakin ingin menandai pesanan ini sebagai diproses?. Tindakan ini tidak bisa dibatalkan."
     },
     SHIPPED: {
         variant: "SHIPPED",
-        title: "Mark as Shipped",
-        confirmLabel: "Ship Order",
-        description: "Are you sure you want to mark this order as shipped? This action cannot be undone."
+        title: "Tandai Dikirim",
+        confirmLabel: "Tandai Dikirim",
+        description: "Apakah Anda yakin ingin menandai pesanan ini sebagai dikirim?. Tindakan ini tidak bisa dibatalkan."
     },
     COMPLETED: {
         variant: "COMPLETED", 
-        title: "Complete Order",
-        confirmLabel: "Complete Order",
-        description: "Are you sure you want to mark this order as completed? This also finalizes the transaction."
+        title: "Tandai Selesai",
+        confirmLabel: "Tandai Selesai",
+        description: "Apakah Anda yakin ingin menandai pesanan ini sebagai selesai? Tindakan ini akan menyelesaikan transaksi."
     },
     CANCELED: {
         variant: "DELETE",
-        title: "Cancel Order",
-        confirmLabel: "Cancel Order",
-        description: "Are you sure you want to cancel this order? This cannot be undone."
+        title: "Batalkan Pesanan",
+        confirmLabel: "Batalkan Pesanan",
+        description: "Apakah Anda yakin ingin membatalkan pesanan ini? Tindakan ini tidak dapat dibatalkan."
     }
 }

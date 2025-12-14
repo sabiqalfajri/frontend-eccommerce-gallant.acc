@@ -20,7 +20,7 @@ export const OrderStatusStyle: Record<string, { label: string; className: string
         className: 'bg-red-100 text-red-600'
     },
     expired: {
-        label: 'Dibatalkan',
+        label: 'Tidak Dibayar',
         className: 'bg-red-100 text-red-600'
     },
 }

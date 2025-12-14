@@ -112,9 +112,9 @@ export const OrderDetailDashboard = () => {
     const markButtonStyle = (status: string) => {
         switch(status) {
             case 'PROCESSING':
-                return 'Mark as Shipped';
+                return 'Tandai Dikirim';
             case 'SHIPPED':
-                return 'Mark as Completed';
+                return 'Tandai Selesai';
             default:
                 return '';
         }
@@ -152,6 +152,7 @@ export const OrderDetailDashboard = () => {
                             <div className="flex justify-end items-center w-full md:w-fit">
                                 <Button
                                     className="w-[9.6rem]"
+                                    size="lg"
                                     disabled={isUpdatingOrderStatusAdmin}
                                     onClick={() => 
                                         handleTriggerMark(

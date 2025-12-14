@@ -31,12 +31,12 @@ export const getOrderDashboardActions = (
         case 'PENDING':
             actions.push(
                 { 
-                    label: 'Tandai sebagai Diproses', 
+                    label: 'Tandai Diproses', 
                     icon: <FiRefreshCcw size={16} />,
                     href: `/dashboard/orders/${order.id}?to=PROCESSING` 
                 },
                 { 
-                    label: 'Tandai sebagai Dibatalkan', 
+                    label: 'Batalkan Pesanan', 
                     icon: <FiXCircle size={17} />,
                     onClick: () => handlers.updateStatus(order.id, "CANCELED")
                 }
@@ -46,7 +46,7 @@ export const getOrderDashboardActions = (
         case 'PROCESSING':
             actions.push(
                 { 
-                    label: 'Tandai sebagai Dikirim', 
+                    label: 'Tandai Dikirim', 
                     icon: <HiOutlineTruck size={19} />,
                     onClick: () => handlers.updateStatus(order.id, "SHIPPED")
                 },
@@ -56,7 +56,7 @@ export const getOrderDashboardActions = (
         case 'SHIPPED':
             actions.push(
                 { 
-                    label: 'Tandai sebagai Selesai', 
+                    label: 'Tandai Selesai', 
                     icon: <FiCheckCircle size={17} />,
                     onClick: () => handlers.updateStatus(order.id, "COMPLETED")
                 }
