@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { CartItem } from "@/types/Cart";
 import { showError } from "@/utils/Toast";
+import { useAuth } from "@clerk/clerk-react";
 
 export const useBuyNow = () => {
     const { token } = useToken();
@@ -12,8 +13,15 @@ export const useBuyNow = () => {
     const { address, isFetchedAddress } = useAddress(token!);
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
+    const { isSignedIn, isLoaded } = useAuth()
 
     const handleBuyNow = async (items: CartItem[]) => {
+        if(!isLoaded) return;
+        if(!isSignedIn) {
+            navigate('/auth/sign-in');
+            return
+        }
+
         if (!items || items.length === 0 || !isFetchedAddress) return;
 
         if (!address || address.length === 0) {

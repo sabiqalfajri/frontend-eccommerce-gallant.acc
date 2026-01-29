@@ -14,6 +14,8 @@ import { GoPackage } from "react-icons/go";
 import { useBuyNow } from "@/hooks/universal/useBuyNow"
 import { CartItem } from "@/types/Cart"
 import { v4 as uuidv4 } from 'uuid';
+import { useAuth } from "@clerk/clerk-react"
+import { useNavigate } from "react-router-dom"
 
 interface DetailProductInfoProps {
     id: string
@@ -25,6 +27,8 @@ export const DetailProductInfo = ({ product, id }: DetailProductInfoProps) => {
     const { addToCart, isAddingToCart } = useAddToCart(token!)
     const { quantity, increase: handlePlus, decrease: handleMinus, setQuantity } = useProductQuantity(1);
     const { handleBuyNow, isLoading } = useBuyNow();
+    const { isSignedIn, isLoaded } = useAuth();
+    const navigate = useNavigate();
 
     if(!product || !id) return;
 
@@ -39,6 +43,15 @@ export const DetailProductInfo = ({ product, id }: DetailProductInfoProps) => {
             stock: product.stock,
             images: product.images
         }
+    }
+
+    const handleAddToCart = () => {
+        if(!isLoaded) return;
+        if(!isSignedIn) {
+            navigate('/auth/sign-in');
+            return
+        }
+        addToCart({ productId: id, quantity })
     }
 
     return (
@@ -110,7 +123,7 @@ export const DetailProductInfo = ({ product, id }: DetailProductInfoProps) => {
                     <Button 
                     variant="primary"
                     size="lg"
-                    onClick={() => addToCart({ productId: id, quantity })}
+                    onClick={handleAddToCart}
                     disabled={isAddingToCart}
                     className="w-36"
                     >
