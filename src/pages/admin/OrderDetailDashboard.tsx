@@ -128,7 +128,7 @@ export const OrderDetailDashboard = () => {
     const handleTriggerMark = async (orderId: string, status: string) => {
         if (!orderId) return;
         await updateOrderStatusAdmin({ orderId, newStatus: status });
-        showInfo(`Order marked as ${status.toLowerCase()}`)
+        showInfo('Status pesanan diperbarui')
     }
 
     return (

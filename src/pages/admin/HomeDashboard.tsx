@@ -9,7 +9,6 @@ import { TopCategoryPie } from "@/components/admin/home/TopCategoryPie";
 import { SalesChart } from "@/components/admin/home/SalesChart";
 import { IoWalletOutline } from "react-icons/io5";
 import { RecentOrders } from "@/components/admin/home/RecentOrders";
-import { TopCustomers } from "@/components/admin/home/TopCustomers";
 import { useRecentOrdersAdmin } from "@/hooks/transaction/useRecentOrdersAdmin";
 
 export const HomeDashboard = () => {
@@ -26,22 +25,22 @@ export const HomeDashboard = () => {
     const overviewMenu = [
         { 
             icon: <IoWalletOutline size={23} /> , 
-            title: 'Total Sales', 
-            description: 'This month', 
+            title: 'Total Pendapatan', 
+            description: 'Bulan ini', 
             data: `Rp${overview?.revenue.total.toLocaleString('id-ID')}`,
             growth: overview?.revenue.growth
         },
         { 
             icon: <HiOutlineShoppingBag size={23} /> , 
-            title: 'Total Order', 
-            description: 'This month', 
+            title: 'Total Pesanan', 
+            description: 'Bulan ini', 
             data: overview?.orders.total,
             growth: overview?.orders.growth
         },
         { 
             icon: <LuUsers size={23} /> , 
-            title: 'Total Customers', 
-            description: 'Active Users', 
+            title: 'Total Pelanggan', 
+            description: 'Pelanggan aktif', 
             data: overview?.customers.total,
             growth: overview?.customers.growth
         },
@@ -61,13 +60,13 @@ export const HomeDashboard = () => {
                     />
                 ))}
                 
-                <CardDashboard title="Sales Perfomance" className="md:col-span-2">
+                <CardDashboard title="Performa Penjualan" className="md:col-span-2">
                     <SalesChart 
                         weeklySales={overview?.weeklySales ?? []}
                         isLoading={isLoading}
                     />
                 </CardDashboard>
-                <CardDashboard title="Top Categories">
+                <CardDashboard title="Kategori Populer">
                     <div className="flex justify-center items-center">
                         <TopCategoryPie 
                             topCategories={overview?.topCategories ?? []}
@@ -76,22 +75,17 @@ export const HomeDashboard = () => {
                     </div>
                 </CardDashboard>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-6 min-h-72">
-                <CardDashboard title="Recent Order" className="md:col-span-2" 
-                headerContent={
-                    <NavLink
-                    to={'/dashboard/orders'}
-                    className="cursor-pointer text-sm text-gray-500 font-semibold hover:text-primary transform transition-all duration-200"
-                    >
-                        See more
-                    </NavLink>
-                }>
-                    <RecentOrders recentOrders={recentOrders} isLoading={isLoadingRecent} />
-                </CardDashboard>
-                <CardDashboard title="Top Customers">
-                    <TopCustomers />
-                </CardDashboard>
-            </div>
+            <CardDashboard title="Pesanan Terbaru" className="md:col-span-2" 
+            headerContent={
+                <NavLink
+                to={'/dashboard/orders'}
+                className="cursor-pointer text-sm text-gray-500 font-semibold hover:text-primary transform transition-all duration-200"
+                >
+                    Lihat semua
+                </NavLink>
+            }>
+                <RecentOrders recentOrders={recentOrders} isLoading={isLoadingRecent} />
+            </CardDashboard>
         </div>
     )
 }

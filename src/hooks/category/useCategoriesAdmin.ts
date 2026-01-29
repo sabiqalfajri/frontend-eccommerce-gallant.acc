@@ -11,7 +11,7 @@ export const useCategoriesAdmin = (token: string, page = 1, rowsPerPage = 10) =>
     } = useQuery<CategoryAdminPaginated>({
         queryKey: ["categoryAdmin", page, rowsPerPage],
         queryFn: () => fetchCategoriesForAdmin(token, page, rowsPerPage),
-        staleTime: 1000 * 60 * 5
+        staleTime: 1000 * 60 * 5,
     });
 
     return {

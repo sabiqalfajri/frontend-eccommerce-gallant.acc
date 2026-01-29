@@ -46,14 +46,14 @@ export const Navbar = ({
 
     return (
         <nav 
-        // className="flex flex-wrap justify-between items-center fixed top-0 z-30 border-b border-gray-200 bg-white px-3.5 md:px-6 h-18"
         className="flex flex-wrap justify-between items-center sticky top-0 z-30 border-b border-gray-200 bg-white px-3.5 md:px-6 h-18"
         >
-            <div className="">
+            {/* Hamburger */}
+            <div>
                 <button
                 type="button"
                 onClick={onMenuClick}
-                className="cursor-pointer block md:hidden"
+                className="cursor-pointer block lg:hidden"
                 >
                     <HiOutlineMenuAlt2 size={23} />
                 </button>

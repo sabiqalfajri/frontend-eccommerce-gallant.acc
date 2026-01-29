@@ -5,7 +5,7 @@ import { ClipLoader } from "react-spinners"
 
 export const CartSkeleton = () => {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-5">
             <div className="flex flex-col p-0 md:p-3">
                 <h1 className="font-semibold text-[19px] md:text-2xl">Keranjang</h1>
                 <div className="flex flex-col gap-3 mt-4">

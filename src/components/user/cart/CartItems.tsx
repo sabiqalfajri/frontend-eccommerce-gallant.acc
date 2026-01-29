@@ -47,8 +47,8 @@ export const CartItems = ({
         <>
             {item && item.map((i) => (
                 <div key={i.id} 
-                className={`grid grid-cols-[auto_minmax(0,1fr)] md:grid-cols-[1fr_4fr] gap-x-2 md:gap-x-0 ${loadingItemIds?.includes(i.id) ? 'opacity-40 pointer-events-none' : ''}`}>
-                    <div className="flex flex-wrap gap-3 w-full items-center">
+                className={`grid grid-cols-[auto_minmax(0,1fr)] md:grid-cols-[1fr_4fr] gap-x-2 md:gap-x-2.5 ${loadingItemIds?.includes(i.id) ? 'opacity-40 pointer-events-none' : ''}`}>
+                    <div className="flex flex-nowrap gap-3 w-full items-center">
                         <Checkbox 
                             id={i.id}
                             checked={isSelected(i.id)}
@@ -81,7 +81,9 @@ export const CartItems = ({
                                 <Link
                                   to={`/detail/${i.productId}`}
                                 >
-                                    <h1 className="line-clamp-2">{i.product.name}</h1> 
+                                    <h1 className="line-clamp-2 max-w-full lg:max-w-[95%]">
+                                        {i.product.name}
+                                    </h1> 
                                 </Link>
                                 <p className="font-semibold">
                                     Rp{i.product.price.toLocaleString('id-ID')}

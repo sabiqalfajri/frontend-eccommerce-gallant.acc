@@ -35,12 +35,12 @@ export const AccountSetting = ({
 
     const accountFields: { id: AccountUserKeys; label: string; type?: string }[][] = [
         [
-            { id: 'name', label: 'Name' },
+            { id: 'name', label: 'Nama' },
             { id: 'email', label: 'Email', type: 'email' },
         ],
         [
-            { id: 'phone', label: 'PhoneNumber' },
-            { id: 'country', label: 'Country' },
+            { id: 'phone', label: 'No Telepon' },
+            { id: 'country', label: 'Negara' },
         ],
         [
             { id: 'birthDate', label: 'Date of Birth' },
@@ -70,7 +70,7 @@ export const AccountSetting = ({
     }
 
     return (
-        <CardDashboard title="Account Settings" description="Update your account">
+        <CardDashboard title="Pengaturan Akun" description="Perbarui akun kamu">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-5">
                     <div className="flex items-center justify-center">
@@ -109,6 +109,7 @@ export const AccountSetting = ({
                                                         <DateInput
                                                             value={field.value}
                                                             onChange={(value) => field.onChange(value)}
+                                                            placeholder="Pilih tanggal lahir"
                                                             className="w-full"
                                                         />
                                                     )}
@@ -126,6 +127,7 @@ export const AccountSetting = ({
                                                         <ComboboxCustom
                                                             options={optionsGender}
                                                             className="w-full"
+                                                            placeholder="Pilih opsi gender"
                                                             value={field.value}
                                                             contentClassName="!w-full !max-w-none"
                                                             onChange={(value) => field.onChange(value)}
@@ -160,14 +162,14 @@ export const AccountSetting = ({
                         onClick={handleCancel}
                         type="button"
                         >
-                            Cancel
+                            Batal
                         </Button>
                         <Button 
                         type="submit"
                         disabled={loadingSubmit}
                         className="w-auto md:w-[7.8rem]"
                         >
-                            {loadingSubmit ? <ClipLoader size={24} color="white" /> : 'Save Changes'}
+                            {loadingSubmit ? <ClipLoader size={24} color="white" /> : 'Simpan'}
                         </Button>
                     </div>
                 </div>

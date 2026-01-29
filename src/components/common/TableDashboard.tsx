@@ -163,7 +163,7 @@ export const DataTable = <TData extends { id: string }, TValue>({
                                 size="lg"
                                 onClick={onClick}
                             >
-                                + Add New Item
+                                + Tambah Item
                             </Button>
                         </div>
                     )}
@@ -277,9 +277,9 @@ export const DataTable = <TData extends { id: string }, TValue>({
                 onConfirm={handleDeleteSelected}
                 isLoading={isDeleting}
                 variant="DELETE"
-                confirmLabel="Delete"
-                title="Delete"
-                description={`Are you sure you want to delete (${table.getSelectedRowModel().rows.length}) products?. This action cannot be undone`}
+                confirmLabel="Hapus"
+                title="Hapus"
+                description={`Apakah Anda yakin ingin menghapus (${table.getSelectedRowModel().rows.length}) item?. Tindakan ini tidak dapat dibatalkan.`}
                 size="sm"
             />
         </>

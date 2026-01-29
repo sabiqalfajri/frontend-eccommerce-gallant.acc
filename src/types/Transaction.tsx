@@ -44,7 +44,7 @@ export type BaseItem = {
     image: string
 }
 
-type BaseTransactionResponse = {
+export type BaseTransactionResponse = {
     id: string;
     publicId: string;
     totalAmount: number;

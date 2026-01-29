@@ -21,8 +21,9 @@ export const useWindowSize = () => {
         };
     }, []);
 
-    const isDesktop = windowSize.width >= 768; 
+    const isDesktop = windowSize.width >= 992; 
+    const isTablet = windowSize.width >= 768 && windowSize.width < 992;
     const isMobile = windowSize.width < 768;
     
-    return { ...windowSize, isDesktop, isMobile };
+    return { ...windowSize, isDesktop, isTablet, isMobile };
 }

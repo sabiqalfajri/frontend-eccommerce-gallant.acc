@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 export const DetailProductSkeleton = () => {
     return (
         <div className="flex flex-col w-full">
-            <div className="flex flex-col md:flex-row items-start gap-4 lg:gap-10 w-full">
+            <div className="flex flex-col lg:flex-row items-start gap-4 lg:gap-10 w-full">
                 <div className="flex-1 w-full">
                     <div className="grid grid-cols-1 gap-3 w-full">
                         <Skeleton className="h-[35vh] md:h-[40vh] w-full bg-gray-300" />

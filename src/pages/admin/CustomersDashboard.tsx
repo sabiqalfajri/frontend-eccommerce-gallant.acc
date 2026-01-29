@@ -57,7 +57,7 @@ export const CustomersDashboard = () => {
         },
         {
             accessorKey: "name",
-            header: "Customer",
+            header: "Pengguna",
             cell: ({ row }) => {
                 const user = row.original;
 
@@ -85,32 +85,27 @@ export const CustomersDashboard = () => {
         },
         {
             accessorKey: "phone",
-            header: "Phone",
-            cell: ({ row }) => <span>{row.getValue("phone")}</span>,
+            header: "No. Telepon",
+            cell: ({ row }) => <span>{row.getValue("phone") ?? '-'}</span>,
         },
         {
             accessorKey: "orders",
-            header: "Orders",
+            header: "Pesanan",
             cell: ({ row }) => <span>{row.getValue("orders")}</span>,
         },
         {
             accessorKey: "joinedOn",
-            header: "Joined On",
+            header: "Tgl Bergabung",
             cell: ({ row }) => <span>{row.getValue("joinedOn")}</span>,
         },
         {
             accessorKey: "action",
-            header: "Action",
+            header: "Aksi",
             cell: ({ row }) => {
                 const menu = [
-                    // { 
-                    //     icon: <FiEdit size={18} />, 
-                    //     label: 'Update', 
-                    //     href: `/dashboard/update-product/${row.original.id}`
-                    // },
                     { 
                         icon: <HiOutlineTrash size={19} />, 
-                        label: 'Delete', 
+                        label: 'Hapus Pengguna', 
                         onClick: () => {
                             setSelectedCustomerId(row.original.id)
                             setShowModal(true)
@@ -123,7 +118,7 @@ export const CustomersDashboard = () => {
                         trigger={triggerButton}
                         align="end"
                         menu={menu}
-                        className="w-32"
+                        className="min-w-48"
                     />
                 )
             },
@@ -147,27 +142,27 @@ export const CustomersDashboard = () => {
 
     return (
         <>
-        <DataTable 
-            title="User List"
-            columns={columns} 
-            data={usersAll || []}  
-            totalRows={total}
-            onDeleted={handleDeleteBulk}
-            isDeleting={isDeletingBulk}
-            page={page}
-            totalPages={totalPages}
-            onPageChange={(newPage) => setPage(newPage)}
-            isLoading={isLoadingUsersAll}
-        />
+            <DataTable 
+                title="Daftar Pengguna"
+                columns={columns} 
+                data={usersAll || []}  
+                totalRows={total}
+                onDeleted={handleDeleteBulk}
+                isDeleting={isDeletingBulk}
+                page={page}
+                totalPages={totalPages}
+                onPageChange={(newPage) => setPage(newPage)}
+                isLoading={isLoadingUsersAll}
+            />
             <ModalConfirm
                 isOpen={showModal}
                 onCancel={() => setShowModal(false)}
                 onConfirm={handleDeleteSingle}
                 isLoading={isDeletingSingle}
                 variant="DELETE"
-                confirmLabel="Delete"
-                title="Delete"
-                description={`Are you sure you want to delete this user?. This action cannot be undone`}
+                confirmLabel="Hapus"
+                title="Hapus"
+                description={'Pengguna ini akan dihapus secara permanen. Tindakan ini tidak dapat dibatalkan.'}
                 size="sm"
             />
         </>

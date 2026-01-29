@@ -14,7 +14,7 @@ export const useCreateProduct = (token: string) => {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["productsAdmin"] });
 
-            showInfo("Product created successfully!");
+            showInfo("Berhasil membuat produk baru.");
         },
         onError: (error) => {
             showError(error.message || 'Something went wrong')

@@ -6,13 +6,13 @@ interface SalesChartProps {
 }
 
 const dayMap: Record<string, string> = {
-    Mon: "Monday",
-    Tue: "Tuesday",
-    Wed: "Wednesday",
-    Thu: "Thursday",
-    Fri: "Friday",
-    Sat: "Saturday",
-    Sun: "Sunday",
+    Mon: "Senin",
+    Tue: "Selasa",
+    Wed: "Rabu",
+    Thu: "Kamis",
+    Fri: "Jum'at",
+    Sat: "Sabtu",
+    Sun: "Minggu",
 };
 
 export const SalesChart = ({

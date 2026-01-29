@@ -14,7 +14,7 @@ export const useUpdatedUser = (token: string | null) => {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["currentUser"] });
 
-            showInfo("User updated successfully!");
+            showInfo("Akun kamu berhasil diperbarui.");
         },
         onError: (error) => {
             showError(error.message || 'Something went wrong')

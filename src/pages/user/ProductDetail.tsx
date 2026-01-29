@@ -24,7 +24,7 @@ export const ProductDetail = () => {
                     <DetailProductSkeleton />
                 ) : id && (
                     <>
-                        <div className="flex flex-col md:flex-row items-start gap-4 lg:gap-10 w-full">
+                        <div className="flex flex-col lg:flex-row items-start gap-4 lg:gap-10 w-full">
                             <div className="flex-1 min-w-0">
                                 <DetailProductGallery id={id} product={product} />
                             </div>

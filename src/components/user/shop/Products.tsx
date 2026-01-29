@@ -27,7 +27,7 @@ export const Products = ({
     const skeletonLength = isMobile ? 6 : 8
 
     return (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 sticky">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 sticky">
             {isLoading ? (
                 <CardProductSkeleton length={skeletonLength} />
             ) : products && (

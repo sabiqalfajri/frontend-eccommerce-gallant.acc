@@ -9,4 +9,8 @@ export const createProductSchema = z.object({
     visibility: z.enum(["PUBLISH", "HIDDEN", "DRAFT"]).optional()
 })
 
+export const updateProductSchema = createProductSchema.partial();
+
 export type ProductFormValues = z.output<typeof createProductSchema>;
+export type CreateProductFormValues = z.output<typeof createProductSchema>;
+export type UpdateProductFormValues = z.output<typeof updateProductSchema>;

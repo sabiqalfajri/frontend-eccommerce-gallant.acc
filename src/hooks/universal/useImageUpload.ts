@@ -27,6 +27,7 @@ export const useImageUpload = () => {
 
     return {
         previewUrl,
+        setPreviewUrl,
         file,
         handleUpload,
         reset,

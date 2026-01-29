@@ -1,15 +1,18 @@
 import { ProductForm } from "@/components/admin/products/ProductForm"
+import { LoadingGlobal } from "@/components/shared/LoadingGlobal";
 import { useProductById } from "@/hooks/product/useProductById";
+import { useProductForEdit } from "@/hooks/product/useProductForEdit";
 import { useUpdateProduct } from "@/hooks/product/useUpdatedProduct";
 import { useToken } from "@/hooks/universal/useToken"
-import { ProductFormValues } from "@/schema/admin/Product.schema";
+import { ProductFormValues, UpdateProductFormValues } from "@/schema/admin/Product.schema";
 import { useNavigate, useParams } from "react-router-dom";
 
 export const EditProduct = () => {
     const { token } = useToken();
     const { updateProduct, isUpdating } = useUpdateProduct(token!);
     const { id } = useParams<{ id: string }>();
-    const { dataProductById, isLoadingProductById } = useProductById(id!)
+    const { dataProductById, isLoadingProductById } = useProductById(id!);
+    // const { data: product } = useProductForEdit(id!)
     const navigate = useNavigate();
 
     // useEffect(() => {
@@ -33,7 +36,7 @@ export const EditProduct = () => {
         }
         : undefined;
 
-    const onSubmit = async (data: ProductFormValues & { files: File[], deletedImages?: string[], visibility: string }) => {
+    const onSubmit = async (data: UpdateProductFormValues & { files: File[], deletedImages?: string[], visibility: string }) => {
         if(!id) return;
 
         const payload = {
@@ -49,7 +52,7 @@ export const EditProduct = () => {
         navigate("/dashboard/products");
     }
 
-    if (isLoadingProductById) return <div>Loading...</div>;
+    if (isLoadingProductById) return <LoadingGlobal show={isLoadingProductById} />
 
     return (
         <ProductForm

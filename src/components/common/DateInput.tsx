@@ -10,13 +10,15 @@ interface DateInputProps {
     onChange: (value: string  | undefined) => void;
     className?: string;
     contentClassName?: string;
+    placeholder?: string;
 }
 
 export const DateInput = ({
     value,
     onChange,
     className,
-    contentClassName
+    contentClassName,
+    placeholder = 'Pilih tanggal'
 }: DateInputProps) => {
     const [open, setOpen] = useState(false);
     const [date, setDate] = useState<Date  | undefined>(
@@ -37,7 +39,7 @@ export const DateInput = ({
                     aria-expanded={open}
                     className={cn("w-full justify-between font-normal", className)}
                 >
-                    {date ? date.toLocaleDateString() : "Pilih tanggal"}
+                    {date ? date.toLocaleDateString() : placeholder}
                     <IoCalendarOutline size={19} />
                 </Button>
             </PopoverTrigger>

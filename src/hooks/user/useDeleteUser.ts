@@ -10,7 +10,7 @@ export const useDeletedUser = (token: string) => {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["usersAll"] });
 
-            showInfo("User deleted successfully!");
+            showInfo("Pengguna berhasil dihapus.");
         },
         onError: (error) => {
             showError(error.message || 'Something went wrong')
@@ -22,7 +22,7 @@ export const useDeletedUser = (token: string) => {
         onSuccess: (_, ids) => {
             queryClient.invalidateQueries({ queryKey: ["usersAll"] });
 
-            showInfo(`${ids.length} selected user deleted successfully!`);
+            showInfo(`${ids.length} pengguna berhasil dihapus.`);
         },
         onError: (error) => {
             showError(error.message || 'Something went wrong')

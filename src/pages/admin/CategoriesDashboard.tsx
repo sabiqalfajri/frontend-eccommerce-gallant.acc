@@ -1,7 +1,9 @@
 import { DropdownCustom } from "@/components/common/DropdownCustom"
+import { ModalConfirm } from "@/components/common/ModalDelete"
 import { DataTable } from "@/components/common/TableDashboard"
 import { Checkbox } from "@/components/ui/checkbox"
 import { useCategoriesAdmin } from "@/hooks/category/useCategoriesAdmin"
+import { useDeletedCategory } from "@/hooks/category/useDeletedCategory"
 import { useToken } from "@/hooks/universal/useToken"
 import { CategoryAdmin } from "@/types/Category"
 import { FormatDateWithoutWib } from "@/utils/FormatDate"
@@ -21,127 +23,154 @@ export const CategoryDashboard = () => {
         totalPages,
         isLoading,
     } = useCategoriesAdmin(token!, page, 10);
+    const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null)
+    const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
+    const { 
+            deleteSingleCategory,
+            isDeletingSingleCategory,
+            deleteBulkCategory,
+            isDeletingBulkCategory
+        } = useDeletedCategory(token!)
 
-    const columns: ColumnDef<CategoryAdmin>[] = useMemo(() => [
-        {
-            id: "select",
-            header: ({ table }) => (
-            <Checkbox
-                checked={
-                table.getIsAllPageRowsSelected() ||
-                (table.getIsSomePageRowsSelected() && "indeterminate")
-                }
-                className="size-[17px]!"
-                onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-                aria-label="Select all"
-            />
-            ),
-            cell: ({ row }) => (
-            <Checkbox
-                checked={row.getIsSelected()}
-                className="size-[17px]!"
-                onCheckedChange={(value) => row.toggleSelected(!!value)}
-                aria-label="Select row"
-            />
-            ),
-            enableSorting: false,
-            enableHiding: false,
-        },
-        {
-            accessorKey: "name",
-            header: "Name",
-            cell: ({ row }) => {
-                const category = row.original;
+    const handleDeleteSingle = async () => {
+        if(!selectedCategoryId) return;
+        await deleteSingleCategory(selectedCategoryId);
+        setShowModal(false)
+    }
 
-                return (
-                    <div className="flex items-center gap-x-3 w-full">
-                        <img 
-                            src={category.image}
-                            alt={category.name}
-                            className="w-14 h-14 object-cover rounded-md border-[1.5px] border-gray-200"
+    const handleDeleteBulk = async (ids: string[]) => {
+        await deleteBulkCategory(ids)
+    }
+
+    const columns: ColumnDef<CategoryAdmin>[] = useMemo(() => {
+        const triggerButton = (
+            <button className="flex items-center justify-center hover:bg-gray-100 rounded-full p-1.5 cursor-pointer">
+                <IoIosMore size={23} />
+            </button>
+        )
+
+        return [
+            {
+                id: "select",
+                header: ({ table }) => (
+                <Checkbox
+                    checked={
+                    table.getIsAllPageRowsSelected() ||
+                    (table.getIsSomePageRowsSelected() && "indeterminate")
+                    }
+                    className="size-[17px]!"
+                    onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+                    aria-label="Select all"
+                />
+                ),
+                cell: ({ row }) => (
+                <Checkbox
+                    checked={row.getIsSelected()}
+                    className="size-[17px]!"
+                    onCheckedChange={(value) => row.toggleSelected(!!value)}
+                    aria-label="Select row"
+                />
+                ),
+                enableSorting: false,
+                enableHiding: false,
+            },
+            {
+                accessorKey: "name",
+                header: "Kategori",
+                cell: ({ row }) => {
+                    const category = row.original;
+
+                    return (
+                        <div className="flex items-center gap-x-3 w-full">
+                            <img 
+                                src={category.image}
+                                alt={category.name}
+                                className="w-14 h-14 object-cover rounded-md border-[1.5px] border-gray-200"
+                            />
+                            <span className="truncate max-w-36">{category.name}</span>
+                        </div>
+                    )
+                },
+            },
+            {
+                accessorKey: "products",
+                header: "Total Produk",
+                cell: ({ row }) => 
+                <p>
+                    {row.original.totalProducts ?? 0}
+                </p>,
+            },
+            {
+                accessorKey: "createdAt",
+                header: "Tgl Dibuat",
+                cell: ({ row }) => <span>{FormatDateWithoutWib(row.original.createdAt)}</span>,
+            },
+            {
+                accessorKey: "updatedAt",
+                header: "Tgl Diperbarui",
+                cell: ({ row }) => <span>{FormatDateWithoutWib(row.original.updatedAt)}</span>,
+            },
+            {
+                accessorKey: "actions",
+                header: "Aksi",
+                cell: ({ row }) => {
+                    const menu = [
+                        { 
+                            icon: <FiEdit size={18} />, 
+                            label: 'Edit Kategori', 
+                            href: `/dashboard/update-category/${row.original.id}`
+                        },
+                        { 
+                            icon: <HiOutlineTrash size={19} />, 
+                            label: 'Hapus Kategori', 
+                            onClick: () => {
+                                setSelectedCategoryId(row.original.id)
+                                setShowModal(true)
+                            }
+                        },
+                    ];
+
+                    return (
+                        <DropdownCustom
+                            trigger={triggerButton}
+                            align="end"
+                            menu={menu}
+                            className="w-44"
                         />
-                        <span className="truncate max-w-36">{category.name}</span>
-                    </div>
-                )
+                    )
+                },
             },
-        },
-        {
-            accessorKey: "products",
-            header: "Products",
-            cell: ({ row }) => 
-            <p>
-                {row.original.totalProducts}
-            </p>,
-        },
-        {
-            accessorKey: "createdAt",
-            header: "Created At",
-            cell: ({ row }) => <span>{FormatDateWithoutWib(row.original.createdAt)}</span>,
-        },
-        {
-            accessorKey: "updatedAt",
-            header: "Updated At",
-            cell: ({ row }) => <span>{FormatDateWithoutWib(row.original.updatedAt)}</span>,
-        },
-        {
-            accessorKey: "actions",
-            header: "Actions",
-            cell: ({ row }) => {
-                const menu = [
-                    { 
-                        icon: <FiEdit size={18} />, 
-                        label: 'Update', 
-                        href: `/dashboard/update-product/${row.original.id}`
-                    },
-                    { 
-                        icon: <HiOutlineTrash size={19} />, 
-                        label: 'Delete', 
-                        onClick: () => {
-                            // setSelectedProductId(row.original.id)
-                            // setShowModal(true)
-                        }
-                    },
-                ];
-
-                return (
-                    <DropdownCustom
-                        align="end"
-                        menu={menu}
-                        className="w-32"
-                    >
-                        <button className="flex items-center justify-center hover:bg-gray-100 rounded-full p-1.5 cursor-pointer">
-                            <IoIosMore size={23} />
-                        </button>
-                    </DropdownCustom>
-                )
-            },
-        },
-    ], [])
+        ]
+    }, [])
 
     return (
-        <DataTable
-            title="Category List"
-            columns={columns} 
-            data={categoriesAdmin || []}  
-            totalRows={total}
-            // onDeleted={handleDeleteBulk}
-            // isDeleting={isDeletingBulk}
-            onClick={() => navigate('/dashboard/add-product')}
-            page={page}
-            totalPages={totalPages}
-            onPageChange={(newPage) => setPage(newPage)}
-            isLoading={isLoading}
-        />
-        // <div className="flex flex-col gap-y-6">
-        //     <div className="flex justify-end items-center">
-        //         <Button variant="primary" className="h-10!">
-        //             + Add New Item
-        //         </Button>
-        //     </div>
-        //     <CardDashboard title="Category List">
-        //         <div></div>
-        //     </CardDashboard>
-        // </div>
+        <>
+            <DataTable
+                title="Daftar Kategori"
+                columns={columns} 
+                data={categoriesAdmin || []}  
+                totalRows={total}
+                onDeleted={handleDeleteBulk}
+                isDeleting={isDeletingBulkCategory}
+                onClick={() => navigate('/dashboard/add-category')}
+                page={page}
+                totalPages={totalPages}
+                onPageChange={(newPage) => setPage(newPage)}
+                isLoading={isLoading}
+            />
+
+            <ModalConfirm
+                isOpen={showModal}
+                onCancel={() => setShowModal(false)}
+                onConfirm={handleDeleteSingle}
+                isLoading={isDeletingSingleCategory}
+                variant="DELETE"
+                confirmLabel="Hapus"
+                title="Hapus"
+                description={`Apakah Anda yakin ingin menghapus kategori ini? Tindakan ini tidak dapat dibatalkan.`}
+                size="sm"
+            />
+        </>
     )
 }

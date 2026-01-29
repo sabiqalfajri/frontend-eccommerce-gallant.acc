@@ -50,8 +50,15 @@ export interface ProductPayload {
     files: File[];
 }
 
-export interface UpdateProductPayload extends ProductPayload {
-    deletedImages: string[]
+export interface UpdateProductPayload {
+    name?: string;
+    description?: string;
+    price?: number;
+    stock?: number;
+    categoryId?: string;
+    visibility?: "PUBLISH" | "HIDDEN" | "DRAFT";
+    files?: File[];
+    deletedImages: string[];
 }
 
 export interface ProductPaginated {

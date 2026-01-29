@@ -35,17 +35,17 @@ export const Sidebar = ({
             title: 'Overview',
             items: [
                 { name: 'Dashboard', path: '/dashboard', icon: <RxDashboard size={21} /> },
-                { name: 'Orders', path: '/dashboard/orders', icon: <GoPackage size={21} /> },
-                { name: 'Products', path: '/dashboard/products', icon: <HiOutlineShoppingBag size={21} /> },
-                { name: 'Categories', path: '/dashboard/categories', icon: <LuLayers size={21} /> },
-                { name: 'Customers', path: '/dashboard/customers', icon: <PiUsers size={21} /> },
+                { name: 'Pesanan', path: '/dashboard/orders', icon: <GoPackage size={21} /> },
+                { name: 'Produk', path: '/dashboard/products', icon: <HiOutlineShoppingBag size={21} /> },
+                { name: 'Kategori', path: '/dashboard/categories', icon: <LuLayers size={21} /> },
+                { name: 'Pengguna', path: '/dashboard/customers', icon: <PiUsers size={21} /> },
             ]
         },
         General: {
             title: 'General',
             items: [
-                { name: 'Settings', path: '/dashboard/settings', icon: <IoSettingsOutline size={21} /> },
-                { name: 'Logout', path: '', icon: <FiLogOut size={21} /> },
+                { name: 'Pengaturan', path: '/dashboard/settings', icon: <IoSettingsOutline size={21} /> },
+                { name: 'Keluar', path: '', icon: <FiLogOut size={21} /> },
             ]
         }
     }
@@ -110,7 +110,7 @@ export const Sidebar = ({
                         </p>
                         <div className="flex flex-col gap-1.5">
                             {section.items.map((item) => {
-                                const isLogout = item.name === 'Logout';
+                                const isLogout = item.name === 'Keluar';
                                 
                                 if(isLogout) {
                                     return (

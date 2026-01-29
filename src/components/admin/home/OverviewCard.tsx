@@ -43,7 +43,9 @@ export const OverviewCard = ({
                     {!isLoading && growth !== undefined && (
                         <div className="flex flex-wrap items-center gap-x-4">
                             {FormatGrowth(growth)}
-                            <p className="text-[13px] text-gray-500">Compared to last month</p>
+                            <p className="text-[13px] text-gray-500">
+                                Dibandingkan bulan lalu
+                            </p>
                         </div>
                     )}
                 </div>

@@ -17,6 +17,7 @@ import { ComboboxCustom } from "@/components/common/ComboboxCustom";
 import { useCategories } from "@/hooks/category/useCategories";
 import { showError } from "@/utils/Toast";
 import { NumericFormat } from "react-number-format"
+import { ClipLoader } from "react-spinners";
 
 interface ProductData extends ProductFormValues {
     id: string;
@@ -76,7 +77,7 @@ export const ProductForm = ({
     const handleFormSubmit = async (data: ProductFormValues) => {
         const totalImages = previewUrls.length
         if(totalImages === 0) {
-            showError('Please upload at least one image.');
+            showError('Silakan unggah minimal satu gambar.');
             return
         }
 
@@ -106,12 +107,12 @@ export const ProductForm = ({
         value: "PUBLISH" | "HIDDEN" | "DRAFT";
     }[] = [
         { 
-            label: "Published", 
+            label: "Ditampilkan", 
             desc: 'Produk ini akan muncul di halaman utama',
             value: "PUBLISH"
         },
         { 
-            label: "Hidden", 
+            label: "Disembunyikan", 
             desc: 'Produk ini tidak akan muncul di halaman utama',
             value: "HIDDEN"
         },
@@ -131,14 +132,14 @@ export const ProductForm = ({
                         <IoIosArrowBack size={22} />
                     </button>
                     <h1 className="font-semibold">
-                        {mode === 'create' ? 'Add New Product' : 'Update Product'}
+                        {mode === 'create' ? 'Tambah Produk' : 'Edit Produk'}
                     </h1>
                 </div>
                 <div className="flex flex-wrap gap-x-2">
                     <Button 
                     type="button" 
                     size="lg"
-                    variant="outlinePrimary">Discard</Button>
+                    variant="outlinePrimary">Batal</Button>
                     <Button
                     type="submit"
                     disabled={isSubmitting}
@@ -146,27 +147,27 @@ export const ProductForm = ({
                     size="lg"
                     >
                         {isSubmitting ? 
-                            mode === 'create' ? 'Creating Product' : 'Updating Product'
-                            : mode === 'create' ? 'Create Product' : 'Update Product'
+                            <ClipLoader size={24} color="white" />
+                            : mode === 'create' ? 'Tambah Produk' : 'Simpan'
                         }
                     </Button>
                 </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 md:[&>*:first-child]:col-span-2 gap-6">
                 <div className="flex flex-col gap-6">
-                    <CardDashboard title="General Information" className="h-82">
+                    <CardDashboard title="Informasi Umum" className="h-82">
                         <div className="space-y-3">
-                            <Label>Product Name</Label>
+                            <Label>Nama Produk</Label>
                             <div>
                                 <Input
                                 {...register("name")}
-                                placeholder="Enter product name"
+                                placeholder="Masukkan nama produk"
                                 />
                                 {errors.name && <p className="text-red-500 text-[13px] mt-1">{errors.name.message}</p>}
                             </div>
                         </div>
                         <div className="space-y-3">
-                            <Label>Description</Label>
+                            <Label>Deskripsi</Label>
                             <div>
                                 <div className="h-28 relative">
                                     <Textarea
@@ -191,10 +192,10 @@ export const ProductForm = ({
                             </div>
                         </div>
                     </CardDashboard>
-                    <CardDashboard title="Pricing and Stock">
+                    <CardDashboard title="Harga dan stok">
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-3">
-                                <Label>Base Price</Label>
+                                <Label>Harga</Label>
                                 <div>
                                     <Controller 
                                         name="price"
@@ -218,29 +219,11 @@ export const ProductForm = ({
                                             />
                                         )}
                                     />
-                                    {/* <Input 
-                                    {...register("price")}
-                                    type="text"
-                                    inputMode="numeric"
-                                    placeholder="Enter price"
-                                    value={priceDisplay}
-                                    onChange={(e) => {
-                                        const raw = e.target.value.replace(/[^\d]/g, "");
-                                        const formatted = raw ? Number(raw).toLocaleString("id-ID") : "";
-                                        setPriceDisplay(formatted);
-                                        setValue("price", raw === "" ? 0 : Number(raw), { shouldValidate: true });
-                                    }}
-                                    onBlur={() => {
-                                        const current = watch("price");
-                                        setPriceDisplay(current ? 
-                                            Number(current).toLocaleString("id-ID") : "")
-                                    }}
-                                    /> */}
                                     {errors.price && <p className="text-red-500 text-[13px] mt-1">{errors.price.message}</p>}
                                 </div>
                             </div>
                             <div className="space-y-3">
-                                <Label>Stock</Label>
+                                <Label>Stok</Label>
                                 <div>
                                     <Input 
                                     type="number"
@@ -252,7 +235,7 @@ export const ProductForm = ({
                             </div>
                         </div>
                     </CardDashboard>
-                    <CardDashboard title="Visibility">
+                    <CardDashboard title="Visibilitas">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                             {visibilityMenu.map((visi, idx) => (
                                 <div 
@@ -272,9 +255,9 @@ export const ProductForm = ({
                     </CardDashboard>
                 </div>
                 <div className="flex flex-col gap-y-6">
-                    <CardDashboard title="Product Media" className="h-82">
+                    <CardDashboard title="Media Produk" className="h-82">
                         <div className="space-y-3">
-                            <Label>Images Product</Label>
+                            <Label>Gambar Produk</Label>
                             <div className="flex flex-col gap-1 w-full bg-gray-100 rounded-md border border-gray-200 justify-center items-center h-48 p-2">
                                 {previewUrls.length > 0 ? (
                                     <div className="grid grid-cols-3 gap-2 w-full h-full">
@@ -320,11 +303,11 @@ export const ProductForm = ({
                                             className="cursor-pointer text-blue-700"
                                             onClick={handleInputUpload}
                                             >
-                                                Click to Upload
+                                                Klik untuk unggah
                                             </button>
-                                            <p>or Drag and Drop</p>
+                                            <p>atau seret file</p>
                                         </div>
-                                        <p className="text-[12px] text-gray-500">PDF, JPG, JPEG, PNG less than 5mb.</p>
+                                        <p className="text-[12px] text-gray-500">PDF, JPG, JPEG, PNG (maks. 5 MB)</p>
                                     </>
                                 )}
 
@@ -338,14 +321,15 @@ export const ProductForm = ({
                             </div>
                         </div>
                     </CardDashboard>
-                    <CardDashboard title="Category">
+                    <CardDashboard title="Kategori">
                         <div className="space-y-3">
-                            <Label>Product Category</Label>
+                            <Label>Kategori Produk</Label>
                             <ComboboxCustom
                                 options={categoryOptions}
                                 className="w-full"
                                 isLoading={isLoadingCategory}
                                 contentClassName="!w-full !max-w-none"
+                                placeholder="Pilih opsi kategori"
                                 value={watch("categoryId")}
                                 onChange={(value) => {
                                     setValue("categoryId", value, { shouldValidate: true });

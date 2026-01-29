@@ -10,7 +10,7 @@ export const useDeletedProduct = (token: string) => {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["productsAdmin"] });
 
-            showInfo("Product deleted successfully!");
+            showInfo("Produk berhasil dihapus.");
         },
         onError: (error) => {
             showError(error.message || 'Something went wrong')
@@ -22,7 +22,7 @@ export const useDeletedProduct = (token: string) => {
         onSuccess: (_, ids) => {
             queryClient.invalidateQueries({ queryKey: ["productsAdmin"] });
 
-            showInfo(`${ids.length} selected product deleted successfully!`);
+            showInfo(`${ids.length} produk berhasil dihapus.`);
         },
         onError: (error) => {
             showError(error.message || 'Something went wrong')

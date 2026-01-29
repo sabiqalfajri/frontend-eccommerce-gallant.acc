@@ -17,7 +17,7 @@ export const RecentOrders = ({
     const columns: ColumnDef<RecentOrder>[] = useMemo(() => [
         {
             accessorKey: "name",
-            header: "Customer",
+            header: "Pelanggan",
             cell: ({ row }) => {
                 const user = row.original;
 
@@ -28,7 +28,7 @@ export const RecentOrders = ({
         },
         {
             accessorKey: "orderId",
-            header: "OrderId",
+            header: "ID Order",
             cell: ({ row }) => 
                 <span className="truncate max-w-36">{row.original.publicId}</span>
         },
@@ -56,7 +56,7 @@ export const RecentOrders = ({
         },
         {
             accessorKey: "date",
-            header: "Date",
+            header: "Tanggal",
             cell: ({ row }) => 
                 <p>{FormatDateWithoutWib(row.original.createdAt)}</p>
         },

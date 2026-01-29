@@ -33,7 +33,7 @@ export const getOrderDashboardActions = (
                 { 
                     label: 'Tandai Diproses', 
                     icon: <FiRefreshCcw size={16} />,
-                    href: `/dashboard/orders/${order.id}?to=PROCESSING` 
+                    onClick: () => handlers.updateStatus(order.id, "PROCESSING")
                 },
                 { 
                     label: 'Batalkan Pesanan', 

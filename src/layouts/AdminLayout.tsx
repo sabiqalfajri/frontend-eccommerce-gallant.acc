@@ -5,32 +5,31 @@ import { useEffect, useState } from "react"
 import { Outlet } from "react-router-dom"
 
 export const AdminLayout = () => {
-    const { isMobile } = useWindowSize();
+    const { isMobile, isTablet } = useWindowSize();
     const [isDesktopCollapsed, setIsDesktopCollapsed] = useState(false);
     const [isMobileOpen, setIsMobileOpen] = useState(false);
+    const isDrawer = isMobile || isTablet
     
     useEffect(() => {
-        if(isMobile) {
+        if(isDrawer) {
             setIsMobileOpen(false)
         }
         
-    }, [isMobile])
+    }, [isDrawer])
 
     return (
-       
-
         <div className="flex h-screen">
             <Sidebar 
             // isOpen={isSidebarOpen} 
             // setIsOpen={setIsSidebarOpen}
-            isMobile={isMobile}
+            isMobile={isDrawer}
             isMobileOpen={isMobileOpen}
             setIsMobileOpen={setIsMobileOpen}
             isDesktopCollapsed={isDesktopCollapsed}
             setIsDesktopCollapsed={setIsDesktopCollapsed}
             />
 
-            {isMobile && isMobileOpen && (
+            {isDrawer && isMobileOpen && (
                 <div
                 className="fixed inset-0 bg-black/40 z-40 lg:hidden"
                 onClick={() => setIsMobileOpen(false)}

@@ -10,6 +10,8 @@ import { PrivateRoute } from "./PrivateRoute"
 import { AddProduct } from "@/pages/admin/AddProduct"
 import { EditProduct } from "@/pages/admin/EditProduct"
 import { OrderDetailDashboard } from "@/pages/admin/OrderDetailDashboard"
+import { AddCategory } from "@/pages/admin/AddCategory"
+import { EditCategory } from "@/pages/admin/EditCategory"
 
 export const AdminRoutes = () => {
     return (
@@ -23,6 +25,8 @@ export const AdminRoutes = () => {
                     <Route path="add-product" element={<AddProduct />} />
                     <Route path="update-product/:id" element={<EditProduct />} />
                     <Route path="categories" element={<CategoryDashboard />} />
+                    <Route path="add-category" element={<AddCategory />} />
+                    <Route path="update-category/:id" element={<EditCategory />} />
                     <Route path="customers" element={<CustomersDashboard />} />
                     <Route path="settings" element={<SettingsDashboard />} />
                 </Route>

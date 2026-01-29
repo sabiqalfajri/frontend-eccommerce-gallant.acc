@@ -1,5 +1,5 @@
 import { fetchCategories } from "@/api/CategoryApi";
-import { CategoryUser } from "@/types/Category";
+import { BaseCategory } from "@/types/Category";
 import { useQuery } from "@tanstack/react-query";
 
 export const useCategories = () => {
@@ -8,7 +8,7 @@ export const useCategories = () => {
         isLoading,
         isFetched, 
         isError 
-    } = useQuery<CategoryUser[]>({
+    } = useQuery<BaseCategory[]>({
         queryKey: ["category"],
         queryFn: fetchCategories,
         staleTime: 1000 * 60 * 5

@@ -26,7 +26,7 @@ export const SettingsDashboard = () => {
 
             await updateUser(data)
         } catch (error) {
-            
+            console.error("Upload profile failed:", error);
         } finally {
             setIsSubmitting(false)
         }
