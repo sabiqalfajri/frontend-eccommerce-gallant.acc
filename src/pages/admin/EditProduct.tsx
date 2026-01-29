@@ -1,10 +1,9 @@
 import { ProductForm } from "@/components/admin/products/ProductForm"
 import { LoadingGlobal } from "@/components/shared/LoadingGlobal";
 import { useProductById } from "@/hooks/product/useProductById";
-import { useProductForEdit } from "@/hooks/product/useProductForEdit";
 import { useUpdateProduct } from "@/hooks/product/useUpdatedProduct";
 import { useToken } from "@/hooks/universal/useToken"
-import { ProductFormValues, UpdateProductFormValues } from "@/schema/admin/Product.schema";
+import { UpdateProductFormValues } from "@/schema/admin/Product.schema";
 import { useNavigate, useParams } from "react-router-dom";
 
 export const EditProduct = () => {

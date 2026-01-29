@@ -11,7 +11,7 @@ import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading";
 import { FormatDate } from "@/utils/FormatDate";
 import { CapitalizeText } from "@/helper/CapitalizeText";
 import { ColumnDef } from "@tanstack/react-table";
-import { BaseItem } from "@/types/Transaction";
+import { BaseItem, statusOrder } from "@/types/Transaction";
 import { TableWithoutPage } from "@/components/common/TableWithoutPage";
 import { OrderStatusBadge } from "@/components/admin/orders/OrderStatusBadge";
 import { Button } from "@/components/ui/button";
@@ -125,7 +125,7 @@ export const OrderDetailDashboard = () => {
         detailOrderAdmin.status === 'SHIPPED'
     );
     
-    const handleTriggerMark = async (orderId: string, status: string) => {
+    const handleTriggerMark = async (orderId: string, status: statusOrder) => {
         if (!orderId) return;
         await updateOrderStatusAdmin({ orderId, newStatus: status });
         showInfo('Status pesanan diperbarui')
