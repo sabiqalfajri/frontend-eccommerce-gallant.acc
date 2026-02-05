@@ -7,6 +7,7 @@ import { Skeleton } from "../ui/skeleton";
 import { ClipLoader } from "react-spinners";
 import { useRef, useState } from "react";
 import { useInfiniteScroll } from "@/hooks/universal/useInfiniteScroll";
+import { TimeAgo } from "@/utils/TimeAgo";
 
 interface NotificationDropdownProps {
     notifications: Notification[]
@@ -115,11 +116,11 @@ export const NotificationDropdown = ({
                         ))}
                     </div>
                 ) : isError ? (
-                    <div className="py-10 text-center text-red-500">
+                    <div className="py-10 text-center text-sm text-red-500">
                         Gagal memuat notifikasi.
                     </div>
                 ) : notifications.length === 0 ? (
-                    <div className="py-10 text-center text-muted-foreground">
+                    <div className="py-10 text-center text-sm text-muted-foreground">
                         Belum ada notifikasi.
                     </div>
                 ) : (
@@ -149,7 +150,7 @@ export const NotificationDropdown = ({
                                                     {notif.message}
                                                 </p>
                                                 <p className="mt-1 text-xs text-muted-foreground">
-                                                    {notif.createdAt}
+                                                    {TimeAgo(notif.createdAt)}
                                                 </p>
                                             </div>
 
