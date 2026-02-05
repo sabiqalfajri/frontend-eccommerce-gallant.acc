@@ -21,6 +21,7 @@ export const NavbarUser = () => {
     const { currentUser } = useCurrentUser();
     const { isSignedIn, isLoaded } = useAuth();
     const { cartItem } = useCart(token!);
+    // console.log('token anda', token);
 
     const navMenu = [
         { tittle: "Home", path: "/" },

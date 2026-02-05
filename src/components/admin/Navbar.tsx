@@ -1,13 +1,14 @@
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
-import { IoNotificationsOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import { useCurrentUser } from "@/hooks/user/useCurrentUser";
 import { CapitalizeText } from "@/helper/CapitalizeText";
 import { DropdownCustom, MenuItem } from "../common/DropdownCustom";
 import { FiLogOut } from "react-icons/fi";
-import { LuUserRound } from "react-icons/lu";
 import { IoSettingsOutline } from "react-icons/io5";
 import { useLogout } from "@/hooks/auth/useLogout";
+import { NotificationDropdown } from "./NotificationDropdown";
+import { useNotification } from "@/hooks/notification/useNotification";
+import { useToken } from "@/hooks/universal/useToken";
 
 interface NavbarProps {
     isMobile: boolean
@@ -21,25 +22,33 @@ export const Navbar = ({
         currentUser, 
     } = useCurrentUser();
     const { logout } = useLogout();
+    const { token } = useToken();
+    const {
+        notifications,
+        isLoading,
+        isFetchingNextPage,
+        hasNextPage,
+        fetchNextPage,
+        isError
+    } = useNotification(token);
 
-    const menu: MenuItem[] = [
-        { 
-            icon: <LuUserRound size={20} />, 
-            label: 'Profile', 
-            href: `/dashboard/update-product`,
-            separator: 'up'
-        },
+    // const loadMoreRef = useInfiniteScroll({
+    //     onLoadMore: fetchNextPage,
+    //     hasMore: !!hasNextPage,
+    //     isLoadingMore: isFetchingNextPage,
+    //     root: scrollRefCurrent
+    // })
+
+    const menuAccount: MenuItem[] = [
         { 
             icon: <IoSettingsOutline size={19} />, 
             label: 'Setting', 
-            onClick: () => {
-                console.log('')
-            },
-            separator: 'down'
+            href: '/dashboard/settings',
+            separator: 'up'
         },
         { 
             icon: <FiLogOut size={19} />, 
-            label: 'Sign Out', 
+            label: 'Keluar', 
             onClick: logout
         },
     ];
@@ -60,17 +69,64 @@ export const Navbar = ({
             </div>
             
             <div className="flex flex-wrap items-center gap-x-2.5">
-                <button type="button" className="cursor-pointer md:mr-2">
-                   <IoNotificationsOutline size={24} /> 
-                </button>
+                <NotificationDropdown 
+                    classNameTrigger="md:mr-2"
+                    // notifications={[
+                    //     {
+                    //         id: 'notif-1',
+                    //         type: 'order_created',
+                    //         title: 'Pesanan Baru',
+                    //         message: 'Pesanan #INV-2037292 berhasil dibuat dan menunggu pembayaran.',
+                    //         time: '3 menit lalu',
+                    //         isRead: false,
+                    //         link: ''
+                    //     },
+                    //     {
+                    //         id: 'notif-2',
+                    //         type: 'payment_received',
+                    //         title: 'Pembayaran Diterima',
+                    //         message: 'Pembayaran untuk pesanan #INV-2037292 telah berhasil.',
+                    //         time: '3 menit lalu',
+                    //         isRead: true,
+                    //         link: ''
+                    //     },
+                    //     {
+                    //         id: 'notif-3',
+                    //         type: 'order_action_required',
+                    //         title: 'Pesanan Perlu Tindakan',
+                    //         message: 'Pesanan #INV-2037292 telah dibayar tetapi belum dikirim lebih dari 48 jam.',
+                    //         time: '3 menit lalu',
+                    //         isRead: true,
+                    //         link: ''
+                    //     },
+                    //     {
+                    //         id: 'notif-4',
+                    //         type: 'stock_low',
+                    //         title: 'Stok Hampir Habis',
+                    //         message: 'Stok produk "Sepatu ABC" tersisa 3 item.',
+                    //         time: '3 menit lalu',
+                    //         isRead: true,
+                    //         link: ''
+                    //     },
+                    // ]}
+                    notifications={notifications}
+                    fetchNextPage={fetchNextPage}
+                    isFetchingNextPage={isFetchingNextPage}
+                    hasNextPage={hasNextPage}
+                    isLoading={isLoading}
+                    isError={isError}
+                    undreadCount={5}
+                    onMarkAsRead={(id) => console.log('Mark as read', id)}
+                    onMarkAllAsRead={() => console.log('Mark all as read')}
+                />
                 <div className="bg-gray-200 h-10 w-0.5"></div>
                 <DropdownCustom
                     align="end"
-                    menu={menu}
+                    menu={menuAccount}
                     className="w-56"
                     header={
-                        <div className="flex flex-wrap gap-x-2 items-center pt-0.5">
-                            <img className="w-8 h-8 rounded-full object-cover" src={currentUser?.image} alt="profile-menu" />
+                        <div className="flex flex-wrap gap-x-2 items-center py-0.5">
+                            <img className="w-9 h-9 rounded-full object-cover" src={currentUser?.image} alt="profile-menu" />
                             <div className="flex flex-col">
                                 <h1 className="text-sm font-semibold truncate w-36">
                                     {CapitalizeText(currentUser?.name)}
