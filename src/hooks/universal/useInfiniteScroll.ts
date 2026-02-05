@@ -21,6 +21,11 @@ export const useInfiniteScroll = ({
 }: useInfiniteScrollProps) => {
     const targetRef = useRef<HTMLDivElement>(null)
     const observerRef = useRef<IntersectionObserver | null>(null)
+    const loadMoreRef = useRef(onLoadMore)
+
+    useEffect(() => {
+        loadMoreRef.current = onLoadMore
+    }, [onLoadMore])
 
     const handleIntersection = useCallback(
         ([entry]: IntersectionObserverEntry[]) => {
@@ -53,7 +58,6 @@ export const useInfiniteScroll = ({
 
             observerRef.current.observe(target)
 
-            // initial check after layout stable
             raf2 = requestAnimationFrame(() => {
                 const rect = target.getBoundingClientRect()
                 const rootRect = root
@@ -65,23 +69,20 @@ export const useInfiniteScroll = ({
                     rect.bottom >= rootRect.top
 
                 if (isVisible && !isLoadingMore) {
-                    onLoadMore()
+                    loadMoreRef.current()
                 }
             })
         }
 
-        // wait portal + animation
         // eslint-disable-next-line prefer-const
         raf1 = requestAnimationFrame(setupObserver)
 
-        // re-evaluate when user returns to tab
         const handleVisibility = () => {
             if (document.visibilityState === "visible") {
                 setupObserver()
             }
         }
 
-        // re-evaluate when resize
         const handleResize = () => setupObserver()
 
         document.addEventListener("visibilitychange", handleVisibility)
@@ -100,7 +101,8 @@ export const useInfiniteScroll = ({
         isLoadingMore,
         rootMargin,
         threshold,
-        rootRef?.current
+        rootRef,
+        handleIntersection
     ])
 
     return targetRef

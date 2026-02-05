@@ -13,7 +13,8 @@ export const fetchAdminNotifications = async ({
         },
         params: {
             limit,
-            cursor
+            cursorId: cursor?.id,
+            cursorCreatedAt: cursor?.createdAt
         }
     });
 

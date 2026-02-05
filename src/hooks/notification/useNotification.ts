@@ -1,6 +1,6 @@
 import { fetchAdminNotifications } from "@/api/NotificationApi";
-import { FetchAdminNotificationsPayload, Notification } from "@/types/Notification";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { Cursor, FetchAdminNotificationsPayload, Notification, NotificationListResponse } from "@/types/Notification";
+import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 
 interface UseNotificationResult {
     notifications: Notification[];
@@ -25,7 +25,13 @@ export const useNotification = (token: string | null): UseNotificationResult => 
         refetch,
         isError, 
         error 
-    } = useInfiniteQuery({
+    } = useInfiniteQuery<
+        NotificationListResponse,
+        Error,
+        InfiniteData<NotificationListResponse>,
+        string[],
+        Cursor | undefined
+    >({
         queryKey: ["admin-notifications"],
         queryFn: async ({ pageParam }) => {
             if(!token) throw new Error("Unauthorized");
@@ -38,8 +44,8 @@ export const useNotification = (token: string | null): UseNotificationResult => 
 
             return fetchAdminNotifications(payload);
         },
-        initialPageParam: undefined as string | undefined,
-        getNextPageParam: (lastPage) => lastPage?.nextCursor ?? undefined,
+        initialPageParam: undefined as Cursor | undefined,
+        getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
         enabled: !!token,
         staleTime: 3 * 60 * 1000,
         gcTime: 10 * 60 * 1000,

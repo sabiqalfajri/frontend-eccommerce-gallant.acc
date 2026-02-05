@@ -19,7 +19,7 @@ export interface Notification {
 
 export interface NotificationListResponse {
     notifications: Notification[];
-    nextCursor: string | null;
+    nextCursor: Cursor | undefined;
     hasNextPage: boolean;
 }
 
@@ -27,8 +27,13 @@ export interface UnreadNotificationCountResponse {
     count: number;
 }
 
+export type Cursor = {
+    id: string
+    createdAt: string
+}
+
 export interface FetchAdminNotificationsPayload {
     token: string;
     limit?: number;
-    cursor?: string;
+    cursor?: Cursor;
 }
