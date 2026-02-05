@@ -42,11 +42,14 @@ export const markNotificationAsRead = async (token: string, id: string) => {
 }
 
 export const markAllNotificationsAsRead = async (token: string) => {
-    const response = await axiosClient.patch<ApiResponse<Record<string, never>>>('/notifications/admin/read-all', {
-        headers: {
-            Authorization: `Bearer ${token}`
+    const response = await axiosClient.patch<ApiResponse<Record<string, never>>>('/notifications/admin/read-all', 
+        {},
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         }
-    });
+    );
 
     return response.data.message
 }

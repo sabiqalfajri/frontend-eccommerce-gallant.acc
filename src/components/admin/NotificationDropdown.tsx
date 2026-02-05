@@ -58,6 +58,8 @@ export const NotificationDropdown = ({
         }
     }
 
+    console.log('unread-count-dropdown', undreadCount)
+
     return (
         <DropdownMenu onOpenChange={setIsOpen}>
             <DropdownMenuTrigger asChild>
@@ -82,7 +84,9 @@ export const NotificationDropdown = ({
             className="w-80 sm:w-96 max-h-[min(80vh,500px)] overflow-y-auto p-0"
             >
                 {/* Header */}
-                <div className="flex items-center justify-between border-b px-4 py-3">
+                <div 
+                className="flex items-center justify-between border-b px-4 py-3 sticky top-0 bg-white"
+                >
                     <h3 className="font-semibold">Notifikasi</h3>
                     {isLoading ? (
                         <div>

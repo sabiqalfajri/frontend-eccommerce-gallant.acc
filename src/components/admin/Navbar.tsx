@@ -9,6 +9,8 @@ import { useLogout } from "@/hooks/auth/useLogout";
 import { NotificationDropdown } from "./NotificationDropdown";
 import { useNotification } from "@/hooks/notification/useNotification";
 import { useToken } from "@/hooks/universal/useToken";
+import { useMarkAllAsRead } from "@/hooks/notification/useMarkAllAsRead";
+import { useUnreadCount } from "@/hooks/notification/useUnreadCount";
 
 interface NavbarProps {
     isMobile: boolean
@@ -31,6 +33,14 @@ export const Navbar = ({
         fetchNextPage,
         isError
     } = useNotification(token);
+
+    const {
+        markAllAsRead
+    } = useMarkAllAsRead(token)
+
+    const {
+        count
+    } = useUnreadCount(token);
 
     // const loadMoreRef = useInfiniteScroll({
     //     onLoadMore: fetchNextPage,
@@ -115,9 +125,9 @@ export const Navbar = ({
                     hasNextPage={hasNextPage}
                     isLoading={isLoading}
                     isError={isError}
-                    undreadCount={5}
+                    undreadCount={count}
                     onMarkAsRead={(id) => console.log('Mark as read', id)}
-                    onMarkAllAsRead={() => console.log('Mark all as read')}
+                    onMarkAllAsRead={markAllAsRead}
                 />
                 <div className="bg-gray-200 h-10 w-0.5"></div>
                 <DropdownCustom
