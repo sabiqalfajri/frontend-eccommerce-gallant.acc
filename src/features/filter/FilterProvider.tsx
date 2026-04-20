@@ -1,15 +1,5 @@
-import { createContext, useContext, useEffect, useState } from "react";
-
-interface FilterState {
-    selectedCategories: string[];
-    startPrice?: number;
-    endPrice?: number;
-    setSelectedCategories: (categories: string[]) => void;
-    setPriceRange: (start: number, end: number) => void;
-    clearFilters: () => void;
-}
-
-const FilterContext = createContext<FilterState | undefined>(undefined);
+import { useEffect, useState } from "react";
+import { FilterContext } from "./filter.context";
 
 export const FilterProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -17,12 +7,17 @@ export const FilterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     const [endPrice, setEndPrice] = useState<number | undefined>(undefined);
 
     useEffect(() => {
-        const stored = localStorage.getItem("filterState");
-        if (stored) {
+        try {
+            const stored = localStorage.getItem("filterState");
+            if(!stored) return
+
             const parsed = JSON.parse(stored);
+
             setSelectedCategories(parsed.selectedCategories || []);
             setStartPrice(parsed.startPrice);
             setEndPrice(parsed.endPrice);
+        } catch {
+            localStorage.removeItem("filterState");
         }
     }, []);
 
@@ -45,22 +40,16 @@ export const FilterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
     return (
         <FilterContext.Provider
-        value={{ 
-            selectedCategories,
-            startPrice,
-            endPrice,
-            setSelectedCategories,
-            setPriceRange,
-            clearFilters,
-        }}
+            value={{ 
+                selectedCategories,
+                startPrice,
+                endPrice,
+                setSelectedCategories,
+                setPriceRange,
+                clearFilters,
+            }}
         >
             {children}
         </FilterContext.Provider>
     )
-}
-
-export const useFilter = () => {
-    const ctx = useContext(FilterContext);
-    if (!ctx) throw new Error("useFilter must be used within a FilterProvider");
-    return ctx;
 }

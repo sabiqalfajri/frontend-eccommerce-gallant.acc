@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useCategories } from "@/hooks/category/useCategories"
 import { SliderPrice } from "./SliderPrice";
 import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading";
-import { useFilter } from "@/context/FilterContext";
+import { useFilter } from "@/features/filter/useFilter";
 
 export const SidebarUser = () => {
     const { categories, isLoadingCategory, isErrorCategory, isFetchedCategory } = useCategories();

@@ -1,5 +1,5 @@
 import { fetchAllProductsForUser } from "@/api/ProductApi";
-import { useFilter } from "@/context/FilterContext";
+import { useFilter } from "@/features/filter/useFilter";
 import { useQuery } from "@tanstack/react-query";
 
 export const useProductsForUser = () => {

@@ -1,5 +1,5 @@
 import { Slider } from "@/components/ui/slider";
-import { useFilter } from "@/context/FilterContext";
+import { useFilter } from "@/features/filter/useFilter";
 import { useEffect, useState } from "react";
 
 const MIN = 0;
@@ -14,7 +14,7 @@ export const SliderPrice = () => {
 
     useEffect(() => {
         setRange([safeStart, safeEnd])
-    }, [startPrice, endPrice]);
+    }, [startPrice, endPrice, safeStart, safeEnd]);
 
     const handleChange = (value: number[]) => {
         if(value.length === 2) {

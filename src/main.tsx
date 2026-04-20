@@ -8,9 +8,9 @@ import { BrowserRouter } from 'react-router-dom'
 import 'swiper/swiper-bundle.css'
 import { CartSelectionProvider } from './context/CartSelectionContext.tsx'
 import { CheckoutProvider } from './context/CheckoutContext.tsx'
-import { FilterProvider } from './context/FilterContext.tsx'
 import { AuthWathcer } from './providers/AuthWatcher.tsx'
 import { CheckoutTransitionProvider } from './context/CheckoutTransitionContext.tsx'
+import { FilterProvider } from './features/filter/FilterProvider.tsx'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
