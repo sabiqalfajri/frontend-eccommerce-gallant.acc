@@ -3,6 +3,7 @@ import { useWindowSize } from "@/hooks/universal/useWindowSize";
 import { ProductBaseUser } from "@/types/Product";
 import { ImageWithPlaceholder } from "@/components/common/ImageWithPlaceholder";
 import { CardProductSkeleton } from "../CardProductSkeleton";
+import { EmptyProducts } from "@/components/admin/products/EmptyProducts";
 
 interface ProductsProps {
     products: ProductBaseUser[] | undefined
@@ -23,7 +24,9 @@ export const Products = ({
     const { isMobile } = useWindowSize();
 
     if(isError) return <div>Something went wrong</div>;
-    if(products && products.length === 0) return <div>No products found</div>;
+    if(products && products.length === 0) {
+        return <EmptyProducts />
+    }
     const skeletonLength = isMobile ? 6 : 8
 
     return (
