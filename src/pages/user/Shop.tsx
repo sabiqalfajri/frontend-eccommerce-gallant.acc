@@ -12,7 +12,7 @@ export const Shop = () => {
     const smoothLoading = useSmoothLoading(loadingProducts, 200);
 
     return (
-        <Section>
+        <Section wrapperClassName="pb-5 md:pb-2">
             <div className="flex flex-col md:flex-row gap-2">
                 <div className="w-[250px] hidden lg:block">
                     <SidebarUser />
