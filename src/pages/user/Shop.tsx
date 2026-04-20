@@ -12,12 +12,12 @@ export const Shop = () => {
     const smoothLoading = useSmoothLoading(loadingProducts, 200);
 
     return (
-        <Section wrapperClassName="pb-5 md:pb-2">
+        <Section>
             <div className="flex flex-col md:flex-row gap-2">
                 <div className="w-[250px] hidden lg:block">
                     <SidebarUser />
                 </div>
-                <div className="flex-1 transition-all duration-300 p-0 md:p-4">
+                <div className="flex-1 transition-all duration-300 pb-6 md:p-4">
                     <div className="flex justify-between items-center pt-1 pb-3">
                         <CustomSheet
                             side="left"
