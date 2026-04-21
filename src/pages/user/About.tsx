@@ -71,7 +71,7 @@ export const About = () => {
                             <p className="text-sm font-medium text-gray-600 mb-3">
                                 Sudah tertarik melengkapi gaya kamu?
                             </p>
-                            <a href="" className="inline-flex px-5 py-2.5 bg-primary text-white text-sm rounded-lg hover:opacity-90 transition cursor-pointer font-semibold">
+                            <a href="/shop" className="inline-flex px-5 py-2.5 bg-primary text-white text-sm rounded-lg hover:opacity-90 transition cursor-pointer font-semibold">
                                 Belanja Sekarang
                             </a>
                         </div>
