@@ -1,35 +1,13 @@
 import { Section } from "@/components/common/Section"
 
 export const About = () => {
-    // const services = [
-    //     {
-    //         icon: '',
-    //         title: '',
-    //         desc: ''
-    //     },
-    //     {
-    //         icon: '',
-    //         title: '',
-    //         desc: ''
-    //     },
-    //     {
-    //         icon: '',
-    //         title: '',
-    //         desc: ''
-    //     },
-    //     {
-    //         icon: '',
-    //         title: '',
-    //         desc: ''
-    //     },
-    // ];
 
     return (
         <Section>
             <div className="flex flex-col justify-center items-center px-0 md:px-24">
                 <div className="w-fit flex flex-col items-center mt-5 mb-5">
-                    <h1 className="font-bold text-[19px] md:text-2xl">About</h1>
-                    <p className="w-full md:w-[70%] text-center text-[13px] md:text-sm mt-1.5 md:mt-2.5 mb-2">
+                    <h1 className="font-bold text-2xl md:text-3xl text-primary">Tentang Kami</h1>
+                    <p className="w-full md:w-[80%] text-center text-sm md:text-base mt-2.5 text-muted-foreground">
                         Menghadirkan aksesoris berkualitas dengan desain modern, nyaman digunakan, dan tetap terjangkau untuk melengkapi gaya harianmu.
                     </p>
                     <div className="flex flex-col md:grid md:grid-cols-2 justify-center gap-8 w-full mt-10">
@@ -41,7 +19,7 @@ export const About = () => {
                                 className="w-full h-full object-cover rounded-xl"
                             />
                         </div>
-                        <div className="text-[13px] md:text-sm text-gray-600 leading-relaxed">
+                        <div className="text-sm md:text-[15px] text-gray-600 leading-relaxed">
                             Gallant.acc menghadirkan berbagai aksesoris seperti gelang, bando, dan item lainnya dengan desain simpel, elegan, dan mudah dipadukan untuk berbagai gaya harian.
 
                             <br /><br />
@@ -63,7 +41,7 @@ export const About = () => {
                             Cerita Kami
                         </h1>
 
-                        <p className="text-[13px] md:text-sm text-gray-600 mt-4 leading-relaxed">
+                        <p className="text-sm md:text-[15px] text-gray-600 mt-4 leading-relaxed">
                             Berawal dari ketertarikan pada dunia aksesoris, usaha ini berkembang menjadi brand yang menghadirkan produk dengan desain simpel dan nyaman digunakan. Dengan mengikuti tren serta kebutuhan pengguna, kami berusaha memberikan aksesoris yang relevan untuk melengkapi gaya harian.
                         </p>
 

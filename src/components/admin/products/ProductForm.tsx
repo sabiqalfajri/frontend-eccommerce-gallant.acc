@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useImagesUpload } from "@/hooks/universal/useImagesUpload";
 import { createProductSchema, ProductFormValues } from "@/schema/admin/Product.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { IoIosArrowBack, IoMdCheckmark } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
@@ -60,12 +60,15 @@ export const ProductForm = ({
     }, [mode, productData]);
 
     const { register, handleSubmit, watch, setValue, formState: { errors }, control } = useForm<ProductFormValues>({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         resolver: zodResolver(createProductSchema) as any,
         defaultValues
     });
     const [visibility, setVisibility] = useState(productData?.visibility ?? 'PUBLISH');
     const maxLengthDescription = 500;
     const description = watch('description') || "";
+    const [isDragging, setIsDragging] = useState(false)
+    const dragCounter = useRef(0);
     const navigate = useNavigate();
     const { previewUrls, handleUploads, removeImage, files, deletedImages } = useImagesUpload(6, productData?.images || []);
 
@@ -95,6 +98,37 @@ export const ProductForm = ({
 
         removeImage(idx, isExisting);
     }
+
+    const handleDragOver = (e: React.DragEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+    };
+
+    const handleDragEnter = (e: React.DragEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dragCounter.current += 1;
+        if (dragCounter.current === 1) setIsDragging(true);
+    };
+
+    const handleDragLeave = (e: React.DragEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dragCounter.current -= 1;
+        if (dragCounter.current === 0) setIsDragging(false);
+    };
+
+    const handleDrop = (e: React.DragEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dragCounter.current = 0;
+        setIsDragging(false); 
+        
+        const droppedFiles = e.dataTransfer.files;
+        if (droppedFiles && droppedFiles.length > 0) {
+            handleUploads(droppedFiles, fileInputRef.current);
+        }
+    };
 
     const categoryOptions = categories?.map((cat) => ({
         label: cat.name,
@@ -258,7 +292,17 @@ export const ProductForm = ({
                     <CardDashboard title="Media Produk" className="h-82">
                         <div className="space-y-3">
                             <Label>Gambar Produk</Label>
-                            <div className="flex flex-col gap-1 w-full bg-gray-100 rounded-md border border-gray-200 justify-center items-center h-48 p-2">
+                            <div 
+                                onDragOver={handleDragOver}
+                                onDragEnter={handleDragEnter}
+                                onDragLeave={handleDragLeave}
+                                onDrop={handleDrop}       
+                                className={`flex flex-col gap-1 w-full rounded-md border justify-center items-center h-48 p-2 ${
+                                    isDragging
+                                    ? 'border-primary bg-primary/10'
+                                    : 'bg-gray-100 border-gray-200'
+                                }`}
+                            >
                                 {previewUrls.length > 0 ? (
                                     <div className="grid grid-cols-3 gap-2 w-full h-full">
                                         {previewUrls.map((preview, idx) => (
@@ -307,7 +351,7 @@ export const ProductForm = ({
                                             </button>
                                             <p>atau seret file</p>
                                         </div>
-                                        <p className="text-[12px] text-gray-500">PDF, JPG, JPEG, PNG (maks. 5 MB)</p>
+                                        <p className="text-[12px] text-gray-500">PDF, JPG, JPEG, PNG (maks. 3 MB)</p>
                                     </>
                                 )}
 

@@ -1,32 +1,40 @@
 import { Section } from "@/components/common/Section";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input"
-import { GoMail } from "react-icons/go";
+import { FaWhatsapp } from "react-icons/fa6";
+import Voucher from "@/assets/voucher.webp"
 
 export const NewsLetter = () => {
     return (
-        <Section wrapperClassName="bg-primary h-[35vh] flex justify-center items-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 justify-around w-full items-center text-white">
-                <div className="flex flex-col gap-y-2">
-                    <h1 className="text-[17px] md:text-2xl font-bold">Gabung ke newsletter kami</h1>
-                    <p className="text-sm">
-                        Berlangganan newsletter dan dapatkan informasi terbaru tentang produk baru, penawaran eksklusif, dan tren terkini.
+        <Section wrapperClassName="bg-primary py-10 flex justify-center items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full items-center text-white">
+                <div className="flex flex-col gap-y-3">
+                    <h1 className="text-2xl md:text-3xl font-bold italic">Dapatkan Promo Khusus! ⚡</h1>
+                    <p className="text-sm md:text-base opacity-90">
+                        Mau voucher diskon 10% untuk pesanan pertamamu? Hubungi CS kami melalui WhatsApp dan klaim kode promonya sekarang!
                     </p>
-                    {/* Action */}
-                    <div className="grid grid-cols-[8%_1fr] items-center px-2 bg-white rounded-sm text-black py-2 gap-2.5 w-full md:w-[75%] mt-2">
-                        <div className="w-full flex justify-center items-center">
-                            <GoMail size={24} />
-                        </div>
-                        <div className="flex flex-nowrap gap-x-2">
-                            <Input className="h-10 p-0 border-none shadow-none focus-visible:ring-0" placeholder="Your Email" />
-                            <Button size="lg" className="bg-primary py-1 px-2 rounded-sm text-white w-20">
-                                Gabung
+                    
+                    <div className="mt-4">
+                        <a 
+                            href="https://wa.me/6281553871004?text=Halo!%20Saya%20ingin%20klaim%20voucher%20diskon%20pengguna%20baru" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                        >
+                            <Button size="lg" className="bg-white text-primary hover:bg-slate-100 font-bold px-8 flex gap-2">
+                                <FaWhatsapp size={20} />
+                                Klaim Voucher
                             </Button>
-                        </div>
+                        </a>
                     </div>
                 </div>
-                <div className="hidden md:flex flex-nowrap gap-x-2 items-center justify-end">
-                    <img src="" alt="" />
+
+                <div className="hidden md:flex justify-end items-center relative">
+                    <img 
+                        src={Voucher}
+                        alt="Promo Voucher" 
+                        className="w-full max-w-[200px] h-auto drop-shadow-2xl"
+                    />
+
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/10 w-64 h-64 rounded-full blur-3xl -z-10" />
                 </div>
             </div>
         </Section>

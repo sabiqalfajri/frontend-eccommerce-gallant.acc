@@ -10,7 +10,7 @@ import { useImageUpload } from "@/hooks/universal/useImageUpload";
 import { FiUpload } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CreateCategoryFormValues, createCategorySchema, EditCategoryFormValues, editCategorySchema } from "@/schema/admin/CategorySchema";
 import { HiOutlineTrash } from "react-icons/hi";
 import { showError } from "@/utils/Toast";
@@ -61,9 +61,12 @@ export const CategoryForm = (props: CategoryFormProps) => {
     } = useImageUpload();
 
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm<CreateCategoryFormValues | EditCategoryFormValues>({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         resolver: zodResolver(schema) as any,
     });
     const description = watch('description') || "";
+    const [isDragging, setIsDragging] = useState(false)
+    const dragCounter = useRef(0);
     const maxLengthDescription = 500;
 
     useEffect(() => {
@@ -75,7 +78,38 @@ export const CategoryForm = (props: CategoryFormProps) => {
         })
 
         setPreviewUrl(categoryData.image)
-    }, [categoryData]);
+    }, [categoryData, reset, setPreviewUrl]);
+
+    const handleDragOver = (e: React.DragEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+    };
+
+    const handleDragEnter = (e: React.DragEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dragCounter.current += 1;
+        if (dragCounter.current === 1) setIsDragging(true);
+    };
+
+    const handleDragLeave = (e: React.DragEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dragCounter.current -= 1;
+        if (dragCounter.current === 0) setIsDragging(false);
+    };
+    
+    const handleDrop = (e: React.DragEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dragCounter.current = 0;
+        setIsDragging(false); 
+        
+        const droppedFiles = e.dataTransfer.files;
+        if (droppedFiles && droppedFiles.length > 0) {
+            handleUpload(droppedFiles);
+        }
+    };
 
     const handleFormSubmit = async (
         data: CreateCategoryFormValues | EditCategoryFormValues
@@ -202,7 +236,17 @@ export const CategoryForm = (props: CategoryFormProps) => {
                 <CardDashboard title="Media Kategori" className="h-82">
                     <div className="space-y-3">
                         <Label>Gambar Kategori</Label>
-                        <div className="flex flex-col gap-1 w-full bg-gray-100 rounded-md border border-gray-200 justify-center items-center h-48 p-2">
+                        <div 
+                            onDragOver={handleDragOver}
+                            onDragEnter={handleDragEnter}
+                            onDragLeave={handleDragLeave}
+                            onDrop={handleDrop}    
+                            className={`flex flex-col gap-1 w-full rounded-md border justify-center items-center h-48 p-2 ${
+                                isDragging
+                                ? 'border-primary bg-primary/10'
+                                : 'bg-gray-100 border-gray-200'
+                            }`}
+                        >
                             {previewUrl ? (
                                 <div className="w-full h-full relative group">
                                     <img 
@@ -235,7 +279,7 @@ export const CategoryForm = (props: CategoryFormProps) => {
                                         </button>
                                         <p>atau seret file</p>
                                     </div>
-                                    <p className="text-[12px] text-gray-500">PDF, JPG, JPEG, PNG (maks. 5 MB)</p>
+                                    <p className="text-[12px] text-gray-500">PDF, JPG, JPEG, PNG (maks. 3 MB)</p>
                                 </>
                             )}
 

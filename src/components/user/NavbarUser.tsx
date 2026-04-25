@@ -26,8 +26,8 @@ export const NavbarUser = () => {
     const navMenu = [
         { tittle: "Home", path: "/" },
         { tittle: "Shop", path: "/shop" },
-        { tittle: "About", path: "/about" },
-        { tittle: "Contact", path: "/contact" },
+        { tittle: "Tentang Kami", path: "/about" },
+        { tittle: "Hubungi Kami", path: "/contact" },
     ]
 
     const authMenu: MenuItem[] = [
@@ -82,6 +82,7 @@ export const NavbarUser = () => {
                         to={item.path} 
                         key={index}
                         type="button"
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         className={({ isActive }: any) => 
                             `cursor-pointer font-semibold ${isActive ? 'text-primary' : ""}`
                         }
