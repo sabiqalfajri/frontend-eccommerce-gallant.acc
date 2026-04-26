@@ -21,7 +21,10 @@ export const Contact = () => {
                             <MessageCircle size={20} /> Chat Langsung
                         </h2>
                         <div className="flex flex-col gap-3">
-                            <a href="https://wa.me/6281553871004" target="_blank" rel="noopener noreferrer">
+                            <a 
+                            href="https://wa.me/6281553871004" 
+                            target="_blank" 
+                            rel="noopener noreferrer">
                                 <Button className="w-full bg-transparent text-[#25D366] hover:bg-[#25D366]/10 font-semibold flex gap-2 h-12 border border-[#25D366]">
                                     <FaWhatsapp size={20} /> WhatsApp
                                 </Button>

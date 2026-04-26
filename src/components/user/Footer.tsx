@@ -1,77 +1,65 @@
 import { FaInstagram } from "react-icons/fa6";
-import { NavLink } from "react-router-dom";
 import { FaWhatsapp } from "react-icons/fa";
 
 export const Footer = () => {
     return (
-        <footer className="bg-primary pb-5 min-h-[25vh] mt-12 text-[#FFFFFF] px-4 md:px-16 py-12 flex flex-col justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-[30%_70%] gap-12 mb-12">
-                <div className="flex flex-col gap-5">
-                    <h1 className="font-garamond text-lg font-extrabold">Gallant.acc</h1>
-                    <p className="text-justify text-sm">Discover unique, thoughtful gifts for every occasion. From personalized presents to one-of-a-kind treasures, we're to help you find the perfect way to show you care.</p>
-                    <div className="flex flex-wrap justify-start items-center gap-4 mt-1">
-                        <NavLink to="/">
-                            <FaInstagram size={24} />
-                        </NavLink>
-                        <NavLink to="/">
-                            <FaWhatsapp size={24} />
-                        </NavLink>
+        <footer className="bg-primary text-white mt-16 px-4 md:px-16 py-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 border-b border-white/20 pb-10">
+
+                {/* Brand Info */}
+                <div className="flex flex-col gap-4">
+                    <h1 className="text-xl font-bold">Gallant.acc</h1>
+                    <p className="text-sm leading-relaxed text-white/80">
+                        Menyediakan berbagai aksesoris pilihan dengan kualitas terbaik
+                        untuk melengkapi gaya dan kebutuhan harian Anda.
+                    </p>
+
+                    <div className="flex items-center gap-4 pt-2">
+                        <a
+                            href="https://instagram.com/gallant.acc"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:scale-110 transition"
+                        >
+                            <FaInstagram size={22} />
+                        </a>
+
+                        <a
+                            href="https://wa.me/6281553871004"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:scale-110 transition"
+                        >
+                            <FaWhatsapp size={22} />
+                        </a>
                     </div>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-16">
-                    <div className="flex flex-col gap-5">
-                        <h1><strong>Main Menu</strong></h1>
-                        <ul className="flex flex-col gap-3 text-sm">
-                            <li className="hover:underline transform transition-all duration-300">
-                                <a href="/">Home</a>  
-                            </li>
-                            <li className="hover:underline transform transition-all duration-300">
-                                <a href="/shop">Shop</a>  
-                            </li>
-                            <li className="hover:underline transform transition-all duration-300">
-                                <a href="/about">About</a>  
-                            </li>
-                            <li className="hover:underline transform transition-all duration-300">
-                                <a href="/contact">Contact</a>  
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="flex flex-col gap-5">
-                        <h1><strong>Service</strong></h1>
-                        <ul className="flex flex-col gap-3 text-sm">
-                            <li>
-                                My Account
-                            </li>
-                            <li>
-                                Track Order
-                            </li>
-                            <li>
-                                Return
-                            </li>
-                            <li>
-                                FAQ
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="flex flex-col gap-5">
-                        <h1><strong>Contact Us</strong></h1>
-                        <ul className="flex flex-col gap-3 text-sm">
-                            <li>
-                                Privacy
-                            </li>
-                            <li>
-                                Condition
-                            </li>
-                            <li>
-                                Return Policy
-                            </li>
-                        </ul>
-                    </div>
+
+                {/* Navigasi */}
+                <div className="flex flex-col gap-4">
+                    <h2 className="font-semibold text-lg">Navigasi</h2>
+                    <ul className="space-y-2 text-sm text-white/80">
+                        <li><a href="/" className="hover:text-white">Home</a></li>
+                        <li><a href="/shop" className="hover:text-white">Shop</a></li>
+                        <li><a href="/about" className="hover:text-white">About</a></li>
+                        <li><a href="/contact" className="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+
+                {/* Kontak */}
+                <div className="flex flex-col gap-4">
+                    <h2 className="font-semibold text-lg">Kontak</h2>
+                    <ul className="space-y-2 text-sm text-white/80">
+                        <li>WhatsApp: +62 815 5387 1004</li>
+                        <li>Email: gallant.acc123@gmail.com</li>
+                        <li>Banyumas, Jawa Tengah</li>
+                    </ul>
                 </div>
             </div>
-            <div className="border border-[#FFFFFF]"></div>
-            <div className="mt-[1rem] md:mt-8 flex flex-wrap justify-center items-center pb-5 md:pb-0">
-                <p className="text-sm">Copyright &copy; 2025. All Rights Reserved.</p>
+
+            {/* Bottom Footer */}
+            <div className="pt-6 text-center text-sm text-white/70">
+                <p>© 2025 Gallant.acc. All Rights Reserved.</p>
             </div>
         </footer>
     )
