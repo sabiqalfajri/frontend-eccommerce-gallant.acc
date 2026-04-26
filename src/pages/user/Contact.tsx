@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { FaWhatsapp } from "react-icons/fa6"
-import { FaTelegramPlane } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 import { Section } from "@/components/common/Section";
 import { MapPin, PhoneCall, Mail, MessageCircle, InfoIcon } from 'lucide-react';
 
@@ -26,9 +26,13 @@ export const Contact = () => {
                                     <FaWhatsapp size={20} /> WhatsApp
                                 </Button>
                             </a>
-                            <a href="https://t.me/username_anda" target="_blank" rel="noopener noreferrer">
-                                <Button className="w-full bg-transparent hover:bg-[#0088cc]/10 text-[#0088cc] flex gap-2 h-12 border border-[#0088cc]">
-                                    <FaTelegramPlane size={20} /> Telegram
+                            <a 
+                                href="https://instagram.com/gallant.acc" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                            >
+                                <Button className="w-full bg-transparent hover:bg-[#E4405F]/10 text-[#E4405F] flex gap-2 h-12 border border-[#E4405F]">
+                                    <FaInstagram size={20} /> Instagram
                                 </Button>
                             </a>
                         </div>
@@ -69,8 +73,8 @@ export const Contact = () => {
                                     <p>Jl. Stasiun, Gambarsari, Kec. Banyumas, Jawa Tengah</p>
                                 </div>
                                 <div className="text-sm pl-7 text-muted-foreground">
-                                    <p>Senin - Jumat: 10.00 - 20.00</p>
-                                    <p>Sabtu - Minggu: Tutup</p>
+                                    <p>Senin - Sabtu: 07.00 - 16.30</p>
+                                    <p>Minggu: Tutup</p>
                                 </div>
                             </div>
                         </div>
