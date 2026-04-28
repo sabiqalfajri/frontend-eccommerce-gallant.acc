@@ -121,7 +121,7 @@ http://192.168.x.x:5173
 
 ---
 
-### 5. Build Production Build
+### 5. Production Build
 
 Project ini sudah di deploy menggunakan vercel
 
