@@ -259,11 +259,24 @@ export const ProductForm = ({
                             <div className="space-y-3">
                                 <Label>Stok</Label>
                                 <div>
-                                    <Input 
-                                    type="number"
-                                    {...register("stock")}
-                                    placeholder="Enter product name"
+                                    <Controller 
+                                        name="stock"
+                                        control={control}
+                                        render={({ field: { onChange, value, ref } }) => (
+                                            <NumericFormat 
+                                                customInput={Input}
+                                                allowNegative={false}
+                                                decimalScale={0}     
+                                                value={value}
+                                                onValueChange={(values) => {
+                                                    onChange(values.floatValue ?? 0);
+                                                }}
+                                                getInputRef={ref}
+                                                placeholder="0"
+                                            />
+                                        )}
                                     />
+                                    
                                     {errors.stock && <p className="text-red-500 text-[13px] mt-1">{errors.stock.message}</p>}
                                 </div>
                             </div>

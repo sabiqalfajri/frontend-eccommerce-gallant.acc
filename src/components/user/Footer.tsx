@@ -1,5 +1,6 @@
 import { FaInstagram } from "react-icons/fa6";
 import { FaWhatsapp } from "react-icons/fa";
+import { IoLocationOutline, IoMailOutline } from "react-icons/io5";
 
 export const Footer = () => {
     return (
@@ -8,7 +9,7 @@ export const Footer = () => {
 
                 {/* Brand Info */}
                 <div className="flex flex-col gap-4">
-                    <h1 className="text-xl font-bold">Gallant.acc</h1>
+                    <h1 className="text-[17px] md:text-xl font-bold">Gallant.acc</h1>
                     <p className="text-sm leading-relaxed text-white/80">
                         Menyediakan berbagai aksesoris pilihan dengan kualitas terbaik
                         untuk melengkapi gaya dan kebutuhan harian Anda.
@@ -37,7 +38,7 @@ export const Footer = () => {
 
                 {/* Navigasi */}
                 <div className="flex flex-col gap-4">
-                    <h2 className="font-semibold text-lg">Navigasi</h2>
+                    <h2 className="font-semibold text-base md:text-lg">Navigasi</h2>
                     <ul className="space-y-2 text-sm text-white/80">
                         <li><a href="/" className="hover:text-white">Home</a></li>
                         <li><a href="/shop" className="hover:text-white">Shop</a></li>
@@ -48,12 +49,27 @@ export const Footer = () => {
 
                 {/* Kontak */}
                 <div className="flex flex-col gap-4">
-                    <h2 className="font-semibold text-lg">Kontak</h2>
-                    <ul className="space-y-2 text-sm text-white/80">
-                        <li>WhatsApp: +62 815 5387 1004</li>
-                        <li>Email: gallant.acc123@gmail.com</li>
-                        <li>Banyumas, Jawa Tengah</li>
-                    </ul>
+                    <h2 className="font-semibold text-base md:text-lg">Kontak & Alamat</h2>
+                    <div className="space-y-4 text-sm text-white/80">
+                        <div className="flex gap-3">
+                            <IoLocationOutline size={20} className="shrink-0 text-white" />
+                            <p>
+                                Jl. Stasiun, Gambarsari,<br />
+                                Kabupaten Banyumas, Jawa Tengah 52193
+                            </p>
+                        </div>
+
+                        <div className="space-y-2">
+                            <div className="flex items-center gap-3">
+                                <FaWhatsapp size={18} className="shrink-0" />
+                                <span>+62 815 5387 1004</span>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <IoMailOutline size={18} className="shrink-0" />
+                                <span>gallant.acc123@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
