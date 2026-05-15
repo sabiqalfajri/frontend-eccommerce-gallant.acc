@@ -17,10 +17,11 @@ export const useApplyEOQConfig = (token: string) => {
                 data
             )
         },
-        onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: ["eoqConfig"]
-            })
+        onSuccess: (data) => {
+            queryClient.setQueryData(
+                ["eoqConfig"],
+                data
+            )
             queryClient.invalidateQueries({
                 queryKey: ["eoqReport"]
             })
