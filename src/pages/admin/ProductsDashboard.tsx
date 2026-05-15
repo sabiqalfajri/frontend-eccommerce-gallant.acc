@@ -137,7 +137,7 @@ export const ProductsDashboard = () => {
                         { 
                             icon: <FiEdit size={18} />, 
                             label: 'Edit Produk', 
-                            href: `/dashboard/update-product/${row.original.id}`
+                            href: `/dashboard/products/${row.original.id}/edit`
                         },
                         { 
                             icon: <HiOutlineTrash size={19} />, 
@@ -180,7 +180,7 @@ export const ProductsDashboard = () => {
                 ]}
                 onFilterChange={(value) => setFilter(value)}
                 currentFilter={filter}
-                onClick={() => navigate('/dashboard/add-product')}
+                onClick={() => navigate('/dashboard/products/add')}
                 onDeleted={handleDeleteBulk}
                 isDeleting={isDeletingBulk}
                 page={page}

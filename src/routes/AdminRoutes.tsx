@@ -13,6 +13,7 @@ import { OrderDetailDashboard } from "@/pages/admin/OrderDetailDashboard"
 import { AddCategory } from "@/pages/admin/AddCategory"
 import { EditCategory } from "@/pages/admin/EditCategory"
 import { EOQDashboard } from "@/pages/admin/EOQDashboard"
+import { EOQGuide } from "@/pages/admin/EOQGuide"
 
 export const AdminRoutes = () => {
     return (
@@ -22,13 +23,24 @@ export const AdminRoutes = () => {
                     <Route index element={<HomeDashboard />} />
                     <Route path="orders" element={<OrdersDashboard />} />
                     <Route path="orders/:id" element={<OrderDetailDashboard />} />
+                    
                     <Route path="products" element={<ProductsDashboard />} />
-                    <Route path="add-product" element={<AddProduct />} />
-                    <Route path="update-product/:id" element={<EditProduct />} />
+                    <Route path="products/add" element={<AddProduct />} />
+                    <Route path="products/:id/edit" element={<EditProduct />} />
+
+                    {/* <Route path="add-product" element={<AddProduct />} />
+                    <Route path="update-product/:id" element={<EditProduct />} /> */}
+                    {/* <Route path="categories" element={<CategoryDashboard />} />
+                    <Route path="add-category" element={<AddCategory />} /> */}
+                    {/* <Route path="update-category/:id" element={<EditCategory />} /> */}
+
                     <Route path="categories" element={<CategoryDashboard />} />
-                    <Route path="add-category" element={<AddCategory />} />
-                    <Route path="update-category/:id" element={<EditCategory />} />
-                    <Route path="economic-order-quantity" element={<EOQDashboard />} />
+                    <Route path="categories/add" element={<AddCategory />} />
+                    <Route path="categories/:id/edit" element={<EditCategory />} />
+
+                    <Route path="eoq" element={<EOQDashboard />} />
+                    <Route path="eoq/guide" element={<EOQGuide />} />
+
                     <Route path="customers" element={<CustomersDashboard />} />
                     <Route path="settings" element={<SettingsDashboard />} />
                 </Route>

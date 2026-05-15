@@ -15,6 +15,7 @@ import { EOQPending } from "@/components/admin/eoq/EOQPending";
 import { useApplyEOQConfig } from "@/hooks/eoq/useApplyEOQConfig";
 import { EOQConfigFormValues } from "@/schema/admin/EOQSchema";
 import { Pagination } from "@/components/common/Pagination";
+import { Link } from "react-router-dom";
 
 export const EOQDashboard = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -151,11 +152,14 @@ export const EOQDashboard = () => {
                     </p>
                     <div className="flex justify-center items-center">
                         <Button 
+                            asChild
                             className="w-fit flex justify-center items-center"
                             variant="outlinePrimary"
                         >   
-                            <IoBookOutline />
-                            Pelajari Lebih Lanjut
+                            <Link to="/dashboard/eoq/guide">
+                                <IoBookOutline />
+                                Pelajari Lebih Lanjut
+                            </Link>
                         </Button>
                     </div>
                 </div>

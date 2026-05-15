@@ -5,7 +5,7 @@ import { PiUsers } from "react-icons/pi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { GoPackage } from "react-icons/go";
 import { FiLogOut } from "react-icons/fi";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { motion } from "framer-motion"
 import { GoSidebarExpand } from "react-icons/go";
 import { GoSidebarCollapse } from "react-icons/go";
@@ -31,6 +31,7 @@ export const Sidebar = ({
     setIsDesktopCollapsed
 }: SidebarProps) => {
     const { logout } = useLogout();
+    const location = useLocation()
     const sidebarMenu = {
         overview: {
             title: 'Overview',
@@ -41,7 +42,7 @@ export const Sidebar = ({
                 { name: 'Kategori', path: '/dashboard/categories', icon: <LuLayers size={21} /> },
                 { 
                     name: 'EOQ', 
-                    path: '/dashboard/economic-order-quantity', 
+                    path: '/dashboard/eoq', 
                     icon: <TbRepeat size={21} /> 
                 },
                 { name: 'Pengguna', path: '/dashboard/customers', icon: <PiUsers size={21} /> },
@@ -144,12 +145,25 @@ export const Sidebar = ({
                                     <NavLink
                                     key={item.name}
                                     to={item.path}
-                                    end={item.path === "/dashboard"}
+                                    end
                                     onClick={() => isMobile && setIsMobileOpen(false)}
-                                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                                    className={({ isActive }: any) => 
-                                        `group flex items-center ${showText ? "justify-start px-3" : "justify-center"} h-10 w-full rounded-lg text-sm font-medium transition-all duration-200 ease-in-out ${isActive ? "bg-primary-light text-primary" : "text-gray-600 hover:bg-gray-100"}`
-                                        }
+                                   
+                                    className={({ isActive }) => {
+                                        const isChildActive = !isActive && 
+                                            item.path !== '/dashboard' && 
+                                            location.pathname.startsWith(item.path + "/")
+
+                                        return `group flex items-center ${showText ? "justify-start px-3" : "justify-center"} h-10 w-full rounded-lg text-sm font-medium transition-all duration-200 ease-in-out
+                                        ${isActive 
+                                            ? "bg-primary-light text-primary" 
+                                            : isChildActive
+                                                ? "text-primary border-l-2 border-primary rounded-l-none"
+                                                : "text-gray-600 hover:bg-gray-100"
+                                        }`
+                                    }}
+                                    // className={({ isActive }: any) => 
+                                    //     `group flex items-center ${showText ? "justify-start px-3" : "justify-center"} h-10 w-full rounded-lg text-sm font-medium transition-all duration-200 ease-in-out ${isActive ? "bg-primary-light text-primary" : "text-gray-600 hover:bg-gray-100"}`
+                                    //     }
                                     >
                                         <span
                                           className={`

@@ -119,7 +119,7 @@ export const CategoryDashboard = () => {
                         { 
                             icon: <FiEdit size={18} />, 
                             label: 'Edit Kategori', 
-                            href: `/dashboard/update-category/${row.original.id}`
+                            href: `/dashboard/categories/${row.original.id}/edit`
                         },
                         { 
                             icon: <HiOutlineTrash size={19} />, 
@@ -153,7 +153,7 @@ export const CategoryDashboard = () => {
                 totalRows={total}
                 onDeleted={handleDeleteBulk}
                 isDeleting={isDeletingBulkCategory}
-                onClick={() => navigate('/dashboard/add-category')}
+                onClick={() => navigate('/dashboard/categories/add')}
                 page={page}
                 totalPages={totalPages}
                 onPageChange={(newPage) => setPage(newPage)}
