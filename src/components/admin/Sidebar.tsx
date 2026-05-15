@@ -11,6 +11,7 @@ import { GoSidebarExpand } from "react-icons/go";
 import { GoSidebarCollapse } from "react-icons/go";
 import { IoCloseOutline } from "react-icons/io5";
 import { IoIosMore } from "react-icons/io";
+import { TbRepeat } from "react-icons/tb";
 import { useLogout } from "@/hooks/auth/useLogout";
 
 
@@ -38,6 +39,11 @@ export const Sidebar = ({
                 { name: 'Pesanan', path: '/dashboard/orders', icon: <GoPackage size={21} /> },
                 { name: 'Produk', path: '/dashboard/products', icon: <HiOutlineShoppingBag size={21} /> },
                 { name: 'Kategori', path: '/dashboard/categories', icon: <LuLayers size={21} /> },
+                { 
+                    name: 'EOQ', 
+                    path: '/dashboard/economic-order-quantity', 
+                    icon: <TbRepeat size={21} /> 
+                },
                 { name: 'Pengguna', path: '/dashboard/customers', icon: <PiUsers size={21} /> },
             ]
         },

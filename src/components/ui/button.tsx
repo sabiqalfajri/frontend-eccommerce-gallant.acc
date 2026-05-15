@@ -21,7 +21,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         primary: "bg-primary !text-primary-foreground hover:!bg-primary/90 active:bg-primary disabled:!bg-primary disabled:!text-primary-foreground",
         overlay: "bg-black/50 text-white hover:bg-none md:hover:bg-primary active:bg-primary md:active:bg-none",
-        outlinePrimary: "border border-primary text-primary",
+        outlinePrimary: "border border-primary text-primary active:bg-primary/5 md:hover:bg-primary/5",
         borderBottom: "border-b-[2px] border-primary text-primary shadow-none rounded-none!",
       },
       size: {

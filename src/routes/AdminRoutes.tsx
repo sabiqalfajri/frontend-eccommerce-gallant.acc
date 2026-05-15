@@ -12,6 +12,7 @@ import { EditProduct } from "@/pages/admin/EditProduct"
 import { OrderDetailDashboard } from "@/pages/admin/OrderDetailDashboard"
 import { AddCategory } from "@/pages/admin/AddCategory"
 import { EditCategory } from "@/pages/admin/EditCategory"
+import { EOQDashboard } from "@/pages/admin/EOQDashboard"
 
 export const AdminRoutes = () => {
     return (
@@ -27,6 +28,7 @@ export const AdminRoutes = () => {
                     <Route path="categories" element={<CategoryDashboard />} />
                     <Route path="add-category" element={<AddCategory />} />
                     <Route path="update-category/:id" element={<EditCategory />} />
+                    <Route path="economic-order-quantity" element={<EOQDashboard />} />
                     <Route path="customers" element={<CustomersDashboard />} />
                     <Route path="settings" element={<SettingsDashboard />} />
                 </Route>

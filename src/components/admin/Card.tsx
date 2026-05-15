@@ -5,6 +5,7 @@ interface CardProps {
     className?: string;
     title?: string
     description?: string;
+    loading?: boolean,
     headerContent?: React.ReactNode
 }
 

@@ -18,7 +18,7 @@ export const ProductsDashboard = () => {
     const [filter, setFilter] = useState<filterProduct | string>('ALL');
     const [page, setPage] = useState(1)
     const { token } = useToken();
-    const { products, isLoading, totalPages, total } = useProductsAdmin(token!, filter, page, 10);
+    const { products, isPendingProducts, totalPages, total } = useProductsAdmin(token!, filter, page, 10);
     const [showModal, setShowModal] = useState(false);
     const [selectedProductId, setSelectedProductId] = useState<string | null>(null)
     const navigate = useNavigate();
@@ -28,8 +28,6 @@ export const ProductsDashboard = () => {
         deletedProductSingle, 
         isDeletingSingle 
     } = useDeletedProduct(token!)
-
-    
 
     const handleDeleteSingle = async () => {
         if(!selectedProductId) return;
@@ -170,25 +168,25 @@ export const ProductsDashboard = () => {
     return (
         <>
             <DataTable 
-            title="Daftar Produk"
-            columns={columns} 
-            data={filteredProducts}  
-            totalRows={total}
-            filterButtons={[
-                { label: 'Semua', value: 'ALL' },
-                { label: 'Dipublikasikan', value: 'PUBLISH' },
-                { label: 'Disembunyikan', value: 'HIDDEN' },
-                { label: 'Draf', value: 'DRAFT' },
-            ]}
-            onFilterChange={(value) => setFilter(value)}
-            currentFilter={filter}
-            onClick={() => navigate('/dashboard/add-product')}
-            onDeleted={handleDeleteBulk}
-            isDeleting={isDeletingBulk}
-            page={page}
-            totalPages={totalPages}
-            onPageChange={(newPage) => setPage(newPage)}
-            isLoading={isLoading}
+                title="Daftar Produk"
+                columns={columns} 
+                data={filteredProducts}  
+                totalRows={total}
+                filterButtons={[
+                    { label: 'Semua', value: 'ALL' },
+                    { label: 'Dipublikasikan', value: 'PUBLISH' },
+                    { label: 'Disembunyikan', value: 'HIDDEN' },
+                    { label: 'Draf', value: 'DRAFT' },
+                ]}
+                onFilterChange={(value) => setFilter(value)}
+                currentFilter={filter}
+                onClick={() => navigate('/dashboard/add-product')}
+                onDeleted={handleDeleteBulk}
+                isDeleting={isDeletingBulk}
+                page={page}
+                totalPages={totalPages}
+                onPageChange={(newPage) => setPage(newPage)}
+                isLoading={isPendingProducts}
             />
 
             {/* Modal Delete Single */}

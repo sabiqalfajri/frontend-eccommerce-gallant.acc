@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 export const useProductsAdmin = (token: string, visibility: filterProduct | string, page = 1, rowsPerPage = 10) => {
     const { 
         data, 
-        isLoading,
+        isPending,
         isFetched, 
         isFetching, 
         error 
@@ -22,7 +22,7 @@ export const useProductsAdmin = (token: string, visibility: filterProduct | stri
         page: data?.page || 1,
         rowsPerPage: data?.rowsPerPage || 10,
         totalPages: data?.totalPages || 1,
-        isLoading,
+        isPendingProducts: isPending,
         isFetching,
         isFetched,
         error
