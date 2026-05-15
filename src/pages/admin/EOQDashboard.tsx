@@ -58,7 +58,7 @@ export const EOQDashboard = () => {
         {
             icon: <LuCalendarClock size={23} />,
             title: 'Periode Analisis',  
-            value: config ? `${config.periodMonths}` : '-',
+            value: config ? `${config.periodMonths} Bulan Terakhir` : '-',
         },
     ]
 
