@@ -7,10 +7,10 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { BrowserRouter } from 'react-router-dom'
 import 'swiper/swiper-bundle.css'
 import { CartSelectionProvider } from './context/CartSelectionContext.tsx'
-import { CheckoutProvider } from './context/CheckoutContext.tsx'
+import { CheckoutProvider } from './context/checkout/CheckoutProvider.tsx'
 import { AuthWathcer } from './providers/AuthWatcher.tsx'
-import { CheckoutTransitionProvider } from './context/CheckoutTransitionContext.tsx'
 import { FilterProvider } from './features/filter/FilterProvider.tsx'
+import { CheckoutTransitionProvider } from './context/checkout-transition/CheckoutTransitionProvider.tsx'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 

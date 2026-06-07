@@ -1,4 +1,3 @@
-import { useCheckout } from "@/context/CheckoutContext"
 import { useAddress } from "../address/useAddress";
 import { useToken } from "./useToken";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +5,7 @@ import { useState } from "react";
 import { CartItem } from "@/types/Cart";
 import { showError } from "@/utils/Toast";
 import { useAuth } from "@clerk/clerk-react";
+import { useCheckout } from "@/context/checkout/useCheckout";
 
 export const useBuyNow = () => {
     const { token } = useToken();

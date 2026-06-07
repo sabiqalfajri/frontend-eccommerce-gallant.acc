@@ -6,7 +6,7 @@ import { CartEmpty } from "@/components/user/cart/CartItemEmpty"
 import { CartItems } from "@/components/user/cart/CartItems"
 import { CartSkeleton } from "@/components/user/cart/CartSkeleton"
 import { useCartSelection } from "@/context/CartSelectionContext"
-import { useCheckout } from "@/context/CheckoutContext"
+import { useCheckout } from "@/context/checkout/useCheckout"
 import { useAddress } from "@/hooks/address/useAddress"
 import { useCart } from "@/hooks/cart/useCart"
 import { useSmoothLoading } from "@/hooks/universal/useSmoothLoading"
@@ -46,6 +46,7 @@ export const Cart = () => {
 
     const handleBuyNow = async () => {
         if (!selectedItems || !selectedItems.length) return;
+        
         if(!address.length) {
             showError('Silakan tambahkan alamat pengiriman terlebih dahulu.')
             return navigate('/customer/address/add?redirect=/checkout')
@@ -55,23 +56,16 @@ export const Cart = () => {
             setIsLoadingBuyNow(true)
             await new Promise((resolve) => setTimeout(resolve, 800));
 
-            navigate('/checkout')
             setCheckoutItems(selectedItems);
+            navigate("/checkout", {
+                state: { skipAddressValidation: true },
+            });
         } catch (error) {
             console.error(error);
         } finally {
             setIsLoadingBuyNow(false)
         }
     }
-
-    // if (!cartItem && isFetchedCartItem) {
-    //     return (
-    //         <div className="flex flex-col">
-    //             <h1>Your cart is empty.</h1>
-    //             <p>Ayo penuhi dengan barang-barang favorit Anda</p>
-    //         </div>
-    //     )
-    // }
 
     return (
         <Section>

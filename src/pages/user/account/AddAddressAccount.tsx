@@ -1,5 +1,4 @@
 import { AddressForm } from "@/components/user/address/AddressForm"
-import { useCheckoutTransition } from "@/context/CheckoutTransitionContext";
 import { useCreateAddress } from "@/hooks/address/useCreateAddress";
 import { useToken } from "@/hooks/universal/useToken";
 import { AddressInput } from "@/schema/Address.schema";
@@ -12,12 +11,15 @@ export const AddAddressAccount = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const redirect = searchParams.get("redirect") || "/customer/address"
-    const { setSkipNextAddressValidation } = useCheckoutTransition();
 
     const onSubmit = async (data: AddressInput) => {
         await createAddress(data);
-        setSkipNextAddressValidation(true);
-        navigate(redirect, { replace: true });
+        navigate(redirect, {
+            replace: true,
+            state: redirect === "/checkout"
+                ? { skipAddressValidation: true }
+                : undefined,
+        });
     }
 
     return (

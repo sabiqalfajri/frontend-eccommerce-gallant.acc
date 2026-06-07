@@ -5,8 +5,7 @@ import { AddressCard } from "@/components/user/address/AddressCard"
 import { CheckoutItem } from "@/components/user/checkout/CheckoutItem"
 import { CheckoutSkeleton } from "@/components/user/checkout/CheckoutSkeleton"
 import { useCartSelection } from "@/context/CartSelectionContext"
-import { useCheckout } from "@/context/CheckoutContext"
-import { useCheckoutTransition } from "@/context/CheckoutTransitionContext"
+import { useCheckout } from "@/context/checkout/useCheckout"
 import { useAddress } from "@/hooks/address/useAddress"
 import { useCreateOrder } from "@/hooks/transaction/useCreateOrder"
 import { useCreatePayment } from "@/hooks/transaction/useCreatePayment"
@@ -15,7 +14,7 @@ import { useToken } from "@/hooks/universal/useToken"
 import { useWindowSize } from "@/hooks/universal/useWindowSize"
 import { showError } from "@/utils/Toast"
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 
 export const Checkout = () => {
@@ -33,7 +32,8 @@ export const Checkout = () => {
     const checkoutCount = checkoutItems.reduce((sum, i) => sum + i.quantity, 0 );
     const navigate = useNavigate();
     const isLoading = isCreatingTransactionOrder || isCreatingTransactionPayment;
-    const { skipNextAddressValidation, setSkipNextAddressValidation } = useCheckoutTransition();
+    const location = useLocation();
+    const skipValidation = location.state?.skipAddressValidation ?? false;
 
     const showOverlay = isLoading && isMobile;
     const showButtonSpinner = isLoading && !isMobile;
@@ -74,10 +74,7 @@ export const Checkout = () => {
 
     useEffect(() => {
         if(!isFetchedAddress || smoothLoadingCheckout || hasCompletedPayment) return;
-        if(skipNextAddressValidation) {
-            setSkipNextAddressValidation(false);
-            return
-        }
+        if (skipValidation) return;
 
         if(!address || address.length === 0) {
             console.log('address checkout', address)
@@ -97,7 +94,8 @@ export const Checkout = () => {
         isFetchedAddress, 
         address, 
         checkoutItems, 
-        navigate
+        navigate,
+        skipValidation
     ])
 
     return (
@@ -148,9 +146,9 @@ export const Checkout = () => {
                                 <p>Free</p>
                             </div>
                         </div>
-                        <div className="flex flex-wrap items-center justify-between text-sm mt-3">
+                        <div className="flex flex-wrap items-center justify-between mt-3 text-base font-semibold">
                             <p>Total</p>
-                            <p className="text-base font-semibold">
+                            <p>
                                 Rp{checkoutTotal.toLocaleString('id-ID')}
                             </p>
                         </div>
