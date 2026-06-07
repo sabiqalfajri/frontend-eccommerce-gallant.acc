@@ -67,20 +67,6 @@ export const EOQContent = ({
                 )
             },
             {
-                accessorKey: "recommendedOrder",
-                header: "Rekomendasi",
-                cell: ({ row }) => (
-                    <div className="flex flex-col gap-0.5">
-                        <span className="font-medium">
-                            {row.original.recomendation}
-                        </span>
-                        <p className="text-[11px] text-gray-400 leading-tight">
-                            Berdasarkan efisiensi biaya (EOQ)
-                        </p>
-                    </div>
-                )
-            },
-            {
                 accessorKey: "status",
                 header: () => 
                     <div className="flex flex-nowrap items-center gap-1">
