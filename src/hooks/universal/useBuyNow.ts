@@ -24,6 +24,8 @@ export const useBuyNow = () => {
 
         if (!items || items.length === 0 || !isFetchedAddress) return;
 
+        setCheckoutItems(items);
+
         if (!address || address.length === 0) {
             showError("Silakan tambahkan alamat pengiriman terlebih dahulu.");
             return navigate("/customer/address/add?redirect=/checkout");
@@ -33,7 +35,9 @@ export const useBuyNow = () => {
         await new Promise((resolve) => setTimeout(resolve, 800));
         setCheckoutItems(items);
 
-        navigate("/checkout");
+        navigate("/checkout", {
+            state: { skipAddressValidation: true },
+        });
         setIsLoading(false);
     }
 

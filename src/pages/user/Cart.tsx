@@ -46,6 +46,8 @@ export const Cart = () => {
 
     const handleBuyNow = async () => {
         if (!selectedItems || !selectedItems.length) return;
+
+        setCheckoutItems(selectedItems);
         
         if(!address.length) {
             showError('Silakan tambahkan alamat pengiriman terlebih dahulu.')
@@ -56,7 +58,6 @@ export const Cart = () => {
             setIsLoadingBuyNow(true)
             await new Promise((resolve) => setTimeout(resolve, 800));
 
-            setCheckoutItems(selectedItems);
             navigate("/checkout", {
                 state: { skipAddressValidation: true },
             });

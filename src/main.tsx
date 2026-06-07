@@ -10,7 +10,6 @@ import { CartSelectionProvider } from './context/CartSelectionContext.tsx'
 import { CheckoutProvider } from './context/checkout/CheckoutProvider.tsx'
 import { AuthWathcer } from './providers/AuthWatcher.tsx'
 import { FilterProvider } from './features/filter/FilterProvider.tsx'
-import { CheckoutTransitionProvider } from './context/checkout-transition/CheckoutTransitionProvider.tsx'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -26,13 +25,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
       <CartSelectionProvider>
         <CheckoutProvider>
-          <CheckoutTransitionProvider>
-            <FilterProvider>
-              <BrowserRouter>
-                <App />
-              </BrowserRouter>
-            </FilterProvider>
-          </CheckoutTransitionProvider>
+          <FilterProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </FilterProvider>
         </CheckoutProvider>
       </CartSelectionProvider>
       <ReactQueryDevtools initialIsOpen={false} />
