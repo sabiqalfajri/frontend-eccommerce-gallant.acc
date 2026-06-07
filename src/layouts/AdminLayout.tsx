@@ -1,14 +1,22 @@
 import { Navbar } from "@/components/admin/Navbar"
 import { Sidebar } from "@/components/admin/Sidebar"
 import { useWindowSize } from "@/hooks/universal/useWindowSize"
-import { useEffect, useState } from "react"
-import { Outlet } from "react-router-dom"
+import { useEffect, useRef, useState } from "react"
+import { Outlet, useLocation } from "react-router-dom"
 
 export const AdminLayout = () => {
+    const { pathname } = useLocation();
     const { isMobile, isTablet } = useWindowSize();
     const [isDesktopCollapsed, setIsDesktopCollapsed] = useState(false);
     const [isMobileOpen, setIsMobileOpen] = useState(false);
     const isDrawer = isMobile || isTablet
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.scrollTo(0, 0);
+        }
+    }, [pathname]);
     
     useEffect(() => {
         if(isDrawer) {
@@ -20,13 +28,11 @@ export const AdminLayout = () => {
     return (
         <div className="flex h-screen">
             <Sidebar 
-            // isOpen={isSidebarOpen} 
-            // setIsOpen={setIsSidebarOpen}
-            isMobile={isDrawer}
-            isMobileOpen={isMobileOpen}
-            setIsMobileOpen={setIsMobileOpen}
-            isDesktopCollapsed={isDesktopCollapsed}
-            setIsDesktopCollapsed={setIsDesktopCollapsed}
+                isMobile={isDrawer}
+                isMobileOpen={isMobileOpen}
+                setIsMobileOpen={setIsMobileOpen}
+                isDesktopCollapsed={isDesktopCollapsed}
+                setIsDesktopCollapsed={setIsDesktopCollapsed}
             />
 
             {isDrawer && isMobileOpen && (
@@ -38,15 +44,14 @@ export const AdminLayout = () => {
 
             <div className="flex flex-1 flex-col overflow-hidden">
                 <Navbar 
-                isMobile={isMobile}
-                onMenuClick={() => setIsMobileOpen(true)}
-                // isDesktopCollapsed={}
-                // setIsDesktopCollapsed={}
-                // isSidebarOpen={isSidebarOpen} 
-                // setIsSidebarOpen={setIsSidebarOpen}
+                    isMobile={isMobile}
+                    onMenuClick={() => setIsMobileOpen(true)}
                 />
 
-                <main className="flex-1 overflow-y-auto p-3.5 md:p-6 bg-gray-100">
+                <main 
+                    ref={scrollContainerRef}
+                    className="flex-1 overflow-y-auto p-3.5 md:p-6 bg-gray-100"
+                >
                     <Outlet />
                 </main>
             </div>

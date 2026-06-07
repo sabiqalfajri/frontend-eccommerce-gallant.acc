@@ -147,7 +147,6 @@ export const Sidebar = ({
                                     to={item.path}
                                     end
                                     onClick={() => isMobile && setIsMobileOpen(false)}
-                                   
                                     className={({ isActive }) => {
                                         const isChildActive = !isActive && 
                                             item.path !== '/dashboard' && 
@@ -161,9 +160,6 @@ export const Sidebar = ({
                                                 : "text-gray-600 hover:bg-gray-100"
                                         }`
                                     }}
-                                    // className={({ isActive }: any) => 
-                                    //     `group flex items-center ${showText ? "justify-start px-3" : "justify-center"} h-10 w-full rounded-lg text-sm font-medium transition-all duration-200 ease-in-out ${isActive ? "bg-primary-light text-primary" : "text-gray-600 hover:bg-gray-100"}`
-                                    //     }
                                     >
                                         <span
                                           className={`

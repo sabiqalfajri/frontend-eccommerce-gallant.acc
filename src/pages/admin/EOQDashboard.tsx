@@ -1,7 +1,6 @@
 import { CardDashboard } from "@/components/admin/Card"
 import { Button } from "@/components/ui/button"
 import { IoBookOutline, IoWalletOutline } from "react-icons/io5";
-// import { GrConfigure } from "react-icons/gr";
 import { LuCalendarClock } from "react-icons/lu";
 import { GoPackage } from "react-icons/go";
 import { FiEdit } from "react-icons/fi";
@@ -112,7 +111,7 @@ export const EOQDashboard = () => {
                             <div className="flex flex-col items-center justify-center gap-3 text-center my-8">
                                 <img 
                                     src="/images/eoq-empty.svg" 
-                                    alt="cartEmpty" 
+                                    alt="eOQEmpty" 
                                     className="w-32 h-32 md:w-44 md:h-44 object-contain my-2" 
                                 />
                                 <h1 className="font-bold text-[18px]">

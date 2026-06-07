@@ -23,16 +23,10 @@ export const AdminRoutes = () => {
                     <Route index element={<HomeDashboard />} />
                     <Route path="orders" element={<OrdersDashboard />} />
                     <Route path="orders/:id" element={<OrderDetailDashboard />} />
-                    
+
                     <Route path="products" element={<ProductsDashboard />} />
                     <Route path="products/add" element={<AddProduct />} />
                     <Route path="products/:id/edit" element={<EditProduct />} />
-
-                    {/* <Route path="add-product" element={<AddProduct />} />
-                    <Route path="update-product/:id" element={<EditProduct />} /> */}
-                    {/* <Route path="categories" element={<CategoryDashboard />} />
-                    <Route path="add-category" element={<AddCategory />} /> */}
-                    {/* <Route path="update-category/:id" element={<EditCategory />} /> */}
 
                     <Route path="categories" element={<CategoryDashboard />} />
                     <Route path="categories/add" element={<AddCategory />} />

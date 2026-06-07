@@ -26,14 +26,14 @@ export const HomeDashboard = () => {
         { 
             icon: <IoWalletOutline size={23} /> , 
             title: 'Total Pendapatan', 
-            description: 'Bulan ini', 
+            description: 'Pendapatan bulan ini', 
             data: `Rp${overview?.revenue.total.toLocaleString('id-ID')}`,
             growth: overview?.revenue.growth
         },
         { 
             icon: <HiOutlineShoppingBag size={23} /> , 
             title: 'Total Pesanan', 
-            description: 'Bulan ini', 
+            description: 'Pesanan bulan ini', 
             data: overview?.orders.total,
             growth: overview?.orders.growth
         },
