@@ -1,6 +1,6 @@
 import { CardDashboard } from "@/components/admin/Card"
 import { Button } from "@/components/ui/button"
-import { IoBookOutline, IoWalletOutline } from "react-icons/io5";
+import { IoWalletOutline } from "react-icons/io5";
 import { LuCalendarClock } from "react-icons/lu";
 import { GoPackage } from "react-icons/go";
 import { FiEdit } from "react-icons/fi";
@@ -14,7 +14,6 @@ import { EOQPending } from "@/components/admin/eoq/EOQPending";
 import { useApplyEOQConfig } from "@/hooks/eoq/useApplyEOQConfig";
 import { EOQConfigFormValues } from "@/schema/admin/EOQSchema";
 import { Pagination } from "@/components/common/Pagination";
-import { Link } from "react-router-dom";
 
 export const EOQDashboard = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -143,7 +142,7 @@ export const EOQDashboard = () => {
                 )}
             </CardDashboard>
             
-            <div className="bg-white rounded-md px-4 pt-4 pb-5 flex flex-col gap-3">
+            {/* <div className="bg-white rounded-md px-4 pt-4 pb-5 flex flex-col gap-3">
                 <h1 className="font-semibold text-base">Apa itu EOQ?</h1>
                 <div className="grid md:grid-cols-[3.5fr_0.5fr] grid-cols-1 gap-7">
                     <p className="text-gray-600 text-[13px] max-w-[650px]">
@@ -162,7 +161,7 @@ export const EOQDashboard = () => {
                         </Button>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             <ModalConfigure
                 isOpen={isModalOpen} 

@@ -227,7 +227,6 @@ export const EOQGuide = () => {
                         </div>
                     </CardDashboard>
                 </div>
-                {/* Summary */}
                 <aside className="sticky top-5">
                     <CardDashboard title="Ringkasan EOQ">
                         <div className="bg-[#FAFAFC] p-4 rounded-md">
