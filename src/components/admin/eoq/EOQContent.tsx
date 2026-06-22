@@ -1,9 +1,7 @@
-import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { EOQProduct } from "@/types/EOQ"
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table"
 import { useMemo } from "react"
-import { StatusPopover } from "./StatusPopover";
 import { EOQTooltip } from "./EOQTooltip";
 
 interface EOQContentProps {
@@ -62,34 +60,18 @@ export const EOQContent = ({
                 ,
                 cell: ({ row }) => (
                     <span>
-                        {row.original.recomendedOrder}
+                        {row.original.recommendedOrder}
                     </span>
                 )
             },
             {
-                accessorKey: "status",
-                header: () => 
-                    <div className="flex flex-nowrap items-center gap-1">
-                        <p>Status</p>
-                        <StatusPopover />
-                    </div>
-                ,
-                cell: ({ row }) => {
-                    const status = row.original.status;
-                    const variants: Record<string, string> = {
-                        optimal: "bg-green-100 text-green-700 border-green-200",
-                        reorder: "bg-yellow-100 text-yellow-700 border-yellow-200",
-                        critical: "bg-red-100 text-red-700 border-red-200",
-                        overstock: "bg-blue-100 text-blue-700 border-gray-200",
-                        unknown:  "bg-gray-100 text-gray-500 border-gray-200",
-                    };
-                    
-                    return (
-                        <Badge variant="outline" className={`${variants[status]} capitalize`}>
-                            {status}
-                        </Badge>
-                    );
-                }
+                accessorKey: "restockFrequency",
+                header: "Frekuensi Restock",
+                cell: ({ row }) => (
+                    <span>
+                        {row.original.restockFrequency}
+                    </span>
+                )
             },
         ]
     }, [])

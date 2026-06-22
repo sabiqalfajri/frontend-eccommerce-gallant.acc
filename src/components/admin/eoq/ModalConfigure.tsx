@@ -1,4 +1,3 @@
-import { ComboboxCustom } from "@/components/common/ComboboxCustom";
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input";
@@ -28,8 +27,8 @@ export const ModalConfigure = ({
 }: ModalConfigureProps) => {
     const { 
         handleSubmit, 
-        watch, 
-        setValue, 
+        // watch, 
+        // setValue, 
         reset,
         control,
         formState: { errors }, 
@@ -39,7 +38,6 @@ export const ModalConfigure = ({
         defaultValues: {
             orderingCost: initialData?.orderingCost ?? 0,
             holdingCost: initialData?.holdingCost ?? 0,
-            periodMonths: initialData?.periodMonths ?? 3
         }
     });
     const isEditMode = !!initialData
@@ -49,29 +47,28 @@ export const ModalConfigure = ({
             reset({
                 orderingCost: initialData?.orderingCost ?? 0,
                 holdingCost: initialData?.holdingCost ?? 0,
-                periodMonths: initialData?.periodMonths ?? 3
             })
         }
     }, [isOpen, initialData, reset])
 
-    const periodOptions = [
-        {
-            label: '1 Bulan Terakhir',
-            value: '1'
-        },
-        {
-            label: '3 Bulan Terakhir',
-            value: '3'
-        },
-        {
-            label: '6 Bulan Terakhir',
-            value: '6'
-        },
-        {
-            label: '12 Bulan Terakhir',
-            value: '12'
-        },
-    ]
+    // const periodOptions = [
+    //     {
+    //         label: '1 Bulan Terakhir',
+    //         value: '1'
+    //     },
+    //     {
+    //         label: '3 Bulan Terakhir',
+    //         value: '3'
+    //     },
+    //     {
+    //         label: '6 Bulan Terakhir',
+    //         value: '6'
+    //     },
+    //     {
+    //         label: '12 Bulan Terakhir',
+    //         value: '12'
+    //     },
+    // ]
 
     const onSubmit = (data: EOQConfigFormValues) => {
         onConfirm?.(data)
@@ -81,7 +78,6 @@ export const ModalConfigure = ({
         reset({
             orderingCost: initialData?.orderingCost ?? 0,
             holdingCost: initialData?.holdingCost ?? 0,
-            periodMonths: initialData?.periodMonths ?? 3,
         })
         onOpenChange(false)
     }
@@ -205,7 +201,7 @@ export const ModalConfigure = ({
                         </div>
                         {errors.holdingCost && <p className="text-red-500 text-[12px]">{errors.holdingCost.message}</p>}
                     </div>
-                    <div className="flex flex-col gap-2">
+                    {/* <div className="flex flex-col gap-2">
                         <Label className="text-[13px]">
                             Periode Analisis
                         </Label>
@@ -220,10 +216,7 @@ export const ModalConfigure = ({
                             }}
                         />
                         {errors.periodMonths && <p className="text-red-500 text-[12px]">{errors.periodMonths.message}</p>}
-                        {/* <span className="text-[11px] text-gray-500">
-                            Periode data penjualan yang digunakan untuk menghitung permintaan (demand).
-                        </span> */}
-                    </div>
+                    </div> */}
 
                     <DialogFooter>
                         <Button 

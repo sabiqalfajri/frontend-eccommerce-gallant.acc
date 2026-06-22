@@ -2,7 +2,6 @@ export interface EOQConfig {
     id: string
     orderingCost: number
     holdingCost: number
-    periodMonths: number
     createdAt: string
     updatedAt: string
 }
@@ -20,9 +19,8 @@ export interface EOQProduct {
     productImage: string
     totalSold: number
     currentStock: number
-    recomendedOrder: number
-    status: EOQStatus
-    recomendation: string
+    recommendedOrder: number
+    restockFrequency: number
 }
 
 export interface EOQPaginatedReport {
@@ -36,5 +34,4 @@ export interface EOQPaginatedReport {
 export interface EOQPayload {
     orderingCost: number
     holdingCost: number;
-    periodMonths: number
 }

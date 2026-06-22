@@ -41,7 +41,6 @@ export const EOQDashboard = () => {
     } = useApplyEOQConfig(token!)
 
     const isConfigured = !!config;
-    // const isConfigured = false;
 
     const configureMenu = [
         {
@@ -57,7 +56,8 @@ export const EOQDashboard = () => {
         {
             icon: <LuCalendarClock size={23} />,
             title: 'Periode Analisis',  
-            value: config ? `${config.periodMonths} Bulan Terakhir` : '-',
+            value: '1 Tahun Terakhir',
+            // value: config ? `${config.periodMonths} Bulan Terakhir` : '-',
         },
     ]
 
