@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { EOQProduct } from "@/types/EOQ"
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table"
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import { EOQTooltip } from "./EOQTooltip";
 import { ModalDetailEoq } from "./ModalDetailEoq";
 
@@ -14,11 +14,7 @@ export const EOQContent = ({
     data = [],
     isLoading
 }: EOQContentProps) => {
-    const [selectedProduct, setSelectedProduct] = useState<EOQProduct | null>(null);
-
-    useEffect(() => {
-        console.log('selectedProductEoq for Modal', selectedProduct)
-    }, [selectedProduct])
+    const [selectedProduct, setSelectedProduct] = useState<EOQProduct | null>(null)
 
     const columns: ColumnDef<EOQProduct>[] = useMemo(() => {
         return [

@@ -17,6 +17,7 @@ import { Pagination } from "@/components/common/Pagination";
 
 export const EOQDashboard = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isManualRefreshing, setIsManualRefreshing] = useState(false);
     const [page, setPage] = useState(1)
     const { token } = useToken();
     const ROWS_PER_PAGE = 10
@@ -30,7 +31,6 @@ export const EOQDashboard = () => {
         total,
         totalPages,
         isPendingReport,
-        isFetching,
         refetch,
     } = useEOQReport(
         token!,
@@ -61,6 +61,16 @@ export const EOQDashboard = () => {
             value: '1 Tahun',
         },
     ]
+
+    const handleRefreshReport = async () => {
+        setIsManualRefreshing(true);
+
+        try {
+            await refetch();
+        } finally {
+            setIsManualRefreshing(false);
+        }
+    };
 
     const handleApplyConfig = async (data: EOQConfigFormValues) => {
         await applyConfig(data)
@@ -130,13 +140,13 @@ export const EOQDashboard = () => {
                                     <Button 
                                         variant="outline"
                                         className="w-fit"
-                                        disabled={isFetching}
-                                        onClick={() => refetch()}
+                                        disabled={isPendingReport || isManualRefreshing}
+                                        onClick={handleRefreshReport}
                                     >
                                         <FiRefreshCcw 
-                                            className={isFetching ? "animate-spin" : ""}
+                                            className={isManualRefreshing ? "animate-spin" : ""}
                                         />
-                                        {isFetching ? "Memperbarui..." : "Refresh Data"}
+                                        {isManualRefreshing ? "Memperbarui..." : "Refresh Data"}
                                     </Button>
                                 </div>
                                 <div className="flex flex-col gap-2 my-3">
