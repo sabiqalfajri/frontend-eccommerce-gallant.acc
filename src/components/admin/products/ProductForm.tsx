@@ -19,9 +19,19 @@ import { showError } from "@/utils/Toast";
 import { NumericFormat } from "react-number-format"
 import { ClipLoader } from "react-spinners";
 
-interface ProductData extends ProductFormValues {
+interface ProductData {
     id: string;
-    images?: string[]
+    name: string;
+    price: number;
+    stock: number;
+    categoryId: string;
+    description: string;
+    visibility?: "PUBLISH" | "HIDDEN" | "DRAFT";
+    images?: string[];
+    inventoryPolicy?: {
+        leadTimeDays: number;
+        safetyStock: number;
+    } | null;
 }
 
 interface ProductFormProps {
@@ -44,9 +54,12 @@ export const ProductForm = ({
     const { categories, isLoadingCategory } = useCategories();
     const defaultValues = useMemo(() => {
         if(mode === 'edit' && productData) {
+            console.log('productData: ', productData)
             return {
                 ...productData,
-                price: productData.price ?? 0
+                price: productData.price ?? 0,
+                leadTimeDays: productData.inventoryPolicy?.leadTimeDays ?? 0,
+                safetyStock: productData.inventoryPolicy?.safetyStock ?? 0,
             }
         }
         return {
@@ -226,7 +239,7 @@ export const ProductForm = ({
                             </div>
                         </div>
                     </CardDashboard>
-                    <CardDashboard title="Harga dan stok">
+                    <CardDashboard title="Harga dan Persediaan">
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-3">
                                 <Label>Harga</Label>
@@ -278,6 +291,64 @@ export const ProductForm = ({
                                     />
                                     
                                     {errors.stock && <p className="text-red-500 text-[13px] mt-1">{errors.stock.message}</p>}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4 mt-2.5">
+                            <div className="space-y-3">
+                                <Label>Waktu Tunggu Supplier (Hari)</Label>
+                                <div>
+                                    <Controller 
+                                        name="leadTimeDays"
+                                        control={control}
+                                        render={({ field: { onChange, onBlur, value, ref } }) => (
+                                            <NumericFormat 
+                                                customInput={Input}
+                                                thousandSeparator="."
+                                                decimalSeparator=","
+                                                decimalScale={2}
+                                                fixedDecimalScale={false}
+                                                allowNegative={false}
+                                                value={value ?? null}
+                                                onValueChange={(values) => {
+                                                    const { floatValue } = values
+                                                    onChange(floatValue == null ? null : floatValue)
+                                                }}
+                                                onBlur={onBlur}
+                                                getInputRef={ref}
+                                                placeholder="0"
+                                            />
+                                        )}
+                                    />
+                                    {errors.leadTimeDays && <p className="text-red-500 text-[13px] mt-1">{errors.leadTimeDays.message}</p>}
+                                </div>
+                            </div>
+                            <div className="space-y-3">
+                                <Label>Stok Pengaman (Unit)</Label>
+                                <div>
+                                    <Controller 
+                                        name="safetyStock"
+                                        control={control}
+                                        render={({ field: { onChange, onBlur, value, ref } }) => (
+                                            <NumericFormat 
+                                                customInput={Input}
+                                                thousandSeparator="."
+                                                decimalSeparator=","
+                                                decimalScale={2}
+                                                fixedDecimalScale={false}
+                                                allowNegative={false}
+                                                value={value ?? null}
+                                                onValueChange={(values) => {
+                                                    const { floatValue } = values
+                                                    onChange(floatValue == null ? null : floatValue)
+                                                }}
+                                                onBlur={onBlur}
+                                                getInputRef={ref}
+                                                placeholder="0"
+                                            />
+                                        )}
+                                    />
+                                    {errors.safetyStock && <p className="text-red-500 text-[13px] mt-1">{errors.safetyStock.message}</p>}
                                 </div>
                             </div>
                         </div>

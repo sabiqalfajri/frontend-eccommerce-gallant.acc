@@ -31,6 +31,8 @@ export const createProductForAdmin = async (
     formData.append('description', data.description);
     formData.append('price', data.price.toString());
     formData.append('stock', data.stock.toString());
+    if(data.leadTimeDays !== undefined) formData.append('leadTimeDays', data.leadTimeDays.toString())
+    if(data.safetyStock !== undefined) formData.append('safetyStock', data.safetyStock.toString())
     formData.append('categoryId', data.categoryId.toString());
     formData.append('visibility', data.visibility.toString());
 
@@ -53,15 +55,17 @@ export const updatedProductForAdmin = async (
     id: string,
     data: UpdateProductPayload
 ) => {
-    const formData = new FormData();
-    if(data.name) formData.append('name', data.name);
-    if(data.description) formData.append('description', data.description);
-    if(data.price !== undefined) formData.append('price', data.price.toString());
-    if(data.stock !== undefined) formData.append('stock', data.stock.toString());
-    if(data.categoryId) formData.append('categoryId', data.categoryId.toString());
-    if(data.visibility) formData.append('visibility', data.visibility.toString());
+    const formData = new FormData()
+    if(data.name) formData.append('name', data.name)
+    if(data.description) formData.append('description', data.description)
+    if(data.price !== undefined) formData.append('price', data.price.toString())
+    if(data.stock !== undefined) formData.append('stock', data.stock.toString())
+    if(data.leadTimeDays !== undefined) formData.append('leadTimeDays', data.leadTimeDays.toString())
+    if(data.safetyStock !== undefined) formData.append('safetyStock', data.safetyStock.toString())
+    if(data.categoryId) formData.append('categoryId', data.categoryId.toString())
+    if(data.visibility) formData.append('visibility', data.visibility.toString())
 
-    formData.append("deletedImages", JSON.stringify(data.deletedImages ?? []));
+    formData.append("deletedImages", JSON.stringify(data.deletedImages ?? []))
 
     data.files?.forEach((file) => {
         formData.append('images', file);

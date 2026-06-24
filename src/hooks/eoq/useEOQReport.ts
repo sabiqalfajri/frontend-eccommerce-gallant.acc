@@ -12,6 +12,7 @@ export const useEOQReport = (
         isPending,
         isFetching,
         isFetched,
+        refetch,
         error
     } = useQuery<EOQPaginatedReport>({
         queryKey: [
@@ -37,6 +38,7 @@ export const useEOQReport = (
         isPendingReport: isPending,
         isFetching,
         isFetched,
+        refetch,
         error
     }
 }

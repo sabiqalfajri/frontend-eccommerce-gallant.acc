@@ -4,6 +4,8 @@ export const createProductSchema = z.object({
     name: z.string().min(1, 'Name is required'),
     price: z.coerce.number().positive('Price must be a positive number'),
     stock: z.coerce.number().positive('Stock must be a positive number'),
+    leadTimeDays: z.coerce.number().int().min(0, "Lead time cannot be negative"),
+    safetyStock: z.coerce.number().int().min(0, "Safety stock cannot be negative"),
     categoryId: z.string().min(1, 'Category ID is required'),
     description: z.string().min(1, 'Description is required'),
     visibility: z.enum(["PUBLISH", "HIDDEN", "DRAFT"]).optional()

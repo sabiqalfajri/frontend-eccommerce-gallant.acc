@@ -201,22 +201,6 @@ export const ModalConfigure = ({
                         </div>
                         {errors.holdingCost && <p className="text-red-500 text-[12px]">{errors.holdingCost.message}</p>}
                     </div>
-                    {/* <div className="flex flex-col gap-2">
-                        <Label className="text-[13px]">
-                            Periode Analisis
-                        </Label>
-                        <ComboboxCustom
-                            options={periodOptions}
-                            className="w-full"
-                            contentClassName="!w-full !max-w-none"
-                            placeholder="Pilih opsi periode"
-                            value={watch("periodMonths").toString()}
-                            onChange={(value) => {
-                                setValue("periodMonths", Number(value), { shouldValidate: true });
-                            }}
-                        />
-                        {errors.periodMonths && <p className="text-red-500 text-[12px]">{errors.periodMonths.message}</p>}
-                    </div> */}
 
                     <DialogFooter>
                         <Button 

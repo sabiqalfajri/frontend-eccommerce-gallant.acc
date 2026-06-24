@@ -28,6 +28,12 @@ export const EditProduct = () => {
             stock: dataProductById.stock,
             categoryId: dataProductById.categoryId ?? '',
             description: dataProductById.description,
+            inventoryPolicy: dataProductById.inventoryPolicy  
+            ? {
+                leadTimeDays: dataProductById.inventoryPolicy.leadTimeDays,
+                safetyStock: dataProductById.inventoryPolicy.safetyStock,
+            }
+            : null,
             visibility: (['PUBLISH','HIDDEN','DRAFT'].includes(dataProductById.visibility) 
                          ? dataProductById.visibility 
                          : 'PUBLISH') as "PUBLISH" | "HIDDEN" | "DRAFT",
@@ -35,7 +41,11 @@ export const EditProduct = () => {
         }
         : undefined;
 
-    const onSubmit = async (data: UpdateProductFormValues & { files: File[], deletedImages?: string[], visibility: string }) => {
+    const onSubmit = async (data: UpdateProductFormValues & { 
+        files: File[], 
+        deletedImages?: string[], 
+        visibility: string 
+    }) => {
         if(!id) return;
 
         const payload = {

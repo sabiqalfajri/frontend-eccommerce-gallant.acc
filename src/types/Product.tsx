@@ -36,6 +36,10 @@ export interface ProductById {
     images: { url: string }[];
     visibility: filterProduct;
     stock: number;
+    inventoryPolicy: {
+        leadTimeDays: number;
+        safetyStock: number;
+    } | null;
     categoryId: string;
     categoryName: string;
 }
@@ -45,6 +49,8 @@ export interface ProductPayload {
     description: string;
     price: number;
     stock: number;
+    leadTimeDays?: number
+    safetyStock?: number
     categoryId: string;
     visibility: string;
     files: File[];
@@ -55,6 +61,8 @@ export interface UpdateProductPayload {
     description?: string;
     price?: number;
     stock?: number;
+    leadTimeDays?: number;
+    safetyStock?: number;
     categoryId?: string;
     visibility?: "PUBLISH" | "HIDDEN" | "DRAFT";
     files?: File[];
@@ -90,6 +98,6 @@ export interface BestSellerProduct extends RelatedProduct {
     sold: string;
 }
 
-export interface NewArrivals extends RelatedProduct {}
-export interface Carousal extends RelatedProduct {}
+export type NewArrivals = RelatedProduct;
+export type Carousal = RelatedProduct;
 

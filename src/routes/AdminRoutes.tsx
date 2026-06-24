@@ -13,7 +13,6 @@ import { OrderDetailDashboard } from "@/pages/admin/OrderDetailDashboard"
 import { AddCategory } from "@/pages/admin/AddCategory"
 import { EditCategory } from "@/pages/admin/EditCategory"
 import { EOQDashboard } from "@/pages/admin/EOQDashboard"
-import { EOQGuide } from "@/pages/admin/EOQGuide"
 
 export const AdminRoutes = () => {
     return (
@@ -33,7 +32,6 @@ export const AdminRoutes = () => {
                     <Route path="categories/:id/edit" element={<EditCategory />} />
 
                     <Route path="eoq" element={<EOQDashboard />} />
-                    <Route path="eoq/guide" element={<EOQGuide />} />
 
                     <Route path="customers" element={<CustomersDashboard />} />
                     <Route path="settings" element={<SettingsDashboard />} />

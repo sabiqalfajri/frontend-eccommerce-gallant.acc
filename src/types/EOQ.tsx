@@ -13,14 +13,26 @@ export type EOQStatus =
     | 'overstock'
     | 'unknown'
 
+export interface EOQCalculationDetail {
+    analysisDays: number
+    orderingCost: number
+    holdingCost: number
+    averageDailyDemand: number
+    leadTimeDays: number
+    safetyStock: number
+    rawEOQ: number
+    rawROP: number
+}
+
 export interface EOQProduct {
     id: string
     productName: string
     productImage: string
-    totalSold: number
+    annualDemand: number
     currentStock: number
     recommendedOrder: number
-    restockFrequency: number
+    reorderPoint: number
+    calculationDetail: EOQCalculationDetail
 }
 
 export interface EOQPaginatedReport {

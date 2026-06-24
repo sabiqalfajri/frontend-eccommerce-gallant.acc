@@ -1,8 +1,9 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { EOQProduct } from "@/types/EOQ"
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table"
-import { useMemo } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { EOQTooltip } from "./EOQTooltip";
+import { ModalDetailEoq } from "./ModalDetailEoq";
 
 interface EOQContentProps {
     data: EOQProduct[];
@@ -13,6 +14,12 @@ export const EOQContent = ({
     data = [],
     isLoading
 }: EOQContentProps) => {
+    const [selectedProduct, setSelectedProduct] = useState<EOQProduct | null>(null);
+
+    useEffect(() => {
+        console.log('selectedProductEoq for Modal', selectedProduct)
+    }, [selectedProduct])
+
     const columns: ColumnDef<EOQProduct>[] = useMemo(() => {
         return [
             {
@@ -39,11 +46,11 @@ export const EOQContent = ({
             {
                 accessorKey: "totalSold",
                 header: "Total Terjual",
-                cell: ({ row }) => <span>{row.original.totalSold.toLocaleString()} unit</span>
+                cell: ({ row }) => <span>{row.original.annualDemand.toLocaleString()} unit</span>
             },
             {
                 accessorKey: "currentStock",
-                header: "Stok",
+                header: "Stok Saat Ini",
                 cell: ({ row }) => (
                     <span>
                         {row.original.currentStock}
@@ -65,12 +72,25 @@ export const EOQContent = ({
                 )
             },
             {
-                accessorKey: "restockFrequency",
-                header: "Frekuensi Restock",
+                accessorKey: "reorderPoint",
+                header: "ROP",
                 cell: ({ row }) => (
                     <span>
-                        {row.original.restockFrequency}
+                        {row.original.reorderPoint}
                     </span>
+                )
+            },
+            {
+                accessorKey: "action",
+                header: "Aksi",
+                cell: ({ row }) => (
+                    <button
+                        type="button"
+                        onClick={() => setSelectedProduct(row.original)}
+                        className="text-sm font-medium text-primary hover:underline"
+                    >
+                        Detail
+                    </button>
                 )
             },
         ]
@@ -83,60 +103,72 @@ export const EOQContent = ({
     });
 
     return (
-        <Table>
-            <TableHeader className="bg-[#F5F5F5]">
-                {table.getHeaderGroups().map((headerGroup) => (
-                    <TableRow key={headerGroup.id}>
-                        {headerGroup.headers.map((header) => (
-                            <TableHead 
-                                key={header.id}
-                                className={header.column.columnDef.meta?.className}
-                            >
-                                {header.isPlaceholder
-                                    ? null
-                                    : flexRender(
-                                        header.column.columnDef.header,
-                                        header.getContext()
-                                    )}
-                            </TableHead>
-                        ))}
-                    </TableRow>
-                ))}
-            </TableHeader>
-            <TableBody>
-                {isLoading ? (
-                    <TableRow className="hover:bg-transparent">
-                        <TableCell 
-                            colSpan={columns.length} 
-                            className="h-24 text-center"
-                        >
-                            <div className="flex justify-center items-center py-4">
-                                <span className="animate-spin w-5 h-5 border-2 border-t-transparent border-gray-400 rounded-full mr-2"></span>
-                                Loading data...
-                            </div>
-                        </TableCell>
-                    </TableRow>
-                ) : table.getRowModel().rows?.length ? (
-                    table.getRowModel().rows.map((row) => (
-                        <TableRow key={row.id} className="hover:bg-gray-50/50 transition-colors">
-                            {row.getVisibleCells().map((cell) => (
-                                <TableCell 
-                                    key={cell.id}
-                                    className={cell.column.columnDef.meta?.className}
+        <>
+            <Table>
+                <TableHeader className="bg-[#F5F5F5]">
+                    {table.getHeaderGroups().map((headerGroup) => (
+                        <TableRow key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => (
+                                <TableHead 
+                                    key={header.id}
+                                    className={header.column.columnDef.meta?.className}
                                 >
-                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                </TableCell>
+                                    {header.isPlaceholder
+                                        ? null
+                                        : flexRender(
+                                            header.column.columnDef.header,
+                                            header.getContext()
+                                        )}
+                                </TableHead>
                             ))}
                         </TableRow>
-                    ))
-                ) : (
-                    <TableRow>
-                        <TableCell colSpan={columns.length} className="h-30 text-center">
-                            Tidak ada data.
-                        </TableCell>
-                    </TableRow>
-                )}
-            </TableBody>
-        </Table>
+                    ))}
+                </TableHeader>
+                <TableBody>
+                    {isLoading ? (
+                        <TableRow className="hover:bg-transparent">
+                            <TableCell 
+                                colSpan={columns.length} 
+                                className="h-24 text-center"
+                            >
+                                <div className="flex justify-center items-center py-4">
+                                    <span className="animate-spin w-5 h-5 border-2 border-t-transparent border-gray-400 rounded-full mr-2"></span>
+                                    Loading data...
+                                </div>
+                            </TableCell>
+                        </TableRow>
+                    ) : table.getRowModel().rows?.length ? (
+                        table.getRowModel().rows.map((row) => (
+                            <TableRow key={row.id} className="hover:bg-gray-50/50 transition-colors">
+                                {row.getVisibleCells().map((cell) => (
+                                    <TableCell 
+                                        key={cell.id}
+                                        className={cell.column.columnDef.meta?.className}
+                                    >
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        ))
+                    ) : (
+                        <TableRow>
+                            <TableCell colSpan={columns.length} className="h-30 text-center">
+                                Tidak ada data.
+                            </TableCell>
+                        </TableRow>
+                    )}
+                </TableBody>
+            </Table>
+            
+            <ModalDetailEoq
+                open={selectedProduct !== null}
+                product={selectedProduct}
+                onOpenChange={(open) => {
+                    if (!open) {
+                        setSelectedProduct(null);
+                    }
+                }}
+            />
+        </>
     )
 }

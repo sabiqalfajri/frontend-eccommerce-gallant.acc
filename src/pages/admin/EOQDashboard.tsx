@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { IoWalletOutline } from "react-icons/io5";
 import { LuCalendarClock } from "react-icons/lu";
 import { GoPackage } from "react-icons/go";
-import { FiEdit } from "react-icons/fi";
+import { FiEdit, FiRefreshCcw } from "react-icons/fi";
 import { useState } from "react";
 import { ModalConfigure } from "@/components/admin/eoq/ModalConfigure";
 import { EOQContent } from "@/components/admin/eoq/EOQContent";
@@ -29,7 +29,9 @@ export const EOQDashboard = () => {
         products,
         total,
         totalPages,
-        isPendingReport
+        isPendingReport,
+        isFetching,
+        refetch,
     } = useEOQReport(
         token!,
         page,
@@ -56,8 +58,7 @@ export const EOQDashboard = () => {
         {
             icon: <LuCalendarClock size={23} />,
             title: 'Periode Analisis',  
-            value: '1 Tahun Terakhir',
-            // value: config ? `${config.periodMonths} Bulan Terakhir` : '-',
+            value: '1 Tahun',
         },
     ]
 
@@ -124,44 +125,38 @@ export const EOQDashboard = () => {
                                 </div>
                             </div>
                         ) : (
-                            <div className="flex flex-col gap-2 my-3">
-                                <EOQContent 
-                                    data={products} 
-                                    isLoading={isPendingReport} 
-                                />
-                                <Pagination
-                                    page={page}
-                                    totalPages={totalPages}
-                                    totalRows={total}
-                                    rowsPerPage={ROWS_PER_PAGE}
-                                    onPageChange={setPage}
-                                />
-                            </div>
+                            <>
+                                <div className="flex justify-end">
+                                    <Button 
+                                        variant="outline"
+                                        className="w-fit"
+                                        disabled={isFetching}
+                                        onClick={() => refetch()}
+                                    >
+                                        <FiRefreshCcw 
+                                            className={isFetching ? "animate-spin" : ""}
+                                        />
+                                        {isFetching ? "Memperbarui..." : "Refresh Data"}
+                                    </Button>
+                                </div>
+                                <div className="flex flex-col gap-2 my-3">
+                                    <EOQContent 
+                                        data={products} 
+                                        isLoading={isPendingReport} 
+                                    />
+                                    <Pagination
+                                        page={page}
+                                        totalPages={totalPages}
+                                        totalRows={total}
+                                        rowsPerPage={ROWS_PER_PAGE}
+                                        onPageChange={setPage}
+                                    />
+                                </div>
+                            </>
                         )}
                     </>
                 )}
             </CardDashboard>
-            
-            {/* <div className="bg-white rounded-md px-4 pt-4 pb-5 flex flex-col gap-3">
-                <h1 className="font-semibold text-base">Apa itu EOQ?</h1>
-                <div className="grid md:grid-cols-[3.5fr_0.5fr] grid-cols-1 gap-7">
-                    <p className="text-gray-600 text-[13px] max-w-[650px]">
-                        EOQ (Economic Order Quantity) adalah metode untuk menentukan jumlah pemesanan yang optimal dengan tujuan meminimalkan total biaya persediaan.
-                    </p>
-                    <div className="flex justify-center items-center">
-                        <Button 
-                            asChild
-                            className="w-fit flex justify-center items-center"
-                            variant="outlinePrimary"
-                        >   
-                            <Link to="/dashboard/eoq/guide">
-                                <IoBookOutline />
-                                Pelajari Lebih Lanjut
-                            </Link>
-                        </Button>
-                    </div>
-                </div>
-            </div> */}
 
             <ModalConfigure
                 isOpen={isModalOpen} 
