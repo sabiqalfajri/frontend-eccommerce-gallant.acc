@@ -110,10 +110,6 @@ export const AddressForm = ({
         onSubmit={handleSubmit(handleFormSubmit)}
         className="flex flex-col gap-5 border border-gray-300 py-3 px-3.5 rounded-md"
         >
-            <div className="bg-blue-50 border border-blue-200 p-3 rounded-md text-sm flex flex-col gap-1">
-                <span className="font-bold">📢 Informasi Pengiriman:</span>
-                <p>Saat ini sistem e-commerce kami hanya mendukung cakupan wilayah pengiriman untuk Jawa Tengah.</p>
-            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {accountAddressFields.map((field) => (
                     <div key={field.id} className="flex flex-col gap-2.5">
