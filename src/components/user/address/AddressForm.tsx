@@ -25,7 +25,9 @@ export const AddressForm = ({
 }: AddressFormProps) => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm<AddressInput>({
         resolver: zodResolver(createAddressSchema) as any,
-        defaultValues: {}
+        defaultValues: {
+            province: 'Jawa Tengah'
+        }
     });
     const disabled = isSubmitting || isLoading
    
@@ -83,7 +85,7 @@ export const AddressForm = ({
     ]
 
     const handleFormSubmit = async (data: AddressInput) => {
-        await onSubmit(data)
+        await onSubmit({ ...data, province: 'Jawa Tengah' })
     }
 
     useEffect(() => {
@@ -92,7 +94,7 @@ export const AddressForm = ({
                 label: defaultValues.label,
                 recipientName: defaultValues.recipientName,
                 nomor: defaultValues.nomor,
-                province: defaultValues.province,
+                province: 'Jawa Tengah',
                 city: defaultValues.city,
                 district: defaultValues.district,
                 subdistrict: defaultValues.subdistrict,
@@ -101,13 +103,17 @@ export const AddressForm = ({
                 intructions: defaultValues.intructions || "",
             })
         }
-    }, [defaultValues])
+    }, [defaultValues, reset])
 
     return (
         <form 
         onSubmit={handleSubmit(handleFormSubmit)}
         className="flex flex-col gap-5 border border-gray-300 py-3 px-3.5 rounded-md"
         >
+            <div className="bg-blue-50 border border-blue-200 p-3 rounded-md text-sm flex flex-col gap-1">
+                <span className="font-bold">📢 Informasi Pengiriman:</span>
+                <p>Saat ini sistem e-commerce kami hanya mendukung cakupan wilayah pengiriman untuk Jawa Tengah.</p>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {accountAddressFields.map((field) => (
                     <div key={field.id} className="flex flex-col gap-2.5">
@@ -117,7 +123,9 @@ export const AddressForm = ({
                         <div className="flex flex-col gap-0.5">
                             <Input 
                                 disabled={disabled}
+                                readOnly={field.id === 'province'}
                                 placeholder={isLoading ? "Loading..." : field.placeholder} 
+                                className={field.id === 'province' ? "bg-gray-100 cursor-not-allowed font-semibold opacity-80" : ""}
                                 {...register(field.id)}
                             />
                             {errors[field.id] && <p className="text-red-500 text-[13px] mt-1">{errors[field.id]?.message}</p>}
