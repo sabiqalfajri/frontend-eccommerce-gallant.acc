@@ -91,11 +91,6 @@ export const DataTable = <TData extends { id: string }, TValue>({
         getPaginationRowModel: getPaginationRowModel(),
     });
 
-    // useEffect(() => {
-    //     const selectedRows = table.getSelectedRowModel().rows
-    //     setShowDeletedBtn(selectedRows.length > 0)
-    // }, [table.getSelectedRowModel().rows.length])
-
     const handleDeleteSelected = async () => {
         const selectedIds = table
         .getSelectedRowModel()
