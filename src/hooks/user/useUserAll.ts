@@ -4,11 +4,11 @@ import { fetchUserAll } from "@/api/UserApi";
 export const useUserAll = (token: string, page = 1, rowsPerPage = 10) => {
     const {
         data,
-        isLoading: isLoadingCurrentUser,
+        isPending: isPendingCurrentUser,
         isFetched: isFetchedCurrentUser,
         isError
     } = useQuery({
-        queryKey: ["usersAll"],
+        queryKey: ["usersAll", page, rowsPerPage],
         queryFn: () => fetchUserAll(token!, page, rowsPerPage),
         staleTime: 1000 * 60 * 5,
         enabled: !!token
@@ -20,7 +20,7 @@ export const useUserAll = (token: string, page = 1, rowsPerPage = 10) => {
         page: data?.page || 1,
         rowsPerPage: data?.rowsPerPage || 10,
         totalPages: data?.totalPages || 1,
-        isLoadingUsersAll: isLoadingCurrentUser,
+        isPendingUsersAll: isPendingCurrentUser,
         isFetchedUsersAll: isFetchedCurrentUser,
         isError
     }

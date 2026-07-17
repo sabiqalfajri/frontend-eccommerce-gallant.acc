@@ -63,15 +63,14 @@ export const DataTable = <TData extends { id: string }, TValue>({
     page,
     totalPages,
     onPageChange,
-    // filterPlaceholder,
     isLoading
 }: DataTableProps<TData, TValue>) => {
     const [sorting , setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
     const [rowSelection, setRowSelection] = useState({});
-    const [showDeletedBtn, setShowDeletedBtn] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const showDeletedBtn = Object.keys(rowSelection).length > 0;
 
     const table = useReactTable({
         data,
@@ -92,10 +91,10 @@ export const DataTable = <TData extends { id: string }, TValue>({
         getPaginationRowModel: getPaginationRowModel(),
     });
 
-    useEffect(() => {
-        const selectedRows = table.getSelectedRowModel().rows
-        setShowDeletedBtn(selectedRows.length > 0)
-    }, [table.getSelectedRowModel().rows.length])
+    // useEffect(() => {
+    //     const selectedRows = table.getSelectedRowModel().rows
+    //     setShowDeletedBtn(selectedRows.length > 0)
+    // }, [table.getSelectedRowModel().rows.length])
 
     const handleDeleteSelected = async () => {
         const selectedIds = table
@@ -112,9 +111,12 @@ export const DataTable = <TData extends { id: string }, TValue>({
         } finally {
             setShowModal(false);
             table.resetRowSelection();
-            setShowDeletedBtn(false);
         }
     }
+
+    const ROWS_PER_PAGE = 10
+    const start = data.length === 0 ? 0 : (page - 1) * ROWS_PER_PAGE + 1;
+    const end = Math.min(page * ROWS_PER_PAGE, totalRows ?? 0);
 
     return (
         <>
@@ -237,14 +239,7 @@ export const DataTable = <TData extends { id: string }, TValue>({
                     <div className="flex flex-wrap items-center justify-between py-1">
                         <div>
                             <p className="text-sm">
-                                Showing{" "}
-                                {table.getState().pagination.pageIndex * table.getState().pagination.pageSize + 1}
-                                -
-                                {Math.min(
-                                    (table.getState().pagination.pageIndex + 1) * table.getState().pagination.pageSize,
-                                    table.getFilteredRowModel().rows.length
-                                )}{" "}
-                                of {totalRows}
+                                Showing {start}-{end} of {totalRows}
                             </p>
                         </div>
                         <div className="flex items-center gap-x-2 py-2">
