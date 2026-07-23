@@ -14,7 +14,7 @@ export const useUpdateProduct = (token: string) => {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["productsAdmin"] });
             queryClient.invalidateQueries({ queryKey: ["productById"] });
-            showInfo("Product updated successfully!");
+            showInfo("Produk berhasil diperbarui.");
         },
         onError: (error: any) => {
             showError(error.message || 'Something went wrong');
